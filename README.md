@@ -390,7 +390,7 @@ The script will install all the modules shown above and the github repository wi
 
 >The script was first created  to be run as root without an interactive shell since it is passed as userdata on creation of the elastic cloud machine via a python rest automation program.
 
-## 💪Empower your Keptn-in-a-box 🎁 with Dynatrace by adding creating your credentials
+## 💪Empower your Keptn-in-a-box 🎁 with Dynatrace by adding your credentials
 
 - Use the Dynatrace information for the inputs to the script:
 
