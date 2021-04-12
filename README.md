@@ -245,11 +245,11 @@ Click on **"Jenkins"**
 
 1. First you will need to click "Install Suggested plugins"
 
-<img src="doc/images/jenkins-install-plugins.png" width="400"/>
+<img src="doc/images/jenkins-install-plugins.png" width="400" height="300"/>
 
 You should then see a progress screen.
 
-<img src="doc/images/jenkins-install-plugins.png" width="400"/>
+<img src="doc/images/jenkins-progress.png" width="400" height="300"/>
 
 2. Now "Jenkins is ready", just click "start using jenkins".
 
