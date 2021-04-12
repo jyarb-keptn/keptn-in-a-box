@@ -257,7 +257,7 @@ You should then see a progress screen.
 
 3. Now we will kick off the Pipeline **01-deploy-order-application** to build out the application.
 
-Login to Jenkins with the following credentials
+   Login to Jenkins with the following credentials
 
 * username = keptn
 * password = keptn
