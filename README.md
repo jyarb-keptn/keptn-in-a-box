@@ -243,7 +243,19 @@ Just open a Browser with the IP.
 
 Click on **"Jenkins"**
 
-Now we will kick off the Pipeline **01-deploy-order-application** to build out the application.
+1. First you will need to click "Install Suggested plugins"
+
+<img src="doc/images/jenkins-install-plugins.png" width="400"/>
+
+You should then see a progress screen.
+
+<img src="doc/images/jenkins-install-plugins.png" width="400"/>
+
+2. Now "Jenkins is ready", just click "start using jenkins".
+
+<img src="doc/images/jenkins-ready.png" width="250"/>
+
+3. Now we will kick off the Pipeline **01-deploy-order-application** to build out the application.
 
 Login to Jenkins with the following credentials
 
