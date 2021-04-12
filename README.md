@@ -504,7 +504,7 @@ cd ~$KEPTN_IN_A_BOX_DIR/resources/gitea
 ```
 **The Domain is required**
 
-:arrow_right:  [Back](#further-reading-to-understand-the-installed-modules-and-troubleshooting-steps)
+:arrow_right:  [Back](#6---available-builds-problem-patters-and-scenerios-for-sockshop)
 
 ### Change your own Domain
 By default the Script will get the public ip and give it a magic domain with nip.io like ip=1.2.3.4 will become 1-2-3-4.nip.io. This way with an NGINX Ingress Keptn and all Istio and Kubernetes services are available with subdomains via the standard HTTP ports 443 and 80.
