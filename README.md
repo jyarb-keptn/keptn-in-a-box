@@ -247,7 +247,7 @@ Click on **"Jenkins"**
 
 <img src="doc/images/jenkins-install-plugins.png" width="400" height="300"/>
 
-You should then see a progress screen.
+   You should then see a progress screen.
 
 <img src="doc/images/jenkins-progress.png" width="400" height="300"/>
 
@@ -259,12 +259,12 @@ You should then see a progress screen.
 
    Login to Jenkins with the following credentials
 
-* username = keptn
-* password = keptn
+   * username = keptn
+   * password = keptn
 
 <img src="doc/images/Lab_1_Jenkins_Log_In.png" width="250"/>
 
-After selecting the pipeline click **"build"**
+   After selecting the pipeline click **"build"**
 
 <img src="doc/images/Lab_1_deploy_order_application_1.png" width="500"/>
 
