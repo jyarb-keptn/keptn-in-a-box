@@ -194,6 +194,23 @@ sudo bash -c './keptn-in-a-box.sh'
 ```
 
 The script will ask for the following inputs.
+
+- Use the Dynatrace information for the inputs to the script:
+
+	- TENANT="mytenant.live.dynatrace.com"
+	- PAASTOKEN=myDynatracePaaSToken
+	- APITOKEN=myDynatraceApiToken
+
+     > for your tenent just use the folowing:
+     >  *{your-domain}/e/{your-environment-id}* 
+     > for managed or 
+     > {your-environment-id}.live.dynatrace.com 
+     > for SaaS.
+     > You can also use 
+     > {your-environment-id}.sprint.dynatracelabs.com
+     > or a dev tenant if inclined.
+
+
 ```bash
 Dynatrace Tenant ID []:
 Dynatrace API Token: []:
