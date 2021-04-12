@@ -31,10 +31,7 @@ MICROK8S_CHANNEL="1.19/stable"
 #KEPTN_IN_A_BOX_REPO="https://github.com/keptn-sandbox/keptn-in-a-box.git"
 KEPTN_IN_A_BOX_REPO="https://github.com/jyarb-keptn/keptn-in-a-box.git"
 KEPTN_IN_A_BOX_DIR="~/keptn-in-a-box"
-#use to test jmeter services
-#JMETER_SERVICE_BRANCH="feature/2552/jmeterextensionskeptn072"
-JMETER_SERVICE_BRANCH="release-0.8.0"
-ALT_JMETER_SERVICE_BRANCH="release-0.8.0-alpha"
+
 
 # - The user to run the commands from. Will be overwritten when executing this shell with sudo, 
 # this is just needed when spinning machines programatically and running the script with root without an interactive shell
@@ -147,7 +144,7 @@ installationBundleDemo() {
   keptn_bridge_disable_login=true
   # By default no WorkshopUser will be created
   create_workshop_user=false
-  jmeter_install=false
+  jmeter_install=true
   post_flight=true
   patch_config_service=false
 }
@@ -676,17 +673,8 @@ keptnInstall() {
 
 jmeterService() {
   if [ "$jmeter_install" = true ]; then
-  # set this to false for keptn 0.8.x as we don't need to overwrite the jmeter service.
-  # TODO: this change is no longer needed for keptn 0.8.1
-  printInfoSection "Installing and configuring Dynatrace jmeter service $DT_TENANT"
-  # Original to KIAB
-  #bashas "kubectl apply -f https://raw.githubusercontent.com/keptn/keptn/${JMETER_SERVICE_BRANCH}/jmeter-service/deploy/service.yaml -n keptn"
-  # use with newer version of Keptn - Stable
-  #bashas "kubectl -n keptn set image deployment/jmeter-service jmeter-service=keptncontrib/jmeter-extended-service:0.2.0 --record"
-  ## User for jmeter mint
-  #bashas "kubectl apply -f https://raw.githubusercontent.com/keptn/keptn/${ALT_JMETER_SERVICE_BRANCH}/jmeter-service/deploy/service.yaml -n keptn --record"
-  printInfoSection "JMeter Service for keptn 0.8.0"
-  bashas "kubectl apply -f https://raw.githubusercontent.com/dthotday-performance/keptn/${ALT_JMETER_SERVICE_BRANCH}/jmeter-service/deploy/service.yaml -n keptn --record"
+  printInfoSection "JMeter Service for keptn 0.8.x"
+  bashas "kubectl apply -f https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/${KIAB_RELEASE}/resources/keptn/jmeter-service.yaml -n keptn --record"
   waitForAllPods
   fi
 }
