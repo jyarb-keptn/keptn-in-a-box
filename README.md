@@ -422,7 +422,7 @@ For more details on the Integration with Dynatrace read the following links:
 
 With the **installationModulesDefault** or **installationModulesFull** Dynatrace is automatically installed if the credentials are configured.
 
-:arrow_right:  [Back](#create-tokens)
+:arrow_right:  [Back](#arrow_right-create-tokens)
 
 ## Other installation options
 ### Spin your preconfigured Keptn-in-a-box machines with userdata  (manually in aws)
