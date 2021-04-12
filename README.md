@@ -210,7 +210,9 @@ The script will ask for the following inputs.
      > {your-environment-id}.sprint.dynatracelabs.com
      > or a dev tenant if inclined.
 
-	 > your email should match your Dynatrace login for the tenant.
+	 > User Email should match your Dynatrace login to the tenant.
+	 > if the User Email matches your login, then the Dashbaords will show
+	 > up under your account in the Dynatrace UI.
 
 ```bash
 Dynatrace Tenant ID []:
