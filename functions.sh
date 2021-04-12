@@ -811,9 +811,9 @@ patchConfigService() {
 keptndemoCartsonboard() {
   if [ "$keptndemo_cartsonboard" = true ]; then
     printInfoSection "Keptn onboarding Carts"
-    printInfoSection "Prep Files..."
+    printInfoSection "Prep jmeter files"
     bashas "cd $KEPTN_EXAMPLES_DIR/onboarding-carts/ && bash $KEPTN_IN_A_BOX_DIR/resources/demo/prepfiles.sh"
-    #TODO Parameterize Carts Version.
+    printInfoSection "Keptn onboarding Carts"
     bashas "cd $KEPTN_EXAMPLES_DIR/onboarding-carts/ && bash $KEPTN_IN_A_BOX_DIR/resources/demo/onboard_carts.sh" 
     printInfoSection "Keptn onboarding Carts QualityGates"
     bashas "cd $KEPTN_EXAMPLES_DIR/onboarding-carts/ && bash $KEPTN_IN_A_BOX_DIR/resources/demo/onboard_carts_qualitygates.sh"
