@@ -210,6 +210,7 @@ The script will ask for the following inputs.
      > {your-environment-id}.sprint.dynatracelabs.com
      > or a dev tenant if inclined.
 
+	 > your email should match your Dynatrace login for the tenant.
 
 ```bash
 Dynatrace Tenant ID []:
