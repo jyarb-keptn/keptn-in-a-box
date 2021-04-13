@@ -1,4 +1,4 @@
-@Library('keptn-library')_
+@Library('keptn-library@4.0')_
 import sh.keptn.Keptn
 def keptn = new sh.keptn.Keptn()
 
