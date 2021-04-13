@@ -243,16 +243,28 @@ Just open a Browser with the IP.
 
 Click on **"Jenkins"**
 
-Now we will kick off the Pipeline **01-deploy-order-application** to build out the application.
+1. First you will need to click "Install Suggested plugins"
 
-Login to Jenkins with the following credentials
+<img src="doc/images/jenkins-install-plugins.png" width="400" height="300"/>
 
-* username = keptn
-* password = keptn
+   You should then see a progress screen.
+
+<img src="doc/images/jenkins-progress.png" width="400" height="300"/>
+
+2. Now "Jenkins is ready", just click "start using jenkins".
+
+<img src="doc/images/jenkins-ready.png" width="250"/>
+
+3. Now we will kick off the Pipeline **01-deploy-order-application** to build out the application.
+
+   Login to Jenkins with the following credentials
+
+   * username = keptn
+   * password = keptn
 
 <img src="doc/images/Lab_1_Jenkins_Log_In.png" width="250"/>
 
-After selecting the pipeline click **"build"**
+   After selecting the pipeline click **"build"**
 
 <img src="doc/images/Lab_1_deploy_order_application_1.png" width="500"/>
 
@@ -378,7 +390,7 @@ The script will install all the modules shown above and the github repository wi
 
 >The script was first created  to be run as root without an interactive shell since it is passed as userdata on creation of the elastic cloud machine via a python rest automation program.
 
-## 💪Empower your Keptn-in-a-box 🎁 with Dynatrace by adding creating your credentials
+## 💪Empower your Keptn-in-a-box 🎁 with Dynatrace by adding your credentials
 
 - Use the Dynatrace information for the inputs to the script:
 
