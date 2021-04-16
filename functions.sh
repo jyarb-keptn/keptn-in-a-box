@@ -871,6 +871,8 @@ keptndemoEasytraveloadgen() {
   if [ "$keptndemo_easytraveloadgen" = true ]; then
     printInfoSection "easytrvel loadgen staging"
     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash preploadgen.sh ${DOMAIN} loadgen"
+    printInfoSection "easytrvel loadgen production"
+    bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash preploadgen.sh ${DOMAIN} loadgen-prod"    
     printInfoSection "easytrvel angular loadgen staging"
     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash preploadgen.sh ${DOMAIN} loadgen-headless"
     printInfoSection "easytrvel angular loadgen production"
