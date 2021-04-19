@@ -223,7 +223,7 @@ master:
     - workflow-aggregator:2.6
     - rebuild:1.32
     - jdk-tool:1.5
-    - parameterized-scheduler:0.9.2
+  #  - parameterized-scheduler:0.9.2
   #  - dark-theme:0.0.12
   #  - performance:3.18
   #  - command-launcher:1.4
