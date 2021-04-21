@@ -1,7 +1,7 @@
 #!/bin/bash -x
 
 #If directory exists continue, otherwise exit
-if [[ -d "catalog" ]]; then
+if [[ -d "catalog-service" ]]; then
 
     # The context for this script needs to be in examples/onboarding-carts
     echo "Adding the SLI for the Project to all Stages"
