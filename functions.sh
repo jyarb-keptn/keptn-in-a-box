@@ -480,6 +480,7 @@ microk8sStart() {
 microk8sEnableBasic() {
   printInfoSection "Enable DNS, Storage, NGINX Ingress"
   if [ "$my_dns" = true ]; then
+  printInfoSection "setting dns to $MYDNS"
   bashas 'microk8s.enable dns:$MYDNS'
   else
   bashas 'microk8s.enable dns'
