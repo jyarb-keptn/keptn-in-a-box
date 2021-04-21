@@ -34,7 +34,7 @@ if [[ -d "catalog-service" ]]; then
     # add jmeter resources for production
     echo "load service level jmeter scripts-production"
     keptn add-resource --project=keptnorders --service=frontend-service --stage=production --resource=jmeter/frontend-service/basiccheck.jmx --resourceUri=jmeter/basiccheck.jmx
-    keptn add-resource --project=keptnorders --service=frontend-service--stage=production --resource=jmeter/frontend-service/frontend-load.jmx --resourceUri=jmeter/frontend-load.jmx
+    keptn add-resource --project=keptnorders --service=frontend-service --stage=production --resource=jmeter/frontend-service/frontend-load.jmx --resourceUri=jmeter/frontend-load.jmx
     
     keptn add-resource --project=keptnorders --service=customer-service --stage=production --resource=jmeter/customer-service/basiccheck.jmx --resourceUri=jmeter/basiccheck.jmx
     keptn add-resource --project=keptnorders --service=customer-service --stage=production --resource=jmeter/customer-service/customer-load.jmx --resourceUri=jmeter/customer-load.jmx
