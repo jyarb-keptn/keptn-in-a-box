@@ -7,7 +7,7 @@ generated with Cert-Manager and Let's Encrypt, does not mean the Box is secure.
 
 # Keptn-in-a-Box Enhanced (with Dynatrace Software Intelligence empowered) 🎁
 
-:rotating_light: ALERT: This install uses keptn 0.8.1 :rotating_light:
+:rotating_light: ALERT: This install uses keptn 0.8.2 :rotating_light:
 
 Keptn-In-A-Box is part of the automation for delivering Autonomous Cloud Workshops with Dynatrace. This is not a tutorial but more an explanation of what the shell file set up for you on a plain Ubuntu image. 
 
@@ -562,7 +562,7 @@ This are the actual versions of the different Modules
 KIAB_RELEASE="main"
 ISTIO_VERSION=1.9.1
 CERTMANAGER_VERSION=0.14.0
-KEPTN_VERSION=0.8.1
+KEPTN_VERSION=0.8.2
 KEPTN_DT_SERVICE_VERSION=0.12.0
 KEPTN_DT_SLI_SERVICE_VERSION=0.9.0
 KEPTN_EXAMPLES_REPO="https://github.com/keptn/examples.git"
@@ -616,6 +616,19 @@ sudo bash -c './keptn-in-a-box.sh'
 
 [Continue from step 4](#run-it-in-an-available-machine--manually)
 
+What do do if you are missing request attributes. Run the following script.
+
+```bash
+cd ~/overview/keptn-onboarding/scripts
+./createRequestAttributes.sh
+```
+
+A common issue is the creation of the Calculated service metrics. If you do not have four calculated service metrics, run the following script with the inputs.
+
+```bash
+cd ~/overview/keptn-onboarding/scripts/
+./createTestStepCalculatedMetrics.sh CONTEXTLESS keptn_project keptnorders
+```
 
 ## DeepDive into the project (understanding how Microk8s, NGINX Ingress routing, Istio and Keptn work together)
 
