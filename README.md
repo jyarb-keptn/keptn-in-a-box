@@ -592,6 +592,8 @@ less +F /tmp/install.log
 ```
 To view a verbose output (of every executed command) set the following control flag `verbose_mode=true` 
 
+### Rebuild environment 
+
 If you need to rebuild the environment, follow these steps.
 
 ```bash
