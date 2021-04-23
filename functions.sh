@@ -19,7 +19,7 @@ KEPTN_DT_SERVICE_VERSION=0.13.0
 KEPTN_DT_SLI_SERVICE_VERSION=0.10.0
 # https://github.com/keptn/examples
 KEPTN_EXAMPLES_REPO="https://github.com/keptn/examples.git"
-KEPTN_EXAMPLES_BRANCH="release-0.8.1"
+KEPTN_EXAMPLES_BRANCH="release-0.8.2"
 KEPTN_EXAMPLES_DIR="~/examples"
 KEPTN_CATALOG_REPO="https://github.com/jyarb-keptn/overview.git"
 KEPTN_CATALOG_BRANCH="master"
