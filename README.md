@@ -7,7 +7,7 @@ generated with Cert-Manager and Let's Encrypt, does not mean the Box is secure.
 
 # Keptn-in-a-Box Enhanced (with Dynatrace Software Intelligence empowered) 🎁
 
-:rotating_light: ALERT: This install uses keptn 0.8.1 :rotating_light:
+:rotating_light: ALERT: This install uses keptn 0.8.2 :rotating_light:
 
 Keptn-In-A-Box is part of the automation for delivering Autonomous Cloud Workshops with Dynatrace. This is not a tutorial but more an explanation of what the shell file set up for you on a plain Ubuntu image. 
 
@@ -314,8 +314,6 @@ Unfortunately, there is an issue with the deployment of the www service in produ
 
 TODO: drive load to UEM and make problem patterns dynamic.
 
-TODO: create jmeter load scripts.
-
 ### 8 - Next Steps
 
 1. Verify Dynatrace config items.
@@ -330,6 +328,9 @@ TODO: create jmeter load scripts.
 1. Explore the dashboards in Dynatrace.
 1. Have some fun....
 
+## Troubleshooting
+
+:arrow_right: [Troubleshooting](#troubleshooting-and-inspecting-the-installation)
 
 ## Further reading to understand the installed modules and troubleshooting steps.
 
@@ -562,7 +563,7 @@ This are the actual versions of the different Modules
 KIAB_RELEASE="main"
 ISTIO_VERSION=1.9.1
 CERTMANAGER_VERSION=0.14.0
-KEPTN_VERSION=0.8.1
+KEPTN_VERSION=0.8.2
 KEPTN_DT_SERVICE_VERSION=0.12.0
 KEPTN_DT_SLI_SERVICE_VERSION=0.9.0
 KEPTN_EXAMPLES_REPO="https://github.com/keptn/examples.git"
@@ -583,13 +584,16 @@ Be careful here as certain deprecations will effect the build
 ###  Create your custom installation
 At the begining of the  `functions.sh` file the installation modules are listed. You can enable them in the `keptn-in-a-box.sh` file before calling the `doInstallation` function.
 
-### Troubleshooting and inspecting the installation
-To Inspect do 
+## Troubleshooting and inspecting the installation
+
+1) Inspect the installation 
 
 ```bash
 less +F /tmp/install.log
 ```
-and to have a verbose output (of every executed command) set the following control flag `verbose_mode=true` 
+To view a verbose output (of every executed command) set the following control flag `verbose_mode=true` 
+
+### Rebuild environment 
 
 If you need to rebuild the environment, follow these steps.
 
@@ -597,17 +601,17 @@ If you need to rebuild the environment, follow these steps.
 cd ~/keptn-in-a-box
 ```
 
-This script will reset the Ubuntu instance by removing Kubernetes and the Dynatrace ActiveGate.
+1. The following script will reset the Ubuntu instance by removing Kubernetes, the Dynatrace ActiveGate and any configuration.
 
 ```bash
 ./resetenv.sh
 ```
 
-Delete your kubernetes connection in Dynatrace, under "cloud and virtualization"
+2. In your Dynatrace tenant Delete the kubernetes connection, under "cloud and virtualization"
 
 Now we need to re-initialize the environment.
 
-Run the following commands, then follow the process from Step 4 above.
+3. Run the following commands, then follow the process from Step 4 above.
     
 ```bash
 cd ~
@@ -616,6 +620,25 @@ sudo bash -c './keptn-in-a-box.sh'
 
 [Continue from step 4](#run-it-in-an-available-machine--manually)
 
+### Missing request attributes 
+
+Run the following script.
+
+```bash
+cd ~/overview/keptn-onboarding/scripts
+./createRequestAttributes.sh
+```
+
+### Missing calculated service metrics
+
+A common issue is the creation of the Calculated service metrics. If you do not have four calculated service metrics. 
+
+run the following script with the inputs.
+
+```bash
+cd ~/overview/keptn-onboarding/scripts/
+./createTestStepCalculatedMetrics.sh CONTEXTLESS keptn_project keptnorders
+```
 
 ## DeepDive into the project (understanding how Microk8s, NGINX Ingress routing, Istio and Keptn work together)
 
