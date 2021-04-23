@@ -14,6 +14,11 @@ Keptn-In-A-Box is part of the automation for delivering Autonomous Cloud Worksho
 A simple Bash script will set-up a fully functional Single Node Kubernetes Cluster with Dynatrace installed and Kubernetes Cluster, Cloud Applications and Events monitoring enabled. This script is used as [userdata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) when spinning up elastic compute images (ec2) in amazon web services, but it can run also manually in a Linux machine or VM with snap installed. The tested distro is  *Ubuntu Server 18.04 LTS & 20.04 LTS*
 For spinning up instances automatically with AWS completely configured and set up, and also automating the creation and management of Dynatrace environments, take a look at this project- [Dynatrace - Rest Tenant Automation](https://github.com/sergiohinojosa/Dynatrace-REST-Tenant-Automation) 
 
+|Name | Version | Description | 
+------------- | ------------- | ------------ |
+| **kiab** | [0.8.2](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.2) | keptn 0.8.2 |
+| **kiab** | [0.8.1](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.1) | keptn 0.8.1 (stable)|
+| **kiab** | [release-0.8pre](https://github.com/jyarb-keptn/keptn-in-a-box/tree/release-0.8pre) | experimental also pushes to main |
 
 ![#](doc/images/keptn-in-a-box-autonomous-cloud-devops.gif)
 
