@@ -314,8 +314,6 @@ Unfortunately, there is an issue with the deployment of the www service in produ
 
 TODO: drive load to UEM and make problem patterns dynamic.
 
-TODO: create jmeter load scripts.
-
 ### 8 - Next Steps
 
 1. Verify Dynatrace config items.
@@ -330,6 +328,9 @@ TODO: create jmeter load scripts.
 1. Explore the dashboards in Dynatrace.
 1. Have some fun....
 
+## Troubleshooting
+
+:arrow_right: [Troubleshooting](#troubleshooting-and-inspecting-the-installation)
 
 ## Further reading to understand the installed modules and troubleshooting steps.
 
