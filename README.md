@@ -583,13 +583,14 @@ Be careful here as certain deprecations will effect the build
 ###  Create your custom installation
 At the begining of the  `functions.sh` file the installation modules are listed. You can enable them in the `keptn-in-a-box.sh` file before calling the `doInstallation` function.
 
-### Troubleshooting and inspecting the installation
-To Inspect do 
+## Troubleshooting and inspecting the installation
+
+1) Inspect the installation 
 
 ```bash
 less +F /tmp/install.log
 ```
-and to have a verbose output (of every executed command) set the following control flag `verbose_mode=true` 
+To view a verbose output (of every executed command) set the following control flag `verbose_mode=true` 
 
 If you need to rebuild the environment, follow these steps.
 
@@ -597,17 +598,17 @@ If you need to rebuild the environment, follow these steps.
 cd ~/keptn-in-a-box
 ```
 
-This script will reset the Ubuntu instance by removing Kubernetes and the Dynatrace ActiveGate.
+1. The following script will reset the Ubuntu instance by removing Kubernetes, the Dynatrace ActiveGate and any configuration.
 
 ```bash
 ./resetenv.sh
 ```
 
-Delete your kubernetes connection in Dynatrace, under "cloud and virtualization"
+2. In your Dynatrace tenant Delete the kubernetes connection, under "cloud and virtualization"
 
 Now we need to re-initialize the environment.
 
-Run the following commands, then follow the process from Step 4 above.
+3. Run the following commands, then follow the process from Step 4 above.
     
 ```bash
 cd ~
@@ -616,14 +617,20 @@ sudo bash -c './keptn-in-a-box.sh'
 
 [Continue from step 4](#run-it-in-an-available-machine--manually)
 
-What do do if you are missing request attributes. Run the following script.
+### What to do if you are missing request attributes. 
+
+Run the following script.
 
 ```bash
 cd ~/overview/keptn-onboarding/scripts
 ./createRequestAttributes.sh
 ```
 
-A common issue is the creation of the Calculated service metrics. If you do not have four calculated service metrics, run the following script with the inputs.
+### Missing calculated service metrics
+
+A common issue is the creation of the Calculated service metrics. If you do not have four calculated service metrics. 
+
+run the following script with the inputs.
 
 ```bash
 cd ~/overview/keptn-onboarding/scripts/
