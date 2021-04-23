@@ -619,7 +619,7 @@ sudo bash -c './keptn-in-a-box.sh'
 
 [Continue from step 4](#run-it-in-an-available-machine--manually)
 
-### What to do if you are missing request attributes. 
+### Missing request attributes. 
 
 Run the following script.
 
