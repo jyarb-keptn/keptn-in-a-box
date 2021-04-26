@@ -673,6 +673,8 @@ keptnInstall() {
     KEPTN_API_TOKEN=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 --decode)
     bashas "keptn auth --endpoint=$KEPTN_ENDPOINT --api-token=$KEPTN_API_TOKEN"
     waitForAllPods
+    printInfoSection "Disable AutomaticVersionCheck"
+    bashas "keptn set config AutomaticVersionCheck false"
   fi
 }
 
