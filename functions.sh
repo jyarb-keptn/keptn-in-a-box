@@ -991,6 +991,7 @@ printInstalltime() {
   fi
 
   printInfoSection "Keptn in a Box $KIAB_RELEASE for keptn $KEPTN_VERSION installation finished."
+  printInfoSection "Use this URL to access your KIAB homepage http://${DOMAIN}"
   printInfo "Good luck in your Autonomous Cloud Journey!!"
   printInfo "If you faced an issue or just want to say hi, come by @ https://keptn.slack.com/"
 }
