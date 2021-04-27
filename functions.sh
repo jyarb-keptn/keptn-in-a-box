@@ -109,7 +109,7 @@ installationBundleDemo() {
   microk8s_install=true
   setup_proaliases=true
   enable_k8dashboard=true
-  istio_install=true
+  istio_install=false
   helm_install=true
   certmanager_install=false
   certmanager_enable=false
