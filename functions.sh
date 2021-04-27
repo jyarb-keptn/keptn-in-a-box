@@ -490,6 +490,8 @@ microk8sEnableBasic() {
   waitForAllPods
   bashas 'microk8s.enable ingress'
   waitForAllPods
+  bashas "microk8s.enable istio"
+  waitForAllPods
 }
 
 microk8sEnableDashboard() {
@@ -651,6 +653,7 @@ keptnInstall() {
       # Adding configuration for the IngressGW
       printInfoSection "Creating Public Gateway for Istio"
       bashas "cd $KEPTN_IN_A_BOX_DIR/resources/istio && kubectl apply -f public-gateway.yaml"
+      bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} sockshop-alt"
       
       #printInfoSection "Configuring Istio for Keptn"
       #bashas "kubectl create configmap -n keptn ingress-config --from-literal=ingress_hostname_suffix=${DOMAIN} --from-literal=ingress_port=80 --from-literal=ingress_protocol=http --from-literal=istio_gateway=ingressgateway.istio-system -oyaml --dry-run=client | kubectl replace -f -"
