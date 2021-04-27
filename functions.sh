@@ -490,6 +490,8 @@ microk8sEnableBasic() {
   waitForAllPods
   bashas 'microk8s.enable ingress'
   waitForAllPods
+  bashas "microk8s.enable istio"
+  waitForAllPods
 }
 
 microk8sEnableDashboard() {
