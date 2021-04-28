@@ -27,7 +27,7 @@ KEPTN_CATALOG_DIR="~/overview"
 TEASER_IMAGE="pcjeffmac/nginxacm:0.8.1"
 #KEPTN_BRIDGE_IMAGE="keptn/bridge2:20200326.0744"
 KEPTN_BRIDGE_IMAGE="keptn/bridge2:0.8.0"
-MICROK8S_CHANNEL="1.19/stable"
+MICROK8S_CHANNEL="1.21/stable"
 #KEPTN_IN_A_BOX_REPO="https://github.com/keptn-sandbox/keptn-in-a-box.git"
 KEPTN_IN_A_BOX_REPO="https://github.com/jyarb-keptn/keptn-in-a-box.git"
 KEPTN_IN_A_BOX_DIR="~/keptn-in-a-box"
@@ -456,6 +456,8 @@ microk8sInstall() {
 
     printInfo "Update IPTABLES, allow traffic for pods (internal and external) "
     iptables -P FORWARD ACCEPT
+    printInfo "Install iptables-persistent"
+    apt install iptables-persistent -y
     ufw allow in on cni0 && sudo ufw allow out on cni0
     ufw default allow routed
 
@@ -490,8 +492,9 @@ microk8sEnableBasic() {
   waitForAllPods
   bashas 'microk8s.enable ingress'
   waitForAllPods
-  bashas "microk8s.enable istio"
-  waitForAllPods
+  # experiment with enabling istio here.
+  #bashas "microk8s.enable istio"
+  #waitForAllPods
 }
 
 microk8sEnableDashboard() {
@@ -941,6 +944,8 @@ createWorkshopUser() {
 postFlightWork() {
   if [ "$post_flight" = true ]; then    
     bashas "chown -f -R ${USER} ~/.kube"
+    cp $KEPTN_IN_A_BOX_DIR/resources/misc/daemon.json /etc/docker/daemon.json
+    systemctl restart docker
   fi
 }
 
