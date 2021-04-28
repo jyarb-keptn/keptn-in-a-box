@@ -26,6 +26,13 @@ spec:
           serviceName: istio-ingressgateway
           servicePort: 80
         path: /
+  - host: easytravel-www.easytravel-production.domain.placeholder
+    http:
+      paths:
+      - backend:
+          serviceName: istio-ingressgateway
+          servicePort: 80
+        path: /        
   - host: easytravel-backend.easytravel-staging.domain.placeholder
     http:
       paths:
@@ -57,6 +64,7 @@ spec:
   tls:
   - hosts:
     - easytravel-frontend.easytravel-staging.domain.placeholder
+    - easytravel-www.easytravel-production.domain.placeholder
     - easytravel-backend.easytravel-staging.domain.placeholder
     - easytravel-frontend.easytravel-production.domain.placeholder
     - easytravel-backend.easytravel-production.domain.placeholder

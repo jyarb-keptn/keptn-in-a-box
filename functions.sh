@@ -27,7 +27,7 @@ KEPTN_CATALOG_DIR="~/overview"
 TEASER_IMAGE="pcjeffmac/nginxacm:0.8.1"
 #KEPTN_BRIDGE_IMAGE="keptn/bridge2:20200326.0744"
 KEPTN_BRIDGE_IMAGE="keptn/bridge2:0.8.0"
-MICROK8S_CHANNEL="1.19/stable"
+MICROK8S_CHANNEL="1.21/stable"
 #KEPTN_IN_A_BOX_REPO="https://github.com/keptn-sandbox/keptn-in-a-box.git"
 KEPTN_IN_A_BOX_REPO="https://github.com/jyarb-keptn/keptn-in-a-box.git"
 KEPTN_IN_A_BOX_DIR="~/keptn-in-a-box"
@@ -109,7 +109,7 @@ installationBundleDemo() {
   microk8s_install=true
   setup_proaliases=true
   enable_k8dashboard=true
-  istio_install=true
+  istio_install=false
   helm_install=true
   certmanager_install=false
   certmanager_enable=false
@@ -456,6 +456,8 @@ microk8sInstall() {
 
     printInfo "Update IPTABLES, allow traffic for pods (internal and external) "
     iptables -P FORWARD ACCEPT
+    printInfo "Install iptables-persistent"
+    apt install iptables-persistent -y
     ufw allow in on cni0 && sudo ufw allow out on cni0
     ufw default allow routed
 
@@ -490,6 +492,9 @@ microk8sEnableBasic() {
   waitForAllPods
   bashas 'microk8s.enable ingress'
   waitForAllPods
+  # experiment with enabling istio here.
+  #bashas "microk8s.enable istio"
+  #waitForAllPods
 }
 
 microk8sEnableDashboard() {
@@ -651,6 +656,7 @@ keptnInstall() {
       # Adding configuration for the IngressGW
       printInfoSection "Creating Public Gateway for Istio"
       bashas "cd $KEPTN_IN_A_BOX_DIR/resources/istio && kubectl apply -f public-gateway.yaml"
+      bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} sockshop-alt"
       
       #printInfoSection "Configuring Istio for Keptn"
       #bashas "kubectl create configmap -n keptn ingress-config --from-literal=ingress_hostname_suffix=${DOMAIN} --from-literal=ingress_port=80 --from-literal=ingress_protocol=http --from-literal=istio_gateway=ingressgateway.istio-system -oyaml --dry-run=client | kubectl replace -f -"
@@ -938,6 +944,8 @@ createWorkshopUser() {
 postFlightWork() {
   if [ "$post_flight" = true ]; then    
     bashas "chown -f -R ${USER} ~/.kube"
+    cp $KEPTN_IN_A_BOX_DIR/resources/misc/daemon.json /etc/docker/daemon.json
+    systemctl restart docker
   fi
 }
 
