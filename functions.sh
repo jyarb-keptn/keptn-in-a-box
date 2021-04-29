@@ -27,7 +27,7 @@ KEPTN_CATALOG_DIR="~/overview"
 TEASER_IMAGE="pcjeffmac/nginxacm:0.8.1"
 #KEPTN_BRIDGE_IMAGE="keptn/bridge2:20200326.0744"
 KEPTN_BRIDGE_IMAGE="keptn/bridge2:0.8.0"
-MICROK8S_CHANNEL="1.19/stable"
+MICROK8S_CHANNEL="1.20/stable"
 #KEPTN_IN_A_BOX_REPO="https://github.com/keptn-sandbox/keptn-in-a-box.git"
 KEPTN_IN_A_BOX_REPO="https://github.com/jyarb-keptn/keptn-in-a-box.git"
 KEPTN_IN_A_BOX_DIR="~/keptn-in-a-box"
@@ -109,7 +109,7 @@ installationBundleDemo() {
   microk8s_install=true
   setup_proaliases=true
   enable_k8dashboard=true
-  istio_install=false
+  istio_install=true
   helm_install=true
   certmanager_install=false
   certmanager_enable=false
