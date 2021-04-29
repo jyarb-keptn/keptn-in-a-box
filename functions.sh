@@ -643,12 +643,12 @@ keptnInstall() {
       printInfoSection "Install Keptn with Continuous Delivery UseCase (no Istio configurtion)"
 
       bashas "echo 'y' | keptn install --use-case=continuous-delivery"
-      waitForAllPods
+      waitForAllPods keptn
     else
       ## -- Keptn Installation --
       printInfoSection "Install Keptn with Continuous Delivery UseCase"
       bashas "echo 'y' | keptn install --use-case=continuous-delivery"
-      waitForAllPods
+      waitForAllPods keptn
 
       # Adding configuration for the IngressGW
       printInfoSection "Creating Public Gateway for Istio"
@@ -711,7 +711,7 @@ gitDeploy() {
   if [ "$git_deploy" = true ]; then
     printInfoSection "Deploying self-hosted GIT(ea) service via Helm."
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/gitea && bash deploy-gitea.sh ${DOMAIN}"
-    waitForAllPods
+    waitForAllPods git
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} gitea"
     GIT_SERVER="http://git.$DOMAIN"
     waitForServersAvailability ${GIT_SERVER}
@@ -738,7 +738,7 @@ dynatraceConfigureMonitoring() {
     bashas "kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/dynatrace-service/$KEPTN_DT_SERVICE_VERSION/deploy/service.yaml -n keptn" 
     printInfo "Setting up Dynatrace SLI provider in Keptn"
     bashas "kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/dynatrace-sli-service/$KEPTN_DT_SLI_SERVICE_VERSION/deploy/service.yaml -n keptn"   
-    waitForAllPods
+    waitForAllPods keptn
     bashas "keptn configure monitoring dynatrace"
   fi
 }
@@ -762,7 +762,7 @@ keptndemoUnleash() {
   if [ "$keptndemo_unleash" = true ]; then
     printInfoSection "Deploy Unleash-Server"
     bashas "cd $KEPTN_EXAMPLES_DIR/unleash-server/ &&  bash $KEPTN_IN_A_BOX_DIR/resources/demo/deploy_unleashserver.sh"
-    waitForAllPods
+    waitForAllPods unleash-dev
     printInfoSection "Expose Unleash-Server"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} unleash" 
     UNLEASH_SERVER="http://unleash.unleash-dev.$DOMAIN"
