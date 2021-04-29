@@ -646,12 +646,12 @@ keptnInstall() {
       printInfoSection "Install Keptn with Continuous Delivery UseCase (no Istio configurtion)"
 
       bashas "echo 'y' | keptn install --use-case=continuous-delivery"
-      waitForAllPods
+      waitForAllPods keptn
     else
       ## -- Keptn Installation --
       printInfoSection "Install Keptn with Continuous Delivery UseCase"
       bashas "echo 'y' | keptn install --use-case=continuous-delivery"
-      waitForAllPods
+      waitForAllPods keptn
 
       # Adding configuration for the IngressGW
       printInfoSection "Creating Public Gateway for Istio"
@@ -763,7 +763,7 @@ keptndemoUnleash() {
   if [ "$keptndemo_unleash" = true ]; then
     printInfoSection "Deploy Unleash-Server"
     bashas "cd $KEPTN_EXAMPLES_DIR/unleash-server/ &&  bash $KEPTN_IN_A_BOX_DIR/resources/demo/deploy_unleashserver.sh"
-    waitForAllPods
+    waitForAllPods keptn
     printInfoSection "Expose Unleash-Server"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} unleash" 
     UNLEASH_SERVER="http://unleash.unleash-dev.$DOMAIN"
