@@ -66,7 +66,7 @@ master:
         hYAzODo1Jt59pcqqKJEas0C/lFJEB3frw4ImNx5fNlJYOpx+ijfQs9m39CevDq0=
   # Used for label app.kubernetes.io/component
   componentName: "jenkins-master"
-  image: "pcjeffmac/jenkins"
+  image: "jenkins/jenkins"
   tag: "2.289"
   imagePullPolicy: "Always"
   imagePullSecretName:
