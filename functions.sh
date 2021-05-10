@@ -75,6 +75,7 @@ git_deploy=false
 git_migrate=false
 dynatrace_savecredentials=false
 dynatrace_configure_monitoring=false
+dynatrace_install_dynakube=false
 dynatrace_activegate_install=false
 dynatrace_configure_workloads=false
 jenkins_deploy=false
@@ -122,6 +123,7 @@ installationBundleDemo() {
   git_migrate=true
   dynatrace_savecredentials=true
   dynatrace_configure_monitoring=true
+  dynatrace_install_dynakube=true
   dynatrace_activegate_install=true
   dynatrace_configure_workloads=true
   keptndeploy_homepage=true
@@ -194,6 +196,7 @@ installationBundleKeptnOnly() {
 
   dynatrace_savecredentials=true
   dynatrace_configure_monitoring=true
+  dynatrace_install_dynakube=true
 
   expose_kubernetes_api=true
   expose_kubernetes_dashboard=true
@@ -733,8 +736,13 @@ dynatraceConfigureMonitoring() {
     printInfoSection "Installing and configuring Dynatrace OneAgent on the Cluster (via Keptn) for $DT_TENANT" 
     printInfo "Saving Credentials in dynatrace secret in keptn ns"
     bashas "kubectl -n keptn create secret generic dynatrace --from-literal=\"DT_TENANT=$DT_TENANT\" --from-literal=\"DT_API_TOKEN=$DT_API_TOKEN\"  --from-literal=\"KEPTN_API_URL=http://$(kubectl -n keptn get ingress api-keptn-ingress -ojsonpath={.spec.rules[0].host})/api\" --from-literal=\"KEPTN_API_TOKEN=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 --decode)\" --from-literal=\"KEPTN_BRIDGE_URL=http://$(kubectl -n keptn get ingress api-keptn-ingress -ojsonpath={.spec.rules[0].host})/bridge\""
-    printInfo "Deploying the OneAgent Operator"
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && echo 'y' | bash deploy_operator.sh"
+    if [ "$dynatrace_install_dynakube" = true ]; then
+      printInfo "Deploying the Dynatrace Operator"
+      bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && echo 'y' | bash deploy_dynakube.sh"
+    else
+      printInfo "Deploying the OneAgent Operator"
+      bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && echo 'y' | bash deploy_operator.sh"    
+    fi
     printInfo "Deploying the Dynatrace Service in Keptn"
     bashas "kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/dynatrace-service/$KEPTN_DT_SERVICE_VERSION/deploy/service.yaml -n keptn" 
     printInfo "Setting up Dynatrace SLI provider in Keptn"
