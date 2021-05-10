@@ -459,8 +459,8 @@ microk8sInstall() {
 
     printInfo "Update IPTABLES, allow traffic for pods (internal and external) "
     iptables -P FORWARD ACCEPT
-    printInfo "Install iptables-persistent"
-    apt install iptables-persistent -y
+    #printInfo "Install iptables-persistent"
+    #apt install iptables-persistent -y
     ufw allow in on cni0 && sudo ufw allow out on cni0
     ufw default allow routed
 
