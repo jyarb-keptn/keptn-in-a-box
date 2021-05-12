@@ -5,8 +5,8 @@ if [[ -d "easytravel-frontend" ]]; then
     
     # The context for this script needs to be in examples/onboarding-carts
     echo "load shipyard.yaml"
-    keptn create project easytravel --shipyard=./shipyard.yaml
-    keptn add-resource --project=easytravel --resource=./shipyard.yaml --resourceUri=shipyard.yaml
+    keptn create project easytravel --shipyard=./shipyard-direct.yaml
+    keptn add-resource --project=easytravel --resource=./shipyard-direct.yaml --resourceUri=shipyard.yaml
     # Onboarding - prepare  Keptn
     echo "onboard services"
     keptn onboard service easytravel-mongodb --project=easytravel --chart=./easytravel-mongodb
