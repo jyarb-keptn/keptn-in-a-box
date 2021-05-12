@@ -954,6 +954,7 @@ postFlightWork() {
     bashas "chown -f -R ${USER} ~/.kube"
     cp $KEPTN_IN_A_BOX_DIR/resources/misc/daemon.json /etc/docker/daemon.json
     systemctl restart docker
+    cp $KEPTN_IN_A_BOX_DIR/resources/dynatrace/hostautotag.conf /var/lib/dynatrace/oneagent/agent/config/hostautotag.conf
   fi
 }
 
