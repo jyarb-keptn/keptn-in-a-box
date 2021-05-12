@@ -17,8 +17,6 @@ metadata:
   namespace: istio-system
 spec:
   rules:
-  # On base domain we have NGINX running.
-  # Deploy Keptn Teaser
   - host: easytravel-frontend.easytravel-staging.domain.placeholder
     http:
       paths:
@@ -53,14 +51,7 @@ spec:
       - backend:
           serviceName: istio-ingressgateway
           servicePort: 80
-        path: /          
-#  - host: easytravel-www.easytravel-production.domain.placeholder
-#    http:
-#      paths:
-#      - backend:
-#          serviceName: istio-ingressgateway
-#          servicePort: 80
-#        path: /                 
+        path: /                        
   tls:
   - hosts:
     - easytravel-frontend.easytravel-staging.domain.placeholder
@@ -68,5 +59,4 @@ spec:
     - easytravel-backend.easytravel-staging.domain.placeholder
     - easytravel-frontend.easytravel-production.domain.placeholder
     - easytravel-backend.easytravel-production.domain.placeholder
-#    - easytravel-www.easytravel-production.domain.placeholder
     #secretName: frontend-tls
