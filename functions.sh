@@ -950,7 +950,7 @@ createWorkshopUser() {
 postFlightWork() {
   if [ "$post_flight" = true ]; then    
     bashas "chown -f -R ${USER} ~/.kube"
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && cp hostautotag.conf /var/lib/dynatrace/oneagent/agent/config/hostautotag.conf"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && sudo cp hostautotag.conf /var/lib/dynatrace/oneagent/agent/config/hostautotag.conf"
   fi
 }
 
