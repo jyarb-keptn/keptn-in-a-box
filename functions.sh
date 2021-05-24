@@ -16,7 +16,7 @@ KEPTN_VERSION=0.8.2
 # https://github.com/keptn-contrib/dynatrace-service
 KEPTN_DT_SERVICE_VERSION=0.13.0
 # https://github.com/keptn-contrib/dynatrace-sli-service
-KEPTN_DT_SLI_SERVICE_VERSION=0.10.0
+KEPTN_DT_SLI_SERVICE_VERSION=0.10.2
 # https://github.com/keptn/examples
 KEPTN_EXAMPLES_REPO="https://github.com/keptn/examples.git"
 KEPTN_EXAMPLES_BRANCH="release-0.8.2"
@@ -954,7 +954,7 @@ postFlightWork() {
     bashas "chown -f -R ${USER} ~/.kube"
     cp $KEPTN_IN_A_BOX_DIR/resources/misc/daemon.json /etc/docker/daemon.json
     systemctl restart docker
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && cp hostautotag.conf /var/lib/dynatrace/oneagent/agent/config/hostautotag.conf"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && sudo cp hostautotag.conf /var/lib/dynatrace/oneagent/agent/config/hostautotag.conf"
   fi
 }
 
