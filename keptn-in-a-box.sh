@@ -123,7 +123,7 @@ DOMAIN="`curl http://checkip.amazonaws.com`.nip.io"
 #      ----- Functions Location -----              #
 # ==================================================
 # - Keptn in a Box release
-KIAB_RELEASE="main"
+KIAB_RELEASE="0.8.3"
 # - Functions file location
 FUNCTIONS_FILE_REPO="https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/${KIAB_RELEASE}/functions.sh"
 
