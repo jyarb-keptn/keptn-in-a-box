@@ -47,7 +47,8 @@ Navigate to **Transactions and services>frontend**
 
 We are looking for **frontend** with **keptnorders.staging.frontend [direct]**
 
-Now we can create the **"evalservice"** tag.
+Now we can create the **"evalservice"** tag.  
+Due to the 64 character limit issue with helm we will also need to create a tag with **"eval"**
 
 <img src="images/lab1_service_tag.png" width="500"/>
 
