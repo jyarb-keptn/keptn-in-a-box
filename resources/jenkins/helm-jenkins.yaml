@@ -290,7 +290,7 @@ master:
        unclassified:
          globalLibraries:
            libraries:
-           - defaultVersion: "master"
+           - defaultVersion: "0.8.3"
              name: "keptn-library"
              retriever:
                modernSCM:
@@ -308,7 +308,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/overview.git')
                         }
-                        branch('*/master')
+                        branch('*/0.8.3')
                       }
                     }
                     scriptPath 'keptndelivery.Jenkinsfile'
@@ -327,7 +327,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/overview.git')
                         }
-                        branch('*/master')
+                        branch('*/0.8.3')
                       }
                     }
                     scriptPath 'keptneasytravel.Jenkinsfile'
@@ -346,7 +346,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/overview.git')
                         }
-                        branch('*/master')
+                        branch('*/0.8.3')
                       }
                     }
                     scriptPath 'keptncartsdelivery.Jenkinsfile'
