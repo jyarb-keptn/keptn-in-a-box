@@ -366,6 +366,11 @@ Now we need to trigger a quality gate evaluation.
 cd ~/keptn-in-a-box/resources/demo
 ./triggerDashbaordSLI.sh
 ```
+Now if you navigate to the carts service under the sockshop project in Keptn, you will see the SLI's from the configured dashboard.
+
+<img src="doc/images/kgqslodahboard.png" width="500"/>
+
+You can also navigate to the dashboard in Dynatrace to check out how the SLI's have been created.
 
 ## Troubleshooting
 
