@@ -882,7 +882,7 @@ keptndemoEasytravelonboard() {
     printInfoSection "Keptn Exposing the Onboarded easytravel Application"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} easytravel"
     printInfoSection "set env variables"
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash setenv.sh"  
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash setenv.sh ${DOMAIN}"  
   fi
 }
 
