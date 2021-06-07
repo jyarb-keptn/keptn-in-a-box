@@ -316,9 +316,7 @@ You will need to create application detection rules, as these cannot be created 
 - All domains that match easytravel-angular.easytravel-staging
 - All domains that match easytravel-www.easytravel-staging
 
-Unfortunately, there is an issue with the deployment of the www service in production.
-
-TODO: drive load to UEM and make problem patterns dynamic.
+TODO: Make problem patterns dynamic.
 
 ### 8 - Next Steps
 
@@ -333,6 +331,26 @@ TODO: drive load to UEM and make problem patterns dynamic.
 1. Check out your KIAB homepage and explore the links.
 1. Explore the dashboards in Dynatrace.
 1. Have some fun....
+
+### 9 - Dynatrace SLI Service
+The dynatrace-sli-service is a Keptn service that is responsible for retrieving the values of SLIs from your Dynatrace 
+Tenant via the Dynatrace Metrics v2 API endpoint. For that it handles the Keptn Event sh.keptn.internal.event.get-sli 
+which gets executed as part of a quality gate evaluation! 
+[Dynatrace SLI Service](https://github.com/keptn-contrib/dynatrace-sli-service)
+
+Rest easy, we have created a script to initialize the SLI service and create an OOB Dashboard example.
+```bash
+cd ~/keptn-in-a-box/resources/dynatrace
+```
+Run this script
+```bash
+./setdbenv.sh
+```
+This will enable your Dynatrace SLO-based dashboard.
+
+<img src="doc/images/dashboard-slo.png" width="500"/>
+
+
 
 ## Troubleshooting
 
