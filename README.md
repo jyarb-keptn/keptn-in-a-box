@@ -342,6 +342,16 @@ Rest easy, we have created a script to initialize the SLI service and create an 
 ```bash
 cd ~/keptn-in-a-box/resources/dynatrace
 ```
+Validate the KEPTN_DOMAIN environment variable has been set.
+
+If it has not been set, then you will need to set the KEPT_DOMAIN environment variable.
+
+Set the KEPTN_DOMAIN 
+
+```bash
+export KEPTN_DOMAIN=<Your DOMAIN>
+```
+
 Run this script
 ```bash
 ./setdbenv.sh
@@ -350,7 +360,12 @@ This will enable your Dynatrace SLO-based dashboard.
 
 <img src="doc/images/dashboard-slo.png" width="500"/>
 
+Now we need to trigger a quality gate evaluation.
 
+```bash
+cd ~/keptn-in-a-box/resources/demo
+./triggerDashbaordSLI.sh
+```
 
 ## Troubleshooting
 
