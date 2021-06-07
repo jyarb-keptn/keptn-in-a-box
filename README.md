@@ -333,7 +333,7 @@ TODO: Make problem patterns dynamic.
 1. Explore the dashboards in Dynatrace.
 1. Have some fun....
 
-### 9 - Dynatrace SLI Service
+### 9 - Dynatrace SLI Service (Extra Credit)
 The dynatrace-sli-service is a Keptn service that is responsible for retrieving the values of SLIs from your Dynatrace 
 Tenant via the Dynatrace Metrics v2 API endpoint. For that it handles the Keptn Event sh.keptn.internal.event.get-sli 
 which gets executed as part of a quality gate evaluation! 
