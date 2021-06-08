@@ -23,7 +23,7 @@ spec:
         - name: BRIDGE_URL
           value: ""
         - name: SLACK_URL
-          value: "https://hooks.slack.com/services/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"
+          value: ""
         - name: WEBEXTEAMS_URL
           value: ""
         - name: LOG_LEVEL
