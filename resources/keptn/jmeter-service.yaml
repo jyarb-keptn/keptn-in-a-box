@@ -10,13 +10,6 @@ metadata:
     app.kubernetes.io/component: control-plane
     app.kubernetes.io/version: develop
 spec:
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: jmeter-service
-      app.kubernetes.io/instance: keptn
-      app.kubernetes.io/part-of: keptn-keptn
-      app.kubernetes.io/component: control-plane
-      app.kubernetes.io/version: develop
   replicas: 1
   template:
     metadata:
