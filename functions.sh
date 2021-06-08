@@ -688,6 +688,7 @@ keptnInstall() {
 jmeterService() {
   if [ "$jmeter_install" = true ]; then
   printInfoSection "JMeter Service for keptn 0.8.x"
+  bashas "kubectl delete -n keptn deployment jmeter-service"
   bashas "kubectl apply -f https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/${KIAB_RELEASE}/resources/keptn/jmeter-service.yaml -n keptn --record"
   waitForAllPods
   fi
