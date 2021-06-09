@@ -124,7 +124,7 @@ installationBundleDemo() {
   dynatrace_savecredentials=true
   dynatrace_configure_monitoring=true
   dynatrace_install_dynakube=true
-  dynatrace_activegate_install=true
+  dynatrace_activegate_install=false
   dynatrace_configure_workloads=true
   keptndeploy_homepage=true
   # unleash
