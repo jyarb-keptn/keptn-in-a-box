@@ -366,6 +366,7 @@ Now we need to trigger a quality gate evaluation.
 
 ```bash
 cd ~/keptn-in-a-box/resources/demo
+chmod +x triggerDashbaordSLI.sh
 ./triggerDashbaordSLI.sh
 ```
 Now if you navigate to the carts service under the sockshop project in Keptn, you will see the SLI's from the configured dashboard.
