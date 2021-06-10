@@ -353,8 +353,9 @@ Set the KEPTN_DOMAIN
 export KEPTN_DOMAIN=<Your DOMAIN>
 ```
 
-Run this script
+Run this script, first make it executable.
 ```bash
+chmod +x setdbenv.sh
 ./setdbenv.sh
 ```
 This will enable your Dynatrace SLO-based dashboard.
