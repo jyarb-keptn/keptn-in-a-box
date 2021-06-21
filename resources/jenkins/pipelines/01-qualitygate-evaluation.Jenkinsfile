@@ -14,9 +14,7 @@ node {
          string(defaultValue: '60', description: 'End timestamp or number of seconds from Now(). If empty defaults to Now()', name: 'EndTime', trim: false),
          string(defaultValue: '3', description: 'How many minutes to wait until Keptn is done? 0 to not wait', name: 'WaitForResult'),
         ]),
-        options {
-          buildDiscarder(logRotator(numToKeepStr: '10'))
-        },
+        buildDiscarder(logRotator(daysToKeepStr: '3', numToKeepStr: '3')),
         pipelineTriggers([
           parameterizedCron('''
             H/15 * * * * %Monitoring=dynatrace;SLI=perftest
