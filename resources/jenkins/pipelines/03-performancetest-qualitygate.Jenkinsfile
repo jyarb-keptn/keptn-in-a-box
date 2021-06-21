@@ -17,7 +17,7 @@ node {
         buildDiscarder(logRotator(daysToKeepStr: '', numToKeepStr: '10')),
         pipelineTriggers([
           parameterizedCron('''
-            H/15 * * * * %Monitoring=dynatrace;TestStrategy=performance;SLI=perftest
+            H/30 * * * * %Monitoring=dynatrace;TestStrategy=performance;SLI=perftest
         ''')
       ])          
     ])
