@@ -13,7 +13,13 @@ node {
          choice(choices: ['perftest','basic'], description: 'Decide which set of SLIs you want to evaluate. The sample comes with: basic and perftest', name: 'SLI'),
          string(defaultValue: 'http://frontend.keptnorders-staging.192.168.3.91.nip.io', description: 'URI of the application you want to run a test against, remove the trailing slash', name: 'DeploymentURI', trim: false),
          string(defaultValue: '60', description: 'How many minutes to wait until Keptn is done? 0 to not wait', name: 'WaitForResult'),
-        ])
+        ]),
+        buildDiscarder(logRotator(daysToKeepStr: '', numToKeepStr: '10')),
+        pipelineTriggers([
+          parameterizedCron('''
+            H/15 * * * * %Monitoring=dynatrace;TestStrategy=performance;SLI=perftest
+        ''')
+      ])          
     ])
 
     stage('Initialize Keptn') {
