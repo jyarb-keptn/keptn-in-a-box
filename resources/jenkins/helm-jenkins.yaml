@@ -290,7 +290,7 @@ master:
        unclassified:
          globalLibraries:
            libraries:
-           - defaultVersion: "0.8.3"
+           - defaultVersion: "4.0"
              name: "keptn-library"
              retriever:
                modernSCM:
