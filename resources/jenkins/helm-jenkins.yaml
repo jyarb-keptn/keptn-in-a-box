@@ -290,7 +290,7 @@ master:
        unclassified:
          globalLibraries:
            libraries:
-           - defaultVersion: "0.8.3"
+           - defaultVersion: "4.0"
              name: "keptn-library"
              retriever:
                modernSCM:
@@ -365,7 +365,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/keptn-in-a-box.git')
                         }
-                        branch('*/0.8.3')
+                        branch('*/0.8.4')
                       }
                     }
                     scriptPath 'resources/jenkins/pipelines/01-qualitygate-evaluation.Jenkinsfile'
@@ -384,7 +384,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/keptn-in-a-box.git') 
                         }
-                        branch('*/0.8.3')
+                        branch('*/0.8.4')
                       }
                     }
                     scriptPath 'resources/jenkins/pipelines/02-simpletest-qualitygate.Jenkinsfile'
@@ -403,7 +403,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/keptn-in-a-box.git')
                         }
-                        branch('*/0.8.3')
+                        branch('*/0.8.4')
                       }
                     }
                     scriptPath 'resources/jenkins/pipelines/03-performancetest-qualitygate.Jenkinsfile'
@@ -422,7 +422,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/keptn-in-a-box.git')
                         }
-                        branch('*/0.8.3')
+                        branch('*/0.8.4')
                       }
                     }
                     scriptPath 'resources/jenkins/pipelines/04-performancetest-qualitygate-mint.Jenkinsfile'
