@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
       - name: jmeter-service
-        image: keptn/jmeter-service:0.8.3
+        image: keptn/jmeter-service:0.8.4
         ports:
           - containerPort: 8080
         env:
@@ -41,7 +41,7 @@ spec:
                 name: dynatrace
                 key: DT_TENANT
       - name: distributor
-        image: keptn/distributor:0.8.3
+        image: keptn/distributor:0.8.4
         livenessProbe:
           httpGet:
             path: /health
