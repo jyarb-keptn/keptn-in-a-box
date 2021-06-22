@@ -13,17 +13,23 @@ node {
          choice(choices: ['perftest','basic'], description: 'Decide which set of SLIs you want to evaluate. The sample comes with: basic and perftest', name: 'SLI'),
          string(defaultValue: 'http://frontend.keptnorders-staging.192.168.3.91.nip.io', description: 'URI of the application you want to run a test against, remove the trailing slash', name: 'DeploymentURI', trim: false),
          string(defaultValue: '60', description: 'How many minutes to wait until Keptn is done? 0 to not wait', name: 'WaitForResult'),
-        ])
+        ]),
+        buildDiscarder(logRotator(daysToKeepStr: '', numToKeepStr: '10')),
+        pipelineTriggers([
+          parameterizedCron('''
+            H/30 * * * * %Monitoring=dynatrace;TestStrategy=performance;SLI=perftest
+        ''')
+      ])                  
     ])
 
     stage('Initialize Keptn') {
         keptn.downloadFile('https://raw.githubusercontent.com/jyarb-keptn/overview/0.8.3/keptn-onboarding/shipyard-performance.yaml', 'keptn/shipyard.yaml')
-        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.3/resources/jenkins/pipelines/keptn/dynatrace/dynatrace.conf.yaml", 'keptn/dynatrace/dynatrace.conf.yaml')
-        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.3/resources/jenkins/pipelines/keptn/slo_${params.SLI}.yaml", 'keptn/slo.yaml')
-        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.3/resources/jenkins/pipelines/keptn/dynatrace/sli_${params.SLI}.yaml", 'keptn/sli.yaml')
-        keptn.downloadFile('https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.3/resources/jenkins/pipelines/keptn/jmeter/load.jmx', 'keptn/jmeter/load.jmx')
-        keptn.downloadFile('https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.3/resources/jenkins/pipelines/keptn/jmeter/basiccheck.jmx', 'keptn/jmeter/basiccheck.jmx')
-        keptn.downloadFile('https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.3/resources/jenkins/pipelines/keptn/jmeter/jmeter.conf.yaml', 'keptn/jmeter/jmeter.conf.yaml')
+        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.4/resources/jenkins/pipelines/keptn/dynatrace/dynatrace.conf.yaml", 'keptn/dynatrace/dynatrace.conf.yaml')
+        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.4/resources/jenkins/pipelines/keptn/slo_${params.SLI}.yaml", 'keptn/slo.yaml')
+        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.4/resources/jenkins/pipelines/keptn/dynatrace/sli_${params.SLI}.yaml", 'keptn/sli.yaml')
+        keptn.downloadFile('https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.4/resources/jenkins/pipelines/keptn/jmeter/load.jmx', 'keptn/jmeter/load.jmx')
+        keptn.downloadFile('https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.4/resources/jenkins/pipelines/keptn/jmeter/basiccheck.jmx', 'keptn/jmeter/basiccheck.jmx')
+        keptn.downloadFile('https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.4/resources/jenkins/pipelines/keptn/jmeter/jmeter.conf.yaml', 'keptn/jmeter/jmeter.conf.yaml')
         archiveArtifacts artifacts:'keptn/**/*.*'
 
         // Initialize the Keptn Project
