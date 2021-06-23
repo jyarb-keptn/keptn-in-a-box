@@ -16,10 +16,11 @@ For spinning up instances automatically with AWS completely configured and set u
 
 |Name | Version | Description | 
 ------------- | ------------- | ------------ |
-| **kiab** | [main](https://github.com/jyarb-keptn/keptn-in-a-box/tree/main) | uses keptn 0.8.3 |
-| **kiab** | [0.8.3](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.3) | uses keptn 0.8.3 |
-| **kiab** | [0.8.2](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.2) | uses keptn 0.8.2 |
-| **kiab** | [0.8.1](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.1) | uses keptn 0.8.1 (stable)|
+| **kiab** | [main](https://github.com/jyarb-keptn/keptn-in-a-box/tree/main) | keptn 0.8.3 |
+| **kiab** | [0.8.4](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.4) | keptn 0.8.4 |
+| **kiab** | [0.8.3](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.3) | keptn 0.8.3 |
+| **kiab** | [0.8.2](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.2) | keptn 0.8.2 |
+| **kiab** | [0.8.1](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.1) | keptn 0.8.1 (stable)|
 | **kiab** | [release-0.8pre](https://github.com/jyarb-keptn/keptn-in-a-box/tree/release-0.8pre) | experimental also pushes to main |
 
 ![#](doc/images/keptn-in-a-box-autonomous-cloud-devops.gif)
