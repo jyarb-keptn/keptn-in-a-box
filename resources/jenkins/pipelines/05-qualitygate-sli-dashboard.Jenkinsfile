@@ -19,7 +19,7 @@ node {
         echo "Quality Gates ONLY: Just triggering an SLI/SLO-based evaluation for the passed timeframe"
 
         // Trigger an evaluation
-        def keptnContext = keptn.sendStartEvaluationEvent project:"${params.Project}", service:"${params.Service}", stage:"${params.Stage}", monitoring:"${monitoring}", starttime:"${params.StartTime}", endtime:"${params.EndTime}" 
+        def keptnContext = keptn.sendStartEvaluationEvent project:"${params.Project}", service:"${params.Service}", stage:"${params.Stage}", monitoring:"${params.Monitoring}", starttime:"${params.StartTime}", endtime:"${params.EndTime}" 
         String keptn_bridge = env.KEPTN_BRIDGE
         echo "Open Keptns Bridge: ${keptn_bridge}/trace/${keptnContext}"
     }
