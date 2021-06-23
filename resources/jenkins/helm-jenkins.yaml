@@ -430,6 +430,25 @@ master:
                   }
                 }
               }
+      pipeline-sockshop-qualitygates:  | 
+        jobs:
+          - script: >
+              pipelineJob('05-qualitygate-sli-dashboard.Jenkinsfile') {
+                definition {
+                  cpsScm {
+                    scm {
+                      git {
+                        remote {
+                          url('https://github.com/jyarb-keptn/keptn-in-a-box.git')
+                        }
+                        branch('*/0.8.4')
+                      }
+                    }
+                    scriptPath 'resources/jenkins/pipelines/05-qualitygate-sli-dashboard.Jenkinsfile'
+                    lightweight()
+                  }
+                }
+              }              
   # Optionally specify additional init-containers
   customInitContainers: []
   # - name: custom-init
