@@ -3,6 +3,11 @@ import sh.keptn.Keptn
 def keptn = new sh.keptn.Keptn()
 
 node {
+
+    environment {
+         String order_url = env.ORDER_STAGING
+    } 
+
     properties([
         parameters([
          string(defaultValue: 'performance', description: 'Name of your Keptn Project for Performance as a Self-Service', name: 'Project', trim: false), 
@@ -11,7 +16,7 @@ node {
          choice(choices: ['dynatrace', 'prometheus',''], description: 'Select which monitoring tool should be configured as SLI provider', name: 'Monitoring', trim: false),
          choice(choices: ['performance', 'performance_10', 'performance_50', 'performance_100', 'performance_long'], description: 'Test Strategy aka Workload, e.g: performance, performance_10, performance_50, performance_100, performance_long', name: 'TestStrategy', trim: false),
          choice(choices: ['perftest','basic'], description: 'Decide which set of SLIs you want to evaluate. The sample comes with: basic and perftest', name: 'SLI'),
-         string(defaultValue: 'http://frontend.keptnorders-staging.54.224.34.201.nip.io', description: 'URI of the application you want to run a test against, remove the trailing slash', name: 'DeploymentURI', trim: false),
+         string(defaultValue: "${env.ORDER_STAGING}", description: 'URI of the application you want to run a test against, remove the trailing slash', name: 'DeploymentURI', trim: false),
          string(defaultValue: '60', description: 'How many minutes to wait until Keptn is done? 0 to not wait', name: 'WaitForResult'),
         ])
     ])
