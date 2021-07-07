@@ -286,6 +286,10 @@ master:
                value: DT_TENANT.placeholder 
              - key: DT_API_TOKEN
                value: DT_API_TOKEN.placeholder
+             - key: ORDER_STAGING
+               value: ORDER_STAGING.placeholder
+             - key: ORDER_PROD
+               value: ORDER_PROD.placeholder               
       keptn-library:  |
        unclassified:
          globalLibraries:
