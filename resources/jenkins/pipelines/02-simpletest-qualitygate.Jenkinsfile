@@ -3,6 +3,10 @@ import sh.keptn.Keptn
 def keptn = new sh.keptn.Keptn()
 
 node {
+
+echo "Deployment URL is ${ORDER_STAGING}"
+Sys.getenv()
+
     properties([
         parameters([
          string(defaultValue: 'qualitygate-simpletest', description: 'Name of your Keptn Project for Quality Gate Feedback ', name: 'Project', trim: false), 
