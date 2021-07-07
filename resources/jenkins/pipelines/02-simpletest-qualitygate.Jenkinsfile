@@ -4,8 +4,10 @@ def keptn = new sh.keptn.Keptn()
 
 node {
 
-String order_url = env.ORDER_STAGING
-echo "Deployment URL is ${order_url}"
+    environment {
+         String order_url = env.ORDER_STAGING
+         echo "Deployment URL is ${order_url}"
+    }     
 
     properties([
         parameters([
