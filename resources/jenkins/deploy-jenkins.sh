@@ -22,8 +22,8 @@ KEPTN_API_TOKEN=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.
 KEPTN_ENDPOINT="http://keptn.$DOMAIN/api"
 KEPTN_BRIDGE="http://keptn.$DOMAIN/bridge"
 
-ORDER_STAGING="http://frontend.keptnorders-staging.$DOMAIN.nip.io"
-ORDER_PROD="http://frontend.keptnorders-production.$DOMAIN.nip.io"
+ORDER_STAGING="http://frontend.keptnorders-staging.$DOMAIN"
+ORDER_PROD="http://frontend.keptnorders-production.$DOMAIN"
 
 readCredsFromFile
 printVariables
