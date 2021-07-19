@@ -34,8 +34,8 @@ ingress:
   hosts:
     - host: git.domain.placeholder
       paths:
-        - path: /
-        pathType: Prefix    
+       - path: /
+         pathType: Prefix    
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
