@@ -119,8 +119,8 @@ installationBundleDemo() {
   resources_clone=true
   hostalias=false
   keptn_catalog_clone=true
-  git_deploy=false
-  git_migrate=false
+  git_deploy=true
+  git_migrate=true
   dynatrace_savecredentials=true
   dynatrace_configure_monitoring=true
   dynatrace_install_dynakube=true
