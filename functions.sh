@@ -138,7 +138,7 @@ installationBundleDemo() {
   # use for easytravel
   keptndemo_easytravelonboard=true
   keptndemo_easytraveloadgen=true
-  keptndashboard_load=true
+  keptndashboard_load=false
   createMetrics=true
   expose_kubernetes_api=true
   expose_kubernetes_dashboard=true
