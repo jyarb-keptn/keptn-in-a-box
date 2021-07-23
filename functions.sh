@@ -555,6 +555,15 @@ helmInstall() {
     bashas "helm repo add gitea-charts https://dl.gitea.io/charts/"
     printInfo "Updating Helm Repository"
     bashas "helm repo update"
+    bashas "helm version"
+    
+    printInfoSection "Installing Newer HELM 3"
+    bashas "curl https://baltocdn.com/helm/signing.asc | sudo apt-key add -"
+    bashas "sudo apt-get install apt-transport-https --yes"
+    bashas "echo 'deb https://baltocdn.com/helm/stable/debian/ all main' | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list"
+    bashas "sudo apt-get update"
+    bashas "sudo apt-get install helm"
+    bashas "helm version"
   fi
 }
 
