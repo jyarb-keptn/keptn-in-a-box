@@ -354,8 +354,9 @@ Set the KEPTN_DOMAIN
 export KEPTN_DOMAIN=<Your DOMAIN>
 ```
 
-Run this script
+Run this script, first make it executable.
 ```bash
+chmod +x setdbenv.sh
 ./setdbenv.sh
 ```
 This will enable your Dynatrace SLO-based dashboard.
@@ -366,6 +367,7 @@ Now we need to trigger a quality gate evaluation.
 
 ```bash
 cd ~/keptn-in-a-box/resources/demo
+chmod +x triggerDashbaordSLI.sh
 ./triggerDashbaordSLI.sh
 ```
 Now if you navigate to the carts service under the sockshop project in Keptn, you will see the SLI's from the configured dashboard.
@@ -373,6 +375,8 @@ Now if you navigate to the carts service under the sockshop project in Keptn, yo
 <img src="doc/images/kgqslodahboard.png" width="500"/>
 
 You can also navigate to the dashboard in Dynatrace to check out how the SLI's have been created.
+Also, any subsequent builds for the sockshop app will use the Dashboard SLI's.
+
 
 ## Troubleshooting
 
