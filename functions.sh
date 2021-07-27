@@ -12,14 +12,14 @@ KIAB_RELEASE="main"
 ISTIO_VERSION=1.9.1
 CERTMANAGER_VERSION=0.14.0
 # https://github.com/keptn/keptn
-KEPTN_VERSION=0.8.3
+KEPTN_VERSION=0.8.6
 # https://github.com/keptn-contrib/dynatrace-service
-KEPTN_DT_SERVICE_VERSION=0.13.1
+KEPTN_DT_SERVICE_VERSION=0.14.0
 # https://github.com/keptn-contrib/dynatrace-sli-service
-KEPTN_DT_SLI_SERVICE_VERSION=0.11.0
+KEPTN_DT_SLI_SERVICE_VERSION=0.12.0
 # https://github.com/keptn/examples
 KEPTN_EXAMPLES_REPO="https://github.com/keptn/examples.git"
-KEPTN_EXAMPLES_BRANCH="release-0.8.3"
+KEPTN_EXAMPLES_BRANCH="release-0.8.4"
 KEPTN_EXAMPLES_DIR="~/examples"
 KEPTN_CATALOG_REPO="https://github.com/jyarb-keptn/overview.git"
 KEPTN_CATALOG_BRANCH="master"
@@ -555,6 +555,15 @@ helmInstall() {
     bashas "helm repo add gitea-charts https://dl.gitea.io/charts/"
     printInfo "Updating Helm Repository"
     bashas "helm repo update"
+    bashas "helm version"
+    
+    printInfoSection "Installing Newer HELM 3"
+    bashas "curl https://baltocdn.com/helm/signing.asc | sudo apt-key add -"
+    bashas "sudo apt-get install apt-transport-https --yes"
+    bashas "echo 'deb https://baltocdn.com/helm/stable/debian/ all main' | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list"
+    bashas "sudo apt-get update"
+    bashas "sudo apt-get install helm"
+    bashas "helm version"    
   fi
 }
 
@@ -672,7 +681,7 @@ keptnInstall() {
     fi
     
     printInfoSection "Routing for the Keptn Services via NGINX Ingress"
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} api-keptn-ingress"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash ap ${DOMAIN} api-keptn-ingress"
     waitForAllPods
     
     #We sleep for 15 seconds to give time the Ingress to be ready 
