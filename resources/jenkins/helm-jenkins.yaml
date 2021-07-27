@@ -67,7 +67,7 @@ master:
   # Used for label app.kubernetes.io/component
   componentName: "jenkins-master"
   image: "jenkins/jenkins"
-  tag: "2.296"
+  tag: "2.298"
   imagePullPolicy: "Always"
   imagePullSecretName:
   # Optionally configure lifetime for master-container
@@ -286,11 +286,15 @@ master:
                value: DT_TENANT.placeholder 
              - key: DT_API_TOKEN
                value: DT_API_TOKEN.placeholder
+             - key: ORDER_STAGING
+               value: ORDER_STAGING.placeholder
+             - key: ORDER_PROD
+               value: ORDER_PROD.placeholder                 
       keptn-library:  |
        unclassified:
          globalLibraries:
            libraries:
-           - defaultVersion: "master"
+           - defaultVersion: "4.0"
              name: "keptn-library"
              retriever:
                modernSCM:
@@ -430,6 +434,25 @@ master:
                   }
                 }
               }
+      pipeline-sockshop-qualitygates:  | 
+        jobs:
+          - script: >
+              pipelineJob('05-qualitygate-sli-dashboard.Jenkinsfile') {
+                definition {
+                  cpsScm {
+                    scm {
+                      git {
+                        remote {
+                          url('https://github.com/jyarb-keptn/keptn-in-a-box.git')
+                        }
+                        branch('*/0.8.4')
+                      }
+                    }
+                    scriptPath 'resources/jenkins/pipelines/05-qualitygate-sli-dashboard.Jenkinsfile'
+                    lightweight()
+                  }
+                }
+              }                
   # Optionally specify additional init-containers
   customInitContainers: []
   # - name: custom-init
