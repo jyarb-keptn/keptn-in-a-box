@@ -7,7 +7,7 @@ generated with Cert-Manager and Let's Encrypt, does not mean the Box is secure.
 
 # Keptn-in-a-Box Enhanced (with Dynatrace Software Intelligence empowered) 🎁
 
-:rotating_light: ALERT: This install uses keptn 0.8.2 :rotating_light:
+:rotating_light: ALERT: This install uses keptn 0.8.7 :rotating_light:
 
 Keptn-In-A-Box is part of the automation for delivering Autonomous Cloud Workshops with Dynatrace. This is not a tutorial but more an explanation of what the shell file set up for you on a plain Ubuntu image. 
 
@@ -19,6 +19,8 @@ For spinning up instances automatically with AWS completely configured and set u
 | **kiab** | [main](https://github.com/jyarb-keptn/keptn-in-a-box/tree/main) | uses keptn 0.8.2 |
 | **kiab** | [0.8.2](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.2) | uses keptn 0.8.2 |
 | **kiab** | [0.8.1](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.1) | uses keptn 0.8.1 (stable)|
+| **kiab** | [0.8.4](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.4) | uses keptn 0.8.4 (stable)|
+| **kiab** | [0.8.7](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.7) | uses keptn 0.8.7 |
 | **kiab** | [release-0.8pre](https://github.com/jyarb-keptn/keptn-in-a-box/tree/release-0.8pre) | experimental also pushes to main |
 
 ![#](doc/images/keptn-in-a-box-autonomous-cloud-devops.gif)
@@ -179,13 +181,13 @@ ssh -i "DevOps.pem" ubuntu@ec2-54-172-78-187.compute-1.amazonaws.com
 #### 2. Get the script
 
 ```bash
-curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.1/keptn-in-a-box.sh
+curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.7/keptn-in-a-box.sh
 ```
 
 > You can also specify a specific release like 'curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/${KIAB_RELEASE}/keptn-in-a-box.sh' the master branch will be pointing to the actual release.
 
 ```bash
-curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.2/keptn-in-a-box.sh
+curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.7/keptn-in-a-box.sh
 ```
 
 #### 3. Change permissions on script.
