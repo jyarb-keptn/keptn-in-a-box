@@ -38,7 +38,7 @@ spec:
             memory: "128Mi"
             cpu: "500m"
       - name: distributor
-        image: keptn/distributor:0.8.4
+        image: keptn/distributor:0.8.7
         ports:
           - containerPort: 8080
         resources:
