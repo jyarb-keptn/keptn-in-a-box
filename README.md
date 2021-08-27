@@ -7,7 +7,7 @@ generated with Cert-Manager and Let's Encrypt, does not mean the Box is secure.
 
 # Keptn-in-a-Box Enhanced (with Dynatrace Software Intelligence empowered) 🎁
 
-:rotating_light: ALERT: This install uses keptn 0.8.3 :rotating_light:
+:rotating_light: ALERT: This install uses keptn 0.8.7 :rotating_light:
 
 Keptn-In-A-Box is part of the automation for delivering Autonomous Cloud Workshops with Dynatrace. This is not a tutorial but more an explanation of what the shell file set up for you on a plain Ubuntu image. 
 
@@ -17,6 +17,7 @@ For spinning up instances automatically with AWS completely configured and set u
 |Name | Version | Description | 
 ------------- | ------------- | ------------ |
 | **kiab** | [main](https://github.com/jyarb-keptn/keptn-in-a-box/tree/main) | keptn 0.8.3 |
+| **kiab** | [0.8.7](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.7) | keptn 0.8.7 |
 | **kiab** | [0.8.4](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.4) | keptn 0.8.4 |
 | **kiab** | [0.8.3](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.3) | keptn 0.8.3 |
 | **kiab** | [0.8.2](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.2) | keptn 0.8.2 |
@@ -181,7 +182,7 @@ ssh -i "DevOps.pem" ubuntu@ec2-54-172-78-187.compute-1.amazonaws.com
 #### 2. Get the script
 
 ```bash
-curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.4/keptn-in-a-box.sh
+curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.7/keptn-in-a-box.sh
 ```
 
 > You can also specify a specific release like 'curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/${KIAB_RELEASE}/keptn-in-a-box.sh' the master branch will be pointing to the actual release.
