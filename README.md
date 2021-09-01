@@ -16,11 +16,12 @@ For spinning up instances automatically with AWS completely configured and set u
 
 |Name | Version | Description | 
 ------------- | ------------- | ------------ |
-| **kiab** | [main](https://github.com/jyarb-keptn/keptn-in-a-box/tree/main) | uses keptn 0.8.2 |
-| **kiab** | [0.8.2](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.2) | uses keptn 0.8.2 |
-| **kiab** | [0.8.1](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.1) | uses keptn 0.8.1 (stable)|
-| **kiab** | [0.8.4](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.4) | uses keptn 0.8.4 (stable)|
-| **kiab** | [0.8.7](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.7) | uses keptn 0.8.7 |
+| **kiab** | [main](https://github.com/jyarb-keptn/keptn-in-a-box/tree/main) | keptn 0.8.3 |
+| **kiab** | [0.8.7](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.7) | keptn 0.8.7 |
+| **kiab** | [0.8.4](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.4) | keptn 0.8.4 |
+| **kiab** | [0.8.3](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.3) | keptn 0.8.3 |
+| **kiab** | [0.8.2](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.2) | keptn 0.8.2 |
+| **kiab** | [0.8.1](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.1) | keptn 0.8.1 (stable)|
 | **kiab** | [release-0.8pre](https://github.com/jyarb-keptn/keptn-in-a-box/tree/release-0.8pre) | experimental also pushes to main |
 
 ![#](doc/images/keptn-in-a-box-autonomous-cloud-devops.gif)
@@ -187,7 +188,7 @@ curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.7/keptn
 > You can also specify a specific release like 'curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/${KIAB_RELEASE}/keptn-in-a-box.sh' the master branch will be pointing to the actual release.
 
 ```bash
-curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.7/keptn-in-a-box.sh
+curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/main/keptn-in-a-box.sh
 ```
 
 #### 3. Change permissions on script.
@@ -318,9 +319,7 @@ You will need to create application detection rules, as these cannot be created 
 - All domains that match easytravel-angular.easytravel-staging
 - All domains that match easytravel-www.easytravel-staging
 
-Unfortunately, there is an issue with the deployment of the www service in production.
-
-TODO: drive load to UEM and make problem patterns dynamic.
+TODO: Make problem patterns dynamic.
 
 ### 8 - Next Steps
 
@@ -335,6 +334,50 @@ TODO: drive load to UEM and make problem patterns dynamic.
 1. Check out your KIAB homepage and explore the links.
 1. Explore the dashboards in Dynatrace.
 1. Have some fun....
+
+### 9 - Dynatrace SLI Service (Extra Credit)
+The dynatrace-sli-service is a Keptn service that is responsible for retrieving the values of SLIs from your Dynatrace 
+Tenant via the Dynatrace Metrics v2 API endpoint. For that it handles the Keptn Event sh.keptn.internal.event.get-sli 
+which gets executed as part of a quality gate evaluation! 
+[Dynatrace SLI Service](https://github.com/keptn-contrib/dynatrace-sli-service)
+
+Rest easy, we have created a script to initialize the SLI service and create an OOB Dashboard example.
+```bash
+cd ~/keptn-in-a-box/resources/dynatrace
+```
+Validate the KEPTN_DOMAIN environment variable has been set.
+
+If it has not been set, then you will need to set the KEPT_DOMAIN environment variable.
+
+Set the KEPTN_DOMAIN 
+
+```bash
+export KEPTN_DOMAIN=<Your DOMAIN>
+```
+
+Run this script, first make it executable.
+```bash
+chmod +x setdbenv.sh
+./setdbenv.sh
+```
+This will enable your Dynatrace SLO-based dashboard.
+
+<img src="doc/images/dashboard-slo.png" width="500"/>
+
+Now we need to trigger a quality gate evaluation.
+
+```bash
+cd ~/keptn-in-a-box/resources/demo
+chmod +x triggerDashbaordSLI.sh
+./triggerDashbaordSLI.sh
+```
+Now if you navigate to the carts service under the sockshop project in Keptn, you will see the SLI's from the configured dashboard.
+
+<img src="doc/images/kgqslodahboard.png" width="500"/>
+
+You can also navigate to the dashboard in Dynatrace to check out how the SLI's have been created.
+Also, any subsequent builds for the sockshop app will use the Dashboard SLI's.
+
 
 ## Troubleshooting
 
