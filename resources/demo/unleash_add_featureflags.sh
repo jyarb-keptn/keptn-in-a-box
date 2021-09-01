@@ -59,4 +59,4 @@ kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/unleash-service
 
 keptn add-resource --project=sockshop --service=carts --stage=production --resource=remediation_feature_toggle.yaml --resourceUri=remediation.yaml
 
-keptn add-resource --project=sockshop --stage=production --service=carts --resource=slo-self-healing.yaml --resourceUri=slo.yaml
+keptn add-resource --project=sockshop --stage=production --service=carts --resource=slo-self-healing-dynatrace.yaml --resourceUri=slo.yaml
