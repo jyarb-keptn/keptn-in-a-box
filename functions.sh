@@ -761,7 +761,7 @@ dynatraceConfigureMonitoring() {
 
     printInfo "Setting up Dynatrace SLI provider in Keptn - depricated using new method"
     #bashas "kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/dynatrace-sli-service/$KEPTN_DT_SLI_SERVICE_VERSION/deploy/service.yaml -n keptn"
-    bashas "helm upgrade --install dynatrace-service -n keptn https://github.com/keptn-contrib/dynatrace-sli-service/releases/download/$KEPTN_DT_SLI_SERVICE_VERSION/dynatrace--sli-service-$KEPTN_DT_SLI_SERVICE_VERSION.tgz"
+    bashas "helm upgrade --install dynatrace-service -n keptn https://github.com/keptn-contrib/dynatrace-sli-service/releases/download/$KEPTN_DT_SLI_SERVICE_VERSION/dynatrace-sli-service-$KEPTN_DT_SLI_SERVICE_VERSION.tgz"
     bashas "kubectl -n keptn get deployment dynatrace-sli-service -o wide"
     bashas "kubectl -n keptn get pods -l run=dynatrace-sli-service"
     waitForAllPods
