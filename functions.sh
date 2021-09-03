@@ -12,7 +12,7 @@ KIAB_RELEASE="0.8.7"
 ISTIO_VERSION=1.9.1
 CERTMANAGER_VERSION=0.14.0
 # https://github.com/keptn/keptn
-KEPTN_VERSION=0.8.7
+KEPTN_VERSION=0.9.0
 # https://github.com/keptn-contrib/dynatrace-service
 KEPTN_DT_SERVICE_VERSION=0.15.1
 # https://github.com/keptn-contrib/dynatrace-sli-service
