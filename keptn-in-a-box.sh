@@ -112,7 +112,7 @@ echo "tenant: $TENANT";
 DOMAIN="192.168.3.91.nip.io"
 # Use this to set your own DNS server address
 #my_dns=true
-MYDNS="192.168.3.27"
+#MYDNS="192.168.3.27"
 
 # ---- The Email Account for the Certmanager ClusterIssuer with Let's encrypt ---- 
 # ---- By not providing an Email and letting certificates get generated will end up in 
