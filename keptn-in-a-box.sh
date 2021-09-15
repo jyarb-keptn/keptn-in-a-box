@@ -107,12 +107,12 @@ echo "tenant: $TENANT";
 # if no DOMAIN is setted, the public IP of the machine will be converted to a magic nip.io domain 
 # ---- Define your Domain ----
 # Use this for AWS instances
-DOMAIN="`curl http://checkip.amazonaws.com`.nip.io"
+#DOMAIN="`curl http://checkip.amazonaws.com`.nip.io"
 # Magic domain for home/local cluster
-#DOMAIN="192.168.3.91.nip.io"
+DOMAIN="192.168.3.91.nip.io"
 # Use this to set your own DNS server address
 #my_dns=true
-#MYDNS="192.168.3.27"
+MYDNS="192.168.3.27"
 
 # ---- The Email Account for the Certmanager ClusterIssuer with Let's encrypt ---- 
 # ---- By not providing an Email and letting certificates get generated will end up in 
