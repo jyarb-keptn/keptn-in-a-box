@@ -294,13 +294,13 @@ master:
        unclassified:
          globalLibraries:
            libraries:
-           - defaultVersion: "4.0"
+           - defaultVersion: "master"
              name: "keptn-library"
              retriever:
                modernSCM:
                  scm:
                    git:
-                     remote: "https://github.com/keptn-sandbox/keptn-jenkins-library"
+                     remote: "https://github.com/jyarb-keptn/keptn-jenkins-library"
       pipeline-deploy-order:  | 
         jobs:
           - script: >
