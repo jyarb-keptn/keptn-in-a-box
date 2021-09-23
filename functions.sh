@@ -76,7 +76,8 @@ git_migrate=false
 dynatrace_savecredentials=false
 dynatrace_configure_monitoring=false
 dynatrace_install_dynakube=false
-dynatrace_install_services=false
+dynatrace_install_service=false
+dynatrace_install_sli_service=false
 dynatrace_activegate_install=false
 dynatrace_configure_workloads=false
 jenkins_deploy=false
@@ -125,7 +126,8 @@ installationBundleDemo() {
   dynatrace_savecredentials=true
   dynatrace_configure_monitoring=true
   dynatrace_install_dynakube=true
-  dynatrace_install_services=true
+  dynatrace_install_service=false
+  dynatrace_install_sli_service=true
   dynatrace_activegate_install=false
   dynatrace_configure_workloads=true
   keptndeploy_homepage=true
@@ -756,13 +758,15 @@ dynatraceConfigureMonitoring() {
       bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && echo 'y' | bash deploy_operator.sh"    
     fi
     
-    if [ "$dynatrace_install_services" = true ]; then
+    if [ "$dynatrace_install_service" = true ]; then
     printInfo "Deploying the Dynatrace Service in Keptn"
     #bashas "kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/dynatrace-service/$KEPTN_DT_SERVICE_VERSION/deploy/service.yaml -n keptn" 
     bashas "helm upgrade --install dynatrace-service -n keptn https://github.com/keptn-contrib/dynatrace-service/releases/download/$KEPTN_DT_SERVICE_VERSION/dynatrace-service-$KEPTN_DT_SERVICE_VERSION.tgz"
     bashas "kubectl -n keptn get deployment dynatrace-service -o wide"
     bashas "kubectl -n keptn get pods -l run=dynatrace-service"
+    fi
 
+    if [ "$dynatrace_install_sli_service" = true ]; then
     printInfo "Setting up Dynatrace SLI provider in Keptn - depricated using new method"
     #bashas "kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/dynatrace-sli-service/$KEPTN_DT_SLI_SERVICE_VERSION/deploy/service.yaml -n keptn"
     bashas "helm upgrade --install dynatrace-sli-service -n keptn https://github.com/keptn-contrib/dynatrace-sli-service/releases/download/$KEPTN_DT_SLI_SERVICE_VERSION/dynatrace-sli-service-$KEPTN_DT_SLI_SERVICE_VERSION.tgz"
