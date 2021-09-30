@@ -22,7 +22,7 @@ node {
     ])
 
     stage('Initialize Keptn') {
-        keptn.downloadFile('https://raw.githubusercontent.com/jyarb-keptn/overview/0.8.3/keptn-onboarding/shipyard-performance.yaml', 'keptn/shipyard.yaml')
+        keptn.downloadFile('https://raw.githubusercontent.com/jyarb-keptn/overview/0.8.4/keptn-onboarding/shipyard-performance.yaml', 'keptn/shipyard.yaml')
         keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.7/resources/jenkins/pipelines/keptnorders/dynatrace/dynatrace.conf.yaml", 'dynatrace/dynatrace.conf.yaml')
         keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.7/resources/jenkins/pipelines/keptnorders/slo_${params.SLI}.yaml", 'keptnorders/slo.yaml')
         keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.7/resources/jenkins/pipelines/keptnorders/dynatrace/sli_${params.SLI}.yaml", 'keptnorders/sli.yaml')
