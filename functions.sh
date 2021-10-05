@@ -116,18 +116,24 @@ installationBundleDemo() {
   helm_install=true
   certmanager_install=false
   certmanager_enable=false
+  # install keptn
   keptn_install=true
+  # clone repos
   keptn_examples_clone=true
   resources_clone=true
-  hostalias=false
   keptn_catalog_clone=true
+  hostalias=false
+  # gitea
   git_deploy=true
   git_migrate=true
   dynatrace_savecredentials=true
   dynatrace_configure_monitoring=true
+  # install Dynatrace Operator
   dynatrace_install_dynakube=true
+  # Dynatrace_service
   dynatrace_install_service=true
   dynatrace_install_sli_service=false
+  # Traditional ActiveGate
   dynatrace_activegate_install=false
   dynatrace_configure_workloads=true
   keptndeploy_homepage=true
@@ -142,7 +148,9 @@ installationBundleDemo() {
   # use for easytravel
   keptndemo_easytravelonboard=true
   keptndemo_easytraveloadgen=true
+  # dashboards for AIOPs
   keptndashboard_load=false
+  # create custom metrics
   createMetrics=true
   expose_kubernetes_api=true
   expose_kubernetes_dashboard=true
