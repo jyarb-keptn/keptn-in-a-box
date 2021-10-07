@@ -51,7 +51,7 @@ node {
         def urlPathValues = urlPaths.tokenize(';')
 
         // Before we get started we mark the current timestamp which allows us to run the quality gate later on with exact timestamp info
-        keptn.markEvaluationStartTime(${params.TimeZone})
+        keptn.markEvaluationStartTime("${params.TimeZone}")
 
         // now we run the test
         script {
@@ -83,7 +83,7 @@ node {
         echo "Quality Gates ONLY: Just triggering an SLI/SLO-based evaluation for the passed timeframe"
 
         // Trigger an evaluation. It will take the starttime from our call to markEvaluationStartTime and will Now() as endtime
-        def keptnContext = keptn.sendStartEvaluationEvent starttime:"", endtime:""
+        def keptnContext = keptn.sendStartEvaluationEvent starttime:"", endtime:"", timezone:"${params.TimeZone}
         String keptn_bridge = env.KEPTN_BRIDGE
         echo "Open Keptns Bridge: ${keptn_bridge}/trace/${keptnContext}"
     }
