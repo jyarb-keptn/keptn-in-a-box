@@ -31,7 +31,7 @@ node {
         archiveArtifacts artifacts:'keptn/**/*.*'
 
         // Initialize the Keptn Project - ensures the Keptn Project is created with the passed shipyard
-        keptn.keptnInit project:"${params.Project}", service:"${params.Service}", stage:"${params.Stage}", monitoring:"${monitoring}", timezone:"${params.TimeZone}" , shipyard:'keptn/shipyard.yaml'
+        keptn.keptnInit project:"${params.Project}", service:"${params.Service}", stage:"${params.Stage}", monitoring:"${monitoring}", shipyard:'keptn/shipyard.yaml'
 
         // Upload all the files
         keptn.keptnAddResources('keptn/shipyard.yaml','shipyard.yaml')
@@ -43,7 +43,7 @@ node {
         echo "Quality Gates ONLY: Just triggering an SLI/SLO-based evaluation for the passed timeframe"
 
         // Trigger an evaluation
-        def keptnContext = keptn.sendStartEvaluationEvent starttime:"${params.StartTime}", endtime:"${params.EndTime}" 
+        def keptnContext = keptn.sendStartEvaluationEvent starttime:"${params.StartTime}", endtime:"${params.EndTime}", timezone:"${params.TimeZone}" 
         String keptn_bridge = env.KEPTN_BRIDGE
         echo "Open Keptns Bridge: ${keptn_bridge}/trace/${keptnContext}"
     }
