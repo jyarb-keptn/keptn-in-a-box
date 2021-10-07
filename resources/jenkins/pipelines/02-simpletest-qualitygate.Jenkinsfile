@@ -83,7 +83,7 @@ node {
         echo "Quality Gates ONLY: Just triggering an SLI/SLO-based evaluation for the passed timeframe"
 
         // Trigger an evaluation. It will take the starttime from our call to markEvaluationStartTime and will Now() as endtime
-        def keptnContext = keptn.sendStartEvaluationEvent starttime:"", endtime:"", timezone:"${params.TimeZone}
+        def keptnContext = keptn.sendStartEvaluationEvent starttime:"", endtime:"", timezone:"${params.TimeZone}"
         String keptn_bridge = env.KEPTN_BRIDGE
         echo "Open Keptns Bridge: ${keptn_bridge}/trace/${keptnContext}"
     }
