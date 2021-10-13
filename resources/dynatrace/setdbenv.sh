@@ -39,4 +39,5 @@ EOF
 
 keptn add-resource --project=sockshop --stage=staging --resource=./dynatrace.conf.yaml --resourceUri=dynatrace/dynatrace.conf.yaml
 
-##helm upgrade dynatrace-service -n keptn https://github.com/keptn-contrib/dynatrace-service/releases/download/0.17.1/dynatrace-service-0.17.1.tgz
+# Use to make sure dynatrace-service is set to proper version
+helm upgrade dynatrace-service -n keptn https://github.com/keptn-contrib/dynatrace-service/releases/download/0.17.1/dynatrace-service-0.17.1.tgz
