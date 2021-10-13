@@ -10,4 +10,4 @@ indicators:
   non_db_calls:   "metricSelector=builtin:service.nonDbChildCallCount:merge(\"dt.entity.service\"):avg&entitySelector=tag($SERVICE),type(SERVICE)"
   lock_time:    "metricSelector=builtin:service.lockTime:merge(\"dt.entity.service\"):avg&entitySelector=tag($SERVICE),type(SERVICE)"
   io_time:      "metricSelector=builtin:service.ioTime:merge(\"dt.entity.service\"):avg&entitySelector=tag($SERVICE),type(SERVICE)"
-  cpu_time:     "metricSelector=builtin:service.cpu.time:merge(\"dt.entity.service\"):avg&entitySelector=tag($SERVICE),type(SERVICE)"
+  cpu_time:     "metricSelector=builtin:service.cpu.time:merge("dt.entity.service"):avg&entitySelector=tag($SERVICE),type(SERVICE)"
