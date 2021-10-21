@@ -50,7 +50,7 @@ node {
         def urlPaths = params.URLPaths?:"/"
         def urlPathValues = urlPaths.tokenize(';')
 
-        // Before we get started we mark the current timestamp which allows us to run the quality gate later on with exact timestamp info
+        // Before we get started we mark the current timestamp which allows us to run the quality gate later on which exact timestamp info is used
         keptn.markEvaluationStartTime("${params.TimeZone}")
 
         // now we run the test
