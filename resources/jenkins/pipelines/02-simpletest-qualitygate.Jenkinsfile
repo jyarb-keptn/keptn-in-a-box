@@ -72,7 +72,8 @@ node {
                         responseHandle: 'STRING', 
                         url: "${url}${urlPath}", 
                         validResponseCodes: "100:500", 
-                        ignoreSslErrors: true
+                        ignoreSslErrors: true,
+                        quiet: true
                 }
 
                 sleep(time:ThinkTime,unit:"MILLISECONDS")
