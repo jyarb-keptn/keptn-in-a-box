@@ -290,7 +290,9 @@ master:
              - key: ORDER_STAGING
                value: ORDER_STAGING.placeholder
              - key: ORDER_PROD
-               value: ORDER_PROD.placeholder               
+               value: ORDER_PROD.placeholder 
+             - key: EASYTRAVEL_STAGING
+               value: EASYTRAVEL_STAGING.placeholder
       keptn-library:  |
        unclassified:
          globalLibraries:
