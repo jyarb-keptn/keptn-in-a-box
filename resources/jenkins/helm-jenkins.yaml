@@ -440,7 +440,7 @@ master:
       pipeline-sockshop-qualitygates:  | 
         jobs:
           - script: >
-              pipelineJob('05-qualitygate-sli-dashboard') {
+              pipelineJob('06-qualitygate-sli-dashboard') {
                 definition {
                   cpsScm {
                     scm {
@@ -459,7 +459,7 @@ master:
       pipeline-easytravel-version:  | 
         jobs:
           - script: >
-              pipelineJob('06-easytravel-release-version') {
+              pipelineJob('07-easytravel-release-version') {
                 definition {
                   cpsScm {
                     scm {
