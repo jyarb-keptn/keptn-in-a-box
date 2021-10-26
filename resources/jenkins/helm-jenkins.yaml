@@ -440,7 +440,7 @@ master:
       pipeline-sockshop-qualitygates:  | 
         jobs:
           - script: >
-              pipelineJob('05-qualitygate-sli-dashboard.Jenkinsfile') {
+              pipelineJob('05-qualitygate-sli-dashboard') {
                 definition {
                   cpsScm {
                     scm {
@@ -459,7 +459,7 @@ master:
       pipeline-easytravel-version:  | 
         jobs:
           - script: >
-              pipelineJob('06-easytravel-version.Jenkinsfile') {
+              pipelineJob('06-easytravel-release-version') {
                 definition {
                   cpsScm {
                     scm {
@@ -467,10 +467,10 @@ master:
                         remote {
                           url('https://github.com/pcjeffmac/easyTravel-Docker.git')
                         }
-                        branch('*/0.1.0')
+                        branch('*/master')
                       }
                     }
-                    scriptPath 'Jenkinsfile'
+                    scriptPath 'versionRelese.Jenkinsfile'
                     lightweight()
                   }
                 }
