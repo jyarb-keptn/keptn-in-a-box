@@ -67,7 +67,7 @@ master:
   # Used for label app.kubernetes.io/component
   componentName: "jenkins-master"
   image: "jenkins/jenkins"
-  tag: "2.314"
+  tag: "2.317"
   imagePullPolicy: "Always"
   imagePullSecretName:
   # Optionally configure lifetime for master-container
@@ -224,7 +224,7 @@ master:
     - rebuild:1.32
     - jdk-tool:1.5
     - parameterized-scheduler:1.0
-    - kubernetes-cli:1.10.3
+  #  - kubernetes-cli:1.10.3
   #  - dark-theme:0.0.12
   #  - performance:3.18
   #  - command-launcher:1.4
@@ -450,6 +450,25 @@ master:
                       }
                     }
                     scriptPath 'resources/jenkins/pipelines/05-qualitygate-sli-dashboard.Jenkinsfile'
+                    lightweight()
+                  }
+                }
+              }   
+      pipeline-easytravel-version:  | 
+        jobs:
+          - script: >
+              pipelineJob('06-easytravel-version.Jenkinsfile') {
+                definition {
+                  cpsScm {
+                    scm {
+                      git {
+                        remote {
+                          url('https://github.com/pcjeffmac/easyTravel-Docker.git')
+                        }
+                        branch('*/0.1.0')
+                      }
+                    }
+                    scriptPath 'Jenkinsfile'
                     lightweight()
                   }
                 }
