@@ -25,6 +25,8 @@ KEPTN_BRIDGE="http://keptn.$DOMAIN/bridge"
 ORDER_STAGING="http://frontend.keptnorders-staging.$DOMAIN"
 ORDER_PROD="http://frontend.keptnorders-production.$DOMAIN"
 
+EASYTRAVEL_STAGING="http://easytravel-www.easytravel-staging.$DOMAIN"
+
 readCredsFromFile
 printVariables
 
@@ -40,6 +42,7 @@ sed -e 's~DOMAIN.placeholder~'"$DOMAIN"'~' \
     -e 's~DT_API_TOKEN.placeholder~'"$DT_API_TOKEN"'~' \
     -e 's~ORDER_STAGING.placeholder~'"$ORDER_STAGING"'~' \
     -e 's~ORDER_PROD.placeholder~'"$ORDER_PROD"'~' \
+    -e 's~EASYTRAVEL_STAGING.placeholder~'"$EASYTRAVEL_STAGING"'~' \
     helm-jenkins.yaml > gen/helm-jenkins.yaml
 
 echo "Ensure Helm Jenkins repo is present"
