@@ -996,9 +996,9 @@ createWorkshopUser() {
 postFlightWork() {
   if [ "$post_flight" = true ]; then    
     bashas "chown -f -R ${USER} ~/.kube"
-    cp $KEPTN_IN_A_BOX_DIR/resources/misc/daemon.json /etc/docker/daemon.json
-    systemctl restart docker
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && sudo cp hostautotag.conf /var/lib/dynatrace/oneagent/agent/config/hostautotag.conf"
+    #cp $KEPTN_IN_A_BOX_DIR/resources/misc/daemon.json /etc/docker/daemon.json
+    #systemctl restart docker
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash hosttag.sh"
   fi
 }
 
