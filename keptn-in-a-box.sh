@@ -37,6 +37,14 @@ printenv DT_APITOKEN
 printenv DT_PAASTOKEN
 printenv DT_CERTMANAGER_EMAIL
 
+
+if [ -n "DT_TENANTID"]
+then
+DTENV=${DT_TENANTID}
+DTAPI=${DT_APITOKEN}
+DTPAAST=${DT_PAASTOKEN}
+DTUID=${DT_CERTMANAGER_EMAIL}
+else
 echo -e "${YLW}Please enter the credentials as requested below: ${NC}"
 read -e -i "${DT_TENANTID}" -p "Dynatrace Tenant ID ["${DT_TENANTID}"]: " iDTENVC
 DTENVC="${iDTENVC:-${DT_TENANTID}}"
@@ -47,6 +55,7 @@ DTPAAST="${iDTPAAST:-${DT_PAASTOKEN}}"
 read -e -i "${DT_CERTMANAGER_EMAIL}" -p "User Email ["${DT_CERTMANAGER_EMAIL}"]: " iDTUID
 DTUID="${iDTUID:-${DT_CERTMANAGER_EMAIL}}"
 echo ""
+fi
 
 if [ -z "$DTENVC" ]
 then
