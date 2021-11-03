@@ -22,6 +22,16 @@
 YLW='\033[1;33m'
 NC='\033[0m'
 
+while getopts t:p:a:e: flag
+ do
+     case "${flag}" in
+         t) DT_TENANTID=${OPTARG};;
+         p) DT_PAASTOKEN=${OPTARG};;
+         a) DT_APITOKEN=${OPTARG};;
+         e) DT_CERTMANAGER_EMAIL=${OPTARG};;
+     esac
+done
+
 printenv DT_TENANTID
 printenv DT_APITOKEN
 printenv DT_PAASTOKEN
