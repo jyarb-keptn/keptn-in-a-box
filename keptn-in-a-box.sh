@@ -75,15 +75,6 @@ else
 	exit 1   
 fi
 
-# while getopts t:p:a:e: flag
-# do
-#     case "${flag}" in
-#         t) TENANTID=${OPTARG};;
-#         p) PAASTOKEN=${OPTARG};;
-#         a) APITOKEN=${OPTARG};;
-#         e) CERTMANAGER_EMAIL=${OPTARG};;
-#     esac
-# done
 (
 # ==================================================
 #      ----- Variables Definitions -----           #
