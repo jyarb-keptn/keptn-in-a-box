@@ -8,7 +8,7 @@
 # ==================================================
 #      ----- Components Versions -----             #
 # ==================================================
-KIAB_RELEASE="0.8.7"
+KIAB_RELEASE="0.8.8"
 ISTIO_VERSION=1.9.1
 CERTMANAGER_VERSION=0.14.0
 # https://github.com/keptn/keptn
@@ -19,10 +19,10 @@ KEPTN_DT_SERVICE_VERSION=0.17.1
 KEPTN_DT_SLI_SERVICE_VERSION=0.12.1
 # https://github.com/keptn/examples
 KEPTN_EXAMPLES_REPO="https://github.com/keptn/examples.git"
-KEPTN_EXAMPLES_BRANCH="0.9.0"
+KEPTN_EXAMPLES_BRANCH="0.9.1"
 KEPTN_EXAMPLES_DIR="~/examples"
 KEPTN_CATALOG_REPO="https://github.com/jyarb-keptn/overview.git"
-KEPTN_CATALOG_BRANCH="0.8.4"
+KEPTN_CATALOG_BRANCH="0.8.5"
 KEPTN_CATALOG_DIR="~/overview"
 TEASER_IMAGE="pcjeffmac/nginxacm:0.8.1"
 #KEPTN_BRIDGE_IMAGE="keptn/bridge2:20200326.0744"
