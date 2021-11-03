@@ -38,7 +38,7 @@ printenv DT_PAASTOKEN
 printenv DT_CERTMANAGER_EMAIL
 
 
-if [ -n "DT_TENANTID"]
+if [ -n "DT_TENANTID" ]
 then
 DTENV=${DT_TENANTID}
 DTAPI=${DT_APITOKEN}
