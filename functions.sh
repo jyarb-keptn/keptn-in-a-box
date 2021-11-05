@@ -899,13 +899,13 @@ keptndemoCatalogonboard() {
     # start order and frontend
     bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/catalog/deploy_catalog_0.2.sh"
     #waitForAllPods
-        printInfoSection "Load remediation..."
+    printInfoSection "Load remediation..."
     bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash loadRemediation.sh"
     
     printInfoSection "Keptn Exposing the Onboarded orders Application"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} keptnorders"
     printInfoSection "set env variables"
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash setenv.sh"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash setenv.sh ${DOMAIN}"
   fi
 }
 
