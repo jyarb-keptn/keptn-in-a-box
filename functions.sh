@@ -769,9 +769,21 @@ dynatraceConfigureMonitoring() {
     fi
     
     if [ "$dynatrace_install_service" = true ]; then
+    printInfoSection "set env variables"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash setenv.sh ${DOMAIN}"
     printInfo "Deploying the Dynatrace Service in Keptn"
     #bashas "kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/dynatrace-service/$KEPTN_DT_SERVICE_VERSION/deploy/service.yaml -n keptn" 
-    bashas "helm upgrade --install dynatrace-service -n keptn https://github.com/keptn-contrib/dynatrace-service/releases/download/$KEPTN_DT_SERVICE_VERSION/dynatrace-service-$KEPTN_DT_SERVICE_VERSION.tgz"
+    #bashas "helm upgrade --install dynatrace-service -n keptn https://github.com/keptn-contrib/dynatrace-service/releases/download/$KEPTN_DT_SERVICE_VERSION/dynatrace-service-$KEPTN_DT_SERVICE_VERSION.tgz"
+    bashas "helm upgrade --install dynatrace-service -n keptn \
+             https://github.com/keptn-contrib/dynatrace-service/releases/download/$KEPTN_DT_SERVICE_VERSION/dynatrace-service-$KEPTN_DT_SERVICE_VERSION.tgz \
+  			--set dynatraceService.config.keptnApiUrl=$KEPTN_ENDPOINT \
+  			--set dynatraceService.config.keptnBridgeUrl=$KEPTN_BRIDGE_URL \
+  			--set dynatraceService.config.generateTaggingRules=true \
+  			--set dynatraceService.config.generateProblemNotifications=true \
+  			--set dynatraceService.config.generateManagementZones=true \
+  			--set dynatraceService.config.generateDashboards=true \
+  			--set dynatraceService.config.generateMetricEvents=true"
+
     bashas "kubectl -n keptn get deployment dynatrace-service -o wide"
     bashas "kubectl -n keptn get pods -l run=dynatrace-service"
     fi
