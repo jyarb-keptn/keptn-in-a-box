@@ -488,6 +488,7 @@ microk8sInstall() {
     homedirectory=$(eval echo ~$USER)
     bashas "mkdir $homedirectory/.kube"
     bashas "microk8s.config > $homedirectory/.kube/config"
+    bashas "chmod go-r $homedirectory/.kube/config"
   fi
 }
 
