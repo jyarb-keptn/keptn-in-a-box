@@ -602,17 +602,17 @@ This are the actual versions of the different Modules
 # ==================================================
 #      ----- Components Versions -----             #
 # ==================================================
-KIAB_RELEASE="main"
+KIAB_RELEASE="0.8.8"
 ISTIO_VERSION=1.9.1
 CERTMANAGER_VERSION=0.14.0
-KEPTN_VERSION=0.8.2
-KEPTN_DT_SERVICE_VERSION=0.12.0
-KEPTN_DT_SLI_SERVICE_VERSION=0.9.0
+KEPTN_VERSION=0.10.0
+KEPTN_DT_SERVICE_VERSION=0.18.0
+KEPTN_DT_SLI_SERVICE_VERSION=0.12.1
 KEPTN_EXAMPLES_REPO="https://github.com/keptn/examples.git"
-KEPTN_EXAMPLES_BRANCH="release-0.8.1"
+KEPTN_EXAMPLES_BRANCH="0.10.0"
 KEPTN_EXAMPLES_DIR="~/examples"
 KEPTN_CATALOG_REPO="https://github.com/jyarb-keptn/overview.git"
-KEPTN_CATALOG_BRANCH="main"
+KEPTN_CATALOG_BRANCH="0.8.5"
 KEPTN_CATALOG_DIR="~/overview"
 TEASER_IMAGE="pcjeffmac/nginxacm:0.8.1"
 KEPTN_BRIDGE_IMAGE="keptn/bridge2:0.8.0"
