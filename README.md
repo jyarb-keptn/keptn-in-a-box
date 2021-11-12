@@ -596,7 +596,7 @@ NEWUSER="dynatrace"
 This variables in combination with the control flag `create_workshop_user=false` will create a workshop user. It will clone the `USER` home directory and add hi configuration so the `NEWUSER` can also interact with `keptn`, `docker` and `kubectl`. An SSH Password will be configured and allowed.
 
 ###  Change the Version of a component
-This are the actual versions of the different Modules
+These are the actual versions of the different Modules
 ```bash
 # **** Installation Versions **** 
 # ==================================================
