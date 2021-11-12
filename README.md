@@ -389,42 +389,54 @@ The default installation is **installationBundleAll** which sets the control fla
   enable_k8dashboard=true
   istio_install=true
   helm_install=true
-  certmanager_install=false
-  certmanager_enable=false
+  certmanager_install=true
+  certmanager_enable=true
+  # install keptn
   keptn_install=true
+  # clone repos
   keptn_examples_clone=true
   resources_clone=true
-  hostalias=false
   keptn_catalog_clone=true
+  hostalias=false
+  # gitea
   git_deploy=true
   git_migrate=true
   dynatrace_savecredentials=true
   dynatrace_configure_monitoring=true
-  dynatrace_activegate_install=true
+  # install Dynatrace Operator
+  dynatrace_install_dynakube=true
+  # Dynatrace_service
+  dynatrace_install_service=true
+  dynatrace_install_sli_service=false
+  # Traditional ActiveGate
+  dynatrace_activegate_install=false
   dynatrace_configure_workloads=true
   keptndeploy_homepage=true
+  # unleash
   keptndemo_unleash=true
   keptndemo_unleash_configure=true
+  # sockshop application
   keptndemo_cartsonboard=true
   keptndemo_cartsload=true
+  # use for order application
   keptndemo_catalogonboard=true
+  # use for easytravel
   keptndemo_easytravelonboard=true
-  keptndashboard_load=false
-  createMetrics=false
+  keptndemo_easytraveloadgen=true
+  # dashboards for AIOPs
+  keptndashboard_load=true
+  # create custom metrics
+  createMetrics=true
   expose_kubernetes_api=true
   expose_kubernetes_dashboard=true
   patch_kubernetes_dashboard=true
   keptn_bridge_disable_login=true
+  # By default no WorkshopUser will be created
   create_workshop_user=false
-  jmeter_install=false
-  post_flight=false
+  jmeter_install=true
+  dynatrace_project=true
+  post_flight=true
   patch_config_service=false
-  enable_registry=true
-  certmanager_install=true
-  certmanager_enable=true
-  create_workshop_user=false
-  keptn_bridge_disable_login=true
-  jenkins_deploy=true
 ```
 
 Dynatrace OneAgent and Dynatrace ActiveGate will be installed and configured if you provided your credentials. Otherwise they won't be installed. 
