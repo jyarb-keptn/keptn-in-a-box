@@ -7,7 +7,7 @@ generated with Cert-Manager and Let's Encrypt, does not mean the Box is secure.
 
 # Keptn-in-a-Box Enhanced (with Dynatrace Software Intelligence empowered) 🎁
 
-:rotating_light: ALERT: This install uses keptn 0.9.2 :rotating_light:
+:rotating_light: ALERT: This install uses keptn 0.10.0 :rotating_light:
 
 Keptn-In-A-Box is part of the automation for delivering Autonomous Cloud Workshops with Dynatrace. This is not a tutorial but more an explanation of what the shell file set up for you on a plain Ubuntu image. 
 
@@ -19,9 +19,6 @@ For spinning up instances automatically with AWS completely configured and set u
 | **kiab** | [main](https://github.com/jyarb-keptn/keptn-in-a-box/tree/main) | keptn 0.8.3 |
 | **kiab** | [0.8.8](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.8) | keptn 0.10.0 |
 | **kiab** | [0.8.7](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.7) | keptn 0.9.2 |
-| **kiab** | [0.8.4](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.4) | keptn 0.8.4 |
-| **kiab** | [0.8.3](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.3) | keptn 0.8.3 |
-| **kiab** | [0.8.2](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.2) | keptn 0.8.2 |
 | **kiab** | [0.8.1](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.1) | keptn 0.8.1 (stable)|
 | **kiab** | [release-0.8pre](https://github.com/jyarb-keptn/keptn-in-a-box/tree/release-0.8pre) | experimental also pushes to main |
 
@@ -120,9 +117,6 @@ Below is a table for the sizing reference if you run a local VM or are virtualiz
 
 | **Size**   | **vCPUs** | **Memory (GiB)** |
 | ---------- | --------- | ---------------- |
-| t2.medium  | 2         | 4                |
-| t2.large   | 2         | 8                |
-| t2.xlarge  | 4         | 16               |
 | t2.2xlarge | 8         | 32               |
 | c4.4xlarge | 16        | 30               | (preferred for full)
 
@@ -187,10 +181,6 @@ curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.8/keptn
 ```
 
 > You can also specify a specific release like 'curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/${KIAB_RELEASE}/keptn-in-a-box.sh' the master branch will be pointing to the actual release.
-
-```bash
-curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/main/keptn-in-a-box.sh
-```
 
 #### 3. Change permissions on script.
 
