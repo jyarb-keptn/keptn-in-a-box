@@ -14,7 +14,7 @@ CERTMANAGER_VERSION=1.6.1
 # https://github.com/keptn/keptn
 KEPTN_VERSION=0.10.0
 # https://github.com/keptn-contrib/dynatrace-service
-KEPTN_DT_SERVICE_VERSION=0.18.0
+KEPTN_DT_SERVICE_VERSION=0.17.0
 # https://github.com/keptn-contrib/dynatrace-sli-service
 KEPTN_DT_SLI_SERVICE_VERSION=0.12.1
 # https://github.com/keptn/examples
