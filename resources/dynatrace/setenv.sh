@@ -19,3 +19,6 @@ export DT_PAAS_TOKEN=$DT_PAAS_TOKEN
 export KEPTN_DOMAIN=${KEPTN_DOMAIN}
 export KEPTN_API_URL=${KEPTN_ENDPOINT}
 export KEPTN_BRIDGE_URL=${KEPTN_ENDPOINT}/bridge
+
+echo "export DT_TENANT=$DT_TENANT" >> ~/.bash_profile && \
+source ~/.bash_profile
