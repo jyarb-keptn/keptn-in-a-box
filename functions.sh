@@ -1163,13 +1163,13 @@ doInstallation() {
  
   keptndemoEasytravelonboard
 
+  loadDynatraceProject
+
   gitMigrate
   keptndemoUnleashConfigure
   
   keptndemoDeployCartsloadgenerator
   keptndemoEasytraveloadgen
-  
-  loadDynatraceProject
   
   postFlightWork
 
