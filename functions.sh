@@ -776,7 +776,7 @@ dynatraceConfigureMonitoring() {
     
     if [ "$dynatrace_install_service" = true ]; then
     printInfoSection "set env variables"
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash setenv.sh ${DOMAIN}"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash setenv.sh ${DOMAIN} ${AWS}"
     
     printInfoSection "KEPTN_ENDPOINT=$KEPTN_ENDPOINT"
     printInfoSection "KEPTN_BRIDGE_URL=$KEPTN_BRIDGE_URL"

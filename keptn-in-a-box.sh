@@ -122,6 +122,7 @@ echo "tenant: $TENANT";
 # ---- Define your Domain ----
 # Use this for AWS instances
 DOMAIN="`curl http://checkip.amazonaws.com`.nip.io"
+AWS="true"
 # Magic domain for home/local cluster
 #DOMAIN="192.168.3.91.nip.io"
 # Use this to set your own DNS server address
