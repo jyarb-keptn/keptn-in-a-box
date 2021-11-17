@@ -192,6 +192,10 @@ chmod +x keptn-in-a-box.sh
 ```bash
 sudo bash -c './keptn-in-a-box.sh'
 ```
+#### 4.1 New execution method with flags. 
+```
+yes | sudo  bash -c './keptn-in-a-box.sh -t <TENANT> -a <APITOKEN> -p <PAASTOKEN> -e <UserEmail>'
+```
 
 The script will ask for the following inputs.
 
