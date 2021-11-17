@@ -1033,6 +1033,7 @@ postFlightWork() {
     #cp $KEPTN_IN_A_BOX_DIR/resources/misc/daemon.json /etc/docker/daemon.json
     #systemctl restart docker
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash hosttag.sh"
+    bashas "cd $KEPTN_IN_A_BOX_DIR && bash setlinks.sh"
   fi
 }
 
