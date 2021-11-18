@@ -67,7 +67,7 @@ master:
   # Used for label app.kubernetes.io/component
   componentName: "jenkins-master"
   image: "jenkins/jenkins"
-  tag: "2.317"
+  tag: "2.321"
   imagePullPolicy: "Always"
   imagePullSecretName:
   # Optionally configure lifetime for master-container
@@ -213,12 +213,12 @@ master:
 
   # List of plugins to be install during Jenkins master start
   installPlugins:
-    - http_request:1.11
+    - http_request:1.12
     - pipeline-utility-steps:2.10.0
     - blueocean:1.25.1
-    - kubernetes:1.30.3
+    - kubernetes:1.30.10
     - configuration-as-code:1.54
-    - job-dsl:1.77
+    - job-dsl:1.78
     - workflow-job:2.42
     - workflow-aggregator:2.6
     - rebuild:1.32
@@ -315,7 +315,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/overview.git')
                         }
-                        branch('*/0.8.4')
+                        branch('*/0.8.5')
                       }
                     }
                     scriptPath 'keptndelivery.Jenkinsfile'
@@ -334,7 +334,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/overview.git')
                         }
-                        branch('*/0.8.4')
+                        branch('*/0.8.5')
                       }
                     }
                     scriptPath 'keptneasytravel.Jenkinsfile'
@@ -353,7 +353,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/overview.git')
                         }
-                        branch('*/0.8.4')
+                        branch('*/0.8.5')
                       }
                     }
                     scriptPath 'keptncartsdelivery.Jenkinsfile'
@@ -372,7 +372,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/keptn-in-a-box.git')
                         }
-                        branch('*/0.8.7')
+                        branch('*/0.8.8')
                       }
                     }
                     scriptPath 'resources/jenkins/pipelines/01-qualitygate-evaluation.Jenkinsfile'
@@ -391,7 +391,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/keptn-in-a-box.git') 
                         }
-                        branch('*/0.8.7')
+                        branch('*/0.8.8')
                       }
                     }
                     scriptPath 'resources/jenkins/pipelines/02-simpletest-qualitygate.Jenkinsfile'
@@ -410,7 +410,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/keptn-in-a-box.git')
                         }
-                        branch('*/0.8.7')
+                        branch('*/0.8.8')
                       }
                     }
                     scriptPath 'resources/jenkins/pipelines/03-performancetest-qualitygate.Jenkinsfile'
@@ -429,7 +429,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/keptn-in-a-box.git')
                         }
-                        branch('*/0.8.7')
+                        branch('*/0.8.8')
                       }
                     }
                     scriptPath 'resources/jenkins/pipelines/04-performancetest-qualitygate-mint.Jenkinsfile'
@@ -448,7 +448,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/keptn-in-a-box.git')
                         }
-                        branch('*/0.8.7')
+                        branch('*/0.8.8')
                       }
                     }
                     scriptPath 'resources/jenkins/pipelines/05-qualitygate-sli-dashboard.Jenkinsfile'
@@ -465,12 +465,12 @@ master:
                     scm {
                       git {
                         remote {
-                          url('https://github.com/pcjeffmac/easyTravel-Docker.git')
+                          url('https://github.com/jyarb-keptn/keptn-in-a-box.git')
                         }
-                        branch('*/master')
+                        branch('*/0.8.8')
                       }
                     }
-                    scriptPath 'versionRelese.Jenkinsfile'
+                    scriptPath '07-versionRelese.Jenkinsfile'
                     lightweight()
                   }
                 }
