@@ -155,7 +155,7 @@ stages{
 		        quiet: true)        			
     } } 
 
-    stage('Event-Post-Service-JourneyService') {
+    stage('Event-Post-Service-easytravel-backend') {
         steps {
             script {
 		     meType = 'SERVICE'
