@@ -470,7 +470,7 @@ master:
                         branch('*/0.8.8')
                       }
                     }
-                    scriptPath '07-versionRelese.Jenkinsfile'
+                    scriptPath 'resources/jenkins/pipelines/07-versionRelease.Jenkinsfile'
                     lightweight()
                   }
                 }
