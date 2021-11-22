@@ -18,21 +18,15 @@ OWNER=$2
 curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?Api-Token='${DT_API_TOKEN}'' \
 --header 'Content-Type: application/json; charset=utf-8' \
 --data-raw '{
-    "dashboardMetadata": {
+  "dashboardMetadata": {
     "name": "KQG;project=sockshop;stage=staging;service=carts",
     "shared": false,
     "owner": "'${OWNER}'",
-    "dashboardFilter": {
-      "managementZone": {
-        "id": "8032687123497564438",
-        "name": "Keptn: keptnorders"
-      }
-    },
     "tags": [
       "kqg",
+      "carts",
       "staging",
-      "sockshop",
-      "carts"
+      "sockshop"
     ]
   },
   "tiles": [
@@ -68,7 +62,16 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
           ],
           "resultMetadata": {}
         },
-        "filtersPerEntityType": {}
+        "filtersPerEntityType": {
+          "PROCESS_GROUP_INSTANCE": {
+            "AUTO_TAGS": [
+              "keptn_project:sockshop"
+            ],
+            "SPECIFIC_ENTITIES": [
+              "PROCESS_GROUP_INSTANCE-140536365188203A"
+            ]
+          }
+        }
       }
     },
     {
@@ -117,7 +120,14 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
           ],
           "resultMetadata": {}
         },
-        "filtersPerEntityType": {}
+        "filtersPerEntityType": {
+          "SERVICE": {
+            "AUTO_TAGS": [
+              "keptn_service:carts",
+              "keptn_project:sockshop"
+            ]
+          }
+        }
       }
     },
     {
@@ -153,7 +163,14 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
           ],
           "resultMetadata": {}
         },
-        "filtersPerEntityType": {}
+        "filtersPerEntityType": {
+          "SERVICE": {
+            "AUTO_TAGS": [
+              "keptn_service:carts",
+              "keptn_project:sockshop"
+            ]
+          }
+        }
       }
     },
     {
@@ -189,7 +206,14 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
           ],
           "resultMetadata": {}
         },
-        "filtersPerEntityType": {}
+        "filtersPerEntityType": {
+          "SERVICE": {
+            "AUTO_TAGS": [
+              "keptn_service:carts",
+              "keptn_project:sockshop"
+            ]
+          }
+        }
       }
     },
     {
@@ -263,7 +287,16 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
           ],
           "resultMetadata": {}
         },
-        "filtersPerEntityType": {}
+        "filtersPerEntityType": {
+          "PROCESS_GROUP_INSTANCE": {
+            "AUTO_TAGS": [
+              "keptn_project:sockshop"
+            ],
+            "SPECIFIC_ENTITIES": [
+              "PROCESS_GROUP_INSTANCE-140536365188203A"
+            ]
+          }
+        }
       }
     },
     {
@@ -298,7 +331,16 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
           ],
           "resultMetadata": {}
         },
-        "filtersPerEntityType": {}
+        "filtersPerEntityType": {
+          "PROCESS_GROUP_INSTANCE": {
+            "AUTO_TAGS": [
+              "keptn_project:sockshop"
+            ],
+            "SPECIFIC_ENTITIES": [
+              "PROCESS_GROUP_INSTANCE-140536365188203A"
+            ]
+          }
+        }
       }
     },
     {
@@ -346,7 +388,14 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
           ],
           "resultMetadata": {}
         },
-        "filtersPerEntityType": {}
+        "filtersPerEntityType": {
+          "SERVICE": {
+            "AUTO_TAGS": [
+              "keptn_service:carts",
+              "keptn_project:sockshop"
+            ]
+          }
+        }
       }
     },
     {
@@ -381,7 +430,14 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
           ],
           "resultMetadata": {}
         },
-        "filtersPerEntityType": {}
+        "filtersPerEntityType": {
+          "SERVICE": {
+            "AUTO_TAGS": [
+              "keptn_service:carts",
+              "keptn_project:sockshop"
+            ]
+          }
+        }
       }
     },
     {
@@ -521,7 +577,14 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
           ],
           "resultMetadata": {}
         },
-        "filtersPerEntityType": {}
+        "filtersPerEntityType": {
+          "SERVICE": {
+            "AUTO_TAGS": [
+              "keptn_service:carts",
+              "keptn_project:sockshop"
+            ]
+          }
+        }
       }
     },
     {
@@ -551,7 +614,7 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
         "timeframe": "-1w"
       },
       "assignedEntities": [
-        "1fc52003-8209-366a-8b61-84991b8cf779"
+        "1310f0f4-95d7-389e-afb9-f19001abb50b"
       ]
     },
     {
@@ -603,7 +666,7 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
         "height": 76
       },
       "tileFilter": {},
-      "markdown": "This dashboard will automatically be analyzed as part of your production deployment automation.\nTo see whats currently deployed check the [Releases Overview](/ui/releases). For all individual check out [Cloud Automation Heatmaps](https://keptn.'${DOMAIN}'/bridge)\n\nTODO: Clone dashboard, select your Management Zone, Add your relevant SLO, replace xxxx with your tenant name"
+      "markdown": "This dashboard will automatically be analyzed as part of your production deployment automation.\nTo see whats currently deployed check the [Releases Overview](/ui/releases). For all individual check out [Cloud Automation Heatmaps](https://keptn.192.168.3.91.nip.io/bridge)\n\nTODO: Clone dashboard, select your Management Zone, Add your relevant SLO, replace xxxx with your tenant name"
     },
     {
       "name": "Service-level objective",
