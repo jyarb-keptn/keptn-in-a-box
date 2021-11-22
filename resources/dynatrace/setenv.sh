@@ -5,7 +5,7 @@ readCredsFromFile
 printVariables
 
 echo "Tenant: ${DT_TENANT}"
-echo "Toekn: ${DT_API_TOKEN}"
+echo "Token: ${DT_API_TOKEN}"
 
 KEPTN_DOMAIN=$1
 AWS=$2
