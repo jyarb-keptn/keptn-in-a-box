@@ -23,7 +23,7 @@ agent any
 	    string (name: 'ThinkTime', defaultValue: '1000')		
         string (name: 'DeploymentURI', defaultValue: "${env.EASYTRAVEL_STAGING}")
         string (name: 'URLPaths', defaultValue: '/easytravel/home:homepage;/easytravel/contact:contact;/easytravel/search?selectedLocation=New%20York:search')
-        string (name: 'remediationAction', defaultValue: 'https://ansible.pcjeffint.com/#/templates/job_template/7')
+        string (name: 'remediationAction', defaultValue: 'https://remediation-playbook')
         string (name: 'qgProject', defaultValue: 'easytravel') 
         string (name: 'Stage', defaultValue: 'staging') 
         string (name: 'Service', defaultValue: 'eteval')
