@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   annotations:
@@ -16,6 +16,11 @@ metadata:
   name: homepage-ingress
   namespace: default
 spec:
+  defaultBackend:
+   service:
+     name: homepage
+     port:
+       number: 80
   rules:
   # On base domain we have NGINX running.
   # Deploy Keptn Teaser
