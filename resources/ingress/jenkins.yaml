@@ -13,10 +13,12 @@ spec:
   - host: jenkins.domain.placeholder
     http:
       paths:
-      - backend:
-          serviceName: jenkins
-          servicePort: 8080
-        path: /
+      - path: /
+        pathType: Prefix      
+        backend:
+          service:
+            name: jenkins
+            port: 8080
   tls:
   - hosts:
     - jenkins.domain.placeholder

@@ -20,24 +20,30 @@ spec:
   - host: carts.sockshop-dev.domain.placeholder
     http:
       paths:
-      - backend:
-          serviceName: istio-ingressgateway
-          servicePort: 80
-        path: /
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: istio-ingressgateway
+            port: 80
   - host: carts.sockshop-staging.domain.placeholder
     http:
       paths:
-      - backend:
-          serviceName: istio-ingressgateway
-          servicePort: 80
-        path: /
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: istio-ingressgateway
+            port: 80
   - host: carts.sockshop-production.domain.placeholder
     http:
       paths:
-      - backend:
-          serviceName: istio-ingressgateway
-          servicePort: 80
-        path: /
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: istio-ingressgateway
+            port: 80
   tls:
   - hosts:
     - carts.sockshop-dev.domain.placeholder

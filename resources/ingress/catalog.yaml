@@ -22,10 +22,12 @@ spec:
   - host: catalog.front-end.domain.placeholder
     http:
       paths:
-      - backend:
-          serviceName: front-end
-          servicePort: 80
-        path: /
+      - path: /
+        pathType: Prefix      
+        backend:
+          service:
+            name: front-end
+            port: 80
   tls:
   - hosts:
     - catalog.front-end.domain.placeholder

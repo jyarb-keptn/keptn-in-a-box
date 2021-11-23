@@ -13,10 +13,12 @@ spec:
   - host: git.domain.placeholder
     http:
       paths:
-      - backend:
-          serviceName: gitea-http
-          servicePort: 3000
-        path: /
+      - path: /
+        pathType: Prefix      
+        backend:
+          service:
+            name: gitea-http
+            port: 3000
   tls:
   - hosts:
     - git.domain.placeholder

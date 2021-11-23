@@ -11,6 +11,8 @@ spec:
   - host: domain.placeholder.nip.io
     http:
       paths:
-      - backend:
-          serviceName: api-gateway-nginx
-          servicePort: 80
+      - path: /
+        backend:
+          service:           
+            name: api-gateway-nginx
+            port: 80

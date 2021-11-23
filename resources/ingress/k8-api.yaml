@@ -15,10 +15,12 @@ spec:
   - host: api.kubernetes.domain.placeholder
     http:
       paths:
-      - backend:
-          serviceName: kubernetes
-          servicePort: 443
-        path: /
+      - path: /
+        pathType: Prefix      
+        backend:
+          service:
+            name: kubernetes
+            port: 443
   tls:
   - hosts:
     - api.kubernetes.domain.placeholder
