@@ -16,6 +16,11 @@ metadata:
   name: unleash-ingress
   namespace: istio-system
 spec:
+  defaultBackend:
+   service:
+     name: istio-ingressgateway
+     port:
+       number: 80 
   rules:
   # Wildcard routing for all exposed istio services. 
   # Kubernetes Fake Certificate will be used if hostname 
@@ -26,7 +31,7 @@ spec:
       - path: /
         pathType: Prefix
         backend:
-          Service:
+          service:
             name: istio-ingressgateway
             port: 
               number: 80

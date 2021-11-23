@@ -9,6 +9,11 @@ metadata:
   name: gitea-ingress
   namespace: git
 spec:
+  defaultBackend:
+   service:
+     name: gitea-http
+     port:
+       number: 80 
   rules:
   - host: git.domain.placeholder
     http:
@@ -19,7 +24,7 @@ spec:
           service:
             name: gitea-http
             port: 
-             number: 3000
+              number: 3000
   tls:
   - hosts:
     - git.domain.placeholder
