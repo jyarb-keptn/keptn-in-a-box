@@ -12,7 +12,7 @@ KIAB_RELEASE="0.9.0"
 ISTIO_VERSION=1.10.5
 CERTMANAGER_VERSION=1.6.1
 # https://github.com/keptn/keptn
-KEPTN_VERSION=0.10.0
+KEPTN_VERSION=0.11.4
 # https://github.com/keptn-contrib/dynatrace-service
 KEPTN_DT_SERVICE_VERSION=0.17.0
 # https://github.com/keptn-contrib/dynatrace-sli-service
@@ -27,7 +27,7 @@ KEPTN_CATALOG_DIR="~/overview"
 TEASER_IMAGE="pcjeffmac/nginxacm:0.8.1"
 #KEPTN_BRIDGE_IMAGE="keptn/bridge2:20200326.0744"
 KEPTN_BRIDGE_IMAGE="keptn/bridge2:0.8.0"
-MICROK8S_CHANNEL="1.20/stable"
+MICROK8S_CHANNEL="1.21/stable"
 #KEPTN_IN_A_BOX_REPO="https://github.com/keptn-sandbox/keptn-in-a-box.git"
 KEPTN_IN_A_BOX_REPO="https://github.com/jyarb-keptn/keptn-in-a-box.git"
 KEPTN_IN_A_BOX_DIR="~/keptn-in-a-box"
