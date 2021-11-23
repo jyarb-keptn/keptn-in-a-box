@@ -9,10 +9,10 @@
 #      ----- Components Versions -----             #
 # ==================================================
 KIAB_RELEASE="0.9.0"
-ISTIO_VERSION=1.10.5
+ISTIO_VERSION=1.11.4
 CERTMANAGER_VERSION=1.6.1
 # https://github.com/keptn/keptn
-KEPTN_VERSION=0.11.4
+KEPTN_VERSION=0.10.0
 # https://github.com/keptn-contrib/dynatrace-service
 KEPTN_DT_SERVICE_VERSION=0.17.0
 # https://github.com/keptn-contrib/dynatrace-sli-service
