@@ -20,15 +20,14 @@ spec:
    service:
      name: homepage
      port:
-       number: 80 
+       number: 80
   rules:
   # On base domain we have NGINX running.
   # Deploy Keptn Teaser
   - host: domain.placeholder
     http:
       paths:
-        - path: /
-          pathType: Prefix      
+        - path: /      
           backend:
             service:
               name: homepage
