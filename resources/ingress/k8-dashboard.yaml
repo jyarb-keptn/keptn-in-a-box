@@ -10,6 +10,11 @@ metadata:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS" 
     #cert-manager.io/cluster-issuer: "letsencrypt"
 spec:
+  defaultBackend:
+   service:
+     name: kubernetes-dashboard
+     port:
+       number: 80
   rules:
   - host: kubernetes.domain.placeholder
     http:

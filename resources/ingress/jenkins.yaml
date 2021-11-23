@@ -9,6 +9,11 @@ metadata:
   name: jenkins-ingress
   namespace: jenkins
 spec:
+  defaultBackend:
+   service:
+     name: jenkins
+     port:
+       number: 80
   rules:
   - host: jenkins.domain.placeholder
     http:
