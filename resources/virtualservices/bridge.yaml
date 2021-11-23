@@ -14,4 +14,4 @@ spec:
     - route:
       - destination:
           host: bridge.keptn.svc.cluster.local
-      websocketUpgrade: true
+#      websocketUpgrade: true
