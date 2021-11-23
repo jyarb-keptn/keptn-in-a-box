@@ -5,7 +5,8 @@ metadata:
     kubernetes.io/ingress.class: nginx
     #cert-manager.io/cluster-issuer: "letsencrypt"
     # We allow HTTP and HTTPS
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    #nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/rewrite-target: /
   name: jenkins-ingress
   namespace: jenkins
 spec:
@@ -13,7 +14,7 @@ spec:
    service:
      name: jenkins
      port:
-       number: 80
+       number: 8080
   rules:
   - host: jenkins.domain.placeholder
     http:
@@ -25,7 +26,7 @@ spec:
             name: jenkins
             port: 
               number: 8080
-  tls:
-  - hosts:
-    - jenkins.domain.placeholder
+#  tls:
+#  - hosts:
+#    - jenkins.domain.placeholder
     #secretName: jenkins-tls
