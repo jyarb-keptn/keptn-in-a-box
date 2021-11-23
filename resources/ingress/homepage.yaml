@@ -22,13 +22,13 @@ spec:
   - host: domain.placeholder
     http:
       paths:
-        - path: /
-          pathType: Prefix      
-          backend:
-            service:
-              name: homepage
-              port: 
-                number: 80
+      - pathType: Prefix
+        path: /        
+        backend:
+          service:
+            name: homepage
+            port: 
+              number: 80
   #tls:
   #- hosts:
   #  - domain.placeholder
