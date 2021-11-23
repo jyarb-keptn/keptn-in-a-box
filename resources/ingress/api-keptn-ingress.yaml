@@ -25,7 +25,8 @@ spec:
         backend:
           service:
             name: api-gateway-nginx
-            port: 80
+            port: 
+              number: 80
   tls:
   - hosts:
     - keptn.domain.placeholder

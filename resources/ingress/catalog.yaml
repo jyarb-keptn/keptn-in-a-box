@@ -27,7 +27,8 @@ spec:
         backend:
           service:
             name: front-end
-            port: 80
+            port: 
+              number: 80
   tls:
   - hosts:
     - catalog.front-end.domain.placeholder

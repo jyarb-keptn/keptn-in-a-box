@@ -27,7 +27,8 @@ spec:
         backend:
           service:
             name: istio-ingressgateway
-            port: 80  
+            port: 
+              number: 80  
   - host: frontend.keptnorders-staging.domain.placeholder
     http:
       paths:
@@ -36,7 +37,8 @@ spec:
         backend:
           service: 
             name: istio-ingressgateway
-            port: 80  
+            port: 
+              number: 80  
   - host: catalog.keptnorders-staging.domain.placeholder
     http:
       paths:
@@ -45,7 +47,8 @@ spec:
         backend:
           service:
             name: istio-ingressgateway
-            port: 80    
+            port: 
+              number: 80    
   - host: customer.keptnorders-staging.domain.placeholder
     http:
       paths:
@@ -54,7 +57,8 @@ spec:
         backend:
           service: 
             name: istio-ingressgateway
-            port: 80  
+            port: 
+              number: 80  
   - host: order.keptnorders-staging.domain.placeholder
     http:
       paths:
@@ -63,7 +67,8 @@ spec:
         backend:
           service:
             name: istio-ingressgateway
-            port: 80                                  
+            port: 
+              number: 80                                  
   tls:
   - hosts:
     - frontend.keptnorders-production.domain.placeholder
