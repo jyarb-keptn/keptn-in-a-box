@@ -16,9 +16,14 @@ metadata:
   name: homepage-ingress
   namespace: default
 spec:
-  rules:
   # On base domain we have NGINX running.
   # Deploy Keptn Teaser
+  defaultBackend:
+    service:
+      name: homepage
+      port:
+        number: 80
+  rules:
   - host: domain.placeholder
     http:
       paths:
