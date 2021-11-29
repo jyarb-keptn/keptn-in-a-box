@@ -2,11 +2,11 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
-    #kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.class: nginx
     #cert-manager.io/cluster-issuer: "letsencrypt"
     # We allow HTTP and HTTPS
-    #nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    #nginx.ingress.kubernetes.io/rewrite-target: /
   name: gitea-ingress
   namespace: git
 spec:
