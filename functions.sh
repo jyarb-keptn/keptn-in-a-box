@@ -564,12 +564,12 @@ helmInstall() {
     wget -q -O helm.tar.gz "https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz"
     tar -xvf helm.tar.gz
     mv linux-amd64/helm /usr/local/bin/helm 
-  
-  
-    printInfoSection "Installing HELM 3 & Client via Microk8s addon"
-    bashas 'microk8s.enable helm3'
-    printInfo "Adding alias for helm client"
-    snap alias microk8s.helm3 helm
+
+    #printInfoSection "Installing HELM 3 & Client via Microk8s addon"
+    #bashas 'microk8s.enable helm3'
+    #printInfo "Adding alias for helm client"
+    #snap alias microk8s.helm3 helm
+    
     printInfo "Adding Default repo for Helm"
     bashas "helm repo add stable https://charts.helm.sh/stable"
     printInfo "Adding Jenkins repo for Helm"
