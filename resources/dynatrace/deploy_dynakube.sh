@@ -17,6 +17,7 @@ kubectl -n dynatrace create secret generic dynakube --from-literal="apiToken=$DT
 
 curl -Lo dynaKubeCr.yaml https://raw.githubusercontent.com/Dynatrace/dynatrace-operator/master/config/samples/classicFullStack.yml
 sed -i "s+apiUrl: https://ENVIRONMENTID.live.dynatrace.com/api+apiUrl: $DT_API_URL+g" dynaKubeCr.yaml
+sed -i "s/# enableIstio: false/enableIstio: true/g" dynaKubeCr.yaml
 kubectl create -f dynaKubeCr.yaml
 }
 
