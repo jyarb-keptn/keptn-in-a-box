@@ -9,7 +9,7 @@
 #      ----- Components Versions -----             #
 # ==================================================
 KIAB_RELEASE="0.8.8"
-ISTIO_VERSION=1.9.1
+ISTIO_VERSION=1.9.9
 CERTMANAGER_VERSION=1.6.1
 # https://github.com/helm/helm/releases
 HELM_VERSION=3.5.0
