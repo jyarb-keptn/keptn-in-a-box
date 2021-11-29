@@ -11,6 +11,8 @@
 KIAB_RELEASE="0.8.8"
 ISTIO_VERSION=1.9.1
 CERTMANAGER_VERSION=1.6.1
+# https://github.com/helm/helm/releases
+HELM_VERSION=3.5.0
 # https://github.com/keptn/keptn
 KEPTN_VERSION=0.10.0
 # https://github.com/keptn-contrib/dynatrace-service
@@ -558,10 +560,16 @@ istioInstall() {
 
 helmInstall() {
   if [ "$helm_install" = true ]; then
-    printInfoSection "Installing HELM 3 & Client via Microk8s addon"
-    bashas 'microk8s.enable helm3'
-    printInfo "Adding alias for helm client"
-    snap alias microk8s.helm3 helm
+    printInfoSection "Installing HELM ${HELM_VERSION} & Client manually from binaries"
+    wget -q -O helm.tar.gz "https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz"
+    tar -xvf helm.tar.gz
+    mv linux-amd64/helm /usr/local/bin/helm 
+
+    #printInfoSection "Installing HELM 3 & Client via Microk8s addon"
+    #bashas 'microk8s.enable helm3'
+    #printInfo "Adding alias for helm client"
+    #snap alias microk8s.helm3 helm
+
     printInfo "Adding Default repo for Helm"
     bashas "helm repo add stable https://charts.helm.sh/stable"
     printInfo "Adding Jenkins repo for Helm"
@@ -572,13 +580,13 @@ helmInstall() {
     bashas "helm repo update"
     bashas "helm version"
     
-    printInfoSection "Installing Newer HELM 3"
-    bashas "curl https://baltocdn.com/helm/signing.asc | sudo apt-key add -"
-    bashas "sudo apt-get install apt-transport-https --yes"
-    bashas "echo 'deb https://baltocdn.com/helm/stable/debian/ all main' | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list"
-    bashas "sudo apt-get update"
-    bashas "sudo apt-get install helm"
-    bashas "helm version"
+    #printInfoSection "Installing Newer HELM 3"
+    #bashas "curl https://baltocdn.com/helm/signing.asc | sudo apt-key add -"
+    #bashas "sudo apt-get install apt-transport-https --yes"
+    #bashas "echo 'deb https://baltocdn.com/helm/stable/debian/ all main' | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list"
+    #bashas "sudo apt-get update"
+    #bashas "sudo apt-get install helm"
+    #bashas "helm version"
   fi
 }
 
