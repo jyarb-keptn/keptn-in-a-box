@@ -9,12 +9,12 @@
 #      ----- Components Versions -----             #
 # ==================================================
 KIAB_RELEASE="0.8.8"
-ISTIO_VERSION=1.9.9
+ISTIO_VERSION=1.11.4
 CERTMANAGER_VERSION=1.6.1
 # https://github.com/helm/helm/releases
 HELM_VERSION=3.5.0
 # https://github.com/keptn/keptn
-KEPTN_VERSION=0.10.0
+KEPTN_VERSION=0.11.2
 # https://github.com/keptn-contrib/dynatrace-service
 KEPTN_DT_SERVICE_VERSION=0.17.1
 # https://github.com/keptn-contrib/dynatrace-sli-service
@@ -117,8 +117,8 @@ installationBundleDemo() {
   enable_k8dashboard=true
   istio_install=true
   helm_install=true
-  certmanager_install=false
-  certmanager_enable=false
+  certmanager_install=true
+  certmanager_enable=true
   # install keptn
   keptn_install=true
   # clone repos
