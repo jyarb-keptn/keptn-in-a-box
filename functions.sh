@@ -16,7 +16,7 @@ HELM_VERSION=3.5.0
 # https://github.com/keptn/keptn
 KEPTN_VERSION=0.11.2
 # https://github.com/keptn-contrib/dynatrace-service
-KEPTN_DT_SERVICE_VERSION=0.17.1
+KEPTN_DT_SERVICE_VERSION=0.18.1
 # https://github.com/keptn-contrib/dynatrace-sli-service
 KEPTN_DT_SLI_SERVICE_VERSION=0.12.1
 # https://github.com/keptn/examples
@@ -770,7 +770,7 @@ dynatraceConfigureMonitoring() {
     printInfoSection "Installing and configuring Dynatrace OneAgent on the Cluster (via Keptn) for $DT_TENANT" 
     
     printInfo "Saving Credentials in dynatrace secret in keptn ns"
-    bashas "kubectl -n keptn create secret generic dynatrace-credentials --from-literal=\"DT_TENANT=$DT_TENANT\" --from-literal=\"DT_API_TOKEN=$DT_API_TOKEN\"  --from-literal=\"KEPTN_API_URL=http://$(kubectl -n keptn get ingress api-keptn-ingress -ojsonpath={.spec.rules[0].host})/api\" --from-literal=\"KEPTN_API_TOKEN=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 --decode)\" --from-literal=\"KEPTN_BRIDGE_URL=http://$(kubectl -n keptn get ingress api-keptn-ingress -ojsonpath={.spec.rules[0].host})/bridge\""
+    bashas "kubectl -n keptn create secret generic dynatrace-credentials --scope=dynatrace-service --from-literal=\"DT_TENANT=$DT_TENANT\" --from-literal=\"DT_API_TOKEN=$DT_API_TOKEN\"  --from-literal=\"KEPTN_API_URL=http://$(kubectl -n keptn get ingress api-keptn-ingress -ojsonpath={.spec.rules[0].host})/api\" --from-literal=\"KEPTN_API_TOKEN=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 --decode)\" --from-literal=\"KEPTN_BRIDGE_URL=http://$(kubectl -n keptn get ingress api-keptn-ingress -ojsonpath={.spec.rules[0].host})/bridge\""
     printInfo "Create dynatrace secret"
     bashas "keptn create secret dynatrace --from-literal=\"DT_TENANT=$DT_TENANT\" --from-literal=\"DT_API_TOKEN=$DT_API_TOKEN\" --scope=dynatrace-service"
     
