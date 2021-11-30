@@ -30,11 +30,9 @@ export KEPTN_BRIDGE_PROJECT=${KEPTN_ENDPOINT}/bridge/project/${KEPTN_PROJECT}
 kubectl create secret generic dynatrace-credentials-sockshop -n "keptn" --from-literal="DT_TENANT=$DYNATRACE_TENANT" --from-literal="DT_API_TOKEN=$DYNATRACE_TOKEN"
 
 cat > dynatrace.conf.yaml << EOF
----
 spec_version: '0.1.0'
 dtCreds: dynatrace-credentials-sockshop
 dashboard: query
-
 EOF
 
 keptn add-resource --project=sockshop --stage=staging --resource=./dynatrace.conf.yaml --resourceUri=dynatrace/dynatrace.conf.yaml
