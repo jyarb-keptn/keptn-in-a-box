@@ -617,7 +617,7 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
         "height": 38
       },
       "tileFilter": {},
-      "markdown": "## Automated Release Validation based on Production SLOs, Dynatrace detected problems and leading indicators"
+      "markdown": "## Automated Release Validation based on Staging SLOs, Dynatrace detected problems and leading indicators"
     },
     {
       "name": "Service-level objective",
@@ -664,7 +664,7 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
         "height": 38
       },
       "tileFilter": {},
-      "markdown": "**Additional important SLIs & SLOs to validate a healthy production deployment of your app**"
+      "markdown": "**Additional important SLIs & SLOs to validate a healthy staging to production deployment of your app**"
     },
     {
       "name": "Markdown",
@@ -690,7 +690,7 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
         "height": 76
       },
       "tileFilter": {},
-      "markdown": "This dashboard will automatically be analyzed as part of your production deployment automation.\nTo see whats currently deployed check the [Releases Overview](/ui/releases). For all individual check out [Cloud Automation Heatmaps](https://keptn.192.168.3.91.nip.io/bridge)\n\nTODO: Clone dashboard, select your Management Zone, Add your relevant SLO, replace xxxx with your tenant name"
+      "markdown": "This dashboard will automatically be analyzed as part of your staging to production deployment automation.\nTo see whats currently deployed check the [Releases Overview](/ui/releases). For all individual check out [Cloud Automation Heatmaps](https://keptn.192.168.3.91.nip.io/bridge)\n\nTODO: Clone dashboard, select your Management Zone, Add your relevant SLO, replace xxxx with your tenant name"
     },
     {
       "name": "Service-level objective",
