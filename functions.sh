@@ -14,9 +14,9 @@ CERTMANAGER_VERSION=1.6.1
 # https://github.com/helm/helm/releases
 HELM_VERSION=3.5.0
 # https://github.com/keptn/keptn
-KEPTN_VERSION=0.11.2
+KEPTN_VERSION=0.10.0
 # https://github.com/keptn-contrib/dynatrace-service
-KEPTN_DT_SERVICE_VERSION=0.18.1
+KEPTN_DT_SERVICE_VERSION=0.17.1
 # https://github.com/keptn-contrib/dynatrace-sli-service
 KEPTN_DT_SLI_SERVICE_VERSION=0.12.1
 # https://github.com/keptn/examples
