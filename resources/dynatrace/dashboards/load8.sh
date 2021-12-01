@@ -18,10 +18,17 @@ OWNER=$2
 curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?Api-Token='${DT_API_TOKEN}'' \
 --header 'Content-Type: application/json; charset=utf-8' \
 --data-raw '{
-    "dashboardMetadata": {
+ "dashboardMetadata": {
     "name": "KQG;project=dynatrace;stage=quality-gate;service=easytravel-backend",
     "shared": false,
     "owner": "'${OWNER}'",
+    "dashboardFilter": {
+      "timeframe": "-30m",
+      "managementZone": {
+        "id": "-2674014416712057003",
+        "name": "Keptn: easytravel staging"
+      }
+    },
     "tags": [
       "comp",
       "delivery-demo",
@@ -34,7 +41,7 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
       "tileType": "CUSTOM_CHARTING",
       "configured": true,
       "bounds": {
-        "top": 646,
+        "top": 798,
         "left": 836,
         "width": 380,
         "height": 228
@@ -61,7 +68,13 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
           ],
           "resultMetadata": {}
         },
-        "filtersPerEntityType": {}
+        "filtersPerEntityType": {
+          "PROCESS_GROUP_INSTANCE": {
+            "PROCESS_GROUP_TAG_OF_PROCESS": [
+              "[Kubernetes]app:easytravel-backend"
+            ]
+          }
+        }
       }
     },
     {
@@ -69,7 +82,7 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
       "tileType": "MARKDOWN",
       "configured": true,
       "bounds": {
-        "top": 114,
+        "top": 266,
         "left": 418,
         "width": 912,
         "height": 38
@@ -82,7 +95,7 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
       "tileType": "CUSTOM_CHARTING",
       "configured": true,
       "bounds": {
-        "top": 190,
+        "top": 342,
         "left": 0,
         "width": 418,
         "height": 228
@@ -110,7 +123,14 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
           ],
           "resultMetadata": {}
         },
-        "filtersPerEntityType": {}
+        "filtersPerEntityType": {
+          "SERVICE": {
+            "AUTO_TAGS": [
+              "keptn_service:easytravel-backend",
+              "keptn_managed"
+            ]
+          }
+        }
       }
     },
     {
@@ -118,7 +138,7 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
       "tileType": "CUSTOM_CHARTING",
       "configured": true,
       "bounds": {
-        "top": 418,
+        "top": 570,
         "left": 0,
         "width": 418,
         "height": 228
@@ -146,7 +166,14 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
           ],
           "resultMetadata": {}
         },
-        "filtersPerEntityType": {}
+        "filtersPerEntityType": {
+          "SERVICE": {
+            "AUTO_TAGS": [
+              "keptn_service:easytravel-backend",
+              "keptn_managed"
+            ]
+          }
+        }
       }
     },
     {
@@ -154,7 +181,7 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
       "tileType": "CUSTOM_CHARTING",
       "configured": true,
       "bounds": {
-        "top": 646,
+        "top": 798,
         "left": 0,
         "width": 418,
         "height": 228
@@ -182,7 +209,14 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
           ],
           "resultMetadata": {}
         },
-        "filtersPerEntityType": {}
+        "filtersPerEntityType": {
+          "SERVICE": {
+            "AUTO_TAGS": [
+              "keptn_service:easytravel-backend",
+              "keptn_managed"
+            ]
+          }
+        }
       }
     },
     {
@@ -190,7 +224,7 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
       "tileType": "MARKDOWN",
       "configured": true,
       "bounds": {
-        "top": 152,
+        "top": 304,
         "left": 0,
         "width": 418,
         "height": 38
@@ -203,7 +237,7 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
       "tileType": "MARKDOWN",
       "configured": true,
       "bounds": {
-        "top": 152,
+        "top": 304,
         "left": 836,
         "width": 380,
         "height": 38
@@ -216,7 +250,7 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
       "tileType": "CUSTOM_CHARTING",
       "configured": true,
       "bounds": {
-        "top": 418,
+        "top": 570,
         "left": 836,
         "width": 380,
         "height": 228
@@ -243,7 +277,13 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
           ],
           "resultMetadata": {}
         },
-        "filtersPerEntityType": {}
+        "filtersPerEntityType": {
+          "PROCESS_GROUP_INSTANCE": {
+            "PROCESS_GROUP_TAG_OF_PROCESS": [
+              "[Kubernetes]app:easytravel-backend"
+            ]
+          }
+        }
       }
     },
     {
@@ -251,7 +291,7 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
       "tileType": "CUSTOM_CHARTING",
       "configured": true,
       "bounds": {
-        "top": 190,
+        "top": 342,
         "left": 836,
         "width": 380,
         "height": 228
@@ -278,7 +318,13 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
           ],
           "resultMetadata": {}
         },
-        "filtersPerEntityType": {}
+        "filtersPerEntityType": {
+          "PROCESS_GROUP_INSTANCE": {
+            "AUTO_TAGS": [
+              "keptn_service:easytravel-backend"
+            ]
+          }
+        }
       }
     },
     {
@@ -286,7 +332,7 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
       "tileType": "MARKDOWN",
       "configured": true,
       "bounds": {
-        "top": 152,
+        "top": 304,
         "left": 418,
         "width": 418,
         "height": 38
@@ -299,7 +345,7 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
       "tileType": "CUSTOM_CHARTING",
       "configured": true,
       "bounds": {
-        "top": 190,
+        "top": 342,
         "left": 418,
         "width": 418,
         "height": 228
@@ -326,7 +372,14 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
           ],
           "resultMetadata": {}
         },
-        "filtersPerEntityType": {}
+        "filtersPerEntityType": {
+          "SERVICE": {
+            "AUTO_TAGS": [
+              "keptn_service:easytravel-backend",
+              "keptn_managed"
+            ]
+          }
+        }
       }
     },
     {
@@ -334,7 +387,7 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
       "tileType": "CUSTOM_CHARTING",
       "configured": true,
       "bounds": {
-        "top": 418,
+        "top": 570,
         "left": 418,
         "width": 418,
         "height": 228
@@ -342,7 +395,7 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
       "tileFilter": {},
       "filterConfig": {
         "type": "MIXED",
-        "customName": "Throughput (per min);sli=svc_tp_min;pass=<+10%,<200",
+        "customName": "Throughput (per min);sli=svc_tp_min;pass=>200",
         "defaultName": "Custom chart",
         "chartConfig": {
           "legendShown": true,
@@ -361,7 +414,14 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
           ],
           "resultMetadata": {}
         },
-        "filtersPerEntityType": {}
+        "filtersPerEntityType": {
+          "SERVICE": {
+            "AUTO_TAGS": [
+              "keptn_service:easytravel-backend",
+              "keptn_managed"
+            ]
+          }
+        }
       }
     },
     {
@@ -369,7 +429,7 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
       "tileType": "CUSTOM_CHARTING",
       "configured": true,
       "bounds": {
-        "top": 646,
+        "top": 798,
         "left": 418,
         "width": 418,
         "height": 228
@@ -396,7 +456,14 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
           ],
           "resultMetadata": {}
         },
-        "filtersPerEntityType": {}
+        "filtersPerEntityType": {
+          "SERVICE": {
+            "AUTO_TAGS": [
+              "keptn_service:easytravel-backend",
+              "keptn_managed"
+            ]
+          }
+        }
       }
     },
     {
@@ -417,7 +484,7 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
       "tileType": "MARKDOWN",
       "configured": true,
       "bounds": {
-        "top": 114,
+        "top": 266,
         "left": 0,
         "width": 418,
         "height": 38
@@ -437,6 +504,18 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
       },
       "tileFilter": {},
       "markdown": "This dashboard will be analyzed as part of your DevOps pipelines when your service gets quality analyzed in staging\n\nTODO: Select your Management Zone, Add your relevant metrics (SLIs/SLOs)"
+    },
+    {
+      "name": "Problems",
+      "tileType": "OPEN_PROBLEMS",
+      "configured": true,
+      "bounds": {
+        "top": 114,
+        "left": 0,
+        "width": 152,
+        "height": 152
+      },
+      "tileFilter": {}
     }
   ]
 }'

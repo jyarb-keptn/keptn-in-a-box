@@ -18,10 +18,17 @@ OWNER=$2
 curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?Api-Token='${DT_API_TOKEN}'' \
 --header 'Content-Type: application/json; charset=utf-8' \
 --data-raw '{
-  "dashboardMetadata": {
+    "dashboardMetadata": {
     "name": "KQG;project=sockshop;stage=staging;service=carts",
     "shared": false,
     "owner": "'${OWNER}'",
+    "dashboardFilter": {
+      "timeframe": "-30m",
+      "managementZone": {
+        "id": "-5147804955159750385",
+        "name": "Keptn: sockshop staging"
+      }
+    },
     "tags": [
       "kqg",
       "carts",
@@ -65,10 +72,8 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
         "filtersPerEntityType": {
           "PROCESS_GROUP_INSTANCE": {
             "AUTO_TAGS": [
+              "keptn_service:carts",
               "keptn_project:sockshop"
-            ],
-            "SPECIFIC_ENTITIES": [
-              "PROCESS_GROUP_INSTANCE-140536365188203A"
             ]
           }
         }
@@ -290,10 +295,8 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
         "filtersPerEntityType": {
           "PROCESS_GROUP_INSTANCE": {
             "AUTO_TAGS": [
+              "keptn_service:carts",
               "keptn_project:sockshop"
-            ],
-            "SPECIFIC_ENTITIES": [
-              "PROCESS_GROUP_INSTANCE-140536365188203A"
             ]
           }
         }
@@ -334,10 +337,8 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
         "filtersPerEntityType": {
           "PROCESS_GROUP_INSTANCE": {
             "AUTO_TAGS": [
+              "keptn_service:carts",
               "keptn_project:sockshop"
-            ],
-            "SPECIFIC_ENTITIES": [
-              "PROCESS_GROUP_INSTANCE-140536365188203A"
             ]
           }
         }
@@ -453,7 +454,7 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
       "tileFilter": {},
       "filterConfig": {
         "type": "MIXED",
-        "customName": "Host CPU %;sli=host_cpu;pass=<20;warning=<50;key=false",
+        "customName": "Host CPU %;sli=host_cpu;pass=<50;warning=<70;key=false",
         "defaultName": "Custom chart",
         "chartConfig": {
           "legendShown": true,
@@ -472,7 +473,13 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
           ],
           "resultMetadata": {}
         },
-        "filtersPerEntityType": {}
+        "filtersPerEntityType": {
+          "HOST": {
+            "SPECIFIC_ENTITIES": [
+              "HOST-1DBE4DB5A783AA97"
+            ]
+          }
+        }
       }
     },
     {
@@ -488,7 +495,7 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
       "tileFilter": {},
       "filterConfig": {
         "type": "MIXED",
-        "customName": "Host Memory used %;sli=host_mem;pass=<20;warning=<50;key=false",
+        "customName": "Host Memory used %;sli=host_mem;pass=<85;warning=<95;key=false",
         "defaultName": "Custom chart",
         "chartConfig": {
           "legendShown": true,
@@ -507,7 +514,13 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
           ],
           "resultMetadata": {}
         },
-        "filtersPerEntityType": {}
+        "filtersPerEntityType": {
+          "HOST": {
+            "SPECIFIC_ENTITIES": [
+              "HOST-1DBE4DB5A783AA97"
+            ]
+          }
+        }
       }
     },
     {
@@ -542,7 +555,13 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
           ],
           "resultMetadata": {}
         },
-        "filtersPerEntityType": {}
+        "filtersPerEntityType": {
+          "HOST": {
+            "SPECIFIC_ENTITIES": [
+              "HOST-1DBE4DB5A783AA97"
+            ]
+          }
+        }
       }
     },
     {
@@ -611,7 +630,7 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
         "height": 152
       },
       "tileFilter": {
-        "timeframe": "-1w"
+        "timeframe": "-7d to now"
       },
       "assignedEntities": [
         "1310f0f4-95d7-389e-afb9-f19001abb50b"
@@ -627,7 +646,12 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
         "width": 152,
         "height": 152
       },
-      "tileFilter": {}
+      "tileFilter": {
+        "managementZone": {
+          "id": "6021512752392206502",
+          "name": "Keptn: keptnorders staging"
+        }
+      }
     },
     {
       "name": "Markdown",
@@ -679,10 +703,10 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
         "height": 152
       },
       "tileFilter": {
-        "timeframe": "-1w"
+        "timeframe": "-30m"
       },
       "assignedEntities": [
-        "2f2f4f74-0279-3e15-91e7-eedcebe5ae07"
+        "803119dd-02e7-3be7-a0ba-8908b64c6bcf"
       ]
     }
   ]
