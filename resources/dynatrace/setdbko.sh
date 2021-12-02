@@ -8,8 +8,8 @@ echo "DYNATRACE_ENDPOINT: ${DYNATRACE_ENDPOINT}"
 echo "DYNATRACE_TOKEN: ${DYNATRACE_TOKEN}"
 
 KEPTN_ENDPOINT=http://keptn.${KEPTN_DOMAIN}
-KEPTN_PROJECT=sockshop
-KEPTN_SERVICE=carts
+KEPTN_PROJECT=keptnorders
+KEPTN_SERVICE=frontend
 KEPTN_STAGE=staging
 KEPTN_BRIDGE_PROJECT=${KEPTN_ENDPOINT}/bridge/project/${KEPTN_PROJECT}
 
@@ -25,14 +25,12 @@ export KEPTN_SERVICE=${KEPTN_SERVICE}
 export KEPTN_STAGE=${KEPTN_STAGE}
 export KEPTN_BRIDGE_PROJECT=${KEPTN_ENDPOINT}/bridge/project/${KEPTN_PROJECT}
 
-kubectl create secret generic dynatrace-credentials-keptnorders -n "keptn" --from-literal="DT_TENANT=$DYNATRACE_TENANT" --from-literal="DT_API_TOKEN=$DYNATRACE_TOKEN"
+keptn create secret dynatrace-credentials-keptnorders --scope="dynatrace-service" --from-literal="DT_TENANT=$DYNATRACE_TENANT" --from-literal="DT_API_TOKEN=$DYNATRACE_TOKEN"
 
 cat > dynatrace.conf.yaml << EOF
----
 spec_version: '0.1.0'
 dtCreds: dynatrace-credentials-keptnorders
 dashboard: query
-
 EOF
 
 keptn add-resource --project=keptnorders --stage=staging --resource=./dynatrace.conf.yaml --resourceUri=dynatrace/dynatrace.conf.yaml
