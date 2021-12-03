@@ -224,7 +224,7 @@ stages{
 		     eventType = 'CUSTOM_DEPLOYMENT'    
 		     meType = 'PROCESS_GROUP_INSTANCE'
 		     context = 'KUBERNETES'
-		     key = 'app'    
+		     key = 'app.kubernetes.io/name'    
 		     value = 'easytravel-www'    
 
 		     jsonPayload = """{"eventType": "${eventType}",
