@@ -222,15 +222,16 @@ function createApplication() {
 
 function createDetectionRule() {
     APPLICATION=$1
-    FILE=$APPLICATION.json
+    TOKEN_FILE="$APPLICATION.json"
 
-    if [ -f "$FILE" ]; then
-        ID=$(cat $FILE)
-        APPLICATION_ID=$(echo $FILE | jq -r '.id')
+    if [ -f "$TOKEN_FILE" ]; then
+        echo "Reading token from file $TOKEN_FILE"
+        TOKENJSON=$(cat $TOKEN_FILE)
+        APPLICATION_ID=$(echo $TOKENJSON | jq -r '.id')
     fi
 
     PAYLOAD='{
-  "applicationIdentifier": "'$APPLICATION-ID'",
+  "applicationIdentifier": "'$APPLICATION_ID'",
   "filterConfig": {
     "pattern": "'$APPLICATION'",
     "applicationMatchType": "EQUALS",
