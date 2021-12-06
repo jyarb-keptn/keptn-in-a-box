@@ -988,7 +988,7 @@ metricCreation() {
   fi
 }
 
-ApplicationCreation() {
+applicationCreation() {
   if [ "$createApplications" = true ]; then
     printInfoSection "create Application and Detection Rules"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/createApplication.sh"   
@@ -1179,7 +1179,7 @@ doInstallation() {
   metricCreation
  
   keptndemoEasytravelonboard
-  ApplicationCreation
+  applicationCreation
   loadDynatraceProject
 
   gitMigrate
