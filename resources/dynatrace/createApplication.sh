@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Usage:
-# ./createTestStepCalculatedMetrics.sh CONTEXTLESS keptn-project simpleproject
+# ./createApplication.sh APPLICATION
 
 source ~/keptn-in-a-box/resources/dynatrace/utils.sh
 
@@ -19,7 +19,7 @@ if [[ -z "$DT_TENANT" || -z "$DT_API_TOKEN" ]]; then
 fi
 
 echo "============================================================="
-echo "About to create Process Application Rule on Dynatrace Tenant: $DT_TENANT!"
+echo "About to create Application Rule on Dynatrace Tenant: $DT_TENANT!"
 echo "============================================================="
 echo "Usage: ./createApplication.sh"
 #read -rsp $'Press ctrl-c to abort. Press any key to continue...\n' -n1 key
@@ -254,7 +254,7 @@ function createDetectionRule() {
 }
 
 ###########################################################################
-# Setup Applications
+# Setup Application
 ###########################################################################
-createApplication "easytravel-angular.easytravel-staging"
-createDetectionRule "easytravel-angular.easytravel-staging"
+createApplication "easytravel-angular.easytravel-test"
+createDetectionRule "easytravel-angular.easytravel-test"
