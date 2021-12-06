@@ -206,7 +206,7 @@ function createApplication() {
 
   echo ""
   echo "Creating Application $APPLICATION($APPLICATION)"
-  echo "POST https://$DT_TENANT/api/config/v1/applications/web
+  echo "POST https://$DT_TENANT/api/config/v1/applications/web"
   echo "$PAYLOAD"
   curl -X POST \
           "https://$DT_TENANT/api/config/v1/applications/web" \
@@ -239,7 +239,7 @@ function createDetectionRule() {
 
   echo ""
   echo "Creating ApplicationDetectionRule $APPLICATION($APPLICATION)"
-  echo "POST https://$DT_TENANT/api/config/v1/applicationDetectionRules
+  echo "POST https://$DT_TENANT/api/config/v1/applicationDetectionRules"
   echo "$PAYLOAD"
   curl -X POST \
           "https://$DT_TENANT/api/config/v1/applicationDetectionRules" \
