@@ -258,5 +258,10 @@ function createDetectionRule() {
 ###########################################################################
 # Setup Application
 ###########################################################################
-createApplication "easytravel-angular.easytravel-staging-test"
-createDetectionRule "easytravel-angular.easytravel-staging-test"
+createApplication "easytravel-angular.easytravel-staging"
+createDetectionRule "easytravel-angular.easytravel-staging"
+###########################################################################
+# Setup Application
+###########################################################################
+createApplication "easytravel-angular.easytravel-production"
+createDetectionRule "easytravel-angular.easytravel-production"
