@@ -167,14 +167,14 @@ function createApplication() {
     "placeholders": [],
     "loadActionNamingRules": [
       {
-        "template": "{userInteraction (default)} on '{elementIdentifier (default)}' - {pageUrlPath (default)}",
+        "template": "{userInteraction (default)} on ''{elementIdentifier (default)}'' - {pageUrlPath (default)}",
         "conditions": [],
         "useOrConditions": false
       }
     ],
     "xhrActionNamingRules": [
       {
-        "template": "{userInteraction (default)} on '{elementIdentifier (default)}' - {pageUrlPath (default)}",
+        "template": "{userInteraction (default)} on ''{elementIdentifier (default)}'' - {pageUrlPath (default)}",
         "conditions": [],
         "useOrConditions": false
       }
