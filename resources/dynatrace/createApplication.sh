@@ -256,12 +256,22 @@ function createDetectionRule() {
 }
 
 ###########################################################################
-# Setup Application
+# Setup easytravel staging Application
 ###########################################################################
 createApplication "easytravel-angular.easytravel-staging"
 createDetectionRule "easytravel-angular.easytravel-staging"
 ###########################################################################
-# Setup Application
+# Setup easytravel production Application
 ###########################################################################
 createApplication "easytravel-angular.easytravel-production"
 createDetectionRule "easytravel-angular.easytravel-production"
+###########################################################################
+# Setup keptnorders staging Application
+###########################################################################
+createApplication "frontend.keptnorders-staging"
+createDetectionRule "frontend.keptnorders-staging"
+###########################################################################
+# Setup keptnorders production Application
+###########################################################################
+createApplication "frontend.keptnorders-production"
+createDetectionRule "frontend.keptnorders-production"
