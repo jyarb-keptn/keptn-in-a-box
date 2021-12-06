@@ -3,7 +3,7 @@
 # Each function contains a boolean flag so the installations
 # can be highly customized.
 #
-# TODO: cleanup script, check versions
+# TODO:
 #
 # ==================================================
 #      ----- Components Versions -----             #
@@ -567,11 +567,6 @@ helmInstall() {
     tar -xvf helm.tar.gz
     mv linux-amd64/helm /usr/local/bin/helm 
 
-    #printInfoSection "Installing HELM 3 & Client via Microk8s addon"
-    #bashas 'microk8s.enable helm3'
-    #printInfo "Adding alias for helm client"
-    #snap alias microk8s.helm3 helm
-
     printInfo "Adding Default repo for Helm"
     bashas "helm repo add stable https://charts.helm.sh/stable"
     printInfo "Adding Jenkins repo for Helm"
@@ -581,14 +576,6 @@ helmInstall() {
     printInfo "Updating Helm Repository"
     bashas "helm repo update"
     bashas "helm version"
-    
-    #printInfoSection "Installing Newer HELM 3"
-    #bashas "curl https://baltocdn.com/helm/signing.asc | sudo apt-key add -"
-    #bashas "sudo apt-get install apt-transport-https --yes"
-    #bashas "echo 'deb https://baltocdn.com/helm/stable/debian/ all main' | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list"
-    #bashas "sudo apt-get update"
-    #bashas "sudo apt-get install helm"
-    #bashas "helm version"
   fi
 }
 
@@ -857,7 +844,6 @@ keptndemoUnleashConfigure() {
   fi
 }
 
-
 dynatraceConfigureWorkloads() {
   if [ "$dynatrace_configure_workloads" = true ]; then
     printInfoSection "Configuring Dynatrace Workloads for the Cluster (via Dynatrace and K8 API)"
@@ -925,12 +911,10 @@ keptndemoCatalogonboard() {
     printInfoSection "Keptn onboarding orders application"
     #TODO Parameterize Catalog Version.
     bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/catalog/onboard_catalog.sh && bash $KEPTN_IN_A_BOX_DIR/resources/catalog/onboard_catalog_qualitygates.sh"
-    # start customer and catalog
+    printInfoSection "start customer and catalog..."
     bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/catalog/deploy_catalog_0.1.sh"
-    #waitForAllPods
-    # start order and frontend
+    printInfoSection "start order and frontend..."
     bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/catalog/deploy_catalog_0.2.sh"
-    #waitForAllPods
     printInfoSection "Load remediation..."
     bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash loadRemediation.sh"
     
@@ -946,7 +930,7 @@ keptndemoEasytravelonboard() {
     printInfoSection "Keptn onboarding easytravel application"
     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/onboard_easytravel.sh"
     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/onboard_easytravel_qualitygates.sh"
-    # deploy easytravel
+    printInfoSection "deploy easytravel..."
     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/deploy_0.sh"
     printInfoSection "Load remediation..."
     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash loadRemediation.sh"
@@ -961,13 +945,13 @@ keptndemoEasytravelonboard() {
 
 keptndemoEasytraveloadgen() {
   if [ "$keptndemo_easytraveloadgen" = true ]; then
-    printInfoSection "easytrvel loadgen staging"
+    printInfoSection "easytrvel loadgen staging..."
     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash preploadgen.sh ${DOMAIN} loadgen"
-    printInfoSection "easytrvel loadgen production"
+    printInfoSection "easytrvel loadgen production..."
     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash preploadgen.sh ${DOMAIN} loadgen-prod"    
-    printInfoSection "easytrvel angular loadgen staging"
+    printInfoSection "easytrvel angular loadgen staging..."
     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash preploadgen.sh ${DOMAIN} loadgen-headless"
-    printInfoSection "easytrvel angular loadgen production"
+    printInfoSection "easytrvel angular loadgen production..."
     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash preploadgen.sh ${DOMAIN} loadgen-headless-prod"    
   fi
 }
@@ -977,20 +961,20 @@ metricCreation() {
     printInfoSection "create request attributes for calculated metrics"
     bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/scripts && bash $KEPTN_CATALOG_DIR/keptn-onboarding/scripts/createRequestAttributes.sh"
 	sleep 5
-    printInfoSection "create calculated metrics"
+    printInfoSection "create calculated metrics..."
     bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/scripts && bash $KEPTN_CATALOG_DIR/keptn-onboarding/scripts/createTestStepCalculatedMetrics.sh CONTEXTLESS keptn_project keptnorders"
 	sleep 5
-	printInfoSection "create process group nameing rule"
+	printInfoSection "create process group nameing rule..."
     bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/scripts && bash $KEPTN_CATALOG_DIR/keptn-onboarding/scripts/createProcessGroupName.sh"
 	sleep 5
-	printInfoSection "create process group nameing rule"
+	printInfoSection "create process group nameing rule..."
     bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/scripts && bash $KEPTN_CATALOG_DIR/keptn-onboarding/scripts/createServiceName.sh"    
   fi
 }
 
 applicationCreation() {
   if [ "$createApplications" = true ]; then
-    printInfoSection "create Application and Detection Rules"
+    printInfoSection "create Application and Detection Rules..."
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/createApplication.sh"   
   fi
 }
