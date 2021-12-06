@@ -234,7 +234,7 @@ function createDetectionRule() {
   "applicationIdentifier": "'$APPLICATION_ID'",
   "filterConfig": {
     "pattern": "'$APPLICATION'",
-    "applicationMatchType": "EQUALS",
+    "applicationMatchType": "CONTAINS",
     "applicationMatchTarget": "DOMAIN"
    }
   }'
@@ -258,5 +258,5 @@ function createDetectionRule() {
 ###########################################################################
 # Setup Application
 ###########################################################################
-createApplication "easytravel-angular.easytravel-test"
-createDetectionRule "easytravel-angular.easytravel-test"
+createApplication "easytravel-angular.easytravel-staging-test"
+createDetectionRule "easytravel-angular.easytravel-staging-test"
