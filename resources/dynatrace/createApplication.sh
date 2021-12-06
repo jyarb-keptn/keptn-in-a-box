@@ -236,6 +236,7 @@ function createDetectionRule() {
     "pattern": "'$APPLICATION'",
     "applicationMatchType": "EQUALS",
     "applicationMatchTarget": "DOMAIN"
+   }
   }'
 
   echo ""
