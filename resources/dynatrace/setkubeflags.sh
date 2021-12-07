@@ -27,10 +27,10 @@ function pullConfig() {
     if [ -f "$TOKEN_FILE" ]; then
         echo "Reading token from file $TOKEN_FILE"
         TOKENJSON=$(cat $TOKEN_FILE)
-        KUBEID=$(echo $TOKENJSON | jq -r '.id')
+        KUBEID=$(echo $TOKENJSON | jq -r 'values.id')
     fi
 
-  echo "Here is the ID: ${ID}"
+  echo "Here is the ID: $KUBEID"
   echo "Get Kube config..."
   echo "GET https://$DT_TENANT/api/config/v1/kubernetes/credentials/$KUBEID"
   curl -X GET \
