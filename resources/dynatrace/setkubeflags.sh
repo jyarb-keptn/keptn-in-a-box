@@ -27,7 +27,7 @@ function pullConfig() {
     if [ -f "$TOKEN_FILE" ]; then
         echo "Reading token from file $TOKEN_FILE"
         TOKENJSON=$(cat $TOKEN_FILE)
-        KUBEID=$(echo $TOKENJSON | jq -r 'values.id')
+        KUBEID=$(echo $TOKENJSON | jq -r '.values[].id')
     fi
 
   echo "Here is the ID: $KUBEID"
@@ -49,7 +49,7 @@ function changeConfig() {
     if [ -f "$TOKEN_FILE" ]; then
         echo "Reading token from file $TOKEN_FILE"
         TOKENJSON=$(cat $TOKEN_FILE)
-        KUBEID=$(echo $TOKENJSON | jq -r '.id')
+        KUBEID=$(echo $TOKENJSON | jq -r '.values[].id')
     fi
 
 sed -i "s/"eventAnalysisAndAlertingEnabled": false,/"eventAnalysisAndAlertingEnabled": true,/g" kubeconfig.json
