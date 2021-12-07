@@ -56,10 +56,9 @@ function changeConfig() {
     if [ -f "$CONFIG_FILE" ]; then
         echo "Reading config from file $CONFIG_FILE"
         #TOKENJSON=$(cat $TOKEN_FILE)
-        CONFIG="$(jq '.eventsIntegrationEnabled = true' | \
+        CONFIG=$(echo $CONFIG_FILE | jq '.eventsIntegrationEnabled = true' | \
         jq '.workloadIntegrationEnabled = true' | \
-        jq '.davisEventsIntegrationEnabled = true' $CONFIG_FILE)" && \
-        echo "${CONFIG}" > $CONFIG_FILE
+        jq '.davisEventsIntegrationEnabled = true')
 
     fi
 
