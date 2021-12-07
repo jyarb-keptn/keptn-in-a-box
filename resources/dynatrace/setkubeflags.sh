@@ -72,4 +72,4 @@ sed -i "s/"davisEventsIntegrationEnabled": false,/"davisEventsIntegrationEnabled
 #perform tasks
 pullID
 pullConfig
-changeConfig
+#changeConfig
