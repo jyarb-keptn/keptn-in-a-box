@@ -22,7 +22,7 @@ function pullID() {
 }
 
 function pullConfig() {
-    TOKEN_FILE="kubeid.json"
+    TOKEN_FILE=kubeid.json
 
     if [ -f "$TOKEN_FILE" ]; then
         echo "Reading token from file $TOKEN_FILE"
