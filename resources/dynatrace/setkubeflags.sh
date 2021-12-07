@@ -44,7 +44,8 @@ function pullConfig() {
 }
 
 function changeConfig() {
-    TOKEN_FILE="kubeid.json"
+    TOKEN_FILE=kubeid.json
+    CONFIG_FILE=kubeconfig.json
 
     if [ -f "$TOKEN_FILE" ]; then
         echo "Reading token from file $TOKEN_FILE"
@@ -52,8 +53,13 @@ function changeConfig() {
         KUBEID=$(echo $TOKENJSON | jq -r '.values[].id')
     fi
 
-sed -i "s/"eventAnalysisAndAlertingEnabled": false,/"eventAnalysisAndAlertingEnabled": true,/g" kubeconfig.json
-sed -i "s/"davisEventsIntegrationEnabled": false,/"davisEventsIntegrationEnabled": true,/g" kubeconfig.json
+    if [ -f "$CONFIG_FILE" ]; then
+        echo "Reading config from file $CONFIG_FILE"
+        #TOKENJSON=$(cat $TOKEN_FILE)
+        CONFIG=$(echo $CONFIG_FILE | jq -r .)
+    fi
+
+    echo $CONFIG 
 
   echo ""
   echo "Set Kube config..."
@@ -72,4 +78,4 @@ sed -i "s/"davisEventsIntegrationEnabled": false,/"davisEventsIntegrationEnabled
 #perform tasks
 pullID
 pullConfig
-#changeConfig
+changeConfig
