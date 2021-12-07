@@ -7,10 +7,6 @@ DYNATRACE_TOKEN=${DT_API_TOKEN}
 echo "DYNATRACE_ENDPOINT: ${DYNATRACE_ENDPOINT}"
 echo "DYNATRACE_TOKEN: ${DYNATRACE_TOKEN}"
 
-pullID
-pullConfig
-changeConfig
-
 function pullID() {
   echo ""
   echo "Get Kube id..."
@@ -72,3 +68,8 @@ sed -i "s/"davisEventsIntegrationEnabled": false,/"davisEventsIntegrationEnabled
   cat kubeconfigresponse.json
   echo ""
 }
+
+#perform tasks
+pullID
+pullConfig
+changeConfig
