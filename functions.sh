@@ -153,10 +153,10 @@ installationBundleDemo() {
   keptndemo_easytravelonboard=true
   keptndemo_easytraveloadgen=true
   # dashboards for AIOPs
-  keptndashboard_load=true
+  keptndashboard_load=false
   # create custom metrics
   createMetrics=true
-  createApplications=true
+  createApplications=false
   expose_kubernetes_api=true
   expose_kubernetes_dashboard=true
   patch_kubernetes_dashboard=true
@@ -916,7 +916,7 @@ keptndemoCatalogonboard() {
     printInfoSection "start order and frontend..."
     bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/catalog/deploy_catalog_0.2.sh"
     printInfoSection "Load remediation..."
-    bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash loadRemediation.sh"
+    #bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash loadRemediation.sh"
     
     printInfoSection "Keptn Exposing the Onboarded orders Application"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} keptnorders"
