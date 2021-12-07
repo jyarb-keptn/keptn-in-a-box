@@ -27,14 +27,14 @@ function pullConfig() {
     if [ -f "$TOKEN_FILE" ]; then
         echo "Reading token from file $TOKEN_FILE"
         TOKENJSON=$(cat $TOKEN_FILE)
-        ID=$(echo $TOKENJSON | jq -r '.id')
+        KUBEID=$(echo $TOKENJSON | jq -r '.id')
     fi
 
-  echo ""
+  echo "Here is the ID: ${ID}"
   echo "Get Kube config..."
-  echo "GET https://$DT_TENANT/api/config/v1/kubernetes/credentials/${ID}"
+  echo "GET https://$DT_TENANT/api/config/v1/kubernetes/credentials/$KUBEID"
   curl -X GET \
-          "https://$DT_TENANT/api/config/v1/kubernetes/credentials/${ID}" \
+          "https://$DT_TENANT/api/config/v1/kubernetes/credentials/$KUBEID" \
           -H 'accept: application/json; charset=utf-8' \
           -H "Authorization: Api-Token $DT_API_TOKEN" \
           -H 'Content-Type: application/json; charset=utf-8' \
@@ -49,7 +49,7 @@ function changeConfig() {
     if [ -f "$TOKEN_FILE" ]; then
         echo "Reading token from file $TOKEN_FILE"
         TOKENJSON=$(cat $TOKEN_FILE)
-        ID=$(echo $TOKENJSON | jq -r '.id')
+        KUBEID=$(echo $TOKENJSON | jq -r '.id')
     fi
 
 sed -i "s/"eventAnalysisAndAlertingEnabled": false,/"eventAnalysisAndAlertingEnabled": true,/g" kubeconfig.json
@@ -57,9 +57,9 @@ sed -i "s/"davisEventsIntegrationEnabled": false,/"davisEventsIntegrationEnabled
 
   echo ""
   echo "Set Kube config..."
-  echo "PUT https://$DT_TENANT/api/config/v1/kubernetes/credentials/${ID}"
+  echo "PUT https://$DT_TENANT/api/config/v1/kubernetes/credentials/$KUBEID"
   curl -X PUT \
-          "https://$DT_TENANT/api/config/v1/kubernetes/credentials/${ID}" \
+          "https://$DT_TENANT/api/config/v1/kubernetes/credentials/$KUBEID" \
           -H 'accept: application/json; charset=utf-8' \
           -H "Authorization: Api-Token $DT_API_TOKEN" \
           -H 'Content-Type: application/json; charset=utf-8' \
