@@ -56,7 +56,7 @@ function changeConfig() {
     if [ -f "$CONFIG_FILE" ]; then
         echo "Reading config from file $CONFIG_FILE"
         #TOKENJSON=$(cat $TOKEN_FILE)
-        CONFIG=$(echo $CONFIG_FILE | jq -r .)
+        CONFIG=$(jq -r . ./$CONFIG_FILE)
     fi
 
     echo $CONFIG 
