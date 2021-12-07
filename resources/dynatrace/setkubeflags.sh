@@ -56,7 +56,11 @@ function changeConfig() {
     if [ -f "$CONFIG_FILE" ]; then
         echo "Reading config from file $CONFIG_FILE"
         #TOKENJSON=$(cat $TOKEN_FILE)
-        CONFIG=$(jq -r . ./$CONFIG_FILE)
+        CONFIG="$(jq '.eventsIntegrationEnabled = true' | \
+        jq '.workloadIntegrationEnabled = true' | \
+        jq '.davisEventsIntegrationEnabled = true' $CONFIG_FILE)" && \
+        echo "${CONFIG}" > $CONFIG_FILE
+
     fi
 
     echo $CONFIG 
@@ -69,7 +73,7 @@ function changeConfig() {
           -H 'accept: application/json; charset=utf-8' \
           -H "Authorization: Api-Token $DT_API_TOKEN" \
           -H 'Content-Type: application/json; charset=utf-8' \
-          -d  "$CONFIG" \
+          -d  "$CONFIG_FILE" \
           -o kubeconfigresponse.json
   cat kubeconfigresponse.json
   echo ""
