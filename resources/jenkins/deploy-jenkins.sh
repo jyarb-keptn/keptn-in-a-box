@@ -25,7 +25,7 @@ KEPTN_BRIDGE="http://keptn.$DOMAIN/bridge"
 ORDER_STAGING="http://frontend.keptnorders-staging.$DOMAIN"
 ORDER_PROD="http://frontend.keptnorders-production.$DOMAIN"
 
-EASYTRAVEL_STAGING="http://easytravel-angular.easytravel-staging.$DOMAIN"
+EASYTRAVEL_STAGING="http://easytravel-www.easytravel-staging.$DOMAIN"
 
 readCredsFromFile
 printVariables
