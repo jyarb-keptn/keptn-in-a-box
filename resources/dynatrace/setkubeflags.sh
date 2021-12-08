@@ -71,7 +71,7 @@ function changeConfig() {
           -H 'accept: application/json; charset=utf-8' \
           -H "Authorization: Api-Token $DT_API_TOKEN" \
           -H 'Content-Type: application/json; charset=utf-8' \
-          -d  "$CONFIG_FILE" \
+          --data-raw "$CONFIG_FILE" \
           -o kubeconfigresponse.json
   cat kubeconfigresponse.json
   echo ""
