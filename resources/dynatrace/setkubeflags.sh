@@ -66,7 +66,7 @@ function changeConfig() {
   echo ""
   echo "Set Kube config..."
   echo "PUT https://$DT_TENANT/api/config/v1/kubernetes/credentials/$KUBEID"
-  curl -X PUT \
+  curl -X PUT -# -v \
           "https://$DT_TENANT/api/config/v1/kubernetes/credentials/$KUBEID" \
           -H 'accept: application/json; charset=utf-8' \
           -H "Authorization: Api-Token $DT_API_TOKEN" \
