@@ -215,7 +215,8 @@ function createApplication() {
           -H 'Content-Type: application/json; charset=utf-8' \
           -d "$PAYLOAD" \
           -o $APPLICATION.json
-  cat $APPLICATION.json
+  
+  jq -r . ./$APPLICATION.json
   echo ""
 
 }
@@ -250,7 +251,8 @@ function createDetectionRule() {
           -H 'Content-Type: application/json; charset=utf-8' \
           -d "$PAYLOAD" \
           -o $APPLICATIONRULE.json
-  cat $APPLICATIONRULE.json
+
+  jq -r . ./$APPLICATIONRULE.json
   echo ""
 
 }
