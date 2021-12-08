@@ -64,7 +64,7 @@ function changeConfig() {
         echo $NEWCONFIG > $NEW_CONFIG_FILE
     fi
 
-    echo $NEWCONFIG 
+    jq -r . ./$NEW_CONFIG_FILE
 
   echo ""
   echo "Set Kube config..."
