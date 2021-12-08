@@ -46,6 +46,7 @@ function pullConfig() {
 function changeConfig() {
     TOKEN_FILE=kubeid.json
     CONFIG_FILE=kubeconfig.json
+    NEW_CONFIG_FILE=kubeconfig_new.json
 
     if [ -f "$TOKEN_FILE" ]; then
         echo "Reading token from file $TOKEN_FILE"
@@ -56,9 +57,11 @@ function changeConfig() {
     if [ -f "$CONFIG_FILE" ]; then
         echo "Reading config from file $CONFIG_FILE"
         #TOKENJSON=$(cat $TOKEN_FILE)
-        jq '.davisEventsIntegrationEnabled = true' $CONFIG_FILE
-        jq '.workloadIntegrationEnabled = true' $CONFIG_FILE
-        jq '.eventsIntegrationEnabled = true' $CONFIG_FILE
+        NEWCONFIG=$(cat $CONFIG_FILE | \
+        jq '.davisEventsIntegrationEnabled = true' | \
+        jq '.workloadIntegrationEnabled = true' | \
+        jq '.eventsIntegrationEnabled = true')
+        $NEWCONFIG > $NEW_CONFIG_FILE
     fi
 
     echo $CONFIG 
@@ -70,7 +73,7 @@ function changeConfig() {
           "https://$DT_TENANT/api/config/v1/kubernetes/credentials/$KUBEID" \
           -H "Authorization: Api-Token $DT_API_TOKEN" \
           -H 'Content-Type: application/json' \
-          -d "@$CONFIG_FILE" \
+          -d "@$NEW_CONFIG_FILE" \
           -o kubeconfigresponse.json
   cat kubeconfigresponse.json
   echo ""
