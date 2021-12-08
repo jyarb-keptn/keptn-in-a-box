@@ -17,7 +17,8 @@ function pullID() {
           -H "Authorization: Api-Token $DT_API_TOKEN" \
           -H 'Content-Type: application/json; charset=utf-8' \
           -o kubeid.json
-  cat kubeid.json
+  
+  jq -r . ./kubeid.json
   echo ""
 }
 
@@ -39,7 +40,8 @@ function pullConfig() {
           -H "Authorization: Api-Token $DT_API_TOKEN" \
           -H 'Content-Type: application/json; charset=utf-8' \
           -o kubeconfig.json
-  cat kubeconfig.json
+  
+  jq -r . ./kubeconfig.json
   echo ""
 }
 
