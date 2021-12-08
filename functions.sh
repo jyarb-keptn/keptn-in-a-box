@@ -1032,8 +1032,12 @@ postFlightWork() {
     bashas "chown -f -R ${USER} ~/.kube"
     #cp $KEPTN_IN_A_BOX_DIR/resources/misc/daemon.json /etc/docker/daemon.json
     #systemctl restart docker
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash hosttag.sh"
+    printInfo "Try to set host tags - if fails - please run $KEPTN_IN_A_BOX_DIR/resources/dynatrace/hosttag.sh as sudo user"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/hosttag.sh"
+    printInfo "Creates symbolic link to triggers command"
     bashas "cd $KEPTN_IN_A_BOX_DIR && bash setlinks.sh"
+    printInfo "Set Kubernetes monitoring flags"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/setkubeflags.sh"
   fi
 }
 
