@@ -68,10 +68,9 @@ function changeConfig() {
   echo "PUT https://$DT_TENANT/api/config/v1/kubernetes/credentials/$KUBEID"
   curl -X PUT -# -v \
           "https://$DT_TENANT/api/config/v1/kubernetes/credentials/$KUBEID" \
-          -H 'accept: application/json; charset=utf-8' \
           -H "Authorization: Api-Token $DT_API_TOKEN" \
           -H 'Content-Type: application/json' \
-          -d "$CONFIG_FILE" \
+          -d $CONFIG_FILE \
           -o kubeconfigresponse.json
   cat kubeconfigresponse.json
   echo ""
