@@ -11,7 +11,7 @@ function pullID() {
   echo ""
   echo "Get Kube id..."
   echo "GET https://$DT_TENANT/api/config/v1/kubernetes/credentials"
-  curl -X GET \
+  curl -X GET -# \
           "https://$DT_TENANT/api/config/v1/kubernetes/credentials" \
           -H 'accept: application/json; charset=utf-8' \
           -H "Authorization: Api-Token $DT_API_TOKEN" \
@@ -33,7 +33,7 @@ function pullConfig() {
   echo "Here is the ID: $KUBEID"
   echo "Get Kube config..."
   echo "GET https://$DT_TENANT/api/config/v1/kubernetes/credentials/$KUBEID"
-  curl -X GET \
+  curl -X GET -# \
           "https://$DT_TENANT/api/config/v1/kubernetes/credentials/$KUBEID" \
           -H 'accept: application/json; charset=utf-8' \
           -H "Authorization: Api-Token $DT_API_TOKEN" \
@@ -66,7 +66,7 @@ function changeConfig() {
   echo ""
   echo "Set Kube config..."
   echo "PUT https://$DT_TENANT/api/config/v1/kubernetes/credentials/$KUBEID"
-  curl -X PUT -# -v \
+  curl -X PUT -# \
           "https://$DT_TENANT/api/config/v1/kubernetes/credentials/$KUBEID" \
           -H "Authorization: Api-Token $DT_API_TOKEN" \
           -H 'Content-Type: application/json' \
