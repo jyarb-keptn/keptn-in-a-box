@@ -61,10 +61,10 @@ function changeConfig() {
         jq '.davisEventsIntegrationEnabled = true' | \
         jq '.workloadIntegrationEnabled = true' | \
         jq '.eventsIntegrationEnabled = true')
-        $NEWCONFIG > $NEW_CONFIG_FILE
+        echo $NEWCONFIG > $NEW_CONFIG_FILE
     fi
 
-    echo $CONFIG 
+    echo $NEWCONFIG 
 
   echo ""
   echo "Set Kube config..."
