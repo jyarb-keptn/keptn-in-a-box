@@ -1,4 +1,11 @@
 #!/bin/bash
+source ./utils.sh
+
+readCredsFromFile
+echo "Configure Kubernetes flags with:"
+echo "Dynatrace Tenant: $DT_TENANT"
+echo "Dynatrace API Token: $DT_API_TOKEN"
+echo "Dynatrace PaaS Token: $DT_PAAS_TOKEN"
 
 DYNATRACE_TENANT=https://${DT_TENANT}
 DYNATRACE_ENDPOINT=${DYNATRACE_TENANT}/api/config/v1/dashboards
