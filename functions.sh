@@ -47,6 +47,7 @@ echo "running sudo commands as $USER"
 
 # Wrapper for runnig commands for the real owner and not as root
 alias bashas="sudo -H -u ${USER} bash -c"
+alias bashnu="sudo -H bash -c"
 # Expand aliases for non-interactive shell
 shopt -s expand_aliases
 
