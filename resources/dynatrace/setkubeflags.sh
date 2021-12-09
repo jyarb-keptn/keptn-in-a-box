@@ -69,7 +69,8 @@ function changeConfig() {
         NEWCONFIG=$(cat $CONFIG_FILE | \
         jq '.davisEventsIntegrationEnabled = true' | \
         jq '.workloadIntegrationEnabled = true' | \
-        jq '.eventsIntegrationEnabled = true')
+        jq '.eventsIntegrationEnabled = true' | \
+        jq '.eventAnalysisAndAlertingEnabled = true')
         echo $NEWCONFIG > $NEW_CONFIG_FILE
     fi
 
