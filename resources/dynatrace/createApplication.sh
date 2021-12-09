@@ -277,3 +277,8 @@ createDetectionRule "frontend.keptnorders-staging"
 ###########################################################################
 createApplication "frontend.keptnorders-production"
 createDetectionRule "frontend.keptnorders-production"
+###########################################################################
+# Setup sockshop Application
+###########################################################################
+createApplication "SockShop"
+createDetectionRule "SockShop"
