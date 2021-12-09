@@ -27,7 +27,7 @@ spec:
   - host: domain.placeholder
     http:
       paths:
-      - pathType: ImplementationSpecific
+      - pathType: Prefix
         path: /        
         backend:
           service:

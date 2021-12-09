@@ -27,7 +27,7 @@ spec:
   # (SNI) does not match the rules below. 
   - http:
       paths:
-      - pathType: ImplementationSpecific
+      - pathType: Prefix
         path: /       
         backend:
           service:
