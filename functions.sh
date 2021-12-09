@@ -33,7 +33,7 @@ MICROK8S_CHANNEL="1.19/stable"
 #KEPTN_IN_A_BOX_REPO="https://github.com/keptn-sandbox/keptn-in-a-box.git"
 KEPTN_IN_A_BOX_REPO="https://github.com/jyarb-keptn/keptn-in-a-box.git"
 KEPTN_IN_A_BOX_DIR="~/keptn-in-a-box"
-
+USER_KIAB_PATH="/home/dynatrace/keptn-in-a-box"
 
 # - The user to run the commands from. Will be overwritten when executing this shell with sudo, 
 # this is just needed when spinning machines programatically and running the script with root without an interactive shell
@@ -1035,8 +1035,8 @@ postFlightWork() {
     bashas "chown -f -R ${USER} ~/.kube"
     #cp $KEPTN_IN_A_BOX_DIR/resources/misc/daemon.json /etc/docker/daemon.json
     #systemctl restart docker
-    printInfo "Try to set host tags - if fails - please run $KEPTN_IN_A_BOX_DIR/resources/dynatrace/hosttag.sh as sudo user"
-    bashnu "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && $KEPTN_IN_A_BOX_DIR/resources/dynatrace/hosttag.sh"
+    printInfo "Try to set host tags - if it fails - please run $KEPTN_IN_A_BOX_DIR/resources/dynatrace/hosttag.sh as sudo user"   
+    bashnu "cd $USER_KIAB_PATH/resources/dynatrace && bash $USER_KIAB_PATH/resources/dynatrace/hosttag.sh"
     printInfo "Creates symbolic link to triggers command"
     bashas "cd $KEPTN_IN_A_BOX_DIR && bash setlinks.sh"
     printInfo "Set Kubernetes monitoring flags"
