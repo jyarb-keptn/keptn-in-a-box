@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
@@ -16,6 +16,11 @@ metadata:
   name: unleash-ingress
   namespace: istio-system
 spec:
+  defaultBackend:
+   service:
+     name: istio-ingressgateway
+     port:
+       number: 80 
   rules:
   # Wildcard routing for all exposed istio services. 
   # Kubernetes Fake Certificate will be used if hostname 
@@ -23,10 +28,13 @@ spec:
   - host: unleash.unleash-dev.domain.placeholder
     http:
       paths:
-      - backend:
-          serviceName: istio-ingressgateway
-          servicePort: 80
-        path: /
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: istio-ingressgateway
+            port: 
+              number: 80
   tls:
   - hosts:
     - unleash.unleash-dev.domain.placeholder

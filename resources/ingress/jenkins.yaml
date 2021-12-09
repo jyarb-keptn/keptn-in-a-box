@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
@@ -6,17 +6,27 @@ metadata:
     #cert-manager.io/cluster-issuer: "letsencrypt"
     # We allow HTTP and HTTPS
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    #nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    #nginx.ingress.kubernetes.io/rewrite-target: /
   name: jenkins-ingress
   namespace: jenkins
 spec:
+  defaultBackend:
+   service:
+     name: jenkins
+     port:
+       number: 8080
   rules:
   - host: jenkins.domain.placeholder
     http:
       paths:
-      - backend:
-          serviceName: jenkins
-          servicePort: 8080
-        path: /
+      - path: /
+        pathType: ImplementationSpecific      
+        backend:
+          service:
+            name: jenkins
+            port: 
+              number: 8080
   tls:
   - hosts:
     - jenkins.domain.placeholder

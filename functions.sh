@@ -8,7 +8,7 @@
 # ==================================================
 #      ----- Components Versions -----             #
 # ==================================================
-KIAB_RELEASE="0.8.9"
+KIAB_RELEASE="0.9.1"
 ISTIO_VERSION=1.11.4
 CERTMANAGER_VERSION=1.6.1
 # https://github.com/helm/helm/releases
@@ -29,7 +29,7 @@ KEPTN_CATALOG_DIR="~/overview"
 TEASER_IMAGE="pcjeffmac/nginxacm:0.8.1"
 #KEPTN_BRIDGE_IMAGE="keptn/bridge2:20200326.0744"
 KEPTN_BRIDGE_IMAGE="keptn/bridge2:0.8.0"
-MICROK8S_CHANNEL="1.19/stable"
+MICROK8S_CHANNEL="1.20/stable"
 #KEPTN_IN_A_BOX_REPO="https://github.com/keptn-sandbox/keptn-in-a-box.git"
 KEPTN_IN_A_BOX_REPO="https://github.com/jyarb-keptn/keptn-in-a-box.git"
 KEPTN_IN_A_BOX_DIR="~/keptn-in-a-box"
@@ -1035,7 +1035,7 @@ postFlightWork() {
     #cp $KEPTN_IN_A_BOX_DIR/resources/misc/daemon.json /etc/docker/daemon.json
     #systemctl restart docker
     printInfo "Try to set host tags - if fails - please run $KEPTN_IN_A_BOX_DIR/resources/dynatrace/hosttag.sh as sudo user"
-    bashnu "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/hosttag.sh"
+    bashnu "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && $KEPTN_IN_A_BOX_DIR/resources/dynatrace/hosttag.sh"
     printInfo "Creates symbolic link to triggers command"
     bashas "cd $KEPTN_IN_A_BOX_DIR && bash setlinks.sh"
     printInfo "Set Kubernetes monitoring flags"

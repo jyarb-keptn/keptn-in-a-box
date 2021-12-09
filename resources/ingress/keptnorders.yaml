@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
@@ -22,38 +22,53 @@ spec:
   - host: frontend.keptnorders-production.domain.placeholder
     http:
       paths:
-      - backend:
-          serviceName: istio-ingressgateway
-          servicePort: 80
-        path: /  
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: istio-ingressgateway
+            port: 
+              number: 80  
   - host: frontend.keptnorders-staging.domain.placeholder
     http:
       paths:
-      - backend:
-          serviceName: istio-ingressgateway
-          servicePort: 80
-        path: /  
+      - path: /
+        pathType: ImplementationSpecific      
+        backend:
+          service: 
+            name: istio-ingressgateway
+            port: 
+              number: 80  
   - host: catalog.keptnorders-staging.domain.placeholder
     http:
       paths:
-      - backend:
-          serviceName: istio-ingressgateway
-          servicePort: 80
-        path: /    
+      - path: /
+        pathType: ImplementationSpecific      
+        backend:
+          service:
+            name: istio-ingressgateway
+            port: 
+              number: 80    
   - host: customer.keptnorders-staging.domain.placeholder
     http:
       paths:
-      - backend:
-          serviceName: istio-ingressgateway
-          servicePort: 80
-        path: /  
+      - path: /
+        pathType: ImplementationSpecific      
+        backend:
+          service: 
+            name: istio-ingressgateway
+            port: 
+              number: 80  
   - host: order.keptnorders-staging.domain.placeholder
     http:
       paths:
-      - backend:
-          serviceName: istio-ingressgateway
-          servicePort: 80
-        path: /                                  
+      - path: /
+        pathType: ImplementationSpecific      
+        backend:
+          service:
+            name: istio-ingressgateway
+            port: 
+              number: 80                                  
   tls:
   - hosts:
     - frontend.keptnorders-production.domain.placeholder

@@ -372,7 +372,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/keptn-in-a-box.git')
                         }
-                        branch('*/0.8.9')
+                        branch('*/0.9.1')
                       }
                     }
                     scriptPath 'resources/jenkins/pipelines/01-qualitygate-evaluation.Jenkinsfile'
@@ -391,7 +391,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/keptn-in-a-box.git') 
                         }
-                        branch('*/0.8.9')
+                        branch('*/0.9.1')
                       }
                     }
                     scriptPath 'resources/jenkins/pipelines/02-simpletest-qualitygate.Jenkinsfile'
@@ -410,7 +410,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/keptn-in-a-box.git')
                         }
-                        branch('*/0.8.9')
+                        branch('*/0.9.1')
                       }
                     }
                     scriptPath 'resources/jenkins/pipelines/03-performancetest-qualitygate.Jenkinsfile'
@@ -429,7 +429,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/keptn-in-a-box.git')
                         }
-                        branch('*/0.8.9')
+                        branch('*/0.9.1')
                       }
                     }
                     scriptPath 'resources/jenkins/pipelines/04-performancetest-qualitygate-mint.Jenkinsfile'
@@ -448,7 +448,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/keptn-in-a-box.git')
                         }
-                        branch('*/0.8.9')
+                        branch('*/0.9.1')
                       }
                     }
                     scriptPath 'resources/jenkins/pipelines/05-qualitygate-sli-dashboard.Jenkinsfile'
@@ -467,7 +467,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/keptn-in-a-box.git')
                         }
-                        branch('*/0.8.9')
+                        branch('*/0.9.1')
                       }
                     }
                     scriptPath 'resources/jenkins/pipelines/07-versionRelease.Jenkinsfile'

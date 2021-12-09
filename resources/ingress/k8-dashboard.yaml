@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: k8-dashboard-ingress
@@ -7,17 +7,26 @@ metadata:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS" 
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    #nginx.ingress.kubernetes.io/rewrite-target: / 
     #cert-manager.io/cluster-issuer: "letsencrypt"
 spec:
+  defaultBackend:
+   service:
+     name: kubernetes-dashboard
+     port:
+       number: 443
   rules:
   - host: kubernetes.domain.placeholder
     http:
       paths:
-      - backend:
-          serviceName: kubernetes-dashboard
-          servicePort: 443
+      - pathType: ImplementationSpecific
         path: /
+        backend:
+         service:
+           name: kubernetes-dashboard
+           port: 
+             number: 443          
   tls:
   - hosts:
     - kubernetes.domain.placeholder
