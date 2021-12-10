@@ -1034,6 +1034,7 @@ createWorkshopUser() {
 
 postFlightWork() {
   if [ "$post_flight" = true ]; then    
+    printInfoSection "PostFlight work for environment setup"
     bashas "chown -f -R ${USER} ~/.kube"
     #cp $KEPTN_IN_A_BOX_DIR/resources/misc/daemon.json /etc/docker/daemon.json
     #systemctl restart docker
@@ -1041,7 +1042,7 @@ postFlightWork() {
     bashnu "cd $USER_KIAB_PATH/resources/dynatrace && bash hosttag.sh"
     printInfo "Creates symbolic link to triggers command"
     bashas "cd $KEPTN_IN_A_BOX_DIR && bash setlinks.sh"
-    printInfo "Set Kubernetes monitoring flags"
+    printInfoSection "Set Kubernetes monitoring flags"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/setkubeflags.sh"
   fi
 }
