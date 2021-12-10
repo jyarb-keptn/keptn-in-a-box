@@ -48,7 +48,7 @@ function pullConfig() {
           -H 'Content-Type: application/json; charset=utf-8' \
           -o kubeconfig.json
   
-  jq -r . ./kubeconfig.json
+ # jq -r . ./kubeconfig.json
   echo ""
 }
 
@@ -74,7 +74,7 @@ function changeConfig() {
         echo $NEWCONFIG > $NEW_CONFIG_FILE
     fi
 
-    jq -r . ./$NEW_CONFIG_FILE
+#  jq -r . ./$NEW_CONFIG_FILE
 
   echo ""
   echo "Set Kube config..."
