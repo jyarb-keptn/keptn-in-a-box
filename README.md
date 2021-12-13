@@ -17,7 +17,7 @@ For spinning up instances automatically with AWS completely configured and set u
 |Name | Version | Description | 
 ------------- | ------------- | ------------ |
 | **kiab** | [main](https://github.com/jyarb-keptn/keptn-in-a-box/tree/main) | keptn 0.8.3 |
-| **kiab** | [0.8.9](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.9) | keptn 0.11.2 |
+| **kiab** | [0.8.9](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.9) | keptn 0.11.3 |
 | **kiab** | [0.8.8](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.8) | keptn 0.10.0 |
 | **kiab** | [0.8.7](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.7) | keptn 0.9.2 |
 | **kiab** | [0.8.1](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.1) | keptn 0.8.1 (stable)|
