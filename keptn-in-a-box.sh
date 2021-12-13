@@ -141,8 +141,7 @@ AWS="true"
 KIAB_RELEASE="0.8.9"
 # - Functions file location
 FUNCTIONS_FILE_REPO="https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/${KIAB_RELEASE}/functions.sh"
-# -set home path
-USER_HOME_PATH=`echo $HOME`
+
 ## ----  Write all output to the logfile ----
 if [ "$pipe_log" = true ] ; then
   echo "your environment is being built. This will take several minutes...."

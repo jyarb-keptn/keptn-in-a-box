@@ -33,7 +33,7 @@ MICROK8S_CHANNEL="1.19/stable"
 KEPTN_IN_A_BOX_REPO="https://github.com/jyarb-keptn/keptn-in-a-box.git"
 KEPTN_IN_A_BOX_DIR="~/keptn-in-a-box"
 
-#USER_HOME_PATH="/home/dynatrace"
+USER_HOME_PATH="/home/dynatrace"
 USER_KIAB_PATH="$USER_HOME_PATH/keptn-in-a-box"
 
 # - The user to run the commands from. Will be overwritten when executing this shell with sudo, 
