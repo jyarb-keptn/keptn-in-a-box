@@ -1037,8 +1037,9 @@ postFlightWork() {
     bashas "chown -f -R ${USER} ~/.kube"
     #cp $KEPTN_IN_A_BOX_DIR/resources/misc/daemon.json /etc/docker/daemon.json
     #systemctl restart docker
-    printInfo "Try to set host tags - if it fails - please run $KEPTN_IN_A_BOX_DIR/resources/dynatrace/hosttag.sh as sudo user"   
-    bashnu "cd $USER_KIAB_PATH/resources/dynatrace && bash hosttag.sh"
+    printInfo "Try to set host tags - if it fails - please run $KEPTN_IN_A_BOX_DIR/resources/dynatrace/hosttag.sh as sudo user"
+    printInfo "USER-PATH=$USER_KIAB_PATH"   
+    bashnu "cd $USER_KIAB_PATH/resources/dynatrace && hosttag.sh"
     printInfo "Creates symbolic link to triggers command"
     bashas "cd $KEPTN_IN_A_BOX_DIR && bash setlinks.sh"
     printInfoSection "Set Kubernetes monitoring flags"
