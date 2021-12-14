@@ -964,16 +964,16 @@ keptndemoEasytraveloadgen() {
 metricCreation() {
   if [ "$createMetrics" = true ]; then
     printInfoSection "create request attributes for calculated metrics"
-    bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/scripts && bash $KEPTN_CATALOG_DIR/keptn-onboarding/scripts/createRequestAttributes.sh"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts/createRequestAttributes.sh"
 	sleep 5
     printInfoSection "create calculated metrics..."
-    bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/scripts && bash $KEPTN_CATALOG_DIR/keptn-onboarding/scripts/createTestStepCalculatedMetrics.sh CONTEXTLESS keptn_project keptnorders"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts/createTestStepCalculatedMetrics.sh CONTEXTLESS keptn_project keptnorders"
 	sleep 5
 	printInfoSection "create process group nameing rule..."
-    bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/scripts && bash $KEPTN_CATALOG_DIR/keptn-onboarding/scripts/createProcessGroupName.sh"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts/createProcessGroupName.sh"
 	sleep 5
 	printInfoSection "create process group nameing rule..."
-    bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/scripts && bash $KEPTN_CATALOG_DIR/keptn-onboarding/scripts/createServiceName.sh"    
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts/createServiceName.sh"    
   fi
 }
 
