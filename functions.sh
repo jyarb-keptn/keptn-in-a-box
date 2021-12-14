@@ -708,6 +708,7 @@ keptnInstall() {
     KEPTN_BRIDGE_URL=http://$(kubectl -n keptn get ingress api-keptn-ingress -ojsonpath='{.spec.rules[0].host}')/bridge
     bashas "keptn auth --endpoint=$KEPTN_ENDPOINT --api-token=$KEPTN_API_TOKEN"
     waitForAllPods
+    bashas "keptn set config AutomaticVersionCheck false"
   fi
 }
 
