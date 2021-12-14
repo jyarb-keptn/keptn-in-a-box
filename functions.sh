@@ -1042,7 +1042,7 @@ postFlightWork() {
     printInfo "USER-PATH=$USER_KIAB_PATH"   
     bashnu "cd $USER_KIAB_PATH/resources/dynatrace && hosttag.sh"
     printInfo "Fallback to create host tags"
-    bashnu "bash /home/dynatrace/keptn-in-a-box/resources/dynatrace/hosttag.sh"
+    bashnu "cd $USER_KIAB_PATH/resources/dynatrace && bash $USER_KIAB_PATH/resources/dynatrace/hosttag.sh"
     printInfo "Creates symbolic link to triggers command"
     bashas "cd $KEPTN_IN_A_BOX_DIR && bash setlinks.sh"
     printInfoSection "Set Kubernetes monitoring flags"
