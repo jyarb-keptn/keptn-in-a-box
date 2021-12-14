@@ -155,10 +155,10 @@ installationBundleDemo() {
   keptndemo_easytravelonboard=true
   keptndemo_easytraveloadgen=true
   # dashboards for AIOPs
-  keptndashboard_load=false
+  keptndashboard_load=true
   # create custom metrics
   createMetrics=true
-  createApplications=false
+  createApplications=true
   expose_kubernetes_api=true
   expose_kubernetes_dashboard=true
   patch_kubernetes_dashboard=true
