@@ -1002,6 +1002,8 @@ loadKeptnDashboard() {
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/dashboards && bash load7.sh ${DOMAIN} ${CERTMANAGER_EMAIL}"
     sleep 2
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/dashboards && bash load8.sh ${DOMAIN} ${CERTMANAGER_EMAIL}"
+    sleep 2
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/dashboards && bash load9.sh ${DOMAIN} ${CERTMANAGER_EMAIL}"
   fi
 }
 
