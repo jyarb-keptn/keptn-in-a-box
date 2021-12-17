@@ -14,7 +14,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
     #cert-manager.io/cluster-issuer: "letsencrypt"
   name: keptnwebservice-ingress
-  namespace: default
+  namespace: istio-system
 spec:
   rules:
   # On base domain we have NGINX running.
@@ -23,7 +23,7 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: keptnwebservice
+          serviceName: istio-ingressgateway
           servicePort: 8080
         path: /
   tls:
