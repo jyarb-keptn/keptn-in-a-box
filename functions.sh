@@ -1041,9 +1041,8 @@ postFlightWork() {
     #cp $KEPTN_IN_A_BOX_DIR/resources/misc/daemon.json /etc/docker/daemon.json
     #systemctl restart docker
     printInfo "Try to set host tags - if it fails - please run $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts/hosttag.sh as sudo user"
-    printInfo "USER-PATH=$USER_KIAB_PATH"   
-    bashnu "cd $USER_KIAB_PATH/resources/dynatrace/scripts && hosttag.sh"
-    printInfo "Fallback to create host tags"
+    printInfo "USER-PATH=$USER_KIAB_PATH"
+    printInfo "Create host tags"
     bashnu "cd $USER_KIAB_PATH/resources/dynatrace/scripts && bash $USER_KIAB_PATH/resources/dynatrace/scripts/hosttag.sh"
     printInfo "Creates symbolic link to triggers command"
     bashas "cd $KEPTN_IN_A_BOX_DIR && bash setlinks.sh"
