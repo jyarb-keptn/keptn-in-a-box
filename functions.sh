@@ -8,7 +8,7 @@
 # ==================================================
 #      ----- Components Versions -----             #
 # ==================================================
-KIAB_RELEASE="0.8.9"
+KIAB_RELEASE="0.8.9.1"
 # https://github.com/keptn/keptn
 KEPTN_VERSION=0.11.3
 ISTIO_VERSION=1.11.4
@@ -33,7 +33,7 @@ MICROK8S_CHANNEL="1.19/stable"
 KEPTN_IN_A_BOX_REPO="https://github.com/jyarb-keptn/keptn-in-a-box.git"
 KEPTN_IN_A_BOX_DIR="~/keptn-in-a-box"
 
-USER_HOME_PATH="/home/dtu_training"
+USER_HOME_PATH="/home/dynatrace"
 USER_KIAB_PATH="$USER_HOME_PATH/keptn-in-a-box"
 
 # - The user to run the commands from. Will be overwritten when executing this shell with sudo, 
@@ -155,10 +155,10 @@ installationBundleDemo() {
   keptndemo_easytravelonboard=true
   keptndemo_easytraveloadgen=true
   # dashboards for AIOPs
-  keptndashboard_load=true
+  keptndashboard_load=false
   # create custom metrics
   createMetrics=true
-  createApplications=true
+  createApplications=false
   expose_kubernetes_api=true
   expose_kubernetes_dashboard=true
   patch_kubernetes_dashboard=true
