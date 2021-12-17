@@ -13,7 +13,7 @@ fi
 
 sed -e 's~domain.placeholder~'"$DOMAIN"'~' \
     -e 's~token.placeholder~'"$TOKEN"'~' \
-    deployment.yaml > helm/templates/deployment.yaml
+    deployment.yaml > keptnwebservice/templates/deployment.yaml
 
 #echo "install keptnwebservice via Helmchart"
 #helm install --dry-run ./helm --namespace keptn --generate-name
