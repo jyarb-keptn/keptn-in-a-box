@@ -4,7 +4,7 @@
 
 replicaCount: 1
 
-image: docker.io/grabnerandi/keptnwebservice:1.0.0
+image: docker.io/grabnerandi/keptnwebservice:2.0.0
 pullPolicy: Always
 
 ingress:
