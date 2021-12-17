@@ -13,3 +13,4 @@ spec:
     targetPort: {{ .Values.service.targetPport }}
   selector: 
     app: {{ .Values.keptn.service }}
+    
