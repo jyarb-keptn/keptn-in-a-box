@@ -15,5 +15,5 @@ sed -e 's~domain.placeholder~'"$DOMAIN"'~' \
     -e 's~token.placeholder~'"$TOKEN"'~' \
     templates/deployment.yaml > templates/gen/deployment.yaml
 
-echo "install gitea via Helmchart"
-helm install -f templates/gen/deployment.yaml --namespace keptn --generate-name
+echo "install keptnwebservice via Helmchart"
+helm install templates/gen/deployment.yaml --namespace keptn --generate-name
