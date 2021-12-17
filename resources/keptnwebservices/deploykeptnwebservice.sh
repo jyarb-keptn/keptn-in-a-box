@@ -12,7 +12,7 @@ fi
 
 sed -e 's~domain.placeholder~'"$DOMAIN"'~' \
     -e 's~token.placeholder~'"$TOKEN"'~' \
-    templates/deployment.yaml > gen/deployment.yaml
+    templates/deployment.yaml > templates/gen/deployment.yaml
 
 echo "install gitea via Helmchart"
-helm install keptnwebservice keptnwebservice-charts/keptnwebservice -f gen/deployment.yaml --namespace keptn
+helm install keptnwebservice -f templates/gen/deployment.yaml --namespace keptn
