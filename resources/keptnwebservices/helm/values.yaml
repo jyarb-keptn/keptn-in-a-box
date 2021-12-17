@@ -7,6 +7,9 @@ replicaCount: 1
 image: docker.io/grabnerandi/keptnwebservice:2.0.0
 pullPolicy: Always
 
+keptn:
+  service: keptnwebservice
+
 ingress:
   clusterIssuer: issuer.letsencrypt
   secretName: keptn-tls
