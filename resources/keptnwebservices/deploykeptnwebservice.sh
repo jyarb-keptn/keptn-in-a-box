@@ -18,6 +18,8 @@ sed -e 's~domain.placeholder~'"$DOMAIN"'~' \
 #echo "install keptnwebservice via Helmchart"
 #helm install --dry-run ./helm --namespace keptn --generate-name
 
+keptn delete project keptnwebservice
+
 #echo "install keptnwebservice via keptn"
 keptn create project keptnwebservice --shipyard=./shipyard.yaml
 keptn onboard service keptnwebservice --project=keptnwebservice --chart=./keptnwebservice
