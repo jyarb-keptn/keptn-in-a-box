@@ -9,6 +9,8 @@ pullPolicy: Always
 
 keptn:
   service: keptnwebservice
+  project: keptn
+  stage: dev
 
 ingress:
   clusterIssuer: issuer.letsencrypt
