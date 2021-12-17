@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: keptnwebservice
+  labels: keptnwebservice
+spec: 
+  type: {{ .Values.service.type }}
+  ports: 
+  - name: http
+    port: {{ .Values.service.port }}
+    protocol: TCP
+    targetPort: {{ .Values.service.targetPport }}
+  selector: 
+    app: {{ .Values.keptn.service }}
