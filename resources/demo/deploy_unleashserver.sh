@@ -15,7 +15,7 @@ if [[ -d "unleash" ]]; then
     keptn trigger delivery --project=unleash --service=unleash --image=docker.io/keptnexamples/unleash:1.0.1
 
     # Configure Keptn
-    kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/unleash-service/release-0.3.0/deploy/service.yaml
+    kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/unleash-service/release-0.3.2/deploy/service.yaml -n keptn
 
 else 
     echo "The helmcharts for unleash are not present"

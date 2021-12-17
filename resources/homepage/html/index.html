@@ -926,6 +926,8 @@
         <div>
           <ul>
             <div style="font-weight: bold;"> Keptn Orders App (auto-deployed)</div>
+            <li><a id="orderpipeline"> delivery pipeline overview 👓</a></li>
+            <li>
               <div>stages:
                 <a style="font-size: small;" id="ordersstage">staging </a><a>|</a>
                 <a style="font-size: small;" id="ordersprod">production </a>
@@ -936,6 +938,8 @@
         <div>
           <ul>
             <div style="font-weight: bold;"> EasyTravel (auto-deployed)</div>
+            <li><a id="easytravelpipeline"> delivery pipeline overview 👓</a></li>
+            <li>
               <div>stages:
                 <a style="font-size: small;" id="easytravelstage">staging </a><a>|</a>
                 <a style="font-size: small;" id="easytravelprod">production </a>
@@ -1008,6 +1012,8 @@
 
         replaceInE("hostname", hostname);
         addLink("pipeline", hostname + "/pipeline");
+        addLink("orderpipeline", hostname + "/orderpipeline");
+        addLink("easytravelpipeline", hostname + "/easytravelpipeline");
         addLink("jenkins", "jenkins." + hostname);
         addLink("k8api", "api.kubernetes." + hostname);
         addLink("kubernetes", "kubernetes." + hostname);
