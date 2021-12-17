@@ -20,6 +20,8 @@ sed -e 's~domain.placeholder~'"$DOMAIN"'~' \
 
 keptn delete project keptnwebservice
 
+sleep 5
+
 #echo "install keptnwebservice via keptn"
 keptn create project keptnwebservice --shipyard=./shipyard.yaml
 keptn onboard service keptnwebservice --project=keptnwebservice --chart=./keptnwebservice
