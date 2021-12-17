@@ -1,9 +1,10 @@
 #!/bin/bash
-if [ $# -eq 1 ]; then
+if [ $# -eq 2 ]; then
     # Read JSON and set it in the CREDS variable 
     DOMAIN=$1
     TOKEN=$2
     echo "Domain has been passed: $DOMAIN"
+    echo "token has been passed: $TOKEN"
 else
     echo "No Domain has been passed, getting it from the Home-Ingress"
     DOMAIN=$(kubectl get ing -n default homepage-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
@@ -15,4 +16,4 @@ sed -e 's~domain.placeholder~'"$DOMAIN"'~' \
     templates/deployment.yaml > templates/gen/deployment.yaml
 
 echo "install gitea via Helmchart"
-helm install name=keptnwebservice -f templates/gen/deployment.yaml --namespace keptn
+helm install -f templates/gen/deployment.yaml --namespace keptn --generate-name
