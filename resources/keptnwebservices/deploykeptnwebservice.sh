@@ -16,4 +16,4 @@ sed -e 's~domain.placeholder~'"$DOMAIN"'~' \
     deployment.yaml > helm/templates/deployment.yaml
 
 echo "install keptnwebservice via Helmchart"
-helm install templates/gen/deployment.yaml --namespace keptn --generate-name
+helm install keptnwebservices/helm --namespace keptn --generate-name
