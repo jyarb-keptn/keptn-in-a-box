@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.keptn.service }}
+  name: keptnwebservice
 spec:
   replicas: {{ .Values.replicaCount }}
   strategy:
@@ -11,11 +11,12 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: {{ .Values.keptn.service }}
+      app: keptnwebservice
   template:
     metadata:
       labels:
-        app: {{ .Values.keptn.service }}
+        app: keptnwebservice
+        deployment: keptnwebservice
         app.kubernetes.io/name: "{{ .Values.keptn.service }}"
         app.kubernetes.io/instance: "{{ .Release.Name }}"
         app.kubernetes.io/component: api
@@ -25,7 +26,7 @@ spec:
         helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }}
     spec:
       containers:
-      - name: {{ .Values.keptn.service }}
+      - name: keptnwebservice
         image: "{{ .Values.image }}"
         imagePullPolicy: IfNotPresent
         ports:
