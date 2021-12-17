@@ -15,5 +15,10 @@ sed -e 's~domain.placeholder~'"$DOMAIN"'~' \
     -e 's~token.placeholder~'"$TOKEN"'~' \
     deployment.yaml > helm/templates/deployment.yaml
 
-echo "install keptnwebservice via Helmchart"
-helm install --dry-run ./helm --namespace keptn --generate-name
+#echo "install keptnwebservice via Helmchart"
+#helm install --dry-run ./helm --namespace keptn --generate-name
+
+#echo "install keptnwebservice via keptn"
+keptn create project keptnwebservice --shipyard=./shipyard.yaml
+keptn onboard service keptnwebservice --project=keptnwebservice --chart=./helm
+keptn trigger delivery --project=keptnwebservice --service=keptnwebservice --image=docker.io/grabnerandi/keptnwebservice --tag=2.0.0 --labels=creator=cli,build=01
