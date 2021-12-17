@@ -39,9 +39,9 @@ spec:
         - name: DT_TAGS
           value: "KeptnWebService"
         - name: KEPTN_ENDPOINT
-          value: "https://REPLACE_KEPTN_CONTROL_PLANE_DOMAIN"
+          value: "https://keptn.domain.placeholder"
         - name: KEPTN_API_TOKEN
-          value: "REPLACE_KEPTN_CONTROL_PLANE_API_TOKEN"
+          value: "token.placeholder"
         - name: POD_NAME
           valueFrom:
             fieldRef:
@@ -127,7 +127,7 @@ metadata:
   name: keptnwebservice
   labels: keptnwebservice
 spec: 
-  type: 
+  type: {{ .Values.service.type }}
   ports: 
   - name: http
     port: {{ .Values.service.port }}
