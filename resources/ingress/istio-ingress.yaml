@@ -4,7 +4,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     # We allow HTTP and HTTPS
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
     # Instructs the controller to send TLS connections directly 
     #to the backend instead of letting NGINX decrypt the communication
     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
@@ -13,6 +13,8 @@ metadata:
     # rewrite any request will return 404
     nginx.ingress.kubernetes.io/rewrite-target: /
     #cert-manager.io/cluster-issuer: "letsencrypt"
+    #cert-manager.io/issue-temporary-certificate: "true"
+    #acme.cert-manager.io/http01-edit-in-place: "true"
   name: istio-ingress
   namespace: istio-system
 spec:

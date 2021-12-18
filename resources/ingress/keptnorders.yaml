@@ -61,4 +61,4 @@ spec:
     - catalog.keptnorders-staging.domain.placeholder
     - customer.keptnorders-staging.domain.placeholder
     - order.keptnorders-staging.domain.placeholder
-    #secretName: frontend-tls
+    #secretName: orders-tls
