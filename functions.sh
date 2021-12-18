@@ -1155,9 +1155,7 @@ doInstallation() {
   microk8sEnableBasic
   microk8sEnableDashboard
   microk8sEnableRegistry
- 
   hostAliasPod
-  
   dynatraceActiveGateInstall
   istioInstall
   helmInstall
@@ -1181,29 +1179,20 @@ doInstallation() {
   jmeterService
   loadKeptnDashboard
   createWorkshopUser
-
   patchConfigService
-  
   keptndemoCartsonboard    
-  keptndemoCatalogonboard
-
-  metricCreation
- 
+  keptndemoCatalogonboard 
   keptndemoEasytravelonboard
   applicationCreation
   loadKeptnWebService
-
   loadDynatraceProject
-
   gitMigrate
   keptndemoUnleashConfigure
-  
   keptndemoDeployCartsloadgenerator
   keptndemoEasytraveloadgen
-  
-  postFlightWork
-
+  metricCreation
   certmanagerEnable
+  postFlightWork
 
   DISK_FINAL=$(getUsedDiskSpace)
   printInstalltime
