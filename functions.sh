@@ -12,7 +12,8 @@ KIAB_RELEASE="0.8.9.1"
 # https://github.com/keptn/keptn
 KEPTN_VERSION=0.11.3
 ISTIO_VERSION=1.11.4
-CERTMANAGER_VERSION=1.6.1
+#CERTMANAGER_VERSION=1.6.1
+CERTMANAGER_VERSION=0.14.0
 # https://github.com/helm/helm/releases
 HELM_VERSION=3.7.1
 # https://github.com/keptn-contrib/dynatrace-service
@@ -900,7 +901,7 @@ keptndemoCartsonboard() {
     bashas "cd $KEPTN_EXAMPLES_DIR/onboarding-carts/ && bash $KEPTN_IN_A_BOX_DIR/resources/demo/onboard_carts_qualitygates.sh"
     printInfoSection "Keptn deploy Carts"
     bashas "cd $KEPTN_EXAMPLES_DIR/onboarding-carts/ && bash $KEPTN_IN_A_BOX_DIR/resources/demo/deploy_carts_0.sh"
-    printInfoSection "Keptn Exposing the Onboarded Carts Application"
+    printInfoSection "Exposing the Onboarded Carts Application"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} sockshop"
   fi
 }
@@ -925,7 +926,7 @@ keptndemoCatalogonboard() {
     printInfoSection "Load remediation..."
     #bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash loadRemediation.sh"
     
-    printInfoSection "Keptn Exposing the Onboarded orders Application"
+    printInfoSection "Exposing the Onboarded orders Application"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} keptnorders"
     printInfoSection "set env variables"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash setenv.sh ${DOMAIN}"
@@ -943,7 +944,7 @@ keptndemoEasytravelonboard() {
     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash loadRemediation.sh"
     
     waitForAllPods
-    printInfoSection "Keptn Exposing the Onboarded easytravel Application"
+    printInfoSection "Exposing the Onboarded easytravel Application"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} easytravel"
     printInfoSection "set env variables"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash setenv.sh ${DOMAIN}"  
@@ -1026,6 +1027,9 @@ loadKeptnWebService() {
     KEPTN_ENDPOINT=https://$(kubectl get ing -n keptn api-keptn-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')/api
     KEPTN_API_TOKEN=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 --decode)
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/keptnwebservices && bash $KEPTN_IN_A_BOX_DIR/resources/keptnwebservices/deploykeptnwebservice.sh ${DOMAIN} ${KEPTN_API_TOKEN}"
+    waitForAllPods
+    printInfoSection "Exposing the keptnwebservice"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} keptnwebservice"    
  fi
 }
 
