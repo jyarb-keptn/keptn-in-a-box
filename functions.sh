@@ -13,7 +13,7 @@ KIAB_RELEASE="0.8.9.1"
 KEPTN_VERSION=0.11.3
 ISTIO_VERSION=1.11.4
 #CERTMANAGER_VERSION=1.6.1
-CERTMANAGER_VERSION=0.14.0
+CERTMANAGER_VERSION=1.1.1
 # https://github.com/helm/helm/releases
 HELM_VERSION=3.7.1
 # https://github.com/keptn-contrib/dynatrace-service
