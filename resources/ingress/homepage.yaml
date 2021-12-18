@@ -4,7 +4,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     # We allow HTTP and HTTPS
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
     # Instructs the controller to send TLS connections directly 
     #to the backend instead of letting NGINX decrypt the communication
     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
