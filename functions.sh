@@ -192,8 +192,8 @@ installationBundleAll() {
 
   enable_registry=true
   # plus all others
-  certmanager_install=true
-  certmanager_enable=true
+  certmanager_install=false
+  certmanager_enable=false
   create_workshop_user=false
   keptn_bridge_disable_login=true
 
