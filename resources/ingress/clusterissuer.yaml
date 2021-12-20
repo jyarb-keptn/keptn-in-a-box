@@ -9,7 +9,6 @@ metadata:
   name: letsencrypt
   namespace: cert-manager
 spec:
-  selfSigned: {}
   acme:
     email: email.placeholder
     # Production ACME URL of Letsencrypt
