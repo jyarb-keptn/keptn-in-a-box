@@ -121,8 +121,8 @@ installationBundleDemo() {
   enable_k8dashboard=true
   istio_install=true
   helm_install=true
-  certmanager_install=false
-  certmanager_enable=fasle
+  certmanager_install=true
+  certmanager_enable=true
   # install keptn
   keptn_install=true
   # clone repos
