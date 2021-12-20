@@ -103,6 +103,7 @@ expose_kubernetes_dashboard=false
 patch_kubernetes_dashboard=false
 create_workshop_user=false
 jmeter_install=false
+keptnwebservice=false
 post_flight=false
 patch_config_service=false
 dynatrace_project= false
@@ -167,6 +168,7 @@ installationBundleDemo() {
   create_workshop_user=false
   jmeter_install=true
   dynatrace_project=true
+  keptnwebservice=true
   post_flight=true
   patch_config_service=false
 }
@@ -1016,6 +1018,20 @@ loadDynatraceProject() {
  fi
 }
 
+loadKeptnWebService() {
+ if [ "$keptnwebservice" = true ]; then
+    printInfoSection "set env variables"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash setenv.sh ${DOMAIN}" 
+    printInfoSection "load keptn web service"
+    KEPTN_ENDPOINT=https://$(kubectl get ing -n keptn api-keptn-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')/api
+    KEPTN_API_TOKEN=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 --decode)
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/keptnwebservices && bash $KEPTN_IN_A_BOX_DIR/resources/keptnwebservices/deploykeptnwebservice.sh ${DOMAIN} ${KEPTN_API_TOKEN}"
+    waitForAllPods
+    printInfoSection "Exposing the keptnwebservice"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} keptnwebservice"    
+ fi
+}
+
 createWorkshopUser() {
   if [ "$create_workshop_user" = true ]; then
     printInfoSection "Creating Workshop User from user($USER) into($NEWUSER)"
@@ -1108,7 +1124,7 @@ printInstalltime() {
 
 printFlags() {
   printInfoSection "Function Flags values"
-  for i in {selected_bundle,verbose_mode,update_ubuntu,docker_install,microk8s_install,setup_proaliases,enable_k8dashboard,enable_registry,istio_install,helm_install,hostalias,git_deploy,git_migrate,certmanager_install,certmanager_enable,keptn_install,keptn_install_qualitygates,keptn_examples_clone,resources_clone,keptn_catalog_clone,dynatrace_savecredentials,dynatrace_configure_monitoring,dynatrace_activegate_install,dynatrace_configure_workloads,jenkins_deploy,keptn_bridge_disable_login,keptn_bridge_eap,keptndeploy_homepage,keptndemo_cartsload,keptndemo_unleash,keptndemo_unleash_configure,keptndemo_cartsonboard,keptndemo_catalogonboard,keptndemo_easytravelonboard,keptndemo_easytraveloadgen,jmeter_install,expose_kubernetes_api,expose_kubernetes_dashboard,patch_kubernetes_dashboard,create_workshop_user,keptndashboard_load,createMetrics,createApplications,dynatrace_project,post_flight,patch_config_service}; 
+  for i in {selected_bundle,verbose_mode,update_ubuntu,docker_install,microk8s_install,setup_proaliases,enable_k8dashboard,enable_registry,istio_install,helm_install,hostalias,git_deploy,git_migrate,certmanager_install,certmanager_enable,keptn_install,keptn_install_qualitygates,keptn_examples_clone,resources_clone,keptn_catalog_clone,dynatrace_savecredentials,dynatrace_configure_monitoring,dynatrace_activegate_install,dynatrace_configure_workloads,jenkins_deploy,keptn_bridge_disable_login,keptn_bridge_eap,keptndeploy_homepage,keptndemo_cartsload,keptndemo_unleash,keptndemo_unleash_configure,keptndemo_cartsonboard,keptndemo_catalogonboard,keptndemo_easytravelonboard,keptndemo_easytraveloadgen,jmeter_install,expose_kubernetes_api,expose_kubernetes_dashboard,patch_kubernetes_dashboard,keptnwebservice,create_workshop_user,keptndashboard_load,createMetrics,createApplications,dynatrace_project,post_flight,patch_config_service}; 
   do 
     echo "$i = ${!i}"
   done
@@ -1168,7 +1184,6 @@ doInstallation() {
   jmeterService
   loadKeptnDashboard
   createWorkshopUser
-  certmanagerEnable
   patchConfigService
   
   keptndemoCartsonboard    
@@ -1178,6 +1193,7 @@ doInstallation() {
  
   keptndemoEasytravelonboard
   applicationCreation
+  loadKeptnWebService
   loadDynatraceProject
 
   gitMigrate
@@ -1185,7 +1201,7 @@ doInstallation() {
   
   keptndemoDeployCartsloadgenerator
   keptndemoEasytraveloadgen
-  
+  certmanagerEnable
   postFlightWork
 
   DISK_FINAL=$(getUsedDiskSpace)
