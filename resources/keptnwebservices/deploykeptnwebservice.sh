@@ -15,13 +15,6 @@ sed -e 's~domain.placeholder~'"$DOMAIN"'~' \
     -e 's~token.placeholder~'"$TOKEN"'~' \
     deployment.yaml > keptnwebservice/templates/deployment.yaml
 
-#echo "install keptnwebservice via Helmchart"
-#helm install --dry-run ./helm --namespace keptn --generate-name
-
-keptn delete project webservices
-
-sleep 10
-
 #echo "install keptnwebservice via keptn"
 keptn create project webservices --shipyard=./shipyard.yaml
 keptn onboard service keptnwebservice --project=webservices --chart=./keptnwebservice
