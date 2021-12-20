@@ -126,7 +126,7 @@ echo "tenant: $TENANT";
 # Magic domain for home/local cluster
 DOMAIN="192.168.3.91.nip.io"
 # Use this to set your own DNS server address
-#my_dns=true
+my_dns=true
 MYDNS="192.168.3.27"
 
 # ---- The Email Account for the Certmanager ClusterIssuer with Let's encrypt ---- 
