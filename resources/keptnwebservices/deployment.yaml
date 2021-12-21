@@ -40,7 +40,7 @@ spec:
         - name: DT_TAGS
           value: "KeptnWebService"
         - name: KEPTN_ENDPOINT
-          value: "https://keptn.domain.placeholder"
+          value: "http://keptn.domain.placeholder"
         - name: KEPTN_API_TOKEN
           value: "token.placeholder"
         - name: POD_NAME
