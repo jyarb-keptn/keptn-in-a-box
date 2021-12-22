@@ -53,7 +53,28 @@ spec:
       - backend:
           serviceName: istio-ingressgateway
           servicePort: 80
-        path: /                                  
+        path: /  
+  - host: catalog.keptnorders-production.domain.placeholder
+    http:
+      paths:
+      - backend:
+          serviceName: istio-ingressgateway
+          servicePort: 80
+        path: /    
+  - host: customer.keptnorders-production.domain.placeholder
+    http:
+      paths:
+      - backend:
+          serviceName: istio-ingressgateway
+          servicePort: 80
+        path: /  
+  - host: order.keptnorders-production.domain.placeholder
+    http:
+      paths:
+      - backend:
+          serviceName: istio-ingressgateway
+          servicePort: 80
+        path: /                                          
   tls:
   - hosts:
     - frontend.keptnorders-production.domain.placeholder
@@ -61,4 +82,7 @@ spec:
     - catalog.keptnorders-staging.domain.placeholder
     - customer.keptnorders-staging.domain.placeholder
     - order.keptnorders-staging.domain.placeholder
+    - catalog.keptnorders-production.domain.placeholder
+    - customer.keptnorders-production.domain.placeholder
+    - order.keptnorders-production.domain.placeholder    
     #secretName: orders-tls
