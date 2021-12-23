@@ -36,7 +36,7 @@ dtCreds: dynatrace-credentials-sockshop
 dashboard: query
 EOF
 
-keptn add-resource --project=sockshop --stage=staging --resource=./dynatrace.conf.yaml --resourceUri=dynatrace/dynatrace.conf.yaml
+keptn add-resource --project=sockshop --stage=staging --service=carts --resource=./dynatrace.conf.yaml --resourceUri=dynatrace/dynatrace.conf.yaml
 
 # uncomment if you need to create the dashboard template in Dynatrace.
 # this template will need to be modified for your service and use case.

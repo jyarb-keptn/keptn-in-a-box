@@ -33,4 +33,4 @@ dtCreds: dynatrace-credentials-keptnorders
 dashboard: query
 EOF
 
-keptn add-resource --project=keptnorders --stage=staging --resource=./dynatrace.conf.yaml --resourceUri=dynatrace/dynatrace.conf.yaml
+keptn add-resource --project=keptnorders --stage=staging --service=frontend --resource=./dynatrace.conf.yaml --resourceUri=dynatrace/dynatrace.conf.yaml
