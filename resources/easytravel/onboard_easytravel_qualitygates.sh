@@ -8,6 +8,8 @@ if [[ -d "easytravel-frontend" ]]; then
     keptn add-resource --project=easytravel --resource=dynatrace-sli-config-easytravel.yaml --resourceUri=dynatrace/sli.yaml
       
     kubectl apply -f dynatrace-sli-config-easytravel.yaml
+
+    keptn add-resource --project=easytravel --resource=./dynatrace-simple.conf.yaml --resourceUri=dynatrace/dynatrace.conf.yaml   
     
     keptn configure monitoring dynatrace --project=easytravel
 
