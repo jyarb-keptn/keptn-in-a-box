@@ -9,6 +9,8 @@ if [[ -d "easytravel-frontend" ]]; then
       
     kubectl apply -f dynatrace-sli-config-easytravel.yaml
     
+    keptn add-resource --project=easytravel --resource=./dynatrace-simple.conf.yaml --resourceUri=dynatrace/dynatrace.conf.yaml
+
     keptn configure monitoring dynatrace --project=easytravel
 
     echo "Setting up QualityGate to Staging"
