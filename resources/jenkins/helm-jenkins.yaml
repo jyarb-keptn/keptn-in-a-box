@@ -219,9 +219,9 @@ master:
 #    - kubernetes:1.31.1
 #    - configuration-as-code:1.54
     - job-dsl:1.78.1
-#    - workflow-job:2.42
-#    - workflow-aggregator:2.6
-#    - rebuild:1.32
+    - workflow-job:2.42
+    - workflow-aggregator:2.6
+    - rebuild:1.32
     - jdk-tool:1.5
     - parameterized-scheduler:1.0
   #  - kubernetes-cli:1.10.3
