@@ -213,7 +213,7 @@ master:
 
   # List of plugins to be install during Jenkins master start
   installPlugins:
-#    - http_request:1.12
+    - http_request:1.12
 #    - pipeline-utility-steps:2.11.0
 #    - blueocean:1.25.2
 #    - kubernetes:1.31.1
