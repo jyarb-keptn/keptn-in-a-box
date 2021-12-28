@@ -78,19 +78,19 @@ gitea:
     password: GIT_PASSWORD.placeholder
     email: "GIT_USER.placeholder@local.domain"
 
-  ldap:
-    enabled: false
-    name: ""
-    securityProtocol: ""
-    host: ""
-    port: ""
-    userSearchBase: ""
-    userFilter: ""
-    adminFilter: ""
-    emailAttribute: ""
-    bindDn: ""
-    bindPassword: ""
-    usernameAttribute: ""
+  ldap: []
+  #  enabled: false
+  #  name: ""
+  #  securityProtocol: ""
+  #  host: ""
+  #  port: ""
+  #  userSearchBase: ""
+  #  userFilter: ""
+  #  adminFilter: ""
+  #  emailAttribute: ""
+  #  bindDn: ""
+  #  bindPassword: ""
+  #  usernameAttribute: ""
 
   config: {}
   #  APP_NAME: "Gitea: Git with a cup of tea"
