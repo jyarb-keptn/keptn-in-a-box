@@ -113,9 +113,9 @@ gitea:
       mariadb:
         enabled: false
 
-  cache:
-    builtIn:
-      enabled: true
+#  cache:
+#    builtIn:
+#      enabled: true
 
 memcached:
   service:
