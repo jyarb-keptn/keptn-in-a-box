@@ -6,4 +6,6 @@
     
     keptn configure monitoring dynatrace --project=dynatrace
     
+    keptn add-resource --project=dynatrace --resource=./dynatrace.conf.yaml --resourceUri=dynatrace/dynatrace.conf.yaml
+
     keptn add-resource --project=dynatrace --stage=quality-gate --resource=./dynatrace.conf.yaml --resourceUri=dynatrace/dynatrace.conf.yaml
