@@ -104,24 +104,13 @@ gitea:
 
   podAnnotations: {}
 
-  database:
-    builtIn:
-      postgresql:
-        enabled: true
-      mysql:
-        enabled: false
-      mariadb:
-        enabled: false
-
-#  cache:
-#    builtIn:
-#      enabled: true
-
 memcached:
+  enabled: true
   service:
     port: 11211
 
 postgresql:
+  enabled: true
   global:
     postgresql:
       postgresqlDatabase: gitea
@@ -132,6 +121,7 @@ postgresql:
     size: 10Gi
 
 mysql:
+  enabled: false
   root:
     password: gitea
   db:
@@ -144,6 +134,7 @@ mysql:
     size: 10Gi
 
 mariadb:
+  enabled: false
   auth:
     database: gitea
     username: gitea
