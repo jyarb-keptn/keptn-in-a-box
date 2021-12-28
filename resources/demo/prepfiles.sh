@@ -9,6 +9,8 @@ echo "moving files...."
 # copy new format for metric indicators
 cp ${HOME}/keptn-in-a-box/resources/demo/sli-config-dynatrace.yaml ${HOME}/${KEPTN_EXAMPLES_DIR}/onboarding-carts/sli-config-dynatrace.yaml
 
+cp ${HOME}/${KEPTN_PREP_DIR}/demo_onbording/dynatrace.conf.yaml ${HOME}/${KEPTN_EXAMPLES_DIR}/onboarding-carts/dynatrace.conf.yaml
+
 #move files for jmeter
 cp ${HOME}/${KEPTN_PREP_DIR}/demo_onbording/dev/carts/jmeter/load.jmx ${HOME}/${KEPTN_EXAMPLES_DIR}/onboarding-carts/jmeter/load.jmx
 cp ${HOME}/${KEPTN_PREP_DIR}/demo_onbording/dev/carts/jmeter/basiccheck.jmx ${HOME}/${KEPTN_EXAMPLES_DIR}/onboarding-carts/jmeter/basiccheck.jmx
