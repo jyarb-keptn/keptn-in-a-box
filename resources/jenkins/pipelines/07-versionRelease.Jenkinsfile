@@ -180,10 +180,6 @@ stages{
 				          "context": "KUBERNETES",
 					      "key" : "app",
                           "value" : "easytravel-backend"
-					      },
-					      {
-				          "context": "${context}",
-					      "key" : "JourneyService"
 					      }
 					   ]
 				     }
