@@ -811,7 +811,7 @@ dynatraceConfigureMonitoring() {
     bashas "kubectl -n keptn get pods -l run=dynatrace-sli-service"
     fi
     
-    waitForAllPods
+    waitForAllPods keptn
     bashas "keptn configure monitoring dynatrace"
   fi
 }
@@ -835,7 +835,7 @@ keptndemoUnleash() {
   if [ "$keptndemo_unleash" = true ]; then
     printInfoSection "Deploy Unleash-Server"
     bashas "cd $KEPTN_EXAMPLES_DIR/unleash-server/ &&  bash $KEPTN_IN_A_BOX_DIR/resources/demo/deploy_unleashserver.sh"
-    waitForAllPods keptn
+    waitForAllPods unleash-dev
     printInfoSection "Expose Unleash-Server"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} unleash" 
     UNLEASH_SERVER="http://unleash.unleash-dev.$DOMAIN"
@@ -925,7 +925,6 @@ keptndemoCatalogonboard() {
     bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/catalog/deploy_catalog_0.2.sh"
     printInfoSection "Load remediation..."
     #bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash loadRemediation.sh"
-    
     printInfoSection "Exposing the Onboarded orders Application"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} keptnorders"
     printInfoSection "set env variables"
@@ -942,8 +941,6 @@ keptndemoEasytravelonboard() {
     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/deploy_0.sh"
     printInfoSection "Load remediation..."
     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash loadRemediation.sh"
-    
-    waitForAllPods
     printInfoSection "Exposing the Onboarded easytravel Application"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} easytravel"
     printInfoSection "set env variables"
@@ -1027,7 +1024,7 @@ loadKeptnWebService() {
     KEPTN_ENDPOINT=https://$(kubectl get ing -n keptn api-keptn-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')/api
     KEPTN_API_TOKEN=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 --decode)
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/keptnwebservices && bash $KEPTN_IN_A_BOX_DIR/resources/keptnwebservices/deploykeptnwebservice.sh ${DOMAIN} ${KEPTN_API_TOKEN}"
-    waitForAllPods
+    waitForAllPods webservices-dev
     printInfoSection "Exposing the keptnwebservice"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} keptnwebservice"    
  fi
