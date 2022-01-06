@@ -167,8 +167,8 @@ installationBundleDemo() {
   # use for order application
   keptndemo_catalogonboard=true
   # use for easytravel
-  keptndemo_easytravelonboard=true
-  keptndemo_easytraveloadgen=true
+  keptndemo_easytravelonboard=false
+  keptndemo_easytraveloadgen=false
   # dashboards for AIOPs
   keptndashboard_load=true
   # create custom metrics
