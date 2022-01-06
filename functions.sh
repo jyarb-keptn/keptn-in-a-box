@@ -720,7 +720,7 @@ jmeterService() {
   printInfoSection "JMeter Service 0.10.0"
   bashas "kubectl delete -n keptn deployment jmeter-service"
   bashas "kubectl apply -f https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/${KIAB_RELEASE}/resources/keptn/jmeter-service.yaml -n keptn --record"
-  waitForAllPods
+  waitForAllPods keptn
   fi
 }
 
