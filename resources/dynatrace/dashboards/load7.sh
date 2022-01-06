@@ -628,12 +628,7 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
         "width": 152,
         "height": 152
       },
-      "tileFilter": {
-        "managementZone": {
-          "id": "6021512752392206502",
-          "name": "Keptn: keptnorders staging"
-        }
-      }
+      "tileFilter": {}
     },
     {
       "name": "Markdown",
