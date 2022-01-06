@@ -53,9 +53,9 @@ UNLEASH_TOKEN=$(echo -n keptn:keptn | base64)
 enableItemCache
 enablePromotion
 
-kubectl -n keptn create secret generic unleash --from-literal="UNLEASH_SERVER_URL=http://unleash.unleash-dev/api" --from-literal="UNLEASH_USER=keptn" --from-literal="UNLEASH_TOKEN=keptn"
+#kubectl -n keptn create secret generic unleash --from-literal="UNLEASH_SERVER_URL=http://unleash.unleash-dev/api" --from-literal="UNLEASH_USER=keptn" --from-literal="UNLEASH_TOKEN=keptn"
 # create secret with new pattern
-#keptn create secret unleash --scope="keptn-default" --from-literal="UNLEASH_SERVER_URL=http://unleash.unleash-dev/api" --from-literal="UNLEASH_USER=keptn" --from-literal="UNLEASH_TOKEN=keptn"
+keptn create secret unleash --scope="keptn-default" --from-literal="UNLEASH_SERVER_URL=http://unleash.unleash-dev/api" --from-literal="UNLEASH_USER=keptn" --from-literal="UNLEASH_TOKEN=keptn"
 
 #deploy action provider
 #kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/unleash-service/0.1.0/deploy/service.yaml
