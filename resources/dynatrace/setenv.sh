@@ -29,4 +29,12 @@ echo "export KEPTN_DOMAIN=${KEPTN_DOMAIN}" >> ~/.bash_profile && \
 echo "export KEPTN_API_URL=${KEPTN_ENDPOINT}" >> ~/.bash_profile && \
 echo "export KEPTN_BRIDGE_URL=${KEPTN_ENDPOINT}/bridge" >> ~/.bash_profile && \
 source ~/.bash_profile
+echo "set for dtu_training"
+echo "export DT_TENANT=$DT_TENANT" >> /home/dtu_training/.bash_profile && \
+echo "export DT_API_TOKEN=$DT_API_TOKEN" >> /home/dtu_training/.bash_profile && \
+echo "export DT_PAAS_TOKEN=$DT_PAAS_TOKEN" >> /home/dtu_training/.bash_profile && \
+echo "export KEPTN_DOMAIN=${KEPTN_DOMAIN}" >> /home/dtu_training/.bash_profile && \
+echo "export KEPTN_API_URL=${KEPTN_ENDPOINT}" >> /home/dtu_training/.bash_profile && \
+echo "export KEPTN_BRIDGE_URL=${KEPTN_ENDPOINT}/bridge" >> /home/dtu_training/.bash_profile && \
+source /home/dtu_training/.bash_profile
 fi
