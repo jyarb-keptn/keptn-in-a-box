@@ -33,6 +33,8 @@ MICROK8S_CHANNEL="1.19/stable"
 KEPTN_IN_A_BOX_REPO="https://github.com/jyarb-keptn/keptn-in-a-box.git"
 KEPTN_IN_A_BOX_DIR="~/keptn-in-a-box"
 
+## Parmeters for dtu_training accomidations
+ET_STAGING_ONLY=true
 USER_HOME_PATH="/home/dtu_training"
 USER_KIAB_PATH="$USER_HOME_PATH/keptn-in-a-box"
 
@@ -106,7 +108,7 @@ jmeter_install=false
 keptnwebservice=false
 post_flight=false
 patch_config_service=false
-dynatrace_project= false
+dynatrace_project=false
 # ======================================================================
 #             ------- Installation Bundles  --------                   #
 #  Each bundle has a set of modules (or functions) that will be        #
@@ -932,30 +934,49 @@ keptndemoCatalogonboard() {
 
 keptndemoEasytravelonboard() {
   if [ "$keptndemo_easytravelonboard" = true ]; then
-    printInfoSection "Keptn onboarding easytravel application"
-    bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/onboard_easytravel.sh"
-    bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/onboard_easytravel_qualitygates.sh"
-    printInfoSection "deploy easytravel..."
-    bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/deploy_0.sh"
-    printInfoSection "Load remediation..."
-    bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash loadRemediation.sh"
+     if [ "$ET_STAGING_ONLY" = true ]; then
+     printInfoSection "Keptn onboarding easytravel application"
+     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/onboard_et_staging.sh"
+     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/onboard_et_staging_qualitygates.sh"
+     printInfoSection "deploy easytravel..."
+     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/deploy_0.sh"
+     printInfoSection "Load remediation..."
+     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash loadRemediation.sh"
+     else
+     printInfoSection "Keptn onboarding easytravel application"
+     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/onboard_easytravel.sh"
+     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/onboard_easytravel_qualitygates.sh"
+     printInfoSection "deploy easytravel..."
+     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/deploy_0.sh"
+     printInfoSection "Load remediation..."
+     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash loadRemediation.sh"
+    fi
+
     printInfoSection "Keptn Exposing the Onboarded easytravel Application"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} easytravel"
     printInfoSection "set env variables"
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash setenv.sh ${DOMAIN}"  
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash setenv.sh ${DOMAIN}"
+      
   fi
 }
 
 keptndemoEasytraveloadgen() {
   if [ "$keptndemo_easytraveloadgen" = true ]; then
-    printInfoSection "easytrvel loadgen staging..."
-    bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash preploadgen.sh ${DOMAIN} loadgen"
-    printInfoSection "easytrvel loadgen production..."
-    bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash preploadgen.sh ${DOMAIN} loadgen-prod"    
-    printInfoSection "easytrvel angular loadgen staging..."
-    bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash preploadgen.sh ${DOMAIN} loadgen-headless"
-    printInfoSection "easytrvel angular loadgen production..."
-    bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash preploadgen.sh ${DOMAIN} loadgen-headless-prod"    
+     if [ "$ET_STAGING_ONLY" = true ]; then
+     printInfoSection "easytrvel loadgen staging..."
+     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash preploadgen.sh ${DOMAIN} loadgen"  
+     printInfoSection "easytrvel angular loadgen staging..."
+     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash preploadgen.sh ${DOMAIN} loadgen-headless"
+     else
+     printInfoSection "easytrvel loadgen staging..."
+     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash preploadgen.sh ${DOMAIN} loadgen"
+     printInfoSection "easytrvel loadgen production..."
+     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash preploadgen.sh ${DOMAIN} loadgen-prod"    
+     printInfoSection "easytrvel angular loadgen staging..."
+     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash preploadgen.sh ${DOMAIN} loadgen-headless"
+     printInfoSection "easytrvel angular loadgen production..."
+     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash preploadgen.sh ${DOMAIN} loadgen-headless-prod"
+    fi    
   fi
 }
 
