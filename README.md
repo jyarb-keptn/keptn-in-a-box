@@ -7,7 +7,7 @@ generated with Cert-Manager and Let's Encrypt, does not mean the Box is secure.
 
 # Keptn-in-a-Box Enhanced (with Dynatrace Software Intelligence empowered) 🎁
 
-:rotating_light: ALERT: This install uses keptn 0.11.3 :rotating_light:
+:rotating_light: ALERT: This install uses keptn 0.11.4 :rotating_light:
 
 Keptn-In-A-Box is part of the automation for delivering Autonomous Cloud Workshops with Dynatrace. This is not a tutorial but more an explanation of what the shell file set up for you on a plain Ubuntu image. 
 
@@ -17,7 +17,7 @@ For spinning up instances automatically with AWS completely configured and set u
 |Name | Version | Description | 
 ------------- | ------------- | ------------ |
 | **kiab** | [main](https://github.com/jyarb-keptn/keptn-in-a-box/tree/main) | keptn 0.8.3 |
-| **kiab** | [0.8.9](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.9) | keptn 0.11.3 |
+| **kiab** | [0.8.9](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.9) | keptn 0.11.4 |
 | **kiab** | [0.8.8](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.8) | keptn 0.10.0 |
 | **kiab** | [0.8.7](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.7) | keptn 0.9.2 |
 
@@ -32,8 +32,8 @@ For spinning up instances automatically with AWS completely configured and set u
 - Set up of useful BASH Aliases for working with the command line
 - Enable autocompletion of Kubectl
 - Installation of Dynatrace ActiveGate and configuration of [Cluster](https://www.dynatrace.com/support/help/technology-support/cloud-platforms/kubernetes/monitoring/connect-kubernetes-clusters-to-dynatrace/) and [Workload monitoring](https://www.dynatrace.com/support/help/technology-support/cloud-platforms/kubernetes/monitoring/monitor-workloads-kubernetes/)
-- Installation of Istio 1.9.1 
-- Installation of Helm Client
+- Installation of Istio 1.11.4 
+- Installation of Helm 3.7.1
 - Enabling own Docker Registry for the Cluster
 - Convert the public IP in a (magic) domain ([nip.io](https://nip.io/)) for being able to expose all the needed services with subdomains.
 - Routing of traffic to Istio-Ingressgateway via a Kubernetes NGINX Ingress using standard HTTP(S) ports 80 and 443. This way we dont need a public IP from the Cloud Provider
@@ -46,6 +46,7 @@ For spinning up instances automatically with AWS completely configured and set u
 - Onboard of the keptnOrders project
 - Onboard of the easytravel project
 - Deployment of a cartsloadgenerator PoD
+- Deployment of keptn webservice
 - Deployment of a Autonomous Cloud teaser home page with links to the pipeline, kubernetes api, keptn-bridge, keptn-api, jenkins 
 - Creation of valid SSL certificates for the exposed endpoints with Certmanager and HTTPs Let's encrypt.
 - Create a user account and copy the standard user (ubuntu on this case) with his own home directory (a replica) and allowing SSH connections with text password. Useful for spinning an army of workshop clusters. 
@@ -88,18 +89,22 @@ For a step by step understanding of how Keptn-in-a-Box works and how to use it, 
 ```bash
 ─ doc                       doc folder.
 ─ keptn-in-a-box.sh         the executable (also where to define your variables)
-─ functions.sh        		The definiton of functions and modules 
+─ functions.sh        		  The definiton of functions and modules
+- setlinks.sh               create symbolic link to trigger evaluations
+- resetenv.sh               Use to reset the environment
 ─ resources                 
   ├── cartsloadgenerator    Sources of the load container of the carts app
   ├── catalog               Scripts for Onboarding the keptnOrders app
   ├── easytravel            Scripts for Onboarding the easytravel app 
-  ├── demo                  Scripts for Onboarding the Carts app  
+  ├── demo                  Scripts for Onboarding the Carts app
+  ├── gitea                 Scripts for creating upstream git repo   
   ├── dynatrace             Scripts for integrating with Dynatrace
   ├── homepage              Sources of the homepage for displaying the Autonomous Cloud teaser  
   ├── ingress               Files and logic for mapping, exposing the endpoints and services. Creation of Certificates.
   ├── istio                 istio config files  
   ├── jenkins               Deployment and configuration for Jenkins managed as code.
   ├── misc                  Miscelaneous (patch kubernetes dashboard)
+  ├── keptn                 Scripts and configuration items to support keptn
   └── virtualservices       YAML files for virtualservices 
 ```
 
@@ -170,7 +175,7 @@ Now you are ready to start the install process.
 
 If you use a authentication key
 ```bash
-ssh -i "DevOps.pem" ubuntu@ec2-54-172-78-187.compute-1.amazonaws.com
+ssh -i "Your.pem" ubuntu@ec2-54-172-78-187.compute-1.amazonaws.com
 ```
 
 #### 2. Get the script
@@ -191,7 +196,7 @@ chmod +x keptn-in-a-box.sh
 ```bash
 sudo bash -c './keptn-in-a-box.sh'
 ```
-#### 4.1 New execution method with flags. 
+#### 4.1 New execution method with flags. (preferred)
 ```
 yes | sudo  bash -c './keptn-in-a-box.sh -t <TENANT> -a <APITOKEN> -p <PAASTOKEN> -e <UserEmail>'
 ```
@@ -307,7 +312,7 @@ The loadgen pods drive load to the staging and production angular frontends.
 
 The loadgen to the www-staging also works.
 
-You will need to create application detection rules, as these cannot be created by the API.
+Application rules are created via the API.
 
 - All domains containing easytravel-angular.easytravel-production
 - All domains that match easytravel-angular.easytravel-staging
@@ -337,7 +342,7 @@ which gets executed as part of a quality gate evaluation!
 
 Rest easy, we have created a script to initialize the SLI service and create an OOB Dashboard example.
 ```bash
-cd ~/keptn-in-a-box/resources/dynatrace
+cd ~/keptn-in-a-box/resources/dynatrace/scripts
 ```
 Validate the KEPTN_DOMAIN environment variable has been set.
 
