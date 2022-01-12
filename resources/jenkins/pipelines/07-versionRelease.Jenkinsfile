@@ -16,17 +16,17 @@ pipeline {
 agent any
 
     parameters {
-        string (name: 'project', defaultValue: 'keptn_project: easyTravel')
+        string (name: 'project', defaultValue: 'keptn_project: keptnorders')
         string (name: 'buildenv', defaultValue: 'staging')
-        string (name: 'buildVersion', defaultValue: '2.0.0.3349')
+        string (name: 'buildVersion', defaultValue: '1.0.0')
 	    string (name: 'LoadTestTime', defaultValue: '3')
 	    string (name: 'ThinkTime', defaultValue: '1000')		
-        string (name: 'DeploymentURI', defaultValue: "${env.EASYTRAVEL_STAGING}")
-        string (name: 'URLPaths', defaultValue: '/easytravel/home:homepage;/easytravel/contact:contact;/easytravel/search?selectedLocation=New%20York:search')
+        string (name: 'DeploymentURI', defaultValue: "${env.ORDER_STAGING}")
+        string (name: 'URLPaths', defaultValue: '/:homepage;/order:order;/customer/list.html:customer;/catalog/list.html:catalog;/order/form.html:orderForm')
         string (name: 'remediationAction', defaultValue: 'https://remediation-playbook')
-        string (name: 'qgProject', defaultValue: 'easytravel') 
+        string (name: 'qgProject', defaultValue: 'keptnorders') 
         string (name: 'Stage', defaultValue: 'staging') 
-        string (name: 'Service', defaultValue: 'eteval')
+        string (name: 'Service', defaultValue: 'eval')
 	    string (name: 'TimeZone', defaultValue: 'UTC')
 	    string (name: 'Monitoring', defaultValue: 'dynatrace')
         string (name: 'SLI', defaultValue: 'perftest')
@@ -155,13 +155,13 @@ stages{
 		        quiet: true)        			
     } } 
 
-    stage('Event-Post-Service-easytravel-backend') {
+    stage('Event-Post-Service-keptnOrders-orders') {
         steps {
             script {
 		     meType = 'SERVICE'
 		     context = 'CONTEXTLESS' 
-		     key = 'service'   
-		     value = 'easytravel-backend' 
+		     key = 'keptn_service'   
+		     value = 'order 
 				   
         	jsonPayload = """{"eventType": "CUSTOM_DEPLOYMENT",
   					"attachRules": {
@@ -175,11 +175,6 @@ stages{
 				          "context": "${context}",
 					      "key" : "${key}",
                           "value" : "${value}"
-					      },
-					     {
-				          "context": "KUBERNETES",
-					      "key" : "app",
-                          "value" : "easytravel-backend"
 					      }
 					   ]
 				     }
@@ -213,7 +208,7 @@ stages{
 			quiet: false)		
 	} }
      
-    stage('Event-Post-version-nginx') {
+    stage('Event-Post-version-frontend') {
         steps {
                         
             script {
@@ -221,7 +216,7 @@ stages{
 		     meType = 'PROCESS_GROUP_INSTANCE'
 		     context = 'KUBERNETES'
 		     key = 'app'    
-		     value = 'easytravel-www'    
+		     value = 'frontend'    
 
 		     jsonPayload = """{"eventType": "${eventType}",
   				"attachRules": {
@@ -275,14 +270,14 @@ stages{
 
 	} }  		  
 
-    stage('Event-Post-version-frontend') {
+    stage('Event-Post-version-order') {
         steps {
             script {
 		    eventType = 'CUSTOM_DEPLOYMENT'    
 		    meType = 'PROCESS_GROUP_INSTANCE'
 		    context = 'KUBERNETES'
 		    key = 'app'    
-		    value = 'easytravel-frontend' 
+		    value = 'order' 
 		    
         	jsonPayload = """{"eventType": "${eventType}",
   				"attachRules": {
@@ -334,14 +329,14 @@ stages{
 			quiet: true)
 	} }		
 	
-    stage('Event-Post-version-backend') {
+    stage('Event-Post-version-customer') {
         steps {
             script {
 		    eventType = 'CUSTOM_DEPLOYMENT'    
 		    meType = 'PROCESS_GROUP_INSTANCE'
 		    context = 'KUBERNETES'
 		    key = 'app'    
-		    value = 'easytravel-backend' 
+		    value = 'customer' 
 		    
         	jsonPayload = """{"eventType": "${eventType}",
   				"attachRules": {
@@ -393,14 +388,14 @@ stages{
 			quiet: true)
 	} } 		  
 
-    stage('Event-Post-version-angular') {
+    stage('Event-Post-version-catalog') {
         steps {
             script {
 		    eventType = 'CUSTOM_DEPLOYMENT'    
 		    meType = 'PROCESS_GROUP_INSTANCE'
 		    context = 'KUBERNETES'
 		    key = 'app'    
-		    value = 'easytravel-angular' 
+		    value = 'catalog' 
 		    
         	jsonPayload = """{"eventType": "${eventType}",
   				"attachRules": {
@@ -512,7 +507,7 @@ stages{
 		meType = 'SERVICE'	
 		context = 'KUBERNETES'
 		key = 'app'	
-		value = 'easytravel-www'	
+		value = 'frontend'	
 			
         	jsonPayload = """{"eventType": "${eventType}",
   				"attachRules": {
