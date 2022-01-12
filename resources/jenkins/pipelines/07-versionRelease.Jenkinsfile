@@ -35,13 +35,7 @@ agent any
         string (name: 'WaitForResult', defaultValue: '3')        
 	}
 
-stages{		
-    stage('Git') {
-        steps {
-            git url: 'https://github.com/pcjeffmac/easyTravel-Docker.git', branch: 'master'
-        }
-    }
-   
+stages{	
    stage('App-Deployment') {
      steps{
        echo "Place your deployment steps here..."
