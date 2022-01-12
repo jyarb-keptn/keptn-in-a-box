@@ -155,7 +155,7 @@ stages{
 		     meType = 'SERVICE'
 		     context = 'CONTEXTLESS' 
 		     key = 'keptn_service'   
-		     value = 'order 
+		     value = 'order' 
 				   
         	jsonPayload = """{"eventType": "CUSTOM_DEPLOYMENT",
   					"attachRules": {
