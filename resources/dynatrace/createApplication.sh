@@ -3,9 +3,11 @@
 # Usage:
 # ./createApplication.sh APPLICATION
 
-source ~/keptn-in-a-box/resources/dynatrace/utils.sh
+HOMEDIR="/home/dtu_training"
 
-cd ~/keptn-in-a-box/resources/dynatrace
+source ${HOMEDIR}/keptn-in-a-box/resources/dynatrace/utils.sh
+
+cd ${HOMEDIR}/keptn-in-a-box/resources/dynatrace
 
 readCredsFromFile
 printVariables

@@ -1,7 +1,9 @@
 #!/bin/bash
-source ~/keptn-in-a-box/resources/dynatrace/utils.sh
+HOMEDIR="/home/dtu_training"
 
-cp ~/keptn-in-a-box/resources/dynatrace/creds_dt.json .
+source ${HOMEDIR}/keptn-in-a-box/resources/dynatrace/utils.sh
+
+cp ${HOMEDIR}keptn-in-a-box/resources/dynatrace/creds_dt.json .
 
 readCredsFromFile
 printVariables
