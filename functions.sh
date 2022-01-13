@@ -45,6 +45,8 @@ if [ "$RUNUSER" = "dtu_training" ]; then
   KEPTN_IN_A_BOX_DIR="$USER_HOME_PATH/keptn-in-a-box"
 else
   ET_STAGING_ONLY=false
+  USER_HOME_PATH="/home/ubuntu"
+  USER_KIAB_PATH="$USER_HOME_PATH/keptn-in-a-box"  
   KEPTN_CATALOG_DIR="~/overview"
   KEPTN_EXAMPLES_DIR="~/examples"
   KEPTN_IN_A_BOX_DIR="~/keptn-in-a-box"
@@ -1088,9 +1090,9 @@ postFlightWork() {
     printInfo "Try to set host tags - if it fails - please run $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts/hosttag.sh as sudo user"
     printInfo "USER-PATH=$USER_KIAB_PATH"   
     printInfo "Create host tags"
-    bashnu "cd $USER_KIAB_PATH/resources/dynatrace/scripts && bash $USER_KIAB_PATH/resources/dynatrace/scripts/hosttag.sh"
+    bashnu "cd $USER_KIAB_PATH/resources/dynatrace/scripts && bash $USER_KIAB_PATH/resources/dynatrace/scripts/hosttag.sh ${USER_KIAB_PATH}"
     printInfo "try fallback method to Create host tags"
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts/hosttag.sh"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts/hosttag.sh ${KEPTN_IN_A_BOX_DIR}"
     printInfo "Creates symbolic link to triggers command"
     bashas "cd $KEPTN_IN_A_BOX_DIR && bash setlinks.sh"
     printInfoSection "Set Kubernetes monitoring flags"
