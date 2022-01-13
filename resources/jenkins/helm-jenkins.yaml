@@ -456,10 +456,10 @@ master:
                   }
                 }
               }   
-      pipeline-easytravel-version:  | 
+      pipeline-versions-release:  | 
         jobs:
           - script: >
-              pipelineJob('07-easytravel-release-version') {
+              pipelineJob('07-release-for-version') {
                 definition {
                   cpsScm {
                     scm {
