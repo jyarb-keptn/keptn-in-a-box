@@ -8,7 +8,7 @@
 # ==================================================
 #      ----- Components Versions -----             #
 # ==================================================
-KIAB_RELEASE="0.8.9"
+KIAB_RELEASE="0.8.10"
 # https://github.com/keptn/keptn
 KEPTN_VERSION=0.11.4
 ISTIO_VERSION=1.11.4
