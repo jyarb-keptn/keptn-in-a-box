@@ -67,7 +67,7 @@ master:
   # Used for label app.kubernetes.io/component
   componentName: "jenkins-master"
   image: "jenkins/jenkins"
-  tag: "2.328"
+  tag: "2.330"
   imagePullPolicy: "Always"
   imagePullSecretName:
   # Optionally configure lifetime for master-container
@@ -216,11 +216,11 @@ master:
     - http_request:1.13
     - pipeline-utility-steps:2.11.0
     - blueocean:1.25.2
-    - configuration-as-code:1.55
+    - configuration-as-code:1.55.1
     - job-dsl:1.78.3
 #    - workflow-job:2.42
     - workflow-aggregator:2.6
-    - rebuild:1.32
+    - rebuild:1.33
     - jdk-tool:1.5
     - parameterized-scheduler:1.0
   #  - kubernetes:1.31.1    
