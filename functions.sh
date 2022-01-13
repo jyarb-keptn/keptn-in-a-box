@@ -24,7 +24,7 @@ KEPTN_EXAMPLES_REPO="https://github.com/keptn/examples.git"
 KEPTN_EXAMPLES_BRANCH="0.11.0"
 #KEPTN_EXAMPLES_DIR="~/examples"
 KEPTN_CATALOG_REPO="https://github.com/jyarb-keptn/overview.git"
-KEPTN_CATALOG_BRANCH="0.8.5"
+KEPTN_CATALOG_BRANCH="0.8.6"
 #KEPTN_CATALOG_DIR="~/overview"
 TEASER_IMAGE="pcjeffmac/nginxacm:0.8.1"
 KEPTN_BRIDGE_IMAGE="keptn/bridge2:0.8.0"
@@ -167,8 +167,8 @@ installationBundleDemo() {
   # use for order application
   keptndemo_catalogonboard=true
   # use for easytravel
-  keptndemo_easytravelonboard=false
-  keptndemo_easytraveloadgen=false
+  keptndemo_easytravelonboard=true
+  keptndemo_easytraveloadgen=true
   # dashboards for AIOPs
   keptndashboard_load=true
   # create custom metrics
