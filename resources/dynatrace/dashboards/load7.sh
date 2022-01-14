@@ -20,14 +20,14 @@ OWNER=$3
 curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?Api-Token='${DT_API_TOKEN}'' \
 --header 'Content-Type: application/json; charset=utf-8' \
 --data-raw '{
-"dashboardMetadata": {
+ "dashboardMetadata": {
     "name": "KQG;project=sockshop;stage=staging;service=carts",
     "shared": false,
     "owner": "'${OWNER}'",
     "dashboardFilter": {
       "timeframe": "-30m",
       "managementZone": {
-        "id": "-5147804955159750385",
+        "id": "2561809354172499922",
         "name": "Keptn: sockshop staging"
       }
     },
@@ -339,8 +339,7 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
         "filtersPerEntityType": {
           "PROCESS_GROUP_INSTANCE": {
             "AUTO_TAGS": [
-              "keptn_service:carts",
-              "keptn_project:sockshop"
+              "keptn_service:carts"
             ]
           }
         }
