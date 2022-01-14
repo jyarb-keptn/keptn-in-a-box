@@ -3,7 +3,7 @@
 # Usage:
 # ./createTestStepCalculatedMetrics.sh CONTEXTLESS keptn-project simpleproject
 
-HOMEDIR="/home/dtu_training"
+HOMEDIR=$1
 
 source ${HOMEDIR}/keptn-in-a-box/resources/dynatrace/utils.sh
 

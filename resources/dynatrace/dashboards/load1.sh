@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HOMEDIR="/home/dtu_training"
+HOMEDIR=$1
 
 source ${HOMEDIR}/keptn-in-a-box/resources/dynatrace/utils.sh
 
@@ -15,8 +15,8 @@ echo $DT_API_TOKEN
 DT_TENANT=$DT_TENANT
 DT_API_TOKEN=$DT_API_TOKEN
 
-DOMAIN=$1
-OWNER=$2
+DOMAIN=$2
+OWNER=$3
 
 curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?Api-Token='${DT_API_TOKEN}'' \
 --header 'Content-Type: application/json; charset=utf-8' \

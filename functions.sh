@@ -39,7 +39,7 @@ RUNUSER=$USER
 
 echo "Run-User: ${USER}"
 
-if [ "$RUNUSER" = "dtu_training" ]; then
+if [ "$RUNUSER" = "root" ]; then
   ET_STAGING_ONLY=true
   USER_HOME_PATH="/home/dtu_training"
   USER_KIAB_PATH="$USER_HOME_PATH/keptn-in-a-box"
@@ -1002,46 +1002,46 @@ keptndemoEasytraveloadgen() {
 metricCreation() {
   if [ "$createMetrics" = true ]; then
     printInfoSection "create request attributes for calculated metrics"
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts/createRequestAttributes.sh"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts/createRequestAttributes.sh ${KEPTN_IN_A_BOX_DIR}"
 	sleep 5
     printInfoSection "create calculated metrics..."
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts/createTestStepCalculatedMetrics.sh CONTEXTLESS keptn_project keptnorders"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts/createTestStepCalculatedMetrics.sh CONTEXTLESS keptn_project keptnorders ${KEPTN_IN_A_BOX_DIR}"
 	sleep 5
 	printInfoSection "create process group nameing rule..."
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts/createProcessGroupName.sh"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts/createProcessGroupName.sh ${KEPTN_IN_A_BOX_DIR}"
 	sleep 5
 	printInfoSection "create process group nameing rule..."
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts/createServiceName.sh"    
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts/createServiceName.sh ${KEPTN_IN_A_BOX_DIR}"    
   fi
 }
 
 applicationCreation() {
   if [ "$createApplications" = true ]; then
     printInfoSection "create Application and Detection Rules..."
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/createApplication.sh"   
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/createApplication.sh ${KEPTN_IN_A_BOX_DIR}"   
   fi
 }
 
 loadKeptnDashboard() {
   if [ "$keptndashboard_load" = true ]; then
     printInfoSection "Keptn loading Dashboards"
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/dashboards && bash load1.sh ${DOMAIN} ${CERTMANAGER_EMAIL}"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/dashboards && bash load1.sh ${KEPTN_IN_A_BOX_DIR} ${DOMAIN} ${CERTMANAGER_EMAIL}"
     sleep 2
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/dashboards && bash load2.sh ${DOMAIN} ${CERTMANAGER_EMAIL}"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/dashboards && bash load2.sh ${KEPTN_IN_A_BOX_DIR} ${DOMAIN} ${CERTMANAGER_EMAIL}"
     sleep 2
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/dashboards && bash load3.sh ${DOMAIN} ${CERTMANAGER_EMAIL}"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/dashboards && bash load3.sh ${KEPTN_IN_A_BOX_DIR} ${DOMAIN} ${CERTMANAGER_EMAIL}"
     sleep 2
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/dashboards && bash load4.sh ${DOMAIN} ${CERTMANAGER_EMAIL}"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/dashboards && bash load4.sh ${KEPTN_IN_A_BOX_DIR} ${DOMAIN} ${CERTMANAGER_EMAIL}"
     sleep 2
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/dashboards && bash load5.sh ${DOMAIN} ${CERTMANAGER_EMAIL}"    
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/dashboards && bash load5.sh ${KEPTN_IN_A_BOX_DIR} ${DOMAIN} ${CERTMANAGER_EMAIL}"    
     sleep 2
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/dashboards && bash load6.sh ${DOMAIN} ${CERTMANAGER_EMAIL}"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/dashboards && bash load6.sh ${KEPTN_IN_A_BOX_DIR} ${DOMAIN} ${CERTMANAGER_EMAIL}"
     sleep 2
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/dashboards && bash load7.sh ${DOMAIN} ${CERTMANAGER_EMAIL}"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/dashboards && bash load7.sh ${KEPTN_IN_A_BOX_DIR} ${DOMAIN} ${CERTMANAGER_EMAIL}"
     sleep 2
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/dashboards && bash load8.sh ${DOMAIN} ${CERTMANAGER_EMAIL}"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/dashboards && bash load8.sh ${KEPTN_IN_A_BOX_DIR} ${DOMAIN} ${CERTMANAGER_EMAIL}"
     sleep 2
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/dashboards && bash load9.sh ${DOMAIN} ${CERTMANAGER_EMAIL}"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/dashboards && bash load9.sh ${KEPTN_IN_A_BOX_DIR} ${DOMAIN} ${CERTMANAGER_EMAIL}"
   fi
 }
 
@@ -1099,12 +1099,12 @@ postFlightWork() {
     bashas "chown -f -R ${USER} ~/.kube"
     #cp $KEPTN_IN_A_BOX_DIR/resources/misc/daemon.json /etc/docker/daemon.json
     #systemctl restart docker
-    printInfo "Try to set host tags - if it fails - please run $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts/hosttag.sh as sudo user"
+    printInfo "Try to set host tags - if it fails - please run $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts/hosttag.sh ${KEPTN_IN_A_BOX_DIR} as sudo user"
     printInfo "USER-PATH=$USER_KIAB_PATH"   
     printInfo "Create host tags"
-    bashnu "cd $USER_KIAB_PATH/resources/dynatrace/scripts && bash $USER_KIAB_PATH/resources/dynatrace/scripts/hosttag.sh"
+    bashnu "cd $USER_KIAB_PATH/resources/dynatrace/scripts && bash $USER_KIAB_PATH/resources/dynatrace/scripts/hosttag.sh ${USER_KIAB_PATH}"
     printInfo "try fallback method to Create host tags"
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts/hosttag.sh"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts/hosttag.sh ${KEPTN_IN_A_BOX_DIR}"
     printInfo "Creates symbolic link to triggers command"
     bashas "cd $KEPTN_IN_A_BOX_DIR && bash setlinks.sh"
     printInfoSection "Set Kubernetes monitoring flags"
