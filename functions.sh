@@ -39,22 +39,14 @@ RUNUSER=$USER
 
 echo "Run-User: ${USER}"
 
-if [ "$RUNUSER" = "dtu_training" ]; then
-  ET_STAGING_ONLY=true
-  USER_HOME_PATH="/home/dtu_training"
-  mkdir -p ${USER_HOME_PATH}
-  USER_KIAB_PATH="$USER_HOME_PATH/keptn-in-a-box"
-  KEPTN_EXAMPLES_DIR="$USER_HOME_PATH/examples"
-  KEPTN_CATALOG_DIR="$USER_HOME_PATH/overview"
-  KEPTN_IN_A_BOX_DIR="$USER_HOME_PATH/keptn-in-a-box"
-else
-  ET_STAGING_ONLY=false
-  USER_HOME_PATH="/home/dtu_training"
-  USER_KIAB_PATH="$USER_HOME_PATH/keptn-in-a-box" 
-  KEPTN_CATALOG_DIR="~/overview"
-  KEPTN_EXAMPLES_DIR="~/examples"
-  KEPTN_IN_A_BOX_DIR="~/keptn-in-a-box"
-fi
+# use these setting overrides for dtu_training setup
+ET_STAGING_ONLY=false
+USER_HOME_PATH="/home/dtu_training"
+USER_KIAB_PATH="$USER_HOME_PATH/keptn-in-a-box" 
+KEPTN_CATALOG_DIR="$USER_HOME_PATH/overview"
+KEPTN_EXAMPLES_DIR="$USER_HOME_PATH/examples"
+KEPTN_IN_A_BOX_DIR="$USER_HOME_PATH/keptn-in-a-box"
+
 
 # - The user to run the commands from. Will be overwritten when executing this shell with sudo, 
 # this is just needed when spinning machines programatically and running the script with root without an interactive shell
