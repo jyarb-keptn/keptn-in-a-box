@@ -1,7 +1,9 @@
 #!/bin/bash
 source ../dynatrace/utils.sh
 
-cp /home/dtu_training/keptn-in-a-box/resources/dynatrace/creds_dt.json /home/dtu_training/keptn-in-a-box/resources/jenkins/creds_dt.json
+HOMEDIR=$2
+
+cp ${HOMEDIR}/resources/dynatrace/creds_dt.json ${HOMEDIR}/resources/jenkins/creds_dt.json
 
 if [ $# -eq 1 ]; then
     # Read JSON and set it in the CREDS variable 
