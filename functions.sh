@@ -105,6 +105,7 @@ patch_kubernetes_dashboard=false
 create_workshop_user=false
 jmeter_install=false
 keptnwebservice=false
+sockshop_secret=false
 post_flight=false
 patch_config_service=false
 dynatrace_project= false
@@ -170,6 +171,7 @@ installationBundleDemo() {
   jmeter_install=true
   dynatrace_project=true
   keptnwebservice=true
+  sockshop_secret=true
   post_flight=true
   patch_config_service=false
 }
@@ -1030,6 +1032,13 @@ loadKeptnWebService() {
  fi
 }
 
+setsockshopsecret() {
+ if [ "$sockshop_secret" = true ]; then
+    printInfoSection "create keptn secret for sockshop"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts && bash setdbenv.sh"    
+ fi
+}
+
 createWorkshopUser() {
   if [ "$create_workshop_user" = true ]; then
     printInfoSection "Creating Workshop User from user($USER) into($NEWUSER)"
@@ -1124,7 +1133,7 @@ printInstalltime() {
 
 printFlags() {
   printInfoSection "Function Flags values"
-  for i in {selected_bundle,verbose_mode,update_ubuntu,docker_install,microk8s_install,setup_proaliases,enable_k8dashboard,enable_registry,istio_install,helm_install,hostalias,git_deploy,git_migrate,certmanager_install,keptn_install,keptn_install_qualitygates,keptn_examples_clone,resources_clone,keptn_catalog_clone,dynatrace_savecredentials,dynatrace_configure_monitoring,dynatrace_activegate_install,dynatrace_configure_workloads,jenkins_deploy,keptn_bridge_disable_login,keptn_bridge_eap,keptndeploy_homepage,keptndemo_cartsload,keptndemo_unleash,keptndemo_unleash_configure,keptndemo_cartsonboard,keptndemo_catalogonboard,keptndemo_easytravelonboard,keptndemo_easytraveloadgen,jmeter_install,expose_kubernetes_api,expose_kubernetes_dashboard,patch_kubernetes_dashboard,certmanager_enable,keptnwebservice,create_workshop_user,keptndashboard_load,createMetrics,createApplications,dynatrace_project,post_flight,patch_config_service}; 
+  for i in {selected_bundle,verbose_mode,update_ubuntu,docker_install,microk8s_install,setup_proaliases,enable_k8dashboard,enable_registry,istio_install,helm_install,hostalias,git_deploy,git_migrate,certmanager_install,keptn_install,keptn_install_qualitygates,keptn_examples_clone,resources_clone,keptn_catalog_clone,dynatrace_savecredentials,dynatrace_configure_monitoring,dynatrace_activegate_install,dynatrace_configure_workloads,jenkins_deploy,keptn_bridge_disable_login,keptn_bridge_eap,keptndeploy_homepage,keptndemo_cartsload,keptndemo_unleash,keptndemo_unleash_configure,keptndemo_cartsonboard,keptndemo_catalogonboard,keptndemo_easytravelonboard,keptndemo_easytraveloadgen,jmeter_install,expose_kubernetes_api,expose_kubernetes_dashboard,patch_kubernetes_dashboard,certmanager_enable,keptnwebservice,sockshop_secret,create_workshop_user,keptndashboard_load,createMetrics,createApplications,dynatrace_project,post_flight,patch_config_service}; 
   do 
     echo "$i = ${!i}"
   done
@@ -1195,6 +1204,7 @@ doInstallation() {
   keptndemoEasytraveloadgen
   metricCreation
   certmanagerEnable
+  setsockshopsecret
   postFlightWork
 
   DISK_FINAL=$(getUsedDiskSpace)
