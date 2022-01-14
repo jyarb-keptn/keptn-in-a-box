@@ -36,7 +36,7 @@ KEPTN_IN_A_BOX_REPO="https://github.com/jyarb-keptn/keptn-in-a-box.git"
 ## Parmeters for dtu_training accomidations
 RUNUSER="$USER"
 
-if [ "$RUNUSER" = "dtu_training" ]; then
+if [ "$RUNUSER" = "root" ]; then
   ET_STAGING_ONLY=true
   USER_HOME_PATH="/home/dtu_training"
   USER_KIAB_PATH="$USER_HOME_PATH/keptn-in-a-box"
