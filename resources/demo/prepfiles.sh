@@ -3,7 +3,7 @@
 KEPTN_PREP_DIR="overview"
 KEPTN_EXAMPLES_DIR="examples"
 
-HOMEDIR="/home/dtu_training"
+HOMEDIR=$1
 
 echo $HOMEDIR
 echo "moving files...."

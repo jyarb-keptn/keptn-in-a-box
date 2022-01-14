@@ -915,7 +915,7 @@ keptndemoCartsonboard() {
   if [ "$keptndemo_cartsonboard" = true ]; then
     printInfoSection "Keptn onboarding Carts"
     printInfoSection "Prep jmeter files"
-    bashas "cd $KEPTN_EXAMPLES_DIR/onboarding-carts/ && bash $KEPTN_IN_A_BOX_DIR/resources/demo/prepfiles.sh"
+    bashas "cd $KEPTN_EXAMPLES_DIR/onboarding-carts/ && bash $KEPTN_IN_A_BOX_DIR/resources/demo/prepfiles.sh ${USER_HOME_PATH}"
     printInfoSection "Keptn onboarding Carts"
     bashas "cd $KEPTN_EXAMPLES_DIR/onboarding-carts/ && bash $KEPTN_IN_A_BOX_DIR/resources/demo/onboard_carts.sh" 
     printInfoSection "Keptn onboarding Carts QualityGates"
@@ -930,7 +930,7 @@ keptndemoCartsonboard() {
 keptndemoDeployCartsloadgenerator() {
   if [ "$keptndemo_cartsload" = true ]; then
     printInfoSection "Deploy Cartsload Generator"
-    bashas "cd $KEPTN_CATALOG_DIR/demo_onbording/loadgen && bash $KEPTN_CATALOG_DIR/demo_onbording/loadgen/prepfiles.sh ${DOMAIN}"
+    bashas "cd $KEPTN_CATALOG_DIR/demo_onbording/loadgen && bash $KEPTN_CATALOG_DIR/demo_onbording/loadgen/prepfiles.sh ${DOMAIN} ${USER_HOME_PATH}"
     bashas "cd $KEPTN_CATALOG_DIR/demo_onbording/loadgen && kubectl apply -f cartsloadgen-base.yaml -n loadgen --record"
   fi
 }

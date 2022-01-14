@@ -1,9 +1,9 @@
 #!/bin/bash
 HOMEDIR=$1
 
-source ${HOMEDIR}/keptn-in-a-box/resources/dynatrace/utils.sh
+source ${HOMEDIR}/resources/dynatrace/utils.sh
 
-cp ${HOMEDIR}keptn-in-a-box/resources/dynatrace/creds_dt.json .
+cp ${HOMEDIR}/resources/dynatrace/creds_dt.json .
 
 readCredsFromFile
 printVariables
