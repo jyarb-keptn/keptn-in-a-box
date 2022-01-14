@@ -45,7 +45,7 @@ if [ "$RUNUSER" = "root" ]; then
   KEPTN_IN_A_BOX_DIR="$USER_HOME_PATH/keptn-in-a-box"
 else
   ET_STAGING_ONLY=false
-  USER_HOME_PATH="/home/ubuntu"
+  USER_HOME_PATH=$HOME
   USER_KIAB_PATH="$USER_HOME_PATH/keptn-in-a-box"  
   KEPTN_CATALOG_DIR="~/overview"
   KEPTN_EXAMPLES_DIR="~/examples"
