@@ -1035,7 +1035,7 @@ loadKeptnWebService() {
 setsockshopsecret() {
  if [ "$sockshop_secret" = true ]; then
     printInfoSection "create keptn secret for sockshop"
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts && bash setdbenv.sh"    
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts && bash setdbenv.sh ${DT_TENANT} ${DT_API_TOKEN} ${DOMAIN}"    
  fi
 }
 
