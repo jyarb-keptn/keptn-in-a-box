@@ -42,6 +42,7 @@ echo "Run-User: ${USER}"
 if [ "$RUNUSER" = "root" ]; then
   ET_STAGING_ONLY=true
   USER_HOME_PATH="/home/dtu_training"
+  mkdir -p ${USER_HOME_PATH}
   USER_KIAB_PATH="$USER_HOME_PATH/keptn-in-a-box"
   KEPTN_EXAMPLES_DIR="$USER_HOME_PATH/examples"
   KEPTN_CATALOG_DIR="$USER_HOME_PATH/overview"
