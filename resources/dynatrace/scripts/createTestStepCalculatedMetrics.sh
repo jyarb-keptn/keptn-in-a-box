@@ -5,9 +5,9 @@
 
 HOMEDIR=$4
 
-source ${HOMEDIR}/keptn-in-a-box/resources/dynatrace/utils.sh
+source ${HOMEDIR}/resources/dynatrace/utils.sh
 
-cd ${HOMEDIR}/keptn-in-a-box/resources/dynatrace
+cd ${HOMEDIR}/resources/dynatrace
 
 readCredsFromFile
 printVariables

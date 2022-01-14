@@ -39,7 +39,7 @@ RUNUSER=$USER
 
 echo "Run-User: ${USER}"
 
-if [ "$RUNUSER" = "root" ]; then
+if [ "$RUNUSER" = "dtu_training" ]; then
   ET_STAGING_ONLY=true
   USER_HOME_PATH="/home/dtu_training"
   mkdir -p ${USER_HOME_PATH}
@@ -49,7 +49,7 @@ if [ "$RUNUSER" = "root" ]; then
   KEPTN_IN_A_BOX_DIR="$USER_HOME_PATH/keptn-in-a-box"
 else
   ET_STAGING_ONLY=false
-  USER_HOME_PATH=$HOME
+  USER_HOME_PATH="/home/ubuntu"
   USER_KIAB_PATH="$USER_HOME_PATH/keptn-in-a-box" 
   KEPTN_CATALOG_DIR="~/overview"
   KEPTN_EXAMPLES_DIR="~/examples"
