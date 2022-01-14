@@ -34,7 +34,10 @@ KEPTN_IN_A_BOX_REPO="https://github.com/jyarb-keptn/keptn-in-a-box.git"
 #KEPTN_IN_A_BOX_DIR="~/keptn-in-a-box"
 
 ## Parmeters for dtu_training accomidations
-RUNUSER="dtu_training"
+#RUNUSER="dtu_training"
+RUNUSER=$USER
+
+echo "Run-User: ${USER}"
 
 if [ "$RUNUSER" = "dtu_training" ]; then
   ET_STAGING_ONLY=true
