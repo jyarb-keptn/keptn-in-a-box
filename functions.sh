@@ -10,14 +10,14 @@
 # ==================================================
 KIAB_RELEASE="0.8.9.1"
 # https://github.com/keptn/keptn
-KEPTN_VERSION=0.12.0
+KEPTN_VERSION=0.11.4
 ISTIO_VERSION=1.11.4
 CERTMANAGER_VERSION=1.6.1
 #CERTMANAGER_VERSION=1.1.1
 # https://github.com/helm/helm/releases
 HELM_VERSION=3.7.1
 # https://github.com/keptn-contrib/dynatrace-service
-KEPTN_DT_SERVICE_VERSION=0.20.0
+KEPTN_DT_SERVICE_VERSION=0.19.0
 # https://github.com/keptn-contrib/dynatrace-sli-service
 KEPTN_DT_SLI_SERVICE_VERSION=0.12.1
 # https://github.com/keptn/examples
@@ -719,7 +719,7 @@ keptnInstall() {
 
 jmeterService() {
   if [ "$jmeter_install" = true ]; then
-  printInfoSection "JMeter Service 0.12.0"
+  printInfoSection "JMeter Service 0.10.0"
   bashas "kubectl delete -n keptn deployment jmeter-service"
   bashas "kubectl apply -f https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/${KIAB_RELEASE}/resources/keptn/jmeter-service.yaml -n keptn --record"
   waitForAllPods keptn
