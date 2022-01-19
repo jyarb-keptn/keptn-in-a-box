@@ -61,6 +61,7 @@ updateKeptnRepos(){
     for project in `keptn get projects | awk '{ if (NR!=1) print $1}'`;
     do 
     KEPTN_PROJECT=$project
+    echo "$GIT_SERVER/$GIT_USER/$KEPTN_PROJECT.git"
     keptn update project $KEPTN_PROJECT --git-user=$GIT_USER --git-token=$API_TOKEN --git-remote-url=$GIT_SERVER/$GIT_USER/$KEPTN_PROJECT.git
     done
 }
