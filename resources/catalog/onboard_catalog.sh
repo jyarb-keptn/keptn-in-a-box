@@ -9,14 +9,14 @@ if [[ -d "catalog" ]]; then
     keptn add-resource --project=keptnorders --resource=./shipyard.yaml --resourceUri=shipyard.yaml
     # Onboarding - prepare  Keptn
     echo "onboard services"
-    #keptn onboard service order --project=keptnorders --chart=./order
-    keptn add-resource --project=keptnorders --service=order --all-stages --resource=./order --resourceUri=helm/order
-    #keptn onboard service catalog --project=keptnorders --chart=./catalog
-    keptn add-resource --project=keptnorders --service=catalog --all-stages --resource=./catalog --resourceUri=helm/catalog
-    #keptn onboard service customer --project=keptnorders --chart=./customer
-    keptn add-resource --project=keptnorders --service=customer --all-stages --resource=./customer --resourceUri=helm/customer
-    #keptn onboard service frontend --project=keptnorders --chart=./frontend
-    keptn add-resource --project=keptnorders --service=frontend --all-stages --resource=./frontend --resourceUri=helm/frontend
+    keptn onboard service order --project=keptnorders --chart=./order
+    #keptn add-resource --project=keptnorders --service=order --all-stages --resource=./order --resourceUri=helm/order
+    keptn onboard service catalog --project=keptnorders --chart=./catalog
+    #keptn add-resource --project=keptnorders --service=catalog --all-stages --resource=./catalog --resourceUri=helm/catalog
+    keptn onboard service customer --project=keptnorders --chart=./customer
+    #keptn add-resource --project=keptnorders --service=customer --all-stages --resource=./customer --resourceUri=helm/customer
+    keptn onboard service frontend --project=keptnorders --chart=./frontend
+    #keptn add-resource --project=keptnorders --service=frontend --all-stages --resource=./frontend --resourceUri=helm/frontend
     
     # add jmeter resources for staging
     echo "load for project"
