@@ -52,7 +52,9 @@ createKeptnRepos() {
     echo "Creating repositories for Keptn projects "
     for project in `keptn get projects | awk '{ if (NR!=1) print $1}'`;
     do 
-        createKeptnRepo $project
+        if [ "${project}" != "NAME" ]; then
+            createKeptnRepo $project
+        fi
     done
 }
 
@@ -62,14 +64,14 @@ updateKeptnRepos(){
     do 
     KEPTN_PROJECT=$project
     echo "$GIT_SERVER/$GIT_USER/$KEPTN_PROJECT.git"
-    keptn update project $KEPTN_PROJECT --git-user=$GIT_USER --git-token=$API_TOKEN --git-remote-url=$GIT_SERVER/$GIT_USER/$KEPTN_PROJECT.git
+    if [ "${project}" != "NAME" ]; then
+        keptn update project $KEPTN_PROJECT --git-user=$GIT_USER --git-token=$API_TOKEN --git-remote-url=$GIT_SERVER/$GIT_USER/$KEPTN_PROJECT.git
+    fi
     done
 }
 
 updateKeptnRepo(){
-    if [ "$1" = "NAME" ]; then
-      echo "bad substitution...."
-    else
+    if [ "$1" != "NAME" ]; then
       KEPTN_PROJECT=$1
       keptn update project $KEPTN_PROJECT --git-user=$GIT_USER --git-token=$API_TOKEN --git-remote-url=$GIT_SERVER/$GIT_USER/$KEPTN_PROJECT.git
     fi
@@ -82,9 +84,7 @@ createKeptnRepoManually(){
 
 createKeptnRepo(){
     echo "Creating and migrating Keptn project to self-hosted git for $1"
-    if [ "$1" = "NAME" ]; then
-      echo "bad substitution...."
-    else
+    if [ "$1" != "NAME" ]; then
       createGitRepo $1
       updateKeptnRepo $1
     fi
