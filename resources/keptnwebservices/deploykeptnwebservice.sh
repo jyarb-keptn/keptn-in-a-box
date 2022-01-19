@@ -18,5 +18,6 @@ sed -e 's~domain.placeholder~'"$DOMAIN"'~' \
 #echo "install keptnwebservice via keptn"
 keptn create project webservices --shipyard=./shipyard.yaml
 #keptn onboard service keptnwebservice --project=webservices --chart=./keptnwebservice
+keptn create service keptnwebservice --project=webservices
 keptn add-resource --project=webservices --service=keptnwebservice --all-stages --resource=./keptnwebservice.tgz --resourceUri=helm/keptnwebservice.tgz
 keptn trigger delivery --project=webservices --service=keptnwebservice --image=docker.io/grabnerandi/keptnwebservice --tag=2.0.0 --labels=creator=cli,build=01

@@ -10,14 +10,19 @@ if [[ -d "easytravel-frontend" ]]; then
     # Onboarding - prepare  Keptn
     echo "onboard services"
     #keptn onboard service easytravel-mongodb --project=easytravel --chart=./easytravel-mongodb
+    keptn create service easytravel-mongodb --project=easytravel
     keptn add-resource --project=easytravel --service=easytravel-mongodb --all-stages --resource=./easytravel-mongodb.tgz --resourceUri=helm/easytravel-mongodb.tgz
     #keptn onboard service easytravel-backend --project=easytravel --chart=./easytravel-backend
+    keptn create service easytravel-backend --project=easytravel
     keptn add-resource --project=easytravel --service=easytravel-backend --all-stages --resource=./easytravel-backend.tgz --resourceUri=helm/easytravel-backend.tgz
     #keptn onboard service easytravel-frontend --project=easytravel --chart=./easytravel-frontend
+    keptn create service easytravel-frontend --project=easytravel
     keptn add-resource --project=easytravel --service=easytravel-frontend --all-stages --resource=./easytravel-frontend.tgz --resourceUri=helm/easytravel-frontend.tgz
     #keptn onboard service easytravel-www --project=easytravel --chart=./easytravel-www
+    keptn create service easytravel-www --project=easytravel
     keptn add-resource --project=easytravel --service=easytravel-www --all-stages --resource=./easytravel-www.tgz --resourceUri=helm/easytravel-www.tgz
     #keptn onboard service easytravel-angular --project=easytravel --chart=./easytravel-angular
+    keptn create service easytravel-angular --project=easytravel
     keptn add-resource --project=easytravel --service=easytravel-angular --all-stages --resource=./easytravel-angular.tgz --resourceUri=helm/easytravel-angular.tgz
     #keptn onboard service loadgenerator --project=easytravel --chart=./loadgen
     
