@@ -77,7 +77,8 @@ createKeptnRepoManually(){
 
 createKeptnRepo(){
     echo "Creating and migrating Keptn project to self-hosted git for $1"
-    if [ $1 = "NAME" ];then
+    if [ "$1" = "NAME" ]; then
+      echo "bad substitution...."
     else
       createGitRepo $1
       updateKeptnRepo $1
