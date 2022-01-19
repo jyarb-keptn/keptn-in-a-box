@@ -66,8 +66,12 @@ updateKeptnRepos(){
 }
 
 updateKeptnRepo(){
-    KEPTN_PROJECT=$1
-    keptn update project $KEPTN_PROJECT --git-user=$GIT_USER --git-token=$API_TOKEN --git-remote-url=$GIT_SERVER/$GIT_USER/$KEPTN_PROJECT.git
+    if [ "$1" = "NAME" ]; then
+      echo "bad substitution...."
+    else
+      KEPTN_PROJECT=$1
+      keptn update project $KEPTN_PROJECT --git-user=$GIT_USER --git-token=$API_TOKEN --git-remote-url=$GIT_SERVER/$GIT_USER/$KEPTN_PROJECT.git
+    fi
 }
 
 createKeptnRepoManually(){
