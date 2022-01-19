@@ -10,13 +10,13 @@ if [[ -d "catalog" ]]; then
     # Onboarding - prepare  Keptn
     echo "onboard services"
     #keptn onboard service order --project=keptnorders --chart=./order
-    keptn add-resource --project=keptnorders --service=order --all-stages --resource=./order --resourceUri=helm/order
+    keptn add-resource --project=keptnorders --service=order --all-stages --resource=./order.tgz --resourceUri=helm/order.tgz
     #keptn onboard service catalog --project=keptnorders --chart=./catalog
-    keptn add-resource --project=keptnorders --service=catalog --all-stages --resource=./catalog --resourceUri=helm/catalog
+    keptn add-resource --project=keptnorders --service=catalog --all-stages --resource=./catalog.tgz --resourceUri=helm/catalog.tgz
     #keptn onboard service customer --project=keptnorders --chart=./customer
-    keptn add-resource --project=keptnorders --service=customer --all-stages --resource=./customer --resourceUri=helm/customer
+    keptn add-resource --project=keptnorders --service=customer --all-stages --resource=./customer.tgz --resourceUri=helm/customer.tgz
     #keptn onboard service frontend --project=keptnorders --chart=./frontend
-    keptn add-resource --project=keptnorders --service=frontend --all-stages --resource=./frontend --resourceUri=helm/frontend
+    keptn add-resource --project=keptnorders --service=frontend --all-stages --resource=./frontend.tgz --resourceUri=helm/frontend.tgz
     
     # add jmeter resources for staging
     echo "load for project"

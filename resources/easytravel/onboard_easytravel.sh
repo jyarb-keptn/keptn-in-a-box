@@ -10,15 +10,15 @@ if [[ -d "easytravel-frontend" ]]; then
     # Onboarding - prepare  Keptn
     echo "onboard services"
     #keptn onboard service easytravel-mongodb --project=easytravel --chart=./easytravel-mongodb
-    keptn add-resource --project=easytravel --service=easytravel-mongodb --all-stages --resource=./easytravel-mongodb --resourceUri=helm/easytravel-mongodb
+    keptn add-resource --project=easytravel --service=easytravel-mongodb --all-stages --resource=./easytravel-mongodb.tgz --resourceUri=helm/easytravel-mongodb.tgz
     #keptn onboard service easytravel-backend --project=easytravel --chart=./easytravel-backend
-    keptn add-resource --project=easytravel --service=easytravel-backend --all-stages --resource=./easytravel-backend --resourceUri=helm/easytravel-backend
+    keptn add-resource --project=easytravel --service=easytravel-backend --all-stages --resource=./easytravel-backend.tgz --resourceUri=helm/easytravel-backend.tgz
     #keptn onboard service easytravel-frontend --project=easytravel --chart=./easytravel-frontend
-    keptn add-resource --project=easytravel --service=easytravel-frontend --all-stages --resource=./easytravel-frontend --resourceUri=helm/easytravel-frontend
+    keptn add-resource --project=easytravel --service=easytravel-frontend --all-stages --resource=./easytravel-frontend.tgz --resourceUri=helm/easytravel-frontend.tgz
     #keptn onboard service easytravel-www --project=easytravel --chart=./easytravel-www
-    keptn add-resource --project=easytravel --service=easytravel-www --all-stages --resource=./easytravel-www --resourceUri=helm/easytravel-www
+    keptn add-resource --project=easytravel --service=easytravel-www --all-stages --resource=./easytravel-www.tgz --resourceUri=helm/easytravel-www.tgz
     #keptn onboard service easytravel-angular --project=easytravel --chart=./easytravel-angular
-    keptn add-resource --project=easytravel --service=easytravel-angular --all-stages --resource=./easytravel-angular --resourceUri=helm/easytravel-angular
+    keptn add-resource --project=easytravel --service=easytravel-angular --all-stages --resource=./easytravel-angular.tgz --resourceUri=helm/easytravel-angular.tgz
     #keptn onboard service loadgenerator --project=easytravel --chart=./loadgen
     
     # add jmeter resources for staging
