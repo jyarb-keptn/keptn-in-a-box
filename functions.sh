@@ -10,14 +10,14 @@
 # ==================================================
 KIAB_RELEASE="0.8.9.1"
 # https://github.com/keptn/keptn
-KEPTN_VERSION=0.11.4
+KEPTN_VERSION=0.12.0
 ISTIO_VERSION=1.11.4
 CERTMANAGER_VERSION=1.6.1
 #CERTMANAGER_VERSION=1.1.1
 # https://github.com/helm/helm/releases
 HELM_VERSION=3.7.1
 # https://github.com/keptn-contrib/dynatrace-service
-KEPTN_DT_SERVICE_VERSION=0.19.0
+KEPTN_DT_SERVICE_VERSION=0.20.0
 # https://github.com/keptn-contrib/dynatrace-sli-service
 KEPTN_DT_SLI_SERVICE_VERSION=0.12.1
 # https://github.com/keptn/examples
