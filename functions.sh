@@ -918,6 +918,8 @@ keptndemoDeployCartsloadgenerator() {
 
 keptndemoCatalogonboard() {
   if [ "$keptndemo_catalogonboard" = true ]; then
+    printInfoSection "Create tar files for helm..."
+    bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash create-helm-files.sh"
     printInfoSection "Keptn onboarding orders application"
     #TODO Parameterize Catalog Version.
     bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/catalog/onboard_catalog.sh && bash $KEPTN_IN_A_BOX_DIR/resources/catalog/onboard_catalog_qualitygates.sh"
@@ -936,6 +938,8 @@ keptndemoCatalogonboard() {
 
 keptndemoEasytravelonboard() {
   if [ "$keptndemo_easytravelonboard" = true ]; then
+    printInfoSection "Create tar files for helm..."
+    bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash create-helm-files.sh"
     printInfoSection "Keptn onboarding easytravel application"
     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/onboard_easytravel.sh"
     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/onboard_easytravel_qualitygates.sh"
