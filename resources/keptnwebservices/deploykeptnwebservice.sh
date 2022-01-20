@@ -15,10 +15,12 @@ sed -e 's~domain.placeholder~'"$DOMAIN"'~' \
     -e 's~token.placeholder~'"$TOKEN"'~' \
     deployment.yaml > keptnwebservice/templates/deployment.yaml
 
-tar cvzf keptnwebservice.tgz keptnwebservice
-#echo "install keptnwebservice via keptn"
+echo "creating tarball...."
+tar -cvzf keptnwebservice.tgz keptnwebservice
+echo "install keptnwebservice via keptn CLI..."
 keptn create project webservices --shipyard=./shipyard.yaml
 #keptn onboard service keptnwebservice --project=webservices --chart=./keptnwebservice
 keptn create service keptnwebservice --project=webservices
 keptn add-resource --project=webservices --service=keptnwebservice --all-stages --resource=./keptnwebservice.tgz --resourceUri=helm/keptnwebservice.tgz
+echo "trigger delivery..."
 keptn trigger delivery --project=webservices --service=keptnwebservice --image=docker.io/grabnerandi/keptnwebservice --tag=2.0.0 --labels=creator=cli,build=01
