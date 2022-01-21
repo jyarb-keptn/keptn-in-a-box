@@ -14,13 +14,13 @@ Keptn-In-A-Box is part of the automation for delivering Autonomous Cloud Worksho
 A simple Bash script will set-up a fully functional Single Node Kubernetes Cluster with Dynatrace installed and Kubernetes Cluster, Cloud Applications and Events monitoring enabled. This script is used as [userdata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) when spinning up elastic compute images (ec2) in amazon web services, but it can run also manually in a Linux machine or VM with snap installed. The tested distro is  *Ubuntu Server 18.04 LTS & 20.04 LTS*
 For spinning up instances automatically with AWS completely configured and set up, and also automating the creation and management of Dynatrace environments, take a look at this project- [Dynatrace - Rest Tenant Automation](https://github.com/sergiohinojosa/Dynatrace-REST-Tenant-Automation) 
 
-## Version 0.8.9 is now specific to training environment setup with user "dtu_training"
-## Please use 0.8.10 if you plan to deploy to AWS.
+# Version 0.8.9 is now specific to training environment setup with user "dtu_training"
+# Please use 0.8.10 if you plan to deploy to AWS.
 
 |Name | Version | Description | 
 ------------- | ------------- | ------------ |
-| **kiab** | [0.8.10](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.9) | keptn 0.11.4 |
-| **kiab** | [0.8.9](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.9) | keptn 0.11.4 |
+| **kiab** | [0.8.10](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.9) | keptn 0.11.4 - Use for AWS |
+| **kiab** | [0.8.9](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.9) | keptn 0.11.4 - dtu_training only |
 | **kiab** | [0.8.8](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.8) | keptn 0.10.0 |
 | **kiab** | [0.8.7](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.7) | keptn 0.9.2 |
 
