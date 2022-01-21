@@ -9,6 +9,8 @@ if [[ -d "catalog" ]]; then
       
     kubectl apply -f dynatrace-sli-config-keptnorders.yaml
     
+    keptn add-resource --project=keptnorders --resource=./dynatrace-simple.conf.yaml --resourceUri=dynatrace/dynatrace.conf.yaml
+
     keptn configure monitoring dynatrace --project=keptnorders
 
     echo "Setting up QualityGate to Staging"

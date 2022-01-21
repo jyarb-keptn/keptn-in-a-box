@@ -67,7 +67,7 @@ master:
   # Used for label app.kubernetes.io/component
   componentName: "jenkins-master"
   image: "jenkins/jenkins"
-  tag: "2.298"
+  tag: "2.330"
   imagePullPolicy: "Always"
   imagePullSecretName:
   # Optionally configure lifetime for master-container
@@ -213,17 +213,18 @@ master:
 
   # List of plugins to be install during Jenkins master start
   installPlugins:
-    - http_request:1.9.0
-    - pipeline-utility-steps:2.8.0
-    - blueocean:1.24.7
-    - kubernetes:1.29.6
-    - configuration-as-code:1.51
-    - job-dsl:1.77
-    - workflow-job:2.41
+    - http_request:1.13
+    - pipeline-utility-steps:2.11.0
+    - blueocean:1.25.2
+    - configuration-as-code:1.55.1
+    - job-dsl:1.78.3
+#    - workflow-job:2.42
     - workflow-aggregator:2.6
-    - rebuild:1.32
+    - rebuild:1.33
     - jdk-tool:1.5
     - parameterized-scheduler:1.0
+  #  - kubernetes:1.31.1    
+  #  - kubernetes-cli:1.10.3
   #  - dark-theme:0.0.12
   #  - performance:3.18
   #  - command-launcher:1.4
@@ -289,18 +290,20 @@ master:
              - key: ORDER_STAGING
                value: ORDER_STAGING.placeholder
              - key: ORDER_PROD
-               value: ORDER_PROD.placeholder                 
+               value: ORDER_PROD.placeholder 
+             - key: EASYTRAVEL_STAGING
+               value: EASYTRAVEL_STAGING.placeholder
       keptn-library:  |
        unclassified:
          globalLibraries:
            libraries:
-           - defaultVersion: "4.0"
+           - defaultVersion: "master"
              name: "keptn-library"
              retriever:
                modernSCM:
                  scm:
                    git:
-                     remote: "https://github.com/keptn-sandbox/keptn-jenkins-library"
+                     remote: "https://github.com/jyarb-keptn/keptn-jenkins-library"
       pipeline-deploy-order:  | 
         jobs:
           - script: >
@@ -312,7 +315,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/overview.git')
                         }
-                        branch('*/master')
+                        branch('*/0.8.6')
                       }
                     }
                     scriptPath 'keptndelivery.Jenkinsfile'
@@ -331,7 +334,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/overview.git')
                         }
-                        branch('*/master')
+                        branch('*/0.8.6')
                       }
                     }
                     scriptPath 'keptneasytravel.Jenkinsfile'
@@ -350,7 +353,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/overview.git')
                         }
-                        branch('*/master')
+                        branch('*/0.8.6')
                       }
                     }
                     scriptPath 'keptncartsdelivery.Jenkinsfile'
@@ -369,7 +372,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/keptn-in-a-box.git')
                         }
-                        branch('*/main')
+                        branch('*/0.8.10')
                       }
                     }
                     scriptPath 'resources/jenkins/pipelines/01-qualitygate-evaluation.Jenkinsfile'
@@ -388,7 +391,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/keptn-in-a-box.git') 
                         }
-                        branch('*/main')
+                        branch('*/0.8.10')
                       }
                     }
                     scriptPath 'resources/jenkins/pipelines/02-simpletest-qualitygate.Jenkinsfile'
@@ -407,7 +410,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/keptn-in-a-box.git')
                         }
-                        branch('*/main')
+                        branch('*/0.8.10')
                       }
                     }
                     scriptPath 'resources/jenkins/pipelines/03-performancetest-qualitygate.Jenkinsfile'
@@ -426,7 +429,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/keptn-in-a-box.git')
                         }
-                        branch('*/main')
+                        branch('*/0.8.10')
                       }
                     }
                     scriptPath 'resources/jenkins/pipelines/04-performancetest-qualitygate-mint.Jenkinsfile'
@@ -437,7 +440,7 @@ master:
       pipeline-sockshop-qualitygates:  | 
         jobs:
           - script: >
-              pipelineJob('05-qualitygate-sli-dashboard.Jenkinsfile') {
+              pipelineJob('06-qualitygate-sli-dashboard') {
                 definition {
                   cpsScm {
                     scm {
@@ -445,14 +448,33 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/keptn-in-a-box.git')
                         }
-                        branch('*/0.8.4')
+                        branch('*/0.8.10')
                       }
                     }
                     scriptPath 'resources/jenkins/pipelines/05-qualitygate-sli-dashboard.Jenkinsfile'
                     lightweight()
                   }
                 }
-              }                
+              }   
+      pipeline-versions-release:  | 
+        jobs:
+          - script: >
+              pipelineJob('07-release-for-versions') {
+                definition {
+                  cpsScm {
+                    scm {
+                      git {
+                        remote {
+                          url('https://github.com/jyarb-keptn/keptn-in-a-box.git')
+                        }
+                        branch('*/0.8.10')
+                      }
+                    }
+                    scriptPath 'resources/jenkins/pipelines/07-versionRelease.Jenkinsfile'
+                    lightweight()
+                  }
+                }
+              }              
   # Optionally specify additional init-containers
   customInitContainers: []
   # - name: custom-init

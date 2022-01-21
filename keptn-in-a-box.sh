@@ -22,21 +22,44 @@
 YLW='\033[1;33m'
 NC='\033[0m'
 
+while getopts t:p:a:e: flag
+ do
+     case "${flag}" in
+         t) DT_TENANTID=${OPTARG};;
+         p) DT_PAASTOKEN=${OPTARG};;
+         a) DT_APITOKEN=${OPTARG};;
+         e) DT_CERTMANAGER_EMAIL=${OPTARG};;
+     esac
+done
+
 printenv DT_TENANTID
 printenv DT_APITOKEN
 printenv DT_PAASTOKEN
 printenv DT_CERTMANAGER_EMAIL
 
-echo -e "${YLW}Please enter the credentials as requested below: ${NC}"
-read -e -i "${DT_TENANTID}" -p "Dynatrace Tenant ID ["${DT_TENANTID}"]: " iDTENVC
-DTENVC="${iDTENVC:-${DT_TENANTID}}"
-read -e -i "${DT_APITOKEN}" -p "Dynatrace API Token: ["${DT_APITOKEN}"]: " iDTAPIC
-DTAPIC="${iDTAPIC:-${DT_APITOKEN}}"
-read -e -i "${DT_PAASTOKEN}" -p "Dynatrace PaaS Token: ["${DT_PAASTOKEN}"]: " iDTPAAST
-DTPAAST="${iDTPAAST:-${DT_PAASTOKEN}}"
-read -e -i "${DT_CERTMANAGER_EMAIL}" -p "User Email ["${DT_CERTMANAGER_EMAIL}"]: " iDTUID
-DTUID="${iDTUID:-${DT_CERTMANAGER_EMAIL}}"
-echo ""
+
+if [ -n "DT_TENANTID" ]
+then
+    echo "arguments set...running script"
+    DTENV=${DT_TENANTID}
+    DTAPI=${DT_APITOKEN}
+    DTPAAST=${DT_PAASTOKEN}
+    DTUID=${DT_CERTMANAGER_EMAIL}
+    
+    DTENVC=${DT_TENANTID}
+    DTAPIC=${DT_APITOKEN}
+else
+    echo -e "${YLW}Please enter the credentials as requested below: ${NC}"
+    read -e -i "${DT_TENANTID}" -p "Dynatrace Tenant ID ["${DT_TENANTID}"]: " iDTENVC
+    DTENVC="${iDTENVC:-${DT_TENANTID}}"
+    read -e -i "${DT_APITOKEN}" -p "Dynatrace API Token: ["${DT_APITOKEN}"]: " iDTAPIC
+    DTAPIC="${iDTAPIC:-${DT_APITOKEN}}"
+    read -e -i "${DT_PAASTOKEN}" -p "Dynatrace PaaS Token: ["${DT_PAASTOKEN}"]: " iDTPAAST
+    DTPAAST="${iDTPAAST:-${DT_PAASTOKEN}}"
+    read -e -i "${DT_CERTMANAGER_EMAIL}" -p "User Email ["${DT_CERTMANAGER_EMAIL}"]: " iDTUID
+    DTUID="${iDTUID:-${DT_CERTMANAGER_EMAIL}}"
+    echo ""
+fi
 
 if [ -z "$DTENVC" ]
 then
@@ -62,18 +85,9 @@ then
    PAASTOKEN=$DTPAAST
    CERTMANAGER_EMAIL=$DTUID
 else 
-	exit 1   
+    exit 1   
 fi
 
-# while getopts t:p:a:e: flag
-# do
-#     case "${flag}" in
-#         t) TENANTID=${OPTARG};;
-#         p) PAASTOKEN=${OPTARG};;
-#         a) APITOKEN=${OPTARG};;
-#         e) CERTMANAGER_EMAIL=${OPTARG};;
-#     esac
-# done
 (
 # ==================================================
 #      ----- Variables Definitions -----           #
@@ -108,6 +122,7 @@ echo "tenant: $TENANT";
 # ---- Define your Domain ----
 # Use this for AWS instances
 DOMAIN="`curl http://checkip.amazonaws.com`.nip.io"
+AWS="true"
 # Magic domain for home/local cluster
 #DOMAIN="192.168.3.91.nip.io"
 # Use this to set your own DNS server address
@@ -123,7 +138,7 @@ DOMAIN="`curl http://checkip.amazonaws.com`.nip.io"
 #      ----- Functions Location -----              #
 # ==================================================
 # - Keptn in a Box release
-KIAB_RELEASE="main"
+KIAB_RELEASE="0.8.10"
 # - Functions file location
 FUNCTIONS_FILE_REPO="https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/${KIAB_RELEASE}/functions.sh"
 

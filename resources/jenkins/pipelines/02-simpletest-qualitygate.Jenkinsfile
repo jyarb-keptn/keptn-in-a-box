@@ -1,8 +1,13 @@
-@Library('keptn-library@4.0')_
+@Library('keptn-library@master')_
 import sh.keptn.Keptn
 def keptn = new sh.keptn.Keptn()
 
 node {
+
+    environment {
+         String order_url = env.ORDER_STAGING
+    }     
+
     properties([
         parameters([
          string(defaultValue: 'qualitygate-simpletest', description: 'Name of your Keptn Project for Quality Gate Feedback ', name: 'Project', trim: false), 
@@ -12,6 +17,7 @@ node {
          choice(choices: ['perftest','basic'], description: 'Decide which set of SLIs you want to evaluate. The sample comes with: basic and perftest', name: 'SLI'),
          string(defaultValue: "${env.ORDER_STAGING}", description: 'URI of the application you want to run a test against, remove the trailing slash', name: 'DeploymentURI', trim: false),
          string(defaultValue: '/:homepage;/order:order;/customer/list.html:customer;/catalog/list.html:catalog;/order/form.html:orderForm', description: 'A semi-colon separated list of URIPaths:TestName tupples that the load test should generate load', name: 'URLPaths', trim: false),
+         string(defaultValue: 'UTC', description: 'TimeZone', name: 'TimeZone', trim: false),
          string(defaultValue: '3', description: 'How long shall we run load against the specified URL?', name: 'LoadTestTime'),
          string(defaultValue: '1000', description: 'Think time in ms (milliseconds) after each test cycle', name: 'ThinkTime'),
          string(defaultValue: '3', description: 'How many minutes to wait after load test is complete until Keptn is done? 0 to not wait', name: 'WaitForResult'),
@@ -19,10 +25,10 @@ node {
     ])
 
     stage('Initialize Keptn') {
-        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/overview/master/keptn-onboarding/shipyard-performance.yaml", 'keptn/shipyard.yaml')
-        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/main/resources/jenkins/pipelines/keptn/dynatrace/dynatrace.conf.yaml", 'keptn/dynatrace/dynatrace.conf.yaml')
-        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/main/resources/jenkins/pipelines/keptn/slo_${params.SLI}.yaml", 'keptn/slo.yaml')
-        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/main/resources/jenkins/pipelines/keptn/dynatrace/sli_${params.SLI}.yaml", 'keptn/sli.yaml')
+        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/overview/0.8.5/keptn-onboarding/shipyard-performance.yaml", 'keptn/shipyard.yaml')
+        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.10/resources/jenkins/pipelines/keptn/dynatrace/dynatrace.conf.yaml", 'keptn/dynatrace/dynatrace.conf.yaml')
+        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.10/resources/jenkins/pipelines/keptn/slo_${params.SLI}.yaml", 'keptn/slo.yaml')
+        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.10/resources/jenkins/pipelines/keptn/dynatrace/sli_${params.SLI}.yaml", 'keptn/sli.yaml')
         archiveArtifacts artifacts:'keptn/**/*.*'
 
         // Initialize the Keptn Project - ensures the Keptn Project is created with the passed shipyard
@@ -44,8 +50,8 @@ node {
         def urlPaths = params.URLPaths?:"/"
         def urlPathValues = urlPaths.tokenize(';')
 
-        // Before we get started we mark the current timestamp which allows us to run the quality gate later on with exact timestamp info
-        keptn.markEvaluationStartTime()
+        // Before we get started we mark the current timestamp which allows us to run the quality gate later on which exact timestamp info is used
+        keptn.markEvaluationStartTime("${params.TimeZone}")
 
         // now we run the test
         script {
@@ -66,7 +72,8 @@ node {
                         responseHandle: 'STRING', 
                         url: "${url}${urlPath}", 
                         validResponseCodes: "100:500", 
-                        ignoreSslErrors: true
+                        ignoreSslErrors: true,
+                        quiet: true
                 }
 
                 sleep(time:ThinkTime,unit:"MILLISECONDS")
@@ -77,7 +84,7 @@ node {
         echo "Quality Gates ONLY: Just triggering an SLI/SLO-based evaluation for the passed timeframe"
 
         // Trigger an evaluation. It will take the starttime from our call to markEvaluationStartTime and will Now() as endtime
-        def keptnContext = keptn.sendStartEvaluationEvent starttime:"", endtime:""
+        def keptnContext = keptn.sendStartEvaluationEvent starttime:"", endtime:"", timezone:"${params.TimeZone}"
         String keptn_bridge = env.KEPTN_BRIDGE
         echo "Open Keptns Bridge: ${keptn_bridge}/trace/${keptnContext}"
     }

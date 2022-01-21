@@ -41,7 +41,7 @@ curl --location --request POST 'https://'${DT_TENANT}'/api/config/v1/dashboards?
             "height": 38
         },
         "tileFilter": {},
-        "markdown": "[\uD83C\uDF10 KeptnInABox](http://'${DOMAIN}')  -    [\uD83C\uDF09 Keptn Bridge](http://keptn.'${DOMAIN}'/bridge) - [\uD83D\uDC71‍♀️ Davis Assistant](https://assistant.dynatrace.com) - ☄ [unleash server](http://unleash.unleash-'${DOMAIN}')"
+        "markdown": "[\uD83C\uDF10 KeptnInABox](http://'${DOMAIN}')  -    [\uD83C\uDF09 Keptn Bridge](https://keptn.'${DOMAIN}'/bridge) - [\uD83D\uDC71‍♀️ Davis Assistant](https://assistant.dynatrace.com) - ☄ [unleash server](http://unleash.unleash-'${DOMAIN}')"
     }, {
         "name": "",
         "tileType": "CUSTOM_CHARTING",

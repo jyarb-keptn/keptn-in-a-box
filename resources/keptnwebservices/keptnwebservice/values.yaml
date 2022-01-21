@@ -1,0 +1,8 @@
+replicaCount: 1
+image: docker.io/grabnerandi/keptnwebservice:2.0.0
+pullPolicy: Always
+service:
+    name: keptnwebservice
+    type: ClusterIP
+    port: 8080
+    targetPort: 8080

@@ -925,7 +925,9 @@
         </div>
         <div>
           <ul>
-            <div style="font-weight: bold;"> Keptn Orders App (manual-deployment)</div>
+            <div style="font-weight: bold;"> Keptn Orders App (auto-deployed)</div>
+            <li><a id="orderpipeline"> delivery pipeline overview 👓</a></li>
+            <li>
               <div>stages:
                 <a style="font-size: small;" id="ordersstage">staging </a><a>|</a>
                 <a style="font-size: small;" id="ordersprod">production </a>
@@ -936,9 +938,15 @@
         <div>
           <ul>
             <div style="font-weight: bold;"> EasyTravel (auto-deployed)</div>
+            <li><a id="easytravelpipeline"> delivery pipeline overview 👓</a></li>
+            <li>
               <div>stages:
                 <a style="font-size: small;" id="easytravelstage">staging </a><a>|</a>
                 <a style="font-size: small;" id="easytravelprod">production </a>
+              </div>
+              <div>classic stages:
+                <a style="font-size: small;" id="easytravelstageclassic">staging </a><a>|</a>
+                <a style="font-size: small;" id="easytravelprodclassic">production </a>
               </div>
             </li>
           </ul>
@@ -977,10 +985,9 @@
           -->
         <br>
         <br>
-        <p style="font-style:italic;font-size: medium;">"deployment models for application include
-          auto-verify, auto-deployment and manual-deployment.
-          Just go over to Jenkins and deploy the applications."</p>
-        <br>  
+        <p style="font-style:italic;font-size: medium;">"Applications are auto-deployed via Keptn. 
+          You can check the deployment status in the keptn bridge. If needed, you can deploy the 
+          artifacts through the jenkins pipelines."</p> 
         <p style="font-style:italic;font-size: medium;">"Successful DevOps teams embark on the path to NoOps by
           automating CI/CD pipelines and cloud operations,
           enabled by the Dynatrace software intelligence platform with explainable AI at the core to identify anomalies
@@ -1005,6 +1012,8 @@
 
         replaceInE("hostname", hostname);
         addLink("pipeline", hostname + "/pipeline");
+        addLink("orderpipeline", hostname + "/orderpipeline");
+        addLink("easytravelpipeline", hostname + "/easytravelpipeline");
         addLink("jenkins", "jenkins." + hostname);
         addLink("k8api", "api.kubernetes." + hostname);
         addLink("kubernetes", "kubernetes." + hostname);
@@ -1018,8 +1027,10 @@
         addLink("unleash", "unleash.unleash-dev." + hostname);
         addLink("ordersstage", "frontend.keptnorders-staging." + hostname);
         addLink("ordersprod", "frontend.keptnorders-production." + hostname);
-        addLink("easytravelstage", "easytravel-www.easytravel-staging." + hostname);
-        addLink("easytravelprod", "easytravel-www.easytravel-production." + hostname);
+        addLink("easytravelstage", "easytravel-angular.easytravel-staging." + hostname);
+        addLink("easytravelprod", "easytravel-angular.easytravel-production." + hostname);
+        addLink("easytravelstageclassic", "easytravel-www.easytravel-staging." + hostname);
+        addLink("easytravelprodclassic", "easytravel-www.easytravel-production." + hostname);
         
 
       </script>

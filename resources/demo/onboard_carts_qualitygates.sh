@@ -8,6 +8,8 @@ if [[ -d "carts" ]]; then
     keptn add-resource --project=sockshop --resource=sli-config-dynatrace.yaml --resourceUri=dynatrace/sli.yaml
     #keptn add-resource --project=sockshop --resource=sli-config-dynatrace.yaml --resourceUri=sli.yaml
 
+    keptn add-resource --project=sockshop --resource=./dynatrace.conf.yaml --resourceUri=dynatrace/dynatrace.conf.yaml
+
     keptn configure monitoring dynatrace --project=sockshop
 
     echo "Setting up QualityGate to Dev"

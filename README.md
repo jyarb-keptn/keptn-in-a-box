@@ -7,7 +7,7 @@ generated with Cert-Manager and Let's Encrypt, does not mean the Box is secure.
 
 # Keptn-in-a-Box Enhanced (with Dynatrace Software Intelligence empowered) 🎁
 
-:rotating_light: ALERT: This install uses keptn 0.8.3 :rotating_light:
+:rotating_light: ALERT: This install uses keptn 0.11.4 :rotating_light:
 
 Keptn-In-A-Box is part of the automation for delivering Autonomous Cloud Workshops with Dynatrace. This is not a tutorial but more an explanation of what the shell file set up for you on a plain Ubuntu image. 
 
@@ -16,11 +16,10 @@ For spinning up instances automatically with AWS completely configured and set u
 
 |Name | Version | Description | 
 ------------- | ------------- | ------------ |
-| **kiab** | [main](https://github.com/jyarb-keptn/keptn-in-a-box/tree/main) | uses keptn 0.8.3 |
-| **kiab** | [0.8.3](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.3) | uses keptn 0.8.3 |
-| **kiab** | [0.8.2](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.2) | uses keptn 0.8.2 |
-| **kiab** | [0.8.1](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.1) | uses keptn 0.8.1 (stable)|
-| **kiab** | [release-0.8pre](https://github.com/jyarb-keptn/keptn-in-a-box/tree/release-0.8pre) | experimental also pushes to main |
+| **kiab** | [0.8.10](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.10) | keptn 0.11.4 - use for AWS |
+| **kiab** | [0.8.9](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.9) | keptn 0.11.4 - use for Training with dtu-training |
+| **kiab** | [0.8.8](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.8) | keptn 0.10.0 |
+| **kiab** | [0.8.7](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.7) | keptn 0.9.2 |
 
 ![#](doc/images/keptn-in-a-box-autonomous-cloud-devops.gif)
 
@@ -33,8 +32,8 @@ For spinning up instances automatically with AWS completely configured and set u
 - Set up of useful BASH Aliases for working with the command line
 - Enable autocompletion of Kubectl
 - Installation of Dynatrace ActiveGate and configuration of [Cluster](https://www.dynatrace.com/support/help/technology-support/cloud-platforms/kubernetes/monitoring/connect-kubernetes-clusters-to-dynatrace/) and [Workload monitoring](https://www.dynatrace.com/support/help/technology-support/cloud-platforms/kubernetes/monitoring/monitor-workloads-kubernetes/)
-- Installation of Istio 1.9.1 
-- Installation of Helm Client
+- Installation of Istio 1.11.4 
+- Installation of Helm 3.7.1
 - Enabling own Docker Registry for the Cluster
 - Convert the public IP in a (magic) domain ([nip.io](https://nip.io/)) for being able to expose all the needed services with subdomains.
 - Routing of traffic to Istio-Ingressgateway via a Kubernetes NGINX Ingress using standard HTTP(S) ports 80 and 443. This way we dont need a public IP from the Cloud Provider
@@ -47,6 +46,7 @@ For spinning up instances automatically with AWS completely configured and set u
 - Onboard of the keptnOrders project
 - Onboard of the easytravel project
 - Deployment of a cartsloadgenerator PoD
+- Deployment of keptn webservice
 - Deployment of a Autonomous Cloud teaser home page with links to the pipeline, kubernetes api, keptn-bridge, keptn-api, jenkins 
 - Creation of valid SSL certificates for the exposed endpoints with Certmanager and HTTPs Let's encrypt.
 - Create a user account and copy the standard user (ubuntu on this case) with his own home directory (a replica) and allowing SSH connections with text password. Useful for spinning an army of workshop clusters. 
@@ -89,18 +89,22 @@ For a step by step understanding of how Keptn-in-a-Box works and how to use it, 
 ```bash
 ─ doc                       doc folder.
 ─ keptn-in-a-box.sh         the executable (also where to define your variables)
-─ functions.sh        		The definiton of functions and modules 
+─ functions.sh        		  The definiton of functions and modules
+- setlinks.sh               create symbolic link to trigger evaluations
+- resetenv.sh               Use to reset the environment
 ─ resources                 
   ├── cartsloadgenerator    Sources of the load container of the carts app
   ├── catalog               Scripts for Onboarding the keptnOrders app
   ├── easytravel            Scripts for Onboarding the easytravel app 
-  ├── demo                  Scripts for Onboarding the Carts app  
+  ├── demo                  Scripts for Onboarding the Carts app
+  ├── gitea                 Scripts for creating upstream git repo   
   ├── dynatrace             Scripts for integrating with Dynatrace
   ├── homepage              Sources of the homepage for displaying the Autonomous Cloud teaser  
   ├── ingress               Files and logic for mapping, exposing the endpoints and services. Creation of Certificates.
   ├── istio                 istio config files  
   ├── jenkins               Deployment and configuration for Jenkins managed as code.
   ├── misc                  Miscelaneous (patch kubernetes dashboard)
+  ├── keptn                 Scripts and configuration items to support keptn
   └── virtualservices       YAML files for virtualservices 
 ```
 
@@ -117,9 +121,6 @@ Below is a table for the sizing reference if you run a local VM or are virtualiz
 
 | **Size**   | **vCPUs** | **Memory (GiB)** |
 | ---------- | --------- | ---------------- |
-| t2.medium  | 2         | 4                |
-| t2.large   | 2         | 8                |
-| t2.xlarge  | 4         | 16               |
 | t2.2xlarge | 8         | 32               |
 | c4.4xlarge | 16        | 30               | (preferred for full)
 
@@ -174,20 +175,16 @@ Now you are ready to start the install process.
 
 If you use a authentication key
 ```bash
-ssh -i "DevOps.pem" ubuntu@ec2-54-172-78-187.compute-1.amazonaws.com
+ssh -i "Your.pem" ubuntu@ec2-54-172-78-187.compute-1.amazonaws.com
 ```
 
 #### 2. Get the script
 
 ```bash
-curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.3/keptn-in-a-box.sh
+curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.10/keptn-in-a-box.sh
 ```
 
 > You can also specify a specific release like 'curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/${KIAB_RELEASE}/keptn-in-a-box.sh' the master branch will be pointing to the actual release.
-
-```bash
-curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/main/keptn-in-a-box.sh
-```
 
 #### 3. Change permissions on script.
 
@@ -198,6 +195,10 @@ chmod +x keptn-in-a-box.sh
 #### 4. Execute the file with sudo rights.
 ```bash
 sudo bash -c './keptn-in-a-box.sh'
+```
+#### 4.1 New execution method with flags. (preferred)
+```
+yes | sudo  bash -c './keptn-in-a-box.sh -t <TENANT> -a <APITOKEN> -p <PAASTOKEN> -e <UserEmail>'
 ```
 
 The script will ask for the following inputs.
@@ -311,7 +312,7 @@ The loadgen pods drive load to the staging and production angular frontends.
 
 The loadgen to the www-staging also works.
 
-You will need to create application detection rules, as these cannot be created by the API.
+Application rules are created via the API.
 
 - All domains containing easytravel-angular.easytravel-production
 - All domains that match easytravel-angular.easytravel-staging
@@ -341,7 +342,7 @@ which gets executed as part of a quality gate evaluation!
 
 Rest easy, we have created a script to initialize the SLI service and create an OOB Dashboard example.
 ```bash
-cd ~/keptn-in-a-box/resources/dynatrace
+cd ~/keptn-in-a-box/resources/dynatrace/scripts
 ```
 Validate the KEPTN_DOMAIN environment variable has been set.
 
@@ -396,42 +397,54 @@ The default installation is **installationBundleAll** which sets the control fla
   enable_k8dashboard=true
   istio_install=true
   helm_install=true
-  certmanager_install=false
-  certmanager_enable=false
+  certmanager_install=true
+  certmanager_enable=true
+  # install keptn
   keptn_install=true
+  # clone repos
   keptn_examples_clone=true
   resources_clone=true
-  hostalias=false
   keptn_catalog_clone=true
+  hostalias=false
+  # gitea
   git_deploy=true
   git_migrate=true
   dynatrace_savecredentials=true
   dynatrace_configure_monitoring=true
-  dynatrace_activegate_install=true
+  # install Dynatrace Operator
+  dynatrace_install_dynakube=true
+  # Dynatrace_service
+  dynatrace_install_service=true
+  dynatrace_install_sli_service=false
+  # Traditional ActiveGate
+  dynatrace_activegate_install=false
   dynatrace_configure_workloads=true
   keptndeploy_homepage=true
+  # unleash
   keptndemo_unleash=true
   keptndemo_unleash_configure=true
+  # sockshop application
   keptndemo_cartsonboard=true
   keptndemo_cartsload=true
+  # use for order application
   keptndemo_catalogonboard=true
+  # use for easytravel
   keptndemo_easytravelonboard=true
-  keptndashboard_load=false
-  createMetrics=false
+  keptndemo_easytraveloadgen=true
+  # dashboards for AIOPs
+  keptndashboard_load=true
+  # create custom metrics
+  createMetrics=true
   expose_kubernetes_api=true
   expose_kubernetes_dashboard=true
   patch_kubernetes_dashboard=true
   keptn_bridge_disable_login=true
+  # By default no WorkshopUser will be created
   create_workshop_user=false
-  jmeter_install=false
-  post_flight=false
+  jmeter_install=true
+  dynatrace_project=true
+  post_flight=true
   patch_config_service=false
-  enable_registry=true
-  certmanager_install=true
-  certmanager_enable=true
-  create_workshop_user=false
-  keptn_bridge_disable_login=true
-  jenkins_deploy=true
 ```
 
 Dynatrace OneAgent and Dynatrace ActiveGate will be installed and configured if you provided your credentials. Otherwise they won't be installed. 
@@ -603,23 +616,23 @@ NEWUSER="dynatrace"
 This variables in combination with the control flag `create_workshop_user=false` will create a workshop user. It will clone the `USER` home directory and add hi configuration so the `NEWUSER` can also interact with `keptn`, `docker` and `kubectl`. An SSH Password will be configured and allowed.
 
 ###  Change the Version of a component
-This are the actual versions of the different Modules
+These are the actual versions of the different Modules
 ```bash
 # **** Installation Versions **** 
 # ==================================================
 #      ----- Components Versions -----             #
 # ==================================================
-KIAB_RELEASE="main"
+KIAB_RELEASE="0.8.8"
 ISTIO_VERSION=1.9.1
 CERTMANAGER_VERSION=0.14.0
-KEPTN_VERSION=0.8.2
-KEPTN_DT_SERVICE_VERSION=0.12.0
-KEPTN_DT_SLI_SERVICE_VERSION=0.9.0
+KEPTN_VERSION=0.10.0
+KEPTN_DT_SERVICE_VERSION=0.18.0
+KEPTN_DT_SLI_SERVICE_VERSION=0.12.1
 KEPTN_EXAMPLES_REPO="https://github.com/keptn/examples.git"
-KEPTN_EXAMPLES_BRANCH="release-0.8.1"
+KEPTN_EXAMPLES_BRANCH="0.10.0"
 KEPTN_EXAMPLES_DIR="~/examples"
 KEPTN_CATALOG_REPO="https://github.com/jyarb-keptn/overview.git"
-KEPTN_CATALOG_BRANCH="main"
+KEPTN_CATALOG_BRANCH="0.8.5"
 KEPTN_CATALOG_DIR="~/overview"
 TEASER_IMAGE="pcjeffmac/nginxacm:0.8.1"
 KEPTN_BRIDGE_IMAGE="keptn/bridge2:0.8.0"

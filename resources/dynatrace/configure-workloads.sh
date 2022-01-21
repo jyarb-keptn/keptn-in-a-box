@@ -15,7 +15,8 @@ configureAccountAndGetCredentials(){
     # create ns in case it does not exist
     kubectl create namespace dynatrace
 
-    kubectl apply -f https://www.dynatrace.com/support/help/codefiles/kubernetes/kubernetes-monitoring-service-account.yaml
+    #kubectl apply -f https://www.dynatrace.com/support/help/codefiles/kubernetes/kubernetes-monitoring-service-account.yaml
+    kubectl apply -f kubernetes-monitoring-service-account.yaml
     echo "This is the SSL API URI of the K8s cluster exposed via nginx ingress:"
     endpoint=$(kubectl get ing k8-api-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
     # Name the connection

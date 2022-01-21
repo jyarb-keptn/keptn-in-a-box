@@ -3,33 +3,46 @@
 # Each function contains a boolean flag so the installations
 # can be highly customized.
 #
-# TODO: cleanup script, check versions
+# TODO:
 #
 # ==================================================
 #      ----- Components Versions -----             #
 # ==================================================
-KIAB_RELEASE="main"
-ISTIO_VERSION=1.9.1
-CERTMANAGER_VERSION=0.14.0
+KIAB_RELEASE="0.8.10"
 # https://github.com/keptn/keptn
-KEPTN_VERSION=0.8.6
+KEPTN_VERSION=0.11.4
+ISTIO_VERSION=1.11.4
+CERTMANAGER_VERSION=1.6.1
+# https://github.com/helm/helm/releases
+HELM_VERSION=3.7.1
 # https://github.com/keptn-contrib/dynatrace-service
-KEPTN_DT_SERVICE_VERSION=0.14.0
+KEPTN_DT_SERVICE_VERSION=0.19.0
 # https://github.com/keptn-contrib/dynatrace-sli-service
-KEPTN_DT_SLI_SERVICE_VERSION=0.12.0
+KEPTN_DT_SLI_SERVICE_VERSION=0.12.1
 # https://github.com/keptn/examples
 KEPTN_EXAMPLES_REPO="https://github.com/keptn/examples.git"
-KEPTN_EXAMPLES_BRANCH="release-0.8.4"
-KEPTN_EXAMPLES_DIR="~/examples"
+KEPTN_EXAMPLES_BRANCH="0.11.0"
+#KEPTN_EXAMPLES_DIR="~/examples"
 KEPTN_CATALOG_REPO="https://github.com/jyarb-keptn/overview.git"
-KEPTN_CATALOG_BRANCH="master"
-KEPTN_CATALOG_DIR="~/overview"
+KEPTN_CATALOG_BRANCH="0.8.6"
+#KEPTN_CATALOG_DIR="~/overview"
 TEASER_IMAGE="pcjeffmac/nginxacm:0.8.1"
-#KEPTN_BRIDGE_IMAGE="keptn/bridge2:20200326.0744"
 KEPTN_BRIDGE_IMAGE="keptn/bridge2:0.8.0"
 MICROK8S_CHANNEL="1.19/stable"
 #KEPTN_IN_A_BOX_REPO="https://github.com/keptn-sandbox/keptn-in-a-box.git"
 KEPTN_IN_A_BOX_REPO="https://github.com/jyarb-keptn/keptn-in-a-box.git"
+#KEPTN_IN_A_BOX_DIR="~/keptn-in-a-box"
+
+## Parmeters for dtu_training accomidations
+RUNUSER="$USER"
+
+echo "Run User: ${RUNUSER}"
+
+ET_STAGING_ONLY=false
+USER_HOME_PATH=$HOME
+USER_KIAB_PATH="~/keptn-in-a-box"  
+KEPTN_CATALOG_DIR="~/overview"
+KEPTN_EXAMPLES_DIR="~/examples"
 KEPTN_IN_A_BOX_DIR="~/keptn-in-a-box"
 
 
@@ -45,6 +58,7 @@ echo "running sudo commands as $USER"
 
 # Wrapper for runnig commands for the real owner and not as root
 alias bashas="sudo -H -u ${USER} bash -c"
+alias bashnu="sudo -H bash -c"
 # Expand aliases for non-interactive shell
 shopt -s expand_aliases
 
@@ -76,6 +90,8 @@ git_migrate=false
 dynatrace_savecredentials=false
 dynatrace_configure_monitoring=false
 dynatrace_install_dynakube=false
+dynatrace_install_service=false
+dynatrace_install_sli_service=false
 dynatrace_activegate_install=false
 dynatrace_configure_workloads=false
 jenkins_deploy=false
@@ -91,13 +107,17 @@ keptndemo_easytravelonboard=false
 keptndemo_easytraveloadgen=false
 keptndashboard_load=false
 createMetrics=false
+createApplications=false
 expose_kubernetes_api=false
 expose_kubernetes_dashboard=false
 patch_kubernetes_dashboard=false
 create_workshop_user=false
 jmeter_install=false
+keptnwebservice=false
+sockshop_secret=false
 post_flight=false
 patch_config_service=false
+dynatrace_project=false
 # ======================================================================
 #             ------- Installation Bundles  --------                   #
 #  Each bundle has a set of modules (or functions) that will be        #
@@ -112,19 +132,27 @@ installationBundleDemo() {
   enable_k8dashboard=true
   istio_install=true
   helm_install=true
-  certmanager_install=false
-  certmanager_enable=false
+  certmanager_install=true
+  certmanager_enable=true
+  # install keptn
   keptn_install=true
+  # clone repos
   keptn_examples_clone=true
   resources_clone=true
-  hostalias=false
   keptn_catalog_clone=true
+  hostalias=false
+  # gitea
   git_deploy=true
   git_migrate=true
   dynatrace_savecredentials=true
   dynatrace_configure_monitoring=true
+  # install Dynatrace Operator
   dynatrace_install_dynakube=true
-  dynatrace_activegate_install=true
+  # Dynatrace_service
+  dynatrace_install_service=true
+  dynatrace_install_sli_service=false
+  # Traditional ActiveGate
+  dynatrace_activegate_install=false
   dynatrace_configure_workloads=true
   keptndeploy_homepage=true
   # unleash
@@ -138,8 +166,11 @@ installationBundleDemo() {
   # use for easytravel
   keptndemo_easytravelonboard=true
   keptndemo_easytraveloadgen=true
+  # dashboards for AIOPs
   keptndashboard_load=true
+  # create custom metrics
   createMetrics=true
+  createApplications=true
   expose_kubernetes_api=true
   expose_kubernetes_dashboard=true
   patch_kubernetes_dashboard=true
@@ -147,6 +178,9 @@ installationBundleDemo() {
   # By default no WorkshopUser will be created
   create_workshop_user=false
   jmeter_install=true
+  dynatrace_project=true
+  keptnwebservice=true
+  sockshop_secret=true
   post_flight=true
   patch_config_service=false
 }
@@ -241,6 +275,8 @@ thinline="______________________________________________________________________
 setBashas() {
   # Wrapper for runnig commands for the real owner and not as root
   alias bashas="sudo -H -u ${USER} bash -c"
+  # Wrapper to run as normal user
+  alias bashnu="sudo -H bash -c"
   # Expand aliases for non-interactive shell
   shopt -s expand_aliases
 }
@@ -474,6 +510,7 @@ microk8sInstall() {
     homedirectory=$(eval echo ~$USER)
     bashas "mkdir $homedirectory/.kube"
     bashas "microk8s.config > $homedirectory/.kube/config"
+    bashas "chmod go-r $homedirectory/.kube/config"
   fi
 }
 
@@ -543,10 +580,11 @@ istioInstall() {
 
 helmInstall() {
   if [ "$helm_install" = true ]; then
-    printInfoSection "Installing HELM 3 & Client via Microk8s addon"
-    bashas 'microk8s.enable helm3'
-    printInfo "Adding alias for helm client"
-    snap alias microk8s.helm3 helm
+    printInfoSection "Installing HELM ${HELM_VERSION} & Client manually from binaries"
+    wget -q -O helm.tar.gz "https://get.helm.sh/helm-v${HELM_VERSION}-linux-amd64.tar.gz"
+    tar -xvf helm.tar.gz
+    mv linux-amd64/helm /usr/local/bin/helm 
+
     printInfo "Adding Default repo for Helm"
     bashas "helm repo add stable https://charts.helm.sh/stable"
     printInfo "Adding Jenkins repo for Helm"
@@ -556,14 +594,6 @@ helmInstall() {
     printInfo "Updating Helm Repository"
     bashas "helm repo update"
     bashas "helm version"
-    
-    printInfoSection "Installing Newer HELM 3"
-    bashas "curl https://baltocdn.com/helm/signing.asc | sudo apt-key add -"
-    bashas "sudo apt-get install apt-transport-https --yes"
-    bashas "echo 'deb https://baltocdn.com/helm/stable/debian/ all main' | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list"
-    bashas "sudo apt-get update"
-    bashas "sudo apt-get install helm"
-    bashas "helm version"    
   fi
 }
 
@@ -674,14 +704,14 @@ keptnInstall() {
       #bashas "kubectl create configmap -n keptn ingress-config --from-literal=ingress_hostname_suffix=${DOMAIN} --from-literal=ingress_port=80 --from-literal=ingress_protocol=http --from-literal=istio_gateway=ingressgateway.istio-system -oyaml --dry-run=client | kubectl replace -f -"
       
       printInfoSection "Configuring Istio for Keptn"
-      bashas "kubectl create configmap -n keptn ingress-config --from-literal=ingress_hostname_suffix=${DOMAIN} --from-literal=ingress_port=80 --from-literal=ingress_protocol=http --from-literal=istio_gateway=public-gateway.istio-system -oyaml --dry-run | kubectl replace -f -"
+      bashas "kubectl create configmap -n keptn ingress-config --from-literal=ingress_hostname_suffix=${DOMAIN} --from-literal=ingress_port=80 --from-literal=ingress_protocol=http --from-literal=istio_gateway=public-gateway.istio-system -oyaml --dry-run=client | kubectl replace -f -"
 
       printInfo "Restart Keptn Helm Service"
       bashas "kubectl delete pod -n keptn -lapp.kubernetes.io/name=helm-service"
     fi
     
     printInfoSection "Routing for the Keptn Services via NGINX Ingress"
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash ap ${DOMAIN} api-keptn-ingress"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} api-keptn-ingress"
     waitForAllPods
     
     #We sleep for 15 seconds to give time the Ingress to be ready 
@@ -689,14 +719,16 @@ keptnInstall() {
     printInfoSection "Authenticate Keptn CLI"
     KEPTN_ENDPOINT=https://$(kubectl get ing -n keptn api-keptn-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')/api
     KEPTN_API_TOKEN=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 --decode)
+    KEPTN_BRIDGE_URL=http://$(kubectl -n keptn get ingress api-keptn-ingress -ojsonpath='{.spec.rules[0].host}')/bridge
     bashas "keptn auth --endpoint=$KEPTN_ENDPOINT --api-token=$KEPTN_API_TOKEN"
-    waitForAllPods
+    waitForAllPods keptn
+    bashas "keptn set config AutomaticVersionCheck false"
   fi
 }
 
 jmeterService() {
   if [ "$jmeter_install" = true ]; then
-  printInfoSection "JMeter Service for keptn 0.8.x"
+  printInfoSection "JMeter Service 0.10.0"
   bashas "kubectl delete -n keptn deployment jmeter-service"
   bashas "kubectl apply -f https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/${KIAB_RELEASE}/resources/keptn/jmeter-service.yaml -n keptn --record"
   waitForAllPods
@@ -744,8 +776,12 @@ gitMigrate() {
 dynatraceConfigureMonitoring() {
   if [ "$dynatrace_configure_monitoring" = true ]; then
     printInfoSection "Installing and configuring Dynatrace OneAgent on the Cluster (via Keptn) for $DT_TENANT" 
+    
     printInfo "Saving Credentials in dynatrace secret in keptn ns"
-    bashas "kubectl -n keptn create secret generic dynatrace --from-literal=\"DT_TENANT=$DT_TENANT\" --from-literal=\"DT_API_TOKEN=$DT_API_TOKEN\"  --from-literal=\"KEPTN_API_URL=http://$(kubectl -n keptn get ingress api-keptn-ingress -ojsonpath={.spec.rules[0].host})/api\" --from-literal=\"KEPTN_API_TOKEN=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 --decode)\" --from-literal=\"KEPTN_BRIDGE_URL=http://$(kubectl -n keptn get ingress api-keptn-ingress -ojsonpath={.spec.rules[0].host})/bridge\""
+    bashas "kubectl -n keptn create secret generic dynatrace-credentials --from-literal=\"DT_TENANT=$DT_TENANT\" --from-literal=\"DT_API_TOKEN=$DT_API_TOKEN\"  --from-literal=\"KEPTN_API_URL=http://$(kubectl -n keptn get ingress api-keptn-ingress -ojsonpath={.spec.rules[0].host})/api\" --from-literal=\"KEPTN_API_TOKEN=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 --decode)\" --from-literal=\"KEPTN_BRIDGE_URL=http://$(kubectl -n keptn get ingress api-keptn-ingress -ojsonpath={.spec.rules[0].host})/bridge\""
+    printInfo "Create dynatrace secret"
+    bashas "keptn create secret dynatrace --from-literal=\"DT_TENANT=$DT_TENANT\" --from-literal=\"DT_API_TOKEN=$DT_API_TOKEN\" --scope=dynatrace-service"
+    
     if [ "$dynatrace_install_dynakube" = true ]; then
       printInfo "Deploying the Dynatrace Operator"
       bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && echo 'y' | bash deploy_dynakube.sh"
@@ -753,11 +789,40 @@ dynatraceConfigureMonitoring() {
       printInfo "Deploying the OneAgent Operator"
       bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && echo 'y' | bash deploy_operator.sh"    
     fi
+    
+    if [ "$dynatrace_install_service" = true ]; then
+    printInfoSection "set env variables"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash setenv.sh ${DOMAIN} ${AWS}"
+    
+    printInfoSection "KEPTN_ENDPOINT=$KEPTN_ENDPOINT"
+    printInfoSection "KEPTN_BRIDGE_URL=$KEPTN_BRIDGE_URL"
+    
     printInfo "Deploying the Dynatrace Service in Keptn"
-    bashas "kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/dynatrace-service/$KEPTN_DT_SERVICE_VERSION/deploy/service.yaml -n keptn" 
-    printInfo "Setting up Dynatrace SLI provider in Keptn"
-    bashas "kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/dynatrace-sli-service/$KEPTN_DT_SLI_SERVICE_VERSION/deploy/service.yaml -n keptn"   
-    waitForAllPods
+    #bashas "kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/dynatrace-service/$KEPTN_DT_SERVICE_VERSION/deploy/service.yaml -n keptn" 
+    #bashas "helm upgrade --install dynatrace-service -n keptn https://github.com/keptn-contrib/dynatrace-service/releases/download/$KEPTN_DT_SERVICE_VERSION/dynatrace-service-$KEPTN_DT_SERVICE_VERSION.tgz"
+    bashas "helm upgrade --install dynatrace-service -n keptn \
+             https://github.com/keptn-contrib/dynatrace-service/releases/download/$KEPTN_DT_SERVICE_VERSION/dynatrace-service-$KEPTN_DT_SERVICE_VERSION.tgz \
+  			--set dynatraceService.config.keptnApiUrl=$KEPTN_ENDPOINT \
+  			--set dynatraceService.config.keptnBridgeUrl=$KEPTN_BRIDGE_URL \
+  			--set dynatraceService.config.generateTaggingRules=true \
+  			--set dynatraceService.config.generateProblemNotifications=true \
+  			--set dynatraceService.config.generateManagementZones=true \
+  			--set dynatraceService.config.generateDashboards=true \
+  			--set dynatraceService.config.generateMetricEvents=true"
+
+    bashas "kubectl -n keptn get deployment dynatrace-service -o wide"
+    bashas "kubectl -n keptn get pods -l run=dynatrace-service"
+    fi
+
+    if [ "$dynatrace_install_sli_service" = true ]; then
+    printInfo "Setting up Dynatrace SLI provider in Keptn - depricated using new method"
+    #bashas "kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/dynatrace-sli-service/$KEPTN_DT_SLI_SERVICE_VERSION/deploy/service.yaml -n keptn"
+    bashas "helm upgrade --install dynatrace-sli-service -n keptn https://github.com/keptn-contrib/dynatrace-sli-service/releases/download/$KEPTN_DT_SLI_SERVICE_VERSION/dynatrace-sli-service-$KEPTN_DT_SLI_SERVICE_VERSION.tgz"
+    bashas "kubectl -n keptn get deployment dynatrace-sli-service -o wide"
+    bashas "kubectl -n keptn get pods -l run=dynatrace-sli-service"
+    fi
+    
+    waitForAllPods keptn
     bashas "keptn configure monitoring dynatrace"
   fi
 }
@@ -781,7 +846,7 @@ keptndemoUnleash() {
   if [ "$keptndemo_unleash" = true ]; then
     printInfoSection "Deploy Unleash-Server"
     bashas "cd $KEPTN_EXAMPLES_DIR/unleash-server/ &&  bash $KEPTN_IN_A_BOX_DIR/resources/demo/deploy_unleashserver.sh"
-    waitForAllPods keptn
+    waitForAllPods unleash-dev
     printInfoSection "Expose Unleash-Server"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} unleash" 
     UNLEASH_SERVER="http://unleash.unleash-dev.$DOMAIN"
@@ -797,7 +862,6 @@ keptndemoUnleashConfigure() {
     printInfoSection "You can trigger the experiment manually here: https://tutorials.keptn.sh/tutorials/keptn-full-tour-dynatrace-08/#25"
   fi
 }
-
 
 dynatraceConfigureWorkloads() {
   if [ "$dynatrace_configure_workloads" = true ]; then
@@ -864,67 +928,90 @@ keptndemoDeployCartsloadgenerator() {
 keptndemoCatalogonboard() {
   if [ "$keptndemo_catalogonboard" = true ]; then
     printInfoSection "Keptn onboarding orders application"
-    #TODO Parameterize Catalog Version.
     bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/catalog/onboard_catalog.sh && bash $KEPTN_IN_A_BOX_DIR/resources/catalog/onboard_catalog_qualitygates.sh"
-    # start customer and catalog
+    printInfoSection "start customer and catalog..."
     bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/catalog/deploy_catalog_0.1.sh"
-    #waitForAllPods
-    # start order and frontend
+    printInfoSection "start order and frontend..."
     bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/catalog/deploy_catalog_0.2.sh"
-    #waitForAllPods
+    printInfoSection "Load remediation..."
+    #bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash loadRemediation.sh"
     printInfoSection "Keptn Exposing the Onboarded orders Application"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} keptnorders"
     printInfoSection "set env variables"
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash setenv.sh"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash setenv.sh ${DOMAIN}"
   fi
 }
 
 keptndemoEasytravelonboard() {
   if [ "$keptndemo_easytravelonboard" = true ]; then
-    printInfoSection "Keptn onboarding easytravel application"
+     if [ "$ET_STAGING_ONLY" = true ]; then
+      printInfoSection "Keptn onboarding easytravel application"
+      bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/onboard_et_staging.sh"
+      bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/onboard_et_staging_qualitygates.sh"
+      printInfoSection "deploy easytravel..."
+      bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/deploy_0.sh"
+      printInfoSection "Load remediation..."
+      bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash loadRemediation.sh"
+     else
+      printInfoSection "Keptn onboarding easytravel application"
+      bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/onboard_easytravel.sh"
+      bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/onboard_easytravel_qualitygates.sh"
+      printInfoSection "deploy easytravel..."
+      bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/deploy_0.sh"
+      printInfoSection "Load remediation..."
+      bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash loadRemediation.sh"
+    fi
 
-    bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/onboard_easytravel.sh"
-    bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/onboard_easytravel_qualitygates.sh"
-    # deploy easytravel
-    bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/deploy_0.sh"
-
-    waitForAllPods
     printInfoSection "Keptn Exposing the Onboarded easytravel Application"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} easytravel"
     printInfoSection "set env variables"
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash setenv.sh ${DOMAIN}"  
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash setenv.sh ${DOMAIN}"
+      
   fi
 }
 
 keptndemoEasytraveloadgen() {
   if [ "$keptndemo_easytraveloadgen" = true ]; then
-    printInfoSection "easytrvel loadgen staging"
-    bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash preploadgen.sh ${DOMAIN} loadgen"
-    printInfoSection "easytrvel loadgen production"
-    bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash preploadgen.sh ${DOMAIN} loadgen-prod"    
-    printInfoSection "easytrvel angular loadgen staging"
-    bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash preploadgen.sh ${DOMAIN} loadgen-headless"
-    printInfoSection "easytrvel angular loadgen production"
-    bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash preploadgen.sh ${DOMAIN} loadgen-headless-prod"    
+     if [ "$ET_STAGING_ONLY" = true ]; then
+      printInfoSection "easytrvel loadgen staging..."
+      bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash preploadgen.sh ${DOMAIN} loadgen"  
+      printInfoSection "easytrvel angular loadgen staging..."
+      bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash preploadgen.sh ${DOMAIN} loadgen-headless"
+     else
+      printInfoSection "easytrvel loadgen staging..."
+      bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash preploadgen.sh ${DOMAIN} loadgen"
+      printInfoSection "easytrvel loadgen production..."
+      bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash preploadgen.sh ${DOMAIN} loadgen-prod"    
+      printInfoSection "easytrvel angular loadgen staging..."
+      bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash preploadgen.sh ${DOMAIN} loadgen-headless"
+      printInfoSection "easytrvel angular loadgen production..."
+      bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash preploadgen.sh ${DOMAIN} loadgen-headless-prod"
+    fi    
   fi
 }
 
 metricCreation() {
   if [ "$createMetrics" = true ]; then
     printInfoSection "create request attributes for calculated metrics"
-    bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/scripts && bash $KEPTN_CATALOG_DIR/keptn-onboarding/scripts/createRequestAttributes.sh"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts/createRequestAttributes.sh"
 	sleep 5
-    printInfoSection "create calculated metrics"
-    bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/scripts && bash $KEPTN_CATALOG_DIR/keptn-onboarding/scripts/createTestStepCalculatedMetrics.sh CONTEXTLESS keptn_project keptnorders"
+    printInfoSection "create calculated metrics..."
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts/createTestStepCalculatedMetrics.sh CONTEXTLESS keptn_project keptnorders"
 	sleep 5
-	printInfoSection "create process group nameing rule"
-    bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/scripts && bash $KEPTN_CATALOG_DIR/keptn-onboarding/scripts/createProcessGroupName.sh"
+	printInfoSection "create process group nameing rule..."
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts/createProcessGroupName.sh"
 	sleep 5
-	printInfoSection "create process group nameing rule"
-    bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/scripts && bash $KEPTN_CATALOG_DIR/keptn-onboarding/scripts/createServiceName.sh"    
+	printInfoSection "create process group nameing rule..."
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts/createServiceName.sh"    
   fi
 }
 
+applicationCreation() {
+  if [ "$createApplications" = true ]; then
+    printInfoSection "create Application and Detection Rules..."
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/createApplication.sh"   
+  fi
+}
 
 loadKeptnDashboard() {
   if [ "$keptndashboard_load" = true ]; then
@@ -937,8 +1024,46 @@ loadKeptnDashboard() {
     sleep 2
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/dashboards && bash load4.sh ${DOMAIN} ${CERTMANAGER_EMAIL}"
     sleep 2
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/dashboards && bash load5.sh ${DOMAIN} ${CERTMANAGER_EMAIL}"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/dashboards && bash load5.sh ${DOMAIN} ${CERTMANAGER_EMAIL}"    
+    sleep 2
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/dashboards && bash load6.sh ${DOMAIN} ${CERTMANAGER_EMAIL}"
+    sleep 2
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/dashboards && bash load7.sh ${DOMAIN} ${CERTMANAGER_EMAIL}"
+    sleep 2
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/dashboards && bash load8.sh ${DOMAIN} ${CERTMANAGER_EMAIL}"
+    sleep 2
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/dashboards && bash load9.sh ${DOMAIN} ${CERTMANAGER_EMAIL}"
   fi
+}
+
+loadDynatraceProject() {
+ if [ "$dynatrace_project" = true ]; then
+    printInfoSection "set env variables"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash setenv.sh ${DOMAIN}" 
+    printInfoSection "create dynatrace project"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/keptn && bash $KEPTN_IN_A_BOX_DIR/resources/keptn/dynatrace-project.sh"
+ fi
+}
+
+loadKeptnWebService() {
+ if [ "$keptnwebservice" = true ]; then
+    printInfoSection "set env variables"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash setenv.sh ${DOMAIN}" 
+    printInfoSection "load keptn web service"
+    KEPTN_ENDPOINT=https://$(kubectl get ing -n keptn api-keptn-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')/api
+    KEPTN_API_TOKEN=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 --decode)
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/keptnwebservices && bash $KEPTN_IN_A_BOX_DIR/resources/keptnwebservices/deploykeptnwebservice.sh ${DOMAIN} ${KEPTN_API_TOKEN}"
+    waitForAllPods webservices-dev
+    printInfoSection "Exposing the keptnwebservice"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} keptnwebservice"    
+ fi
+}
+
+setsockshopsecret() {
+ if [ "$sockshop_secret" = true ]; then
+    printInfoSection "create keptn secret for sockshop"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts && bash setdbenv.sh ${DT_TENANT} ${DT_API_TOKEN} ${DOMAIN}"    
+ fi
 }
 
 createWorkshopUser() {
@@ -961,10 +1086,20 @@ createWorkshopUser() {
 
 postFlightWork() {
   if [ "$post_flight" = true ]; then    
+    printInfoSection "PostFlight work for environment setup"
     bashas "chown -f -R ${USER} ~/.kube"
-    cp $KEPTN_IN_A_BOX_DIR/resources/misc/daemon.json /etc/docker/daemon.json
-    systemctl restart docker
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && sudo cp hostautotag.conf /var/lib/dynatrace/oneagent/agent/config/hostautotag.conf"
+    #cp $KEPTN_IN_A_BOX_DIR/resources/misc/daemon.json /etc/docker/daemon.json
+    #systemctl restart docker
+    printInfo "Try to set host tags - if it fails - please run $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts/hosttag.sh as sudo user"
+    printInfo "USER-PATH=$USER_KIAB_PATH"   
+    printInfo "Create host tags"
+    bashnu "cd $USER_KIAB_PATH/resources/dynatrace/scripts && bash $USER_KIAB_PATH/resources/dynatrace/scripts/hosttag.sh ${USER_KIAB_PATH}"
+    printInfo "try fallback method to Create host tags"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts/hosttag.sh ${KEPTN_IN_A_BOX_DIR}"
+    printInfo "Creates symbolic link to triggers command"
+    bashas "cd $KEPTN_IN_A_BOX_DIR && bash setlinks.sh"
+    printInfoSection "Set Kubernetes monitoring flags"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/setkubeflags.sh"
   fi
 }
 
@@ -1007,7 +1142,7 @@ printInstalltime() {
     printInfo "ApiToken to be found on $KEPTN_IN_A_BOX_DIR/resources/gitea/keptn-token.json"
     printInfo "For migrating keptn projects to your self-hosted git repository afterwards just execute the following function:"
     printInfo "cd $KEPTN_IN_A_BOX_DIR/resources/gitea/ && source ./gitea-functions.sh; createKeptnRepoManually {project-name}"
-    printInfo "to make it easier, You can execute the helper script, cd $KEPTN_IN_A_BOX_DIR/resources/gitea then run ./update-git-keptn-post-flight.sh"
+    printInfo "to make it easier, You can execute the helper script, cd $KEPTN_IN_A_BOX_DIR/resources/gitea then run ./update-git-keptn-post-flight.sh ${DOMAIN}"
     printInfo "This script will load any outstanding projects and update any existing projects."
   fi
 
@@ -1025,7 +1160,7 @@ printInstalltime() {
 
 printFlags() {
   printInfoSection "Function Flags values"
-  for i in {selected_bundle,verbose_mode,update_ubuntu,docker_install,microk8s_install,setup_proaliases,enable_k8dashboard,enable_registry,istio_install,helm_install,hostalias,git_deploy,git_migrate,certmanager_install,certmanager_enable,keptn_install,keptn_install_qualitygates,keptn_examples_clone,resources_clone,keptn_catalog_clone,dynatrace_savecredentials,dynatrace_configure_monitoring,dynatrace_activegate_install,dynatrace_configure_workloads,jenkins_deploy,keptn_bridge_disable_login,keptn_bridge_eap,keptndeploy_homepage,keptndemo_cartsload,keptndemo_unleash,keptndemo_unleash_configure,keptndemo_cartsonboard,keptndemo_catalogonboard,keptndemo_easytravelonboard,keptndemo_easytraveloadgen,jmeter_install,expose_kubernetes_api,expose_kubernetes_dashboard,patch_kubernetes_dashboard,create_workshop_user,keptndashboard_load,createMetrics,post_flight,patch_config_service}; 
+  for i in {selected_bundle,verbose_mode,update_ubuntu,docker_install,microk8s_install,setup_proaliases,enable_k8dashboard,enable_registry,istio_install,helm_install,hostalias,git_deploy,git_migrate,certmanager_install,certmanager_enable,keptn_install,keptn_install_qualitygates,keptn_examples_clone,resources_clone,keptn_catalog_clone,dynatrace_savecredentials,dynatrace_configure_monitoring,dynatrace_activegate_install,dynatrace_configure_workloads,jenkins_deploy,keptn_bridge_disable_login,keptn_bridge_eap,keptndeploy_homepage,keptndemo_cartsload,keptndemo_unleash,keptndemo_unleash_configure,keptndemo_cartsonboard,keptndemo_catalogonboard,keptndemo_easytravelonboard,keptndemo_easytraveloadgen,jmeter_install,expose_kubernetes_api,expose_kubernetes_dashboard,patch_kubernetes_dashboard,keptnwebservice,sockshop_secret,create_workshop_user,keptndashboard_load,createMetrics,createApplications,dynatrace_project,post_flight,patch_config_service}; 
   do 
     echo "$i = ${!i}"
   done
@@ -1085,7 +1220,6 @@ doInstallation() {
   jmeterService
   loadKeptnDashboard
   createWorkshopUser
-  certmanagerEnable
   patchConfigService
   
   keptndemoCartsonboard    
@@ -1094,13 +1228,17 @@ doInstallation() {
   metricCreation
  
   keptndemoEasytravelonboard
+  applicationCreation
+  loadKeptnWebService
+  loadDynatraceProject
 
   gitMigrate
   keptndemoUnleashConfigure
   
   keptndemoDeployCartsloadgenerator
   keptndemoEasytraveloadgen
-  
+  certmanagerEnable
+  setsockshopsecret
   postFlightWork
 
   DISK_FINAL=$(getUsedDiskSpace)

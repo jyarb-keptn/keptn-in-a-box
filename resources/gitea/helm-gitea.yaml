@@ -8,7 +8,7 @@ clusterDomain: cluster.local
 
 image:
   repository: gitea/gitea
-  version: 1.12.5
+  version: 1.14.5
   pullPolicy: Always
 
 imagePullSecrets: []
@@ -35,7 +35,7 @@ ingress:
     - host: git.domain.placeholder
       paths:
        - path: /
-         pathType: Prefix  
+         pathType: Prefix    
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
@@ -78,19 +78,19 @@ gitea:
     password: GIT_PASSWORD.placeholder
     email: "GIT_USER.placeholder@local.domain"
 
-  ldap:
-    enabled: false
-    name: ""
-    securityProtocol: ""
-    host: ""
-    port: ""
-    userSearchBase: ""
-    userFilter: ""
-    adminFilter: ""
-    emailAttribute: ""
-    bindDn: ""
-    bindPassword: ""
-    usernameAttribute: ""
+  ldap: []
+  #  enabled: false
+  #  name: ""
+  #  securityProtocol: ""
+  #  host: ""
+  #  port: ""
+  #  userSearchBase: ""
+  #  userFilter: ""
+  #  adminFilter: ""
+  #  emailAttribute: ""
+  #  bindDn: ""
+  #  bindPassword: ""
+  #  usernameAttribute: ""
 
   config: {}
   #  APP_NAME: "Gitea: Git with a cup of tea"
@@ -104,24 +104,13 @@ gitea:
 
   podAnnotations: {}
 
-  database:
-    builtIn:
-      postgresql:
-        enabled: true
-      mysql:
-        enabled: false
-      mariadb:
-        enabled: false
-
-  cache:
-    builtIn:
-      enabled: true
-
 memcached:
+  enabled: true
   service:
     port: 11211
 
 postgresql:
+  enabled: true
   global:
     postgresql:
       postgresqlDatabase: gitea
@@ -132,6 +121,7 @@ postgresql:
     size: 10Gi
 
 mysql:
+  enabled: false
   root:
     password: gitea
   db:
@@ -144,6 +134,7 @@ mysql:
     size: 10Gi
 
 mariadb:
+  enabled: false
   auth:
     database: gitea
     username: gitea
