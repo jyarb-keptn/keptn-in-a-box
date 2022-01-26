@@ -24,6 +24,6 @@ echo "GIT-Server: $GIT_SERVER"
 
 # set env vars
 #export GIT_TOKEN=$GIT_TOKEN
-export GIT_USER=$GIT_USER
-export GIT_SERVER=$GIT_SERVER
+export GIT_USER="${GIT_USER}"
+export GIT_SERVER="${GIT_SERVER}"
 
