@@ -45,7 +45,7 @@ readApiTokenFromFile() {
         API_TOKEN=$(echo $TOKENJSON | jq -r '.sha1')
         TOKEN_ID=$(echo $TOKENJSON | jq -r '.id')
         echo "tokenId: $TOKEN_ID hash: $API_TOKEN"
-        export GIT_TOKEN=${API_TOKEN}
+        export GIT_TOKEN=$API_TOKEN
     fi
 }
 
