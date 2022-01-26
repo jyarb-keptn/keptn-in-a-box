@@ -13,7 +13,7 @@ else
     echo "Domain: $DOMAIN"
 fi
 
-source ./gitea-functions.sh $DOMAIN
+source ~/keptn-in-a-box/resources/gitea/gitea-functions.sh $DOMAIN
 
 # get Tokens for the User
 #getApiTokens

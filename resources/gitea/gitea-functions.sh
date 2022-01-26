@@ -13,7 +13,7 @@ else
 fi
 
 # Load git vars
-source ./gitea-vars.sh $DOMAIN
+source ~/keptn-in-a-box/resources/gitea/gitea-vars.sh $DOMAIN
 
 # Create Token
 createApiToken(){
