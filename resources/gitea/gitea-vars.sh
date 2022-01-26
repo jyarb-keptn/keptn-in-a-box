@@ -15,8 +15,8 @@ GIT_PASSWORD="keptn#R0cks"
 GIT_SERVER="http://git.$DOMAIN"
 
 # static vars
-GIT_TOKEN_FILE_NAME="keptn-token"
-TOKEN_FILE=$GIT_TOKEN_FILE_NAME.json
+GIT_TOKEN="keptn-token"
+TOKEN_FILE=$GIT_TOKEN.json
 
 echo "Username: $GIT_USER"
 echo "Password: $GIT_PASSWORD"
