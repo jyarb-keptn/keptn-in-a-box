@@ -4,10 +4,12 @@
 if [ $# -eq 1 ]; then
     # Read JSON and set it in the CREDS variable 
     DOMAIN=$1
+    PROJECT=$2
     echo "Domain has been passed: $DOMAIN"
 else
     echo "No Domain has been passed, getting it from the Home-Ingress"
     DOMAIN=$(kubectl get ing -n default homepage-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
+    PROJECT=$1
     echo "Domain: $DOMAIN"
 fi
 
@@ -27,10 +29,10 @@ echo "GIT_PW: ${GIT_PASSWORD}"
 echo "GIT_TOKEN: ${GIT_TOKEN}"
 echo "GIT_SERVER: ${GIT_SERVER}"
 
-GIT_REPO=$GIT_SERVER/$GIT_USER/sockshop
+GIT_REPO=$GIT_SERVER/$GIT_USER/$PROJECT
 
 echo "GIT_REPO: ${GIT_REPO}"
 
-#createKeptnProject $2
+#createKeptnProject $PROJECT
 
-#createGitRepo $2
+#createGitRepo $PROJECT
