@@ -78,6 +78,13 @@ updateKeptnRepo(){
     fi
 }
 
+createKeptnProject(){
+    if [ "$1" != "NAME" ]; then
+      KEPTN_PROJECT=$1
+      keptn create project sockshop --shipyard=./shipyard.yaml --git-user=$GIT_USER --git-token=$GIT_TOKEN --git-remote-url=$GIT_REPO
+    fi
+}
+
 createKeptnRepoManually(){
     readApiTokenFromFile
     createKeptnRepo $1

@@ -27,6 +27,10 @@ echo "GIT_PW: ${GIT_PASSWORD}"
 echo "GIT_TOKEN: ${GIT_TOKEN}"
 echo "GIT_SERVER: ${GIT_SERVER}"
 
-$GIT_REPO=$GIT_SERVER/$GIT_USER/sockshop
+GIT_REPO=$GIT_SERVER/$GIT_USER/sockshop
 
 echo "GIT_REPO: ${GIT_REPO}"
+
+#createKeptnProject $2
+
+#createGitRepo $2
