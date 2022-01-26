@@ -21,5 +21,3 @@ createApiToken
 
 # read the Token and keep the hash in memory
 readApiTokenFromFile
-
-printenv
