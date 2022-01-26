@@ -764,7 +764,7 @@ gitDeploy() {
 
 setGitEnv() {
   if [ "$git_env" = true ]; then
-    printInfoSection "Set Git Env variables..."
+    printInfoSection "Create Git token and Set Git Env variables..."
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/gitea && bash git_env.sh ${DOMAIN}"
   fi
 }
@@ -911,6 +911,7 @@ keptndemoCartsonboard() {
     printInfoSection "Keptn onboarding Carts"
     printInfoSection "Prep jmeter files"
     bashas "cd $KEPTN_EXAMPLES_DIR/onboarding-carts/ && bash $KEPTN_IN_A_BOX_DIR/resources/demo/prepfiles.sh"
+    bashas "cd $KEPTN_EXAMPLES_DIR/onboarding-carts/ && bash $KEPTN_IN_A_BOX_DIR/resources/gitea/git_post_env.sh ${DOMAIN} sockshop"
     printInfoSection "Keptn onboarding Carts"
     bashas "cd $KEPTN_EXAMPLES_DIR/onboarding-carts/ && bash $KEPTN_IN_A_BOX_DIR/resources/demo/onboard_carts.sh" 
     printInfoSection "Keptn onboarding Carts QualityGates"
@@ -935,7 +936,7 @@ keptndemoCatalogonboard() {
     printInfoSection "Create tar files for helm..."
     bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash create-helm-files.sh"
     printInfoSection "Keptn onboarding orders application"
-    #TODO Parameterize Catalog Version.
+    bashas "cd $KEPTN_EXAMPLES_DIR/keptn-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/gitea/git_post_env.sh ${DOMAIN} keptnorders"
     bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/catalog/onboard_catalog.sh && bash $KEPTN_IN_A_BOX_DIR/resources/catalog/onboard_catalog_qualitygates.sh"
     printInfoSection "start customer and catalog..."
     bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/catalog/deploy_catalog_0.1.sh"
@@ -955,6 +956,7 @@ keptndemoEasytravelonboard() {
     printInfoSection "Create tar files for helm..."
     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash create-helm-files.sh"
     printInfoSection "Keptn onboarding easytravel application"
+    bashas "cd $KEPTN_EXAMPLES_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/gitea/git_post_env.sh ${DOMAIN} easytravel"
     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/onboard_easytravel.sh"
     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/onboard_easytravel_qualitygates.sh"
     printInfoSection "deploy easytravel..."
@@ -1032,6 +1034,7 @@ loadDynatraceProject() {
     printInfoSection "set env variables"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash setenv.sh ${DOMAIN}" 
     printInfoSection "create dynatrace project"
+    bashas "cd $KEPTN_EXAMPLES_DIR/resources/keptn && bash $KEPTN_IN_A_BOX_DIR/resources/gitea/git_post_env.sh ${DOMAIN} dynatrace"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/keptn && bash $KEPTN_IN_A_BOX_DIR/resources/keptn/dynatrace-project.sh"
  fi
 }
@@ -1043,6 +1046,7 @@ loadKeptnWebService() {
     printInfoSection "load keptn web service"
     KEPTN_ENDPOINT=https://$(kubectl get ing -n keptn api-keptn-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')/api
     KEPTN_API_TOKEN=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 --decode)
+    bashas "cd $KEPTN_EXAMPLES_DIR/resources/keptnwebservices && bash $KEPTN_IN_A_BOX_DIR/resources/gitea/git_post_env.sh ${DOMAIN} webservices"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/keptnwebservices && bash $KEPTN_IN_A_BOX_DIR/resources/keptnwebservices/deploykeptnwebservice.sh ${DOMAIN} ${KEPTN_API_TOKEN}"
     waitForAllPods webservices-dev
     printInfoSection "Exposing the keptnwebservice"

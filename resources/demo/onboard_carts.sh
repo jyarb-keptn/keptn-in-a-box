@@ -3,8 +3,8 @@
 #If directory exists continue, otherwise exit
 if [[ -d "carts" ]]; then
     # The context for this script needs to be in examples/onboarding-carts
-    GIT_REPO=$GIT_SERVER/$GIT_USER/sockshop
-    keptn create project sockshop --shipyard=./shipyard.yaml --git-user=$GIT_USER --git-token=$GIT_TOKEN --git-remote-url=$GIT_REPO
+    #GIT_REPO=$GIT_SERVER/$GIT_USER/sockshop
+    #keptn create project sockshop --shipyard=./shipyard.yaml --git-user=$GIT_USER --git-token=$GIT_TOKEN --git-remote-url=$GIT_REPO
     keptn add-resource --project=sockshop --resource=./shipyard.yaml --resourceUri=shipyard.yaml
     keptn add-resource --project=sockshop --stage=dev --resource=./shipyard.yaml --resourceUri=shipyard.yaml
     # Onboarding - prepare  Keptn

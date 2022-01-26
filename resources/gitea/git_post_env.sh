@@ -33,6 +33,6 @@ GIT_REPO=$GIT_SERVER/$GIT_USER/$PROJECT
 
 echo "GIT_REPO: ${GIT_REPO}"
 
-#createKeptnProject $PROJECT
+createGitRepo $PROJECT
 
-#createGitRepo $PROJECT
+createKeptnProject $PROJECT

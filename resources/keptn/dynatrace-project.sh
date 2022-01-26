@@ -1,7 +1,7 @@
 #!/bin/bash -x
     
     echo "load shipyard.yaml"
-    keptn create project dynatrace --shipyard=./dynatrace-qg-shipyard.yaml
+    #keptn create project dynatrace --shipyard=./dynatrace-qg-shipyard.yaml
     keptn add-resource --project=dynatrace --resource=./dynatrace-qg-shipyard.yaml --resourceUri=shipyard.yaml
     
     keptn add-resource --project=dynatrace --resource=./dynatrace.conf.yaml --resourceUri=dynatrace/dynatrace.conf.yaml

@@ -18,7 +18,7 @@ sed -e 's~domain.placeholder~'"$DOMAIN"'~' \
 echo "creating tarball...."
 tar -cvzf keptnwebservice.tgz keptnwebservice
 echo "install keptnwebservice via keptn CLI..."
-keptn create project webservices --shipyard=./shipyard.yaml
+#keptn create project webservices --shipyard=./shipyard.yaml
 #keptn onboard service keptnwebservice --project=webservices --chart=./keptnwebservice
 keptn create service keptnwebservice --project=webservices
 keptn add-resource --project=webservices --service=keptnwebservice --all-stages --resource=./keptnwebservice.tgz --resourceUri=helm/keptnwebservice.tgz
