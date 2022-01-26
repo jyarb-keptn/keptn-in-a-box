@@ -18,3 +18,5 @@ source ./gitea-functions.sh $DOMAIN
 
 # create an Api Token
 createApiToken
+
+printenv
