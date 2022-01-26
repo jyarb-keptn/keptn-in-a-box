@@ -849,6 +849,8 @@ keptnBridgeDisableLogin() {
 
 keptndemoUnleash() {
   if [ "$keptndemo_unleash" = true ]; then
+    printInfoSection "create unleash project"
+    bashas "cd $KEPTN_EXAMPLES_DIR/unleash-server/ && bash $KEPTN_IN_A_BOX_DIR/resources/gitea/git_post_env.sh ${DOMAIN} unleash"
     printInfoSection "Deploy Unleash-Server"
     bashas "cd $KEPTN_EXAMPLES_DIR/unleash-server/ &&  bash $KEPTN_IN_A_BOX_DIR/resources/demo/deploy_unleashserver.sh"
     waitForAllPods unleash-dev
@@ -1207,7 +1209,6 @@ doInstallation() {
   patchKubernetesDashboard
   keptnInstall
   keptnDeployHomepage
-  keptndemoUnleash
   dynatraceConfigureMonitoring
   dynatraceConfigureWorkloads 
   keptnBridgeEap
@@ -1219,6 +1220,7 @@ doInstallation() {
   loadKeptnDashboard
   createWorkshopUser
   patchConfigService
+  keptndemoUnleash
   keptndemoCartsonboard    
   keptndemoCatalogonboard 
   keptndemoEasytravelonboard
