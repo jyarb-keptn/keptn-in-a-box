@@ -15,7 +15,6 @@ fi
 
 source ~/keptn-in-a-box/resources/gitea/gitea-functions.sh $DOMAIN
 
-cd ~/keptn-in-a-box/resources/gitea
 # get Tokens for the User
 #getApiTokens
 
