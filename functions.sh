@@ -77,6 +77,7 @@ resources_clone=false
 hostalias=false
 keptn_catalog_clone=false
 git_deploy=false
+git_env=false
 git_migrate=false
 dynatrace_savecredentials=false
 dynatrace_configure_monitoring=false
@@ -134,7 +135,8 @@ installationBundleDemo() {
   hostalias=false
   # gitea
   git_deploy=true
-  git_migrate=true
+  git_env=true
+  git_migrate=false
   dynatrace_savecredentials=true
   dynatrace_configure_monitoring=true
   # install Dynatrace Operator
@@ -704,7 +706,11 @@ keptnInstall() {
     printInfoSection "Routing for the Keptn Services via NGINX Ingress"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} api-keptn-ingress"
     waitForAllPods
-    
+
+    printInfoSection "Annotate and label namespace...."
+    bashas "kubectl annotate namespace keptn keptn.sh/managed-by=keptn"
+    bashas "kubectl label namespace keptn keptn.sh/managed-by=keptn"
+
     #We sleep for 15 seconds to give time the Ingress to be ready 
     sleep 15
     printInfoSection "Authenticate Keptn CLI"
@@ -753,6 +759,13 @@ gitDeploy() {
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} gitea"
     GIT_SERVER="http://git.$DOMAIN"
     waitForServersAvailability ${GIT_SERVER}
+  fi
+}
+
+setGitEnv() {
+  if [ "$git_env" = true ]; then
+    printInfoSection "Set Git Env variables..."
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/gitea && bash git_env.sh ${DOMAIN}"
   fi
 }
 
@@ -1138,7 +1151,7 @@ printInstalltime() {
 
 printFlags() {
   printInfoSection "Function Flags values"
-  for i in {selected_bundle,verbose_mode,update_ubuntu,docker_install,microk8s_install,setup_proaliases,enable_k8dashboard,enable_registry,istio_install,helm_install,hostalias,git_deploy,git_migrate,certmanager_install,keptn_install,keptn_install_qualitygates,keptn_examples_clone,resources_clone,keptn_catalog_clone,dynatrace_savecredentials,dynatrace_configure_monitoring,dynatrace_activegate_install,dynatrace_configure_workloads,jenkins_deploy,keptn_bridge_disable_login,keptn_bridge_eap,keptndeploy_homepage,keptndemo_cartsload,keptndemo_unleash,keptndemo_unleash_configure,keptndemo_cartsonboard,keptndemo_catalogonboard,keptndemo_easytravelonboard,keptndemo_easytraveloadgen,jmeter_install,expose_kubernetes_api,expose_kubernetes_dashboard,patch_kubernetes_dashboard,certmanager_enable,keptnwebservice,sockshop_secret,create_workshop_user,keptndashboard_load,createMetrics,createApplications,dynatrace_project,post_flight,patch_config_service}; 
+  for i in {selected_bundle,verbose_mode,update_ubuntu,docker_install,microk8s_install,setup_proaliases,enable_k8dashboard,enable_registry,istio_install,helm_install,hostalias,git_deploy,git_env,git_migrate,certmanager_install,keptn_install,keptn_install_qualitygates,keptn_examples_clone,resources_clone,keptn_catalog_clone,dynatrace_savecredentials,dynatrace_configure_monitoring,dynatrace_activegate_install,dynatrace_configure_workloads,jenkins_deploy,keptn_bridge_disable_login,keptn_bridge_eap,keptndeploy_homepage,keptndemo_cartsload,keptndemo_unleash,keptndemo_unleash_configure,keptndemo_cartsonboard,keptndemo_catalogonboard,keptndemo_easytravelonboard,keptndemo_easytraveloadgen,jmeter_install,expose_kubernetes_api,expose_kubernetes_dashboard,patch_kubernetes_dashboard,certmanager_enable,keptnwebservice,sockshop_secret,create_workshop_user,keptndashboard_load,createMetrics,createApplications,dynatrace_project,post_flight,patch_config_service}; 
   do 
     echo "$i = ${!i}"
   done
@@ -1193,6 +1206,7 @@ doInstallation() {
   keptnBridgeDisableLogin
   jenkinsDeploy
   gitDeploy
+  setGitEnv
   jmeterService
   loadKeptnDashboard
   createWorkshopUser
