@@ -22,6 +22,8 @@ createApiToken(){
     -X POST "$GIT_SERVER/api/v1/users/$GIT_USER/tokens" \
     -H "accept: application/json" -H "Content-Type: application/json; charset=utf-8" \
     -d "{ \"name\": \"$GIT_TOKEN\" }" -o $GIT_TOKEN.json
+    
+    export GIT_TOKEN=$GIT_TOKEN
 }
 
 getApiTokens(){

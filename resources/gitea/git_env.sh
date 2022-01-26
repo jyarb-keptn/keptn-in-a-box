@@ -18,8 +18,3 @@ getApiTokens
 
 # create an Api Token
 createApiToken
-
-# set env vars
-export GIT_TOKEN=$GIT_TOKEN
-export GIT_USER=$GIT_USER
-export GIT_SERVER=$GIT_SERVER
