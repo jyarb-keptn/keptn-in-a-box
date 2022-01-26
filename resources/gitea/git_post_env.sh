@@ -22,4 +22,11 @@ source ./gitea-functions.sh $DOMAIN
 # read the Token and keep the hash in memory
 readApiTokenFromFile
 
-printenv
+echo "GIT_USER: ${GIT_USER}"
+echo "GIT_PW: ${GIT_PASSWORD}"
+echo "GIT_TOKEN: ${GIT_TOKEN}"
+echo "GIT_SERVER: ${GIT_SERVER}"
+
+$GIT_REPO=$GIT_SERVER/$GIT_USER/sockshop
+
+echo "GIT_REPO: ${GIT_REPO}"
