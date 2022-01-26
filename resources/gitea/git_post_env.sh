@@ -9,7 +9,7 @@ if [ $# -eq 1 ]; then
 else
     echo "No Domain has been passed, getting it from the Home-Ingress"
     DOMAIN=$(kubectl get ing -n default homepage-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
-    PROJECT=$1
+    PROJECT=$2
     echo "Domain: $DOMAIN"
 fi
 
