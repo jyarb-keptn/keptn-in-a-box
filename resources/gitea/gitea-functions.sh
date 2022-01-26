@@ -39,10 +39,10 @@ deleteApiToken(){
 }
 
 readApiTokenFromFile() {
-    FILE=~/keptn-in-a-box/resources/gitea/$TOKEN_FILE
-    if [ -f "$FILE" ]; then
+    TOKEN_FILE=~/keptn-in-a-box/resources/gitea/$TOKEN_FILE
+    if [ -f "$TOKEN_FILE" ]; then
         echo "Reading token from file $TOKEN_FILE"
-        TOKENJSON=$(cat $FILE)
+        TOKENJSON=$(cat $TOKEN_FILE)
         API_TOKEN=$(echo $TOKENJSON | jq -r '.sha1')
         TOKEN_ID=$(echo $TOKENJSON | jq -r '.id')
         echo "tokenId: $TOKEN_ID hash: $API_TOKEN"
