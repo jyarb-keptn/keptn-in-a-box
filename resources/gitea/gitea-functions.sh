@@ -39,6 +39,7 @@ deleteApiToken(){
 }
 
 readApiTokenFromFile() {
+    echo "TOKEN_FILE: $TOKEN_FILE"
     TOKEN_FILE=~/keptn-in-a-box/resources/gitea/$TOKEN_FILE
     if [ -f "$TOKEN_FILE" ]; then
         echo "Reading token from file $TOKEN_FILE"
