@@ -18,7 +18,7 @@ agent any
     parameters {
         string (name: 'project', defaultValue: 'keptn_project: easyTravel')
         string (name: 'buildenv', defaultValue: 'staging')
-        string (name: 'buildVersion', defaultValue: '2.0.0.3349')
+        string (name: 'buildVersion', defaultValue: '2.0.0.3356')
 	    string (name: 'LoadTestTime', defaultValue: '3')
 	    string (name: 'ThinkTime', defaultValue: '1000')		
         string (name: 'DeploymentURI', defaultValue: "${env.EASYTRAVEL_STAGING}")
