@@ -162,7 +162,7 @@ installationBundleDemo() {
   # dashboards for AIOPs
   keptndashboard_load=false
   # create custom metrics
-  createMetrics=true
+  createMetrics=false
   createApplications=false
   expose_kubernetes_api=true
   expose_kubernetes_dashboard=true
