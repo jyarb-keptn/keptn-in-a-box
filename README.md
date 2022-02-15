@@ -7,7 +7,7 @@ generated with Cert-Manager and Let's Encrypt, does not mean the Box is secure.
 
 # Keptn-in-a-Box Enhanced (with Dynatrace Software Intelligence empowered) 🎁
 
-:rotating_light: ALERT: This install uses keptn 0.11.4 :rotating_light:
+## ALERT: This install uses keptn 0.11.4 
 
 Keptn-In-A-Box is part of the automation for delivering Autonomous Cloud Workshops with Dynatrace. This is not a tutorial but more an explanation of what the shell file set up for you on a plain Ubuntu image. 
 
@@ -138,10 +138,10 @@ Filesystem      Size  Used Avail Use% Mounted on
 ### installationBundleDemo
 The minimum required for running the default modules is t2.large with 13 Gigs of Disk space. We recommend 20 Gigs and t2.xlarge for the best experience.
 
-### :white_check_mark: installationBundleAll
+### installationBundleAll
 The minimum required for running the default modules is t2.2xlarge with 30 Gigs of Disk space. We recommend c4.4xlarge with 60 Gigs of Disk space for the best experience.
 
-## :arrow_right: Setup and Configure AWS Instance.
+## Setup and Configure AWS Instance.
 
 1. Ubuntu 20.04 LTS is recommended.
 
@@ -160,14 +160,14 @@ If you define security rules in the Cloud provider or on your datacenter, your i
 * 8080/Custom
 * 4200/Custom
 
-### :arrow_right: Create Tokens
+### Create Tokens
 Next You will need to create the necessary tokens. 
 
 How to [Create Tokens](#create-tokens)
 
 Now you are ready to start the install process.
 
-### :arrow_right: Get started in 1 - 2 - 3 - 4
+### Get started in 1 - 2 - 3 - 4
 
 ### Run it in an available machine  (manually)
 
@@ -241,13 +241,13 @@ less +F /tmp/install.log
 
 Be patient, the deployment process will average ~20 min.
 
-:white_check_mark: Now you can get the URL for your KIAB homepage.
+Now you can get the URL for your KIAB homepage.
 
 <img src="doc/images/KIAB_info.png" width="500"/>
 
 Just open a Browser with the IP.
 
-### :arrow_right: Next Run A Pipeline
+### Next Run A Pipeline
 
 Click on **"Jenkins"**
 
@@ -279,30 +279,31 @@ Click on **"Jenkins"**
 Now we can follow the next steps to review the Pipelines and understand the different scenerios.
 Just follow the arrows.
 
-## :white_check_mark: Understanding Demo Flows and the Deployment
+## Understanding Demo Flows and the Deployment
 
 ### 1 - Review the Pipelines
 
-:arrow_right: [Review Pipelines](#the-sample-pipelines)
+[Review Pipelines](#the-sample-pipelines)
 
 ### 2 - Review and understand the problem scenerios
 
-:arrow_right: [Application Overview and Problem Scenerios](doc/index.md)
+[Application Overview and Problem Scenerios](doc/index.md)
 
 ### 3 - Understanding and setup for Load Testing
 
-:arrow_right: [Load Test Analysis Performance Issue](doc/index-2.md)
+[Load Test Analysis Performance Issue](doc/index-2.md)
 
 ### 4 - SLO's and Test Analysis
 
-:arrow_right: [SLOs and Load Test Analysis Error Issue](doc/index-3.md)
+[SLOs and Load Test Analysis Error Issue](doc/index-3.md)
 
 ### 5 - PostFlight Git update
 
-:arrow_right: [Upstream git](#post-flight-git)
+:[Upstream git](#post-flight-git)
 
 ### 6 - Available builds, problem patters and scenerios for Sockshop
-:arrow_right: https://github.com/keptn/examples used for the sockshop app
+
+https://github.com/keptn/examples used for the sockshop app
 
 ### 7 - Easytravel app
 
@@ -380,7 +381,7 @@ Also, any subsequent builds for the sockshop app will use the Dashboard SLI's.
 
 ## Troubleshooting
 
-:arrow_right: [Troubleshooting](#troubleshooting-and-inspecting-the-installation)
+[Troubleshooting](#troubleshooting-and-inspecting-the-installation)
 
 ## Further reading to understand the installed modules and troubleshooting steps.
 
@@ -497,7 +498,7 @@ For more details on the Integration with Dynatrace read the following links:
 
 With the **installationModulesDefault** or **installationModulesFull** Dynatrace is automatically installed if the credentials are configured.
 
-:arrow_right:  [Back](#arrow_right-create-tokens)
+[Back](#arrow_right-create-tokens)
 
 ## Other installation options
 ### Spin your preconfigured Keptn-in-a-box machines with userdata  (manually in aws)
@@ -566,7 +567,7 @@ For example triggering the first quality gate and evaluating a service will look
 5. 03-simpletest-qualitygate - will do a simple multi-step test directly from Jenkins via HTTP and do the validation via keptn.
 6. 04-performancetest-qualitygate - will do a Loadtest based on a simple JMeter script. 
 
-:arrow_right:  [Back](#2---review-and-understand-the-problem-scenerios)
+[Back](#2---review-and-understand-the-problem-scenerios)
 
 #### Post Flight git 
 For migrating keptn projects to your self-hosted git repository afterwards just execute the following.
@@ -579,7 +580,7 @@ cd ~$KEPTN_IN_A_BOX_DIR/resources/gitea
 ```
 **The Domain is required**
 
-:arrow_right:  [Back](#6---available-builds-problem-patters-and-scenerios-for-sockshop)
+[Back](#6---available-builds-problem-patters-and-scenerios-for-sockshop)
 
 ### Change your own Domain
 By default the Script will get the public ip and give it a magic domain with nip.io like ip=1.2.3.4 will become 1-2-3-4.nip.io. This way with an NGINX Ingress Keptn and all Istio and Kubernetes services are available with subdomains via the standard HTTP ports 443 and 80.
