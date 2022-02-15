@@ -164,7 +164,7 @@ If you define security rules in the Cloud provider or on your datacenter, your i
 ### Create Dynatrace Tokens
 Next You will need to create the necessary tokens. 
 
-How to [Create Tokens](#create-tokens)
+Follow these instructions to create the Dynatrace Tokens -> [Create Tokens](#create-tokens)
 
 Now you are ready to start the install process.
 
