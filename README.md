@@ -718,13 +718,13 @@ KIAB (Keptn in a Box)
 
 | Componenet | Details |
 | ---------- | ------ |
-| Kubernetes | <ul><li>API</li><li>Cluster</li></ul> |
-| [Keptn](https://keptn.sh/) | <ul><li>API</li><li>Bridge</li></ul> |
-| Upstream Git | <ul><li>API</li><li>Repositories</li></ul> |
-| CI/CD | <ul><li>Jenkins</li><li>Unleash</li></ul> |
-| Order Application | <ul><li>Frontend Service</li><li>Customer Service</li><li>Catalog Service</li><li>Order Service</li></ul> |
-| SockShop Application | <ul><li>Carts</li><li>Carts DB</li></ul> |
-| Easytravel Application | <ul><li>Frontend</li><li>Backend</li><li>Nginx</li><li>Easytravel Mongo DB</li></ul> |
+| Kubernetes | - API  - Cluster |
+| [Keptn](https://keptn.sh/) | - API - Bridge |
+| Upstream Git | - API - Repositories |
+| CI/CD | - Jenkins - Unleash |
+| Order Application | - Frontend Service - Customer Service - Catalog Service - Order Service |
+| SockShop Application | - Carts - Carts DB |
+| Easytravel Application | - Frontend - Backend - Nginx - Easytravel Mongo DB |
 
 
 ## Contributing
