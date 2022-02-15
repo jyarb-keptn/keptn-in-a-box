@@ -501,7 +501,7 @@ With the **installationModulesDefault** or **installationModulesFull** Dynatrace
 [Back](#arrow_right-create-tokens)
 
 ## Other installation options
-### Spin your preconfigured Keptn-in-a-box machines with userdata  (manually in aws)
+### Spin up your preconfigured Keptn-in-a-box machines with userdata  (manually in aws)
 1. Log in to AWS
 2. Click on "Launch instance"
 3. Select "Ubuntu Server [18|20].04 LTS (HVM) "
@@ -510,7 +510,7 @@ With the **installationModulesDefault** or **installationModulesFull** Dynatrace
 6. In Configure Instance details - Advanced options (below) copy the keptn-in-a-box.sh file. (as string or drop it, doesn't matter). Remember to edit your file if you want to customize your box.
 7. Review it and launch your instance.
 
-### Spin your preconfigured Keptn-in-a-box machines  with userdata (automated)
+### Spin up your preconfigured Keptn-in-a-box machines  with userdata (automated)
 - Description to be added. Please see the [Dynatrace Rest Tenant Automation project](https://github.com/sergiohinojosa/Dynatrace-REST-Tenant-Automation) for reference. The RTA project can spin as many instances as you want by providing a simple CSV file. It will also create and configure Dynatrace environments for each CSV entry, 😍 perfect for delivering workshops 👨‍💻. If you are interested in a workshop get in contact with us. 
 
 
