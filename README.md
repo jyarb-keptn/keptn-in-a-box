@@ -159,14 +159,14 @@ If you define security rules in the Cloud provider or on your datacenter, your i
 * 8080/Custom
 * 4200/Custom
 
-### Create Tokens
+### Get started in 1 - 2 - 3 - 4
+
+### Create Dynatrace Tokens
 Next You will need to create the necessary tokens. 
 
 How to [Create Tokens](#create-tokens)
 
 Now you are ready to start the install process.
-
-### Get started in 1 - 2 - 3 - 4
 
 ### Run it in an available machine  (manually)
 
@@ -293,7 +293,7 @@ Just follow the arrows.
 
 ### 5 - PostFlight Git update
 
-:[Upstream git](#post-flight-git)
+[Upstream git](#post-flight-git)
 
 ### 6 - Available builds, problem patters and scenerios for Sockshop
 
