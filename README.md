@@ -113,7 +113,7 @@ This section will give you an idea the nedded size for your Box. But it all depe
 The installer comes with 3 predefined modules: **minimal**, **default** and **full**. 
 
 ### 🕐 Installation time
-From the testing in AWS minimal installation takes ~ 4 minutes to complete and full ~ 20 minutes. 
+From the testing in AWS minimal installation takes ~ 4 minutes to complete and full ~ 20-30 minutes. 
 
 ### AWS sizings for reference 
 Below is a table for the sizing reference if you run a local VM or are virtualizing locally.
