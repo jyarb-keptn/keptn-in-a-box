@@ -79,8 +79,6 @@ For a step by step understanding of how Keptn-in-a-Box works and how to use it, 
 ## Prerequisites
 
 - [Ubuntu](https://ubuntu.com/#download) with internet connection (tested on 18.04 LTS and 20.04 LTS)
-
-#### (optional)
 - [A Dynatrace Tenant](https://www.dynatrace.com/trial/) 
 - AWS Account [Here you can get a free account](https://aws.amazon.com/free/)
 - You will get the most out of it if your DOMAIN is configured and reachable either by Dynatrace SaaS or Dynatrace Managed.
@@ -105,7 +103,8 @@ For a step by step understanding of how Keptn-in-a-Box works and how to use it, 
   ├── jenkins               Deployment and configuration for Jenkins managed as code.
   ├── misc                  Miscelaneous (patch kubernetes dashboard)
   ├── keptn                 Scripts and configuration items to support keptn
-  └── virtualservices       YAML files for virtualservices 
+  ├── virtualservices       YAML files for virtualservices 
+  └── keptnwebservices      keptn webservice setup 
 ```
 
 ## 💾 Sizing
@@ -192,16 +191,13 @@ curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.10/kept
 chmod +x keptn-in-a-box.sh
 ```
 
-#### 4. Execute the file with sudo rights.
-```bash
-sudo bash -c './keptn-in-a-box.sh'
-```
-#### 4.1 New execution method with flags. (preferred)
+#### 4 New execution method with flags.
+
 ```
 yes | sudo  bash -c './keptn-in-a-box.sh -t <TENANT> -a <APITOKEN> -p <PAASTOKEN> -e <UserEmail>'
 ```
 
-The script will ask for the following inputs.
+The script will require the following inputs.
 
 - Use the Dynatrace information for the inputs to the script:
 
@@ -229,8 +225,6 @@ Dynatrace PaaS Token: []:
 User Email []:
 ```
 
-answer **'y'** if the information is correct, then Press **enter**
-
 And that was it! Yes that easy!  
 This command will run the installation in a bash shell as sudo and send the job to the background. You will not see any output since stdout and stderr are piped to a logfile which is located by default in **/tmp/install.log** 
 
@@ -239,7 +233,7 @@ For inspecting the installation on realtime type:
 less +F /tmp/install.log
 ```
 
-Be patient, the deployment process will average ~20 min.
+Be patient, the deployment process will average ~20 to ~30 min.
 
 Now you can get the URL for your KIAB homepage.
 
