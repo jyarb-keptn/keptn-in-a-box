@@ -234,7 +234,7 @@ less +F /tmp/install.log
 
 Please be patient, the deployment process will average ~20 to ~30 min.
 
-Once the install has finsihed you can get the URL for your KIAB homepage.
+Once the install has finsihed, you can get the URL for your KIAB homepage.
 
 <img src="doc/images/KIAB_info.png" width="500"/>
 
