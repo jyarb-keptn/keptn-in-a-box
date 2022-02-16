@@ -166,7 +166,7 @@ Follow these instructions to create the Dynatrace Tokens -> [Create Tokens](#cre
 
 Now you are ready to start the install process.
 
-### Run it in an available machine  (manually)
+### Run it on an available machine  (manually)
 
 #### 1. Log in into  your Ubuntu image
 
@@ -189,7 +189,7 @@ curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.10/kept
 chmod +x keptn-in-a-box.sh
 ```
 
-#### 4 New execution method with flags.
+#### 4. New execution method with flags.
 
 ```
 yes | sudo  bash -c './keptn-in-a-box.sh -t <TENANT> -a <APITOKEN> -p <PAASTOKEN> -e <UserEmail>'
@@ -223,7 +223,8 @@ Dynatrace PaaS Token: []:
 User Email []:
 ```
 
-And that was it! Yes that easy!  
+And that was it! Yes it is that easy! 
+
 This command will run the installation in a bash shell as sudo and send the job to the background. You will not see any output since stdout and stderr are piped to a logfile which is located by default in **/tmp/install.log** 
 
 For inspecting the installation on realtime type:
@@ -231,9 +232,9 @@ For inspecting the installation on realtime type:
 less +F /tmp/install.log
 ```
 
-Be patient, the deployment process will average ~20 to ~30 min.
+Please be patient, the deployment process will average ~20 to ~30 min.
 
-Now you can get the URL for your KIAB homepage.
+Once the install has finsihed you can get the URL for your KIAB homepage.
 
 <img src="doc/images/KIAB_info.png" width="500"/>
 
