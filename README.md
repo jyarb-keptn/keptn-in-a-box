@@ -3,7 +3,7 @@ nor supported. It's publishment is only intended for helping others automate env
 workshops with Keptn & Dynatrace. Even though the exposed endpoints of this cluster have valid SSL certificates 
 generated with Cert-Manager and Let's Encrypt, does not mean the Box is secure.    
 
-> ## ***🥼⚗ Spend more time innovating and less time configuring***
+> ## ***Spend more time innovating and less time configuring***
 
 # Keptn-in-a-Box Enhanced (with Dynatrace Software Intelligence empowered) 🎁
 
