@@ -661,25 +661,27 @@ To view a verbose output (of every executed command) set the following control f
 
 If you need to rebuild the environment, follow these steps.
 
+#### 1. Change Directory
+
 ```bash
 cd ~/keptn-in-a-box
 ```
 
-1. The following script will reset the Ubuntu instance by removing Kubernetes, the Dynatrace ActiveGate and any configuration.
+#### 2. The following script will reset the Ubuntu instance by removing Kubernetes, the Dynatrace ActiveGate and any configuration.
 
 ```bash
 ./resetenv.sh
 ```
 
-2. In your Dynatrace tenant Delete the kubernetes connection, under "cloud and virtualization"
+#### 3. In your Dynatrace tenant Delete the kubernetes connection, under "cloud and virtualization"
 
 Now we need to re-initialize the environment.
 
-3. Run the following commands, then follow the process from Step 4 above.
+#### 4. Run the following commands, then follow the process from Step 4 above.
     
 ```bash
 cd ~
-sudo bash -c './keptn-in-a-box.sh'
+yes | sudo  bash -c './keptn-in-a-box.sh -t <TENANT> -a <APITOKEN> -p <PAASTOKEN> -e <UserEmail>'
 ```
 
 [Continue from step 4](#run-it-in-an-available-machine--manually)
