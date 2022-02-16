@@ -617,23 +617,30 @@ These are the actual versions of the different Modules
 # ==================================================
 #      ----- Components Versions -----             #
 # ==================================================
-KIAB_RELEASE="0.8.8"
-ISTIO_VERSION=1.9.1
-CERTMANAGER_VERSION=0.14.0
-KEPTN_VERSION=0.10.0
-KEPTN_DT_SERVICE_VERSION=0.18.0
+KIAB_RELEASE="0.8.10"
+# https://github.com/keptn/keptn
+KEPTN_VERSION=0.11.4
+ISTIO_VERSION=1.11.4
+CERTMANAGER_VERSION=1.6.1
+# https://github.com/helm/helm/releases
+HELM_VERSION=3.7.1
+# https://github.com/keptn-contrib/dynatrace-service
+KEPTN_DT_SERVICE_VERSION=0.19.0
+# https://github.com/keptn-contrib/dynatrace-sli-service
 KEPTN_DT_SLI_SERVICE_VERSION=0.12.1
+# https://github.com/keptn/examples
 KEPTN_EXAMPLES_REPO="https://github.com/keptn/examples.git"
-KEPTN_EXAMPLES_BRANCH="0.10.0"
-KEPTN_EXAMPLES_DIR="~/examples"
+KEPTN_EXAMPLES_BRANCH="0.11.0"
+#KEPTN_EXAMPLES_DIR="~/examples"
 KEPTN_CATALOG_REPO="https://github.com/jyarb-keptn/overview.git"
-KEPTN_CATALOG_BRANCH="0.8.5"
-KEPTN_CATALOG_DIR="~/overview"
+KEPTN_CATALOG_BRANCH="0.8.6"
+#KEPTN_CATALOG_DIR="~/overview"
 TEASER_IMAGE="pcjeffmac/nginxacm:0.8.1"
 KEPTN_BRIDGE_IMAGE="keptn/bridge2:0.8.0"
 MICROK8S_CHANNEL="1.19/stable"
+#KEPTN_IN_A_BOX_REPO="https://github.com/keptn-sandbox/keptn-in-a-box.git"
 KEPTN_IN_A_BOX_REPO="https://github.com/jyarb-keptn/keptn-in-a-box.git"
-KEPTN_IN_A_BOX_DIR="~/keptn-in-a-box"
+#KEPTN_IN_A_BOX_DIR="~/keptn-in-a-box"
 ```
 Feel free to experiment and change the versions. We will try to keep the list up to date. 
 Be careful here as certain deprecations will effect the build
