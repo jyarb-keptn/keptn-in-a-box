@@ -1,4 +1,4 @@
-@Library('keptn-library@5.1')_
+@Library('keptn-library@5.1.1')_
 import sh.keptn.Keptn
 def keptn = new sh.keptn.Keptn()
 
@@ -588,7 +588,7 @@ stages{
         echo "Quality Gates ONLY: Just triggering an SLI/SLO-based evaluation for the passed timeframe"
         script {  
         // Trigger an evaluation
-        def keptnContext = keptn.sendStartEvaluationEvent starttime:"${params.StartTime}", endtime:"${params.EndTime}", timezone:"${params.TimeZone}" 
+        def keptnContext = keptn.sendStartEvaluationEvent starttime:"${params.StartTime}", endtime:"${params.EndTime}" 
         String keptn_bridge = env.KEPTN_BRIDGE
         echo "Open Keptns Bridge: ${keptn_bridge}/trace/${keptnContext}"
       }
