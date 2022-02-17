@@ -1,4 +1,4 @@
-@Library('keptn-library@6.0.0-next.0')_
+@Library('keptn-library@5.1.2')_
 import sh.keptn.Keptn
 def keptn = new sh.keptn.Keptn()
 
@@ -31,7 +31,7 @@ node {
         archiveArtifacts artifacts:'keptn/**/*.*'
 
         // Initialize the Keptn Project - ensures the Keptn Project is created with the passed shipyard
-        keptn.keptnInit project:"${params.Project}", service:"${params.Service}", stage:"${params.Stage}", shipyard:'keptn/shipyard.yaml'
+        keptn.keptnInit project:"${params.Project}", service:"${params.Service}", stage:"${params.Stage}", shipyard:'keptn/shipyard.yaml', monitoring:"${monitoring}"
 
         // Upload all the files
         keptn.keptnAddResources('keptn/shipyard.yaml','shipyard.yaml')
