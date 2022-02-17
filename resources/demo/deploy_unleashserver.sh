@@ -8,12 +8,15 @@ if [[ -d "unleash" ]]; then
     #UNLEASH_BASE_URL=$(echo http://unleash.unleash-dev.kiab.pcjeffint.com)
     
     # The context for this script needs to be in examples/unleash-server
-    keptn create project unleash --shipyard=./shipyard.yaml
+    # Creating the project has been moved.
+    #keptn create project unleash --shipyard=./shipyard.yaml
     #keptn onboard service unleash-db --project=unleash --chart=./unleash-db
     keptn create service unleash-db --project=unleash
+    keptn add-resource --project=unleash --service=unleash-db --all-stages --resource=./dynatrace.conf.yaml --resourceUri=dynatrace/dynatrace.conf.yaml
     keptn add-resource --project=unleash --service=unleash-db --all-stages --resource=./unleash-db.tgz --resourceUri=helm/unleash-db.tgz
     #keptn onboard service unleash --project=unleash --chart=./unleash
     keptn create service unleash --project=unleash
+    keptn add-resource --project=unleash --service=unleash --all-stages --resource=./dynatrace.conf.yaml --resourceUri=dynatrace/dynatrace.conf.yaml
     keptn add-resource --project=unleash --service=unleash --all-stages --resource=./unleash.tgz --resourceUri=helm/unleash.tgz
     # trigger the delivery
     keptn trigger delivery --project=unleash --service=unleash-db --image=postgres:10.4
