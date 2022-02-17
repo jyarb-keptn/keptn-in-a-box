@@ -1,11 +1,11 @@
 #!/bin/bash
 # Function file for adding created keptn repos to a self-hosted git repository
 
-if [ $# -eq 1 ]; then
+if [ $# -eq 2 ]; then
     # Read JSON and set it in the CREDS variable 
     DOMAIN=$1
     PROJECT=$2
-    echo "Domain has been passed: $DOMAIN"
+    echo "Domain has been passed: $DOMAIN for project: $PROJECT"
 else
     echo "No Domain has been passed, getting it from the Home-Ingress"
     DOMAIN=$(kubectl get ing -n default homepage-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
