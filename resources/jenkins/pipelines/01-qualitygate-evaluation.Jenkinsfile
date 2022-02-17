@@ -40,7 +40,7 @@ node {
         keptn.keptnAddResources('keptn/slo.yaml','slo.yaml')
         // Configure monitoring for your keptn project (using dynatrace or prometheus)
         //keptn.keptnConfigureMonitoring monitoring:"${monitoring}" 
-        keptn.keptnConfigureMonitoring monitoring:"dynatrace"      
+        //keptn.keptnConfigureMonitoring monitoring:"dynatrace"      
     }
     stage('Trigger Quality Gate') {
         echo "Quality Gates ONLY: Just triggering an SLI/SLO-based evaluation for the passed timeframe"
