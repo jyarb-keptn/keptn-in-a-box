@@ -305,7 +305,7 @@ master:
                modernSCM:
                  scm:
                    git:
-                     remote: "https://github.com/keptn-sandbox/keptn-jenkins-library"
+                     remote: "https://github.com/keptn-sandbox/keptn-jenkins-library.git"
       pipeline-deploy-order:  | 
         jobs:
           - script: >
