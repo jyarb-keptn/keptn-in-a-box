@@ -1,4 +1,4 @@
-@Library('keptn-library@5.1.1')_
+@Library('keptn-library@5.1')_
 import sh.keptn.Keptn
 def keptn = new sh.keptn.Keptn()
 
@@ -32,7 +32,7 @@ node {
         archiveArtifacts artifacts:'keptn/**/*.*'
 
         // Initialize the Keptn Project - ensures the Keptn Project is created with the passed shipyard
-        keptn.keptnInit project:"${params.Project}", service:"${params.Service}", stage:"${params.Stage}", shipyard:'keptn/shipyard.yaml'
+        keptn.keptnInit project:"${params.Project}", service:"${params.Service}", stage:"${params.Stage}", monitoring:"${monitoring}", shipyard:'keptn/shipyard.yaml'
 
         // Upload all the files
         keptn.keptnAddResources('keptn/shipyard.yaml','shipyard.yaml')
@@ -40,7 +40,7 @@ node {
         keptn.keptnAddResources('keptn/sli.yaml','dynatrace/sli.yaml')
         keptn.keptnAddResources('keptn/slo.yaml','slo.yaml')
         // Configure monitoring for your keptn project (using dynatrace or prometheus)
-        keptn.keptnConfigureMonitoring monitoring:"${monitoring}"       
+        //keptn.keptnConfigureMonitoring monitoring:"${monitoring}"       
     }
     stage('Run simple load test') {
         echo "This is really just a very simple 'load simulated'. Dont try this at home :-)" 
