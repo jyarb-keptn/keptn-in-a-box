@@ -5,7 +5,7 @@ if [ $# -eq 1 ]; then
     # Read JSON and set it in the CREDS variable 
     DOMAIN=$1
     PROJECT=$2
-    echo "Domain has been passed: $DOMAIN"
+    echo "Domain has been passed: $DOMAIN for project: $PROJECT"
 else
     echo "No Domain has been passed, getting it from the Home-Ingress"
     DOMAIN=$(kubectl get ing -n default homepage-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
@@ -13,7 +13,7 @@ else
     echo "Domain: $DOMAIN"
 fi
 
-source ~/keptn-in-a-box/resources/gitea/gitea-functions.sh $DOMAIN
+source ~/keptn-in-a-box/resources/gitea/gitea-functions.sh ${DOMAIN}
 
 # get Tokens for the User
 #getApiTokens
