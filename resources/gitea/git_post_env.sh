@@ -1,7 +1,7 @@
 #!/bin/bash
 # Function file for adding created keptn repos to a self-hosted git repository
 
-if [ $# -eq 1 ]; then
+if [ $# -eq 2 ]; then
     # Read JSON and set it in the CREDS variable 
     DOMAIN=$1
     PROJECT=$2
