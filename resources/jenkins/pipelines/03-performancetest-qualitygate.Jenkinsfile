@@ -28,17 +28,17 @@ node {
     ])
 
     stage('Initialize Keptn') {
-        keptn.downloadFile('https://raw.githubusercontent.com/jyarb-keptn/overview/0.8.5/keptn-onboarding/shipyard-performance.yaml', 'keptn/shipyard.yaml')
-        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.9/resources/jenkins/pipelines/keptn/dynatrace/dynatrace.conf.yaml", 'keptn/dynatrace/dynatrace.conf.yaml')
-        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.9/resources/jenkins/pipelines/keptn/slo_${params.SLI}.yaml", 'keptn/slo.yaml')
-        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.9/resources/jenkins/pipelines/keptn/dynatrace/sli_${params.SLI}.yaml", 'keptn/sli.yaml')
-        keptn.downloadFile('https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.9/resources/jenkins/pipelines/keptn/jmeter/load.jmx', 'keptn/jmeter/load.jmx')
-        keptn.downloadFile('https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.9/resources/jenkins/pipelines/keptn/jmeter/basiccheck.jmx', 'keptn/jmeter/basiccheck.jmx')
-        keptn.downloadFile('https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.9/resources/jenkins/pipelines/keptn/jmeter/jmeter.conf.yaml', 'keptn/jmeter/jmeter.conf.yaml')
+        keptn.downloadFile('https://raw.githubusercontent.com/jyarb-keptn/overview/0.8.8/keptn-onboarding/shipyard-performance.yaml', 'keptn/shipyard.yaml')
+        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.12.2/resources/jenkins/pipelines/keptn/dynatrace/dynatrace.conf.yaml", 'keptn/dynatrace/dynatrace.conf.yaml')
+        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.12.2/resources/jenkins/pipelines/keptn/slo_${params.SLI}.yaml", 'keptn/slo.yaml')
+        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.12.2/resources/jenkins/pipelines/keptn/dynatrace/sli_${params.SLI}.yaml", 'keptn/sli.yaml')
+        keptn.downloadFile('https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.12.2/resources/jenkins/pipelines/keptn/jmeter/load.jmx', 'keptn/jmeter/load.jmx')
+        keptn.downloadFile('https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.12.2/resources/jenkins/pipelines/keptn/jmeter/basiccheck.jmx', 'keptn/jmeter/basiccheck.jmx')
+        keptn.downloadFile('https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.12.2/resources/jenkins/pipelines/keptn/jmeter/jmeter.conf.yaml', 'keptn/jmeter/jmeter.conf.yaml')
         archiveArtifacts artifacts:'keptn/**/*.*'
 
         // Initialize the Keptn Project
-        keptn.keptnInit project:"${params.Project}", service:"${params.Service}", stage:"${params.Stage}", monitoring:"${monitoring}", shipyard:'keptn/shipyard.yaml'
+        keptn.keptnInit project:"${params.Project}", service:"${params.Service}", stage:"${params.Stage}", shipyard:'keptn/shipyard.yaml'
 
         // Upload all the files
         keptn.keptnAddResources('keptn/shipyard.yaml','shipyard.yaml')
@@ -48,6 +48,10 @@ node {
         keptn.keptnAddResources('keptn/jmeter/load.jmx','jmeter/load.jmx')
         keptn.keptnAddResources('keptn/jmeter/basiccheck.jmx','jmeter/basiccheck.jmx')
         keptn.keptnAddResources('keptn/jmeter/jmeter.conf.yaml','jmeter/jmeter.conf.yaml')
+
+        // Configure monitoring for your keptn project (using dynatrace or prometheus)
+        keptn.keptnConfigureMonitoring monitoring:"${monitoring}"
+
     }
     stage('Trigger Performance Test') {
         echo "Performance as a Self-Service: Triggering Keptn to execute Tests against ${params.DeploymentURI}"

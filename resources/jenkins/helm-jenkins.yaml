@@ -223,6 +223,8 @@ master:
     - rebuild:1.33
     - jdk-tool:1.5
     - parameterized-scheduler:1.0
+    - credentials:2.6.2
+    - plain-credentials:1.8
   #  - kubernetes:1.31.1    
   #  - kubernetes-cli:1.10.3
   #  - dark-theme:0.0.12
@@ -303,7 +305,7 @@ master:
                modernSCM:
                  scm:
                    git:
-                     remote: "https://github.com/jyarb-keptn/keptn-jenkins-library"
+                     remote: "https://github.com/keptn-sandbox/keptn-jenkins-library"
       pipeline-deploy-order:  | 
         jobs:
           - script: >

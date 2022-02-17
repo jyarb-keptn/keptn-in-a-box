@@ -1,4 +1,4 @@
-@Library('keptn-library@master')_
+@Library('keptn-library@5.1')_
 import sh.keptn.Keptn
 def keptn = new sh.keptn.Keptn()
 
@@ -562,10 +562,10 @@ stages{
     stage('Initialize Keptn') {
       steps{
         script { 
-        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.9/resources/jenkins/pipelines/keptn/dynatrace/dynatrace.conf.yaml", 'keptn/dynatrace/dynatrace.conf.yaml')
-        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.9/resources/jenkins/pipelines/keptn/slo_${params.SLI}.yaml", 'keptn/slo.yaml')
-        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.9/resources/jenkins/pipelines/keptn/dynatrace/sli_${params.SLI}.yaml", 'keptn/sli.yaml')
-        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/overview/0.8.5/easytravel-onboarding/shipyard.yaml", 'keptn/shipyard.yaml')
+        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.12.2/resources/jenkins/pipelines/keptn/dynatrace/dynatrace.conf.yaml", 'keptn/dynatrace/dynatrace.conf.yaml')
+        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.12.2/resources/jenkins/pipelines/keptn/slo_${params.SLI}.yaml", 'keptn/slo.yaml')
+        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.12.2/resources/jenkins/pipelines/keptn/dynatrace/sli_${params.SLI}.yaml", 'keptn/sli.yaml')
+        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/overview/0.8.8/easytravel-onboarding/shipyard.yaml", 'keptn/shipyard.yaml')
         archiveArtifacts artifacts:'keptn/**/*.*'
 
         // Initialize the Keptn Project - ensures the Keptn Project is created with the passed shipyard
@@ -576,6 +576,9 @@ stages{
         keptn.keptnAddResources('keptn/dynatrace/dynatrace.conf.yaml','dynatrace/dynatrace.conf.yaml')
         keptn.keptnAddResources('keptn/sli.yaml','dynatrace/sli.yaml')
         keptn.keptnAddResources('keptn/slo.yaml','slo.yaml')
+
+		// Configure monitoring for your keptn project (using dynatrace or prometheus)
+        //keptn.keptnConfigureMonitoring monitoring:"${monitoring}"		
         }
         }
     }
