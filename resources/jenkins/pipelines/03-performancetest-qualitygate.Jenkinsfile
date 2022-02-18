@@ -56,7 +56,7 @@ node {
         echo "Performance as a Self-Service: Triggering Keptn to execute Tests against ${params.DeploymentURI}"
 
         // send deployment finished to trigger tests
-        def keptnContext = keptn.sendDeliveryTriggeredEvent deploymentURI:"${params.DeploymentURI}", testStrategy:"${params.TestStrategy}"
+        def keptnContext = keptn.sendDeploymentTriggeredEvent deploymentURI:"${params.DeploymentURI}", testStrategy:"${params.TestStrategy}"
         String keptn_bridge = env.KEPTN_BRIDGE
         echo "Open Keptns Bridge: ${keptn_bridge}/trace/${keptnContext}"
     }
