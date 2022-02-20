@@ -1,4 +1,4 @@
-@Library('keptn-library@5.1')_
+@Library('keptn-library@master')_
 import sh.keptn.Keptn
 def keptn = new sh.keptn.Keptn()
 
@@ -56,7 +56,7 @@ node {
         echo "Performance as a Self-Service: Triggering Keptn to execute Tests against ${params.DeploymentURI}"
 
         // send deployment finished to trigger tests
-        def keptnContext = keptn.sendDeploymentTriggeredEvent deploymentURI:"${params.DeploymentURI}", testStrategy:"${params.TestStrategy}"
+        def keptnContext = keptn.sendConfigurationTriggeredEvent deploymentURI:"${params.DeploymentURI}", testStrategy:"${params.TestStrategy}"
         String keptn_bridge = env.KEPTN_BRIDGE
         echo "Open Keptns Bridge: ${keptn_bridge}/trace/${keptnContext}"
     }
