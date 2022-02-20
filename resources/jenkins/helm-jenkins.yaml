@@ -306,6 +306,17 @@ master:
                  scm:
                    git:
                      remote: "https://github.com/keptn-sandbox/keptn-jenkins-library.git"
+      keptn-library-jyarb:  |
+       unclassified:
+         globalLibraries:
+           libraries:
+           - defaultVersion: "master"
+             name: "keptn-library-jyarb"
+             retriever:
+               modernSCM:
+                 scm:
+                   git:
+                     remote: "https://github.com/jyarb-keptn/keptn-jenkins-library"                     
       pipeline-deploy-order:  | 
         jobs:
           - script: >
