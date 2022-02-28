@@ -11,6 +11,7 @@
 KIAB_RELEASE="0.8.12.1"
 # https://github.com/keptn/keptn
 KEPTN_VERSION=0.13.1
+OPERATOR_VERSION=v0.4.2
 ISTIO_VERSION=1.11.4
 CERTMANAGER_VERSION=1.6.1
 #CERTMANAGER_VERSION=1.1.1
@@ -789,7 +790,7 @@ dynatraceConfigureMonitoring() {
     
     if [ "$dynatrace_install_dynakube" = true ]; then
       printInfo "Deploying the Dynatrace Operator"
-      bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && echo 'y' | bash deploy_dynakube.sh"
+      bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && echo 'y' | bash deploy_dynakube.sh ${OPERATOR_VERSION}"
     else
       printInfo "Deploying the OneAgent Operator"
       bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && echo 'y' | bash deploy_operator.sh"    
