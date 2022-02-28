@@ -11,7 +11,7 @@ export DT_API_URL=https://$DT_TENANT/api
 # Install the operator
 echo "Creating dynatrace K8s namespace"
 kubectl create namespace dynatrace
-echo "Downloading the latest dynatrace operator release (definition) (-L for follow redirect"
+echo "Downloading the ${OPERATOR_VERSION} dynatrace operator release (definition) (-L for follow redirect"
 #curl -L -o kubernetes.yaml https://github.com/Dynatrace/dynatrace-operator/releases/latest/download/kubernetes.yaml
 curl -L -o kubernetes.yaml https://github.com/Dynatrace/dynatrace-operator/releases/download/${OPERATOR_VERSION}/kubernetes.yaml
 echo "Create operator/webhook via kubctl"
