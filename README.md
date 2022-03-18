@@ -7,7 +7,7 @@ generated with Cert-Manager and Let's Encrypt, does not mean the Box is secure.
 
 # Keptn-in-a-Box Enhanced (with Dynatrace Software Intelligence empowered) 🎁
 
-:rotating_light: ALERT: This install uses keptn 0.13.2 :rotating_light:
+:rotating_light: ALERT: This install uses keptn 0.13.3 :rotating_light:
 
 Keptn-In-A-Box is part of the automation for delivering Autonomous Cloud Workshops with Dynatrace. This is not a tutorial but more an explanation of what the shell file set up for you on a plain Ubuntu image. 
 
@@ -16,7 +16,7 @@ For spinning up instances automatically with AWS completely configured and set u
 
 |Name | Version | Description | 
 ------------- | ------------- | ------------ |
-| **kiab** | [0.8.12.1](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.12.1) | keptn 0.13.2 - local install|
+| **kiab** | [0.8.12.1](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.12.1) | keptn 0.13.3 - local install|
 | **kiab** | [0.8.9](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.9) | keptn 0.11.4 - training with dtu-training |
 | **kiab** | [0.8.10](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.10) | keptn 0.11.4 - AWS deployment |
 | **kiab** | [0.8.8](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.8) | keptn 0.10.0 |
