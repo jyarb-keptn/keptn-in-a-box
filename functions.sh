@@ -10,7 +10,7 @@
 # ==================================================
 KIAB_RELEASE="0.8.12.1"
 # https://github.com/keptn/keptn
-KEPTN_VERSION=0.13.3
+KEPTN_VERSION=0.13.4
 OPERATOR_VERSION=v0.4.2
 ISTIO_VERSION=1.11.4
 CERTMANAGER_VERSION=1.6.1
@@ -810,7 +810,7 @@ dynatraceConfigureMonitoring() {
   			--set dynatraceService.config.keptnApiUrl=$KEPTN_ENDPOINT \
   			--set dynatraceService.config.keptnBridgeUrl=$KEPTN_BRIDGE_URL \
   			--set dynatraceService.config.generateTaggingRules=true \
-  			--set dynatraceService.config.generateProblemNotifications=true \
+  			--set dynatraceService.config.generateProblemNotifications=false \
   			--set dynatraceService.config.generateManagementZones=true \
   			--set dynatraceService.config.generateDashboards=true \
   			--set dynatraceService.config.generateMetricEvents=true"
