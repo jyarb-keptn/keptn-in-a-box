@@ -142,7 +142,7 @@ installationBundleDemo() {
   # install Dynatrace Operator
   dynatrace_install_dynakube=true
   # Dynatrace_service
-  dynatrace_install_service=true
+  dynatrace_install_service=false
   dynatrace_install_sli_service=false
   # Traditional ActiveGate
   dynatrace_activegate_install=false
