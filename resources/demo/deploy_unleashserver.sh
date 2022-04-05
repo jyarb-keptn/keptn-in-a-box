@@ -19,10 +19,10 @@ if [[ -d "unleash" ]]; then
     keptn add-resource --project=unleash --service=unleash --all-stages --resource=./dynatrace.conf.yaml --resourceUri=dynatrace/dynatrace.conf.yaml
     keptn add-resource --project=unleash --service=unleash --all-stages --resource=./unleash.tgz --resourceUri=helm/unleash.tgz
     # trigger the delivery
-    #keptn trigger delivery --project=unleash --service=unleash-db --image=postgres:10.4
-    #keptn trigger delivery --project=unleash --service=unleash --image=docker.io/keptnexamples/unleash:1.0.1
-    keptn trigger delivery --project=unleash --service=unleash-db --image=postgres
-    keptn trigger delivery --project=unleash --service=unleash --image=docker.io/keptnexamples/unleash
+    keptn trigger delivery --project=unleash --service=unleash-db --image=postgres:10.4
+    keptn trigger delivery --project=unleash --service=unleash --image=docker.io/keptnexamples/unleash:1.0.1
+    #keptn trigger delivery --project=unleash --service=unleash-db --image=postgres
+    #keptn trigger delivery --project=unleash --service=unleash --image=docker.io/keptnexamples/unleash
 
     # Configure Keptn
     kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/unleash-service/release-0.3.2/deploy/service.yaml -n keptn

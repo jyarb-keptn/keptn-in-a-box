@@ -10,7 +10,7 @@
 # ==================================================
 KIAB_RELEASE="0.8.12.1"
 # https://github.com/keptn/keptn
-KEPTN_VERSION=0.14.1
+KEPTN_VERSION=0.13.4
 OPERATOR_VERSION=v0.5.0
 ISTIO_VERSION=1.11.4
 CERTMANAGER_VERSION=1.6.1
@@ -142,7 +142,7 @@ installationBundleDemo() {
   # install Dynatrace Operator
   dynatrace_install_dynakube=true
   # Dynatrace_service
-  dynatrace_install_service=false
+  dynatrace_install_service=true
   dynatrace_install_sli_service=false
   # Traditional ActiveGate
   dynatrace_activegate_install=false
