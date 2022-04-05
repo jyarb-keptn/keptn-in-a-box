@@ -10,7 +10,7 @@
 # ==================================================
 KIAB_RELEASE="0.8.12.1"
 # https://github.com/keptn/keptn
-KEPTN_VERSION=0.13.4
+KEPTN_VERSION=0.14.1
 OPERATOR_VERSION=v0.5.0
 ISTIO_VERSION=1.11.4
 CERTMANAGER_VERSION=1.6.1
@@ -170,7 +170,7 @@ installationBundleDemo() {
   keptn_bridge_disable_login=true
   # By default no WorkshopUser will be created
   create_workshop_user=false
-  jmeter_install=true
+  jmeter_install=false
   dynatrace_project=true
   keptnwebservice=true
   sockshop_secret=true
