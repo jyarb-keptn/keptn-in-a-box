@@ -10,7 +10,7 @@
 # ==================================================
 KIAB_RELEASE="0.8.12.1"
 # https://github.com/keptn/keptn
-KEPTN_VERSION=0.13.4
+KEPTN_VERSION=0.14.1
 OPERATOR_VERSION=v0.5.0
 ISTIO_VERSION=1.11.4
 CERTMANAGER_VERSION=1.6.1
@@ -795,6 +795,10 @@ dynatraceConfigureMonitoring() {
       bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && echo 'y' | bash deploy_operator.sh"    
     fi
     
+    printInfoSection "create dynatrace project"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/keptn && bash $KEPTN_IN_A_BOX_DIR/resources/gitea/git_post_env.sh ${DOMAIN} dynatrace"
+
+
     if [ "$dynatrace_install_service" = true ]; then
     printInfoSection "set env variables"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash setenv.sh ${DOMAIN} ${AWS}"
