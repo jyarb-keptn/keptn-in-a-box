@@ -1164,6 +1164,8 @@ printInstalltime() {
   fi
 
   printInfoSection "Keptn in a Box $KIAB_RELEASE for keptn $KEPTN_VERSION installation finished."
+  printInfoSection "Dynatrace Operator version $OPERATOR_VERSION"
+  printInfoSection "dynatrace-service verison $KEPTN_DT_SERVICE_VERSION"
   printInfoSection "Use this URL to access your KIAB homepage http://${DOMAIN}"
   printInfo "Good luck in your Autonomous Cloud Journey!!"
   printInfo "If you faced an issue or just want to say hi, come by @ https://keptn.slack.com/"
