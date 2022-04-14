@@ -817,12 +817,14 @@ dynatraceServices() {
   			--set dynatraceService.config.generateProblemNotifications=false \
   			--set dynatraceService.config.generateManagementZones=true \
   			--set dynatraceService.config.generateDashboards=true \
-  			--set dynatraceService.config.generateMetricEvents=true"
+  			--set dynatraceService.config.generateMetricEvents=true \
+        --set distributor.image.tag=$KEPTN_VERSION"
+
+    waitForAllPods keptn
 
     bashas "kubectl -n keptn get deployment dynatrace-service -o wide"
     bashas "kubectl -n keptn get pods -l run=dynatrace-service"
 
-    waitForAllPods keptn
     bashas "keptn configure monitoring dynatrace"
   fi  
 }
