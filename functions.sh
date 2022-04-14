@@ -795,14 +795,13 @@ dynatraceConfigureMonitoring() {
       bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && echo 'y' | bash deploy_operator.sh"    
     fi
     
-    printInfoSection "create dynatrace project"
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/keptn && bash $KEPTN_IN_A_BOX_DIR/resources/gitea/git_post_env.sh ${DOMAIN} dynatrace"
-
-
     if [ "$dynatrace_install_service" = true ]; then
     printInfoSection "set env variables"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash setenv.sh ${DOMAIN} ${AWS}"
     
+    printInfoSection "load dynatrace project"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/keptn && bash $KEPTN_IN_A_BOX_DIR/resources/keptn/setdynatraceconf.sh"
+
     printInfoSection "KEPTN_ENDPOINT=$KEPTN_ENDPOINT"
     printInfoSection "KEPTN_BRIDGE_URL=$KEPTN_BRIDGE_URL"
     
