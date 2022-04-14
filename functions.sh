@@ -793,15 +793,16 @@ dynatraceConfigureMonitoring() {
     else
       printInfo "Deploying the OneAgent Operator"
       bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && echo 'y' | bash deploy_operator.sh"    
-    fi
-    
-    if [ "$dynatrace_install_service" = true ]; then
+    fi 
+
+  fi
+}
+
+dynatraceServices() {
+  if [ "$dynatrace_install_service" = true ]; then
     printInfoSection "set env variables"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash setenv.sh ${DOMAIN} ${AWS}"
     
-    printInfoSection "load dynatrace project"
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/keptn && bash $KEPTN_IN_A_BOX_DIR/resources/keptn/setdynatraceconf.sh"
-
     printInfoSection "KEPTN_ENDPOINT=$KEPTN_ENDPOINT"
     printInfoSection "KEPTN_BRIDGE_URL=$KEPTN_BRIDGE_URL"
     
@@ -820,18 +821,19 @@ dynatraceConfigureMonitoring() {
 
     bashas "kubectl -n keptn get deployment dynatrace-service -o wide"
     bashas "kubectl -n keptn get pods -l run=dynatrace-service"
-    fi
 
-    if [ "$dynatrace_install_sli_service" = true ]; then
+    waitForAllPods keptn
+    bashas "keptn configure monitoring dynatrace"
+  fi  
+}
+
+dynatraceSLIService() {
+  if [ "$dynatrace_install_sli_service" = true ]; then
     printInfo "Setting up Dynatrace SLI provider in Keptn - depricated using new method"
     #bashas "kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/dynatrace-sli-service/$KEPTN_DT_SLI_SERVICE_VERSION/deploy/service.yaml -n keptn"
     bashas "helm upgrade --install dynatrace-sli-service -n keptn https://github.com/keptn-contrib/dynatrace-sli-service/releases/download/$KEPTN_DT_SLI_SERVICE_VERSION/dynatrace-sli-service-$KEPTN_DT_SLI_SERVICE_VERSION.tgz"
     bashas "kubectl -n keptn get deployment dynatrace-sli-service -o wide"
     bashas "kubectl -n keptn get pods -l run=dynatrace-sli-service"
-    fi
-    
-    waitForAllPods keptn
-    bashas "keptn configure monitoring dynatrace"
   fi
 }
 
@@ -1167,7 +1169,7 @@ printInstalltime() {
 
 printFlags() {
   printInfoSection "Function Flags values"
-  for i in {selected_bundle,verbose_mode,update_ubuntu,docker_install,microk8s_install,setup_proaliases,enable_k8dashboard,enable_registry,istio_install,helm_install,hostalias,git_deploy,git_env,git_migrate,certmanager_install,keptn_install,keptn_install_qualitygates,keptn_examples_clone,resources_clone,keptn_catalog_clone,dynatrace_savecredentials,dynatrace_configure_monitoring,dynatrace_activegate_install,dynatrace_configure_workloads,jenkins_deploy,keptn_bridge_disable_login,keptn_bridge_eap,keptndeploy_homepage,keptndemo_cartsload,keptndemo_unleash,keptndemo_unleash_configure,keptndemo_cartsonboard,keptndemo_catalogonboard,keptndemo_easytravelonboard,keptndemo_easytraveloadgen,jmeter_install,expose_kubernetes_api,expose_kubernetes_dashboard,patch_kubernetes_dashboard,certmanager_enable,keptnwebservice,sockshop_secret,create_workshop_user,keptndashboard_load,createMetrics,createApplications,dynatrace_project,post_flight,patch_config_service}; 
+  for i in {selected_bundle,verbose_mode,update_ubuntu,docker_install,microk8s_install,setup_proaliases,enable_k8dashboard,enable_registry,istio_install,helm_install,hostalias,git_deploy,git_env,git_migrate,certmanager_install,keptn_install,keptn_install_qualitygates,keptn_examples_clone,resources_clone,keptn_catalog_clone,dynatrace_savecredentials,dynatrace_configure_monitoring,dynatrace_install_service,dynatrace_install_sli_service,dynatrace_activegate_install,dynatrace_configure_workloads,jenkins_deploy,keptn_bridge_disable_login,keptn_bridge_eap,keptndeploy_homepage,keptndemo_cartsload,keptndemo_unleash,keptndemo_unleash_configure,keptndemo_cartsonboard,keptndemo_catalogonboard,keptndemo_easytravelonboard,keptndemo_easytraveloadgen,jmeter_install,expose_kubernetes_api,expose_kubernetes_dashboard,patch_kubernetes_dashboard,certmanager_enable,keptnwebservice,sockshop_secret,create_workshop_user,keptndashboard_load,createMetrics,createApplications,dynatrace_project,post_flight,patch_config_service}; 
   do 
     echo "$i = ${!i}"
   done
@@ -1222,6 +1224,9 @@ doInstallation() {
   jenkinsDeploy
   gitDeploy
   setGitEnv
+  loadDynatraceProject
+  dynatraceServices
+  dynatraceSLIService  
   jmeterService
   loadKeptnDashboard
   createWorkshopUser
@@ -1232,7 +1237,6 @@ doInstallation() {
   keptndemoEasytravelonboard
   applicationCreation
   loadKeptnWebService
-  loadDynatraceProject
   gitMigrate
   keptndemoUnleashConfigure
   keptndemoDeployCartsloadgenerator
