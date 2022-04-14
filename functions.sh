@@ -22,7 +22,7 @@ KEPTN_DT_SERVICE_VERSION=0.22.0
 KEPTN_DT_SLI_SERVICE_VERSION=0.12.1
 # https://github.com/keptn/examples
 KEPTN_EXAMPLES_REPO="https://github.com/keptn/examples.git"
-KEPTN_EXAMPLES_BRANCH="0.11.0"
+KEPTN_EXAMPLES_BRANCH="0.14.0"
 KEPTN_EXAMPLES_DIR="~/examples"
 KEPTN_CATALOG_REPO="https://github.com/jyarb-keptn/overview.git"
 KEPTN_CATALOG_BRANCH="0.8.7"
@@ -149,8 +149,8 @@ installationBundleDemo() {
   dynatrace_configure_workloads=true
   keptndeploy_homepage=true
   # unleash
-  keptndemo_unleash=true
-  keptndemo_unleash_configure=true
+  keptndemo_unleash=false
+  keptndemo_unleash_configure=false
   # sockshop application
   keptndemo_cartsonboard=true
   keptndemo_cartsload=true

@@ -20,7 +20,7 @@ if [[ -d "unleash" ]]; then
     keptn add-resource --project=unleash --service=unleash --all-stages --resource=./unleash.tgz --resourceUri=helm/unleash.tgz
     # trigger the delivery
     keptn trigger delivery --project=unleash --service=unleash-db --image=postgres:10.4
-    keptn trigger delivery --project=unleash --service=unleash --image=docker.io/keptnexamples/unleash:1.0.1
+    keptn trigger delivery --project=unleash --service=unleash --image=docker.io/keptnexamples/unleash:1.0.0
     #keptn trigger delivery --project=unleash --service=unleash-db --image=postgres
     #keptn trigger delivery --project=unleash --service=unleash --image=docker.io/keptnexamples/unleash
 
