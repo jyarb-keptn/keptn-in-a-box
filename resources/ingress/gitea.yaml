@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
@@ -15,10 +15,13 @@ spec:
   - host: git.domain.placeholder
     http:
       paths:
-      - backend:
-          serviceName: gitea-http
-          servicePort: 3000
-        path: /
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: gitea-http
+            port: 
+              number: 3000
   tls:
   - hosts:
     - git.domain.placeholder

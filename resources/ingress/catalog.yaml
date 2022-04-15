@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
@@ -24,10 +24,13 @@ spec:
   - host: catalog.front-end.domain.placeholder
     http:
       paths:
-      - backend:
-          serviceName: front-end
-          servicePort: 80
-        path: /
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: front-end
+            port: 
+              number: 80
   tls:
   - hosts:
     - catalog.front-end.domain.placeholder
