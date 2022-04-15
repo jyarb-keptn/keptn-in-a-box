@@ -25,7 +25,7 @@ spec:
     http:
       paths:
       - path: / 
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: istio-ingressgateway
@@ -35,7 +35,7 @@ spec:
     http:
       paths:
       - path: /
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: istio-ingressgateway
@@ -45,7 +45,7 @@ spec:
     http:
       paths:
       - path: /
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: istio-ingressgateway
@@ -55,7 +55,7 @@ spec:
     http:
       paths:
       - path: /
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: istio-ingressgateway
@@ -65,7 +65,7 @@ spec:
     http:
       paths:
       - path: /
-        pathType: ImplementationSpecific
+        pathType: Prefix
         backend:
           service:
             name: istio-ingressgateway
