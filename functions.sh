@@ -12,7 +12,7 @@ KIAB_RELEASE="0.8.12.3"
 # https://github.com/keptn/keptn
 KEPTN_VERSION=0.13.4
 OPERATOR_VERSION=v0.5.0
-ISTIO_VERSION=1.11.4
+ISTIO_VERSION=1.12.6
 CERTMANAGER_VERSION=1.6.1
 # https://github.com/helm/helm/releases
 HELM_VERSION=3.7.2
@@ -149,8 +149,8 @@ installationBundleDemo() {
   dynatrace_configure_workloads=true
   keptndeploy_homepage=true
   # unleash
-  keptndemo_unleash=false
-  keptndemo_unleash_configure=false
+  keptndemo_unleash=true
+  keptndemo_unleash_configure=true
   # sockshop application
   keptndemo_cartsonboard=true
   keptndemo_cartsload=true
@@ -794,7 +794,6 @@ dynatraceConfigureMonitoring() {
       printInfo "Deploying the OneAgent Operator"
       bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && echo 'y' | bash deploy_operator.sh"    
     fi 
-
   fi
 }
 
