@@ -12,7 +12,7 @@ KIAB_RELEASE="0.8.12.4"
 # https://github.com/keptn/keptn
 KEPTN_VERSION=0.14.1
 OPERATOR_VERSION=v0.5.0
-ISTIO_VERSION=1.11.4
+ISTIO_VERSION=1.13.3
 CERTMANAGER_VERSION=1.6.1
 # https://github.com/helm/helm/releases
 HELM_VERSION=3.7.2
