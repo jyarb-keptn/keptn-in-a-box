@@ -15,6 +15,7 @@ metadata:
     #cert-manager.io/cluster-issuer: "letsencrypt"
     #cert-manager.io/issue-temporary-certificate: "true"
     #acme.cert-manager.io/http01-edit-in-place: "true"
+    nginx.ingress.kubernetes.io/service-upstream: "true"
   name: keptnwebservice-ingress
   namespace: istio-system
 spec:
@@ -31,7 +32,7 @@ spec:
             name: istio-ingressgateway
             port: 
               number: 8080
-  tls:
-  - hosts:
-    - domain.placeholder
+  #tls:
+  #- hosts:
+  #  - domain.placeholder
     #secretName: webservice-tls

@@ -15,6 +15,7 @@ metadata:
     #cert-manager.io/cluster-issuer: "letsencrypt"
     #cert-manager.io/issue-temporary-certificate: "true"
     #acme.cert-manager.io/http01-edit-in-place: "true"
+    nginx.ingress.kubernetes.io/service-upstream: "true"
   name: catalog-ingress
   namespace: istio-system
 spec:
@@ -31,7 +32,7 @@ spec:
             name: front-end
             port: 
               number: 80
-  tls:
-  - hosts:
-    - catalog.front-end.domain.placeholder
+  #tls:
+  #- hosts:
+  #  - catalog.front-end.domain.placeholder
     #secretName: order-tls

@@ -15,6 +15,7 @@ metadata:
     #cert-manager.io/cluster-issuer: "letsencrypt"
     #cert-manager.io/issue-temporary-certificate: "true"
     #acme.cert-manager.io/http01-edit-in-place: "true"
+    nginx.ingress.kubernetes.io/service-upstream: "true"
   name: api-keptn-ingress
   namespace: keptn
 spec:
@@ -29,7 +30,7 @@ spec:
             name: api-gateway-nginx
             port: 
               number: 80
-  tls:
-  - hosts:
-    - keptn.domain.placeholder
+  #tls:
+  #- hosts:
+  #  - keptn.domain.placeholder
     #secretName: keptn-tls

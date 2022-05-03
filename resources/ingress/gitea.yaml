@@ -8,6 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     #cert-manager.io/issue-temporary-certificate: "true"
     #acme.cert-manager.io/http01-edit-in-place: "true"
+    nginx.ingress.kubernetes.io/service-upstream: "true"
   name: gitea-ingress
   namespace: git
 spec:
@@ -22,7 +23,7 @@ spec:
             name: gitea-http
             port: 
               number: 3000
-  tls:
-  - hosts:
-    - git.domain.placeholder
-    #secretName: git-tls
+  #tls:
+  #- hosts:
+  #  - git.domain.placeholder
+  # secretName: git-tls

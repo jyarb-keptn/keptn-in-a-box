@@ -15,6 +15,7 @@ metadata:
     #cert-manager.io/cluster-issuer: "letsencrypt"
     #cert-manager.io/issue-temporary-certificate: "true"
     #acme.cert-manager.io/http01-edit-in-place: "true"
+    nginx.ingress.kubernetes.io/service-upstream: "true"
   name: easytravel-ingress
   namespace: istio-system
 spec:
@@ -78,12 +79,12 @@ spec:
 #          serviceName: istio-ingressgateway
 #          servicePort: 80
 #        path: /                 
-  tls:
-  - hosts:
-    - easytravel-frontend.easytravel-staging.domain.placeholder
-    - easytravel-www.easytravel-production.domain.placeholder
-    - easytravel-backend.easytravel-staging.domain.placeholder
-    - easytravel-frontend.easytravel-production.domain.placeholder
-    - easytravel-backend.easytravel-production.domain.placeholder
-#    - easytravel-www.easytravel-production.domain.placeholder
+ # tls:
+ # - hosts:
+ #   - easytravel-frontend.easytravel-staging.domain.placeholder
+ #   - easytravel-www.easytravel-production.domain.placeholder
+ #   - easytravel-backend.easytravel-staging.domain.placeholder
+ #   - easytravel-frontend.easytravel-production.domain.placeholder
+ #   - easytravel-backend.easytravel-production.domain.placeholder
+ #    - easytravel-www.easytravel-production.domain.placeholder
     #secretName: easytravel-tls

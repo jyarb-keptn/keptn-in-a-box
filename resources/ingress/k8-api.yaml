@@ -10,6 +10,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     #cert-manager.io/cluster-issuer: "letsencrypt" 
+    nginx.ingress.kubernetes.io/service-upstream: "true"
 spec:
   rules:
   - host: api.kubernetes.domain.placeholder
@@ -22,7 +23,7 @@ spec:
             name: kubernetes
             port: 
               number: 443
-  tls:
-  - hosts:
-    - api.kubernetes.domain.placeholder
+  # tls:
+  # - hosts:
+  #   - api.kubernetes.domain.placeholder
     #secretName: k8-api-tls
