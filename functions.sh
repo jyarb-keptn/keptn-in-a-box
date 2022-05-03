@@ -566,6 +566,7 @@ istioInstall() {
     ln -s /opt/istio-$ISTIO_VERSION/bin/istioctl /usr/local/bin/istioctl
     #bashas "echo 'y' | istioctl install --set meshConfig.outboundTrafficPolicy.mode=ALLOW_ANY"
     bashas "echo 'y' | istioctl install"
+    bashas "kubectl label namespace default istio-injection=enabled"
     #bashas "echo 'y' | istioctl manifest apply --force"
     waitForAllPods
   fi
