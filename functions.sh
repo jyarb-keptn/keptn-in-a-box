@@ -11,7 +11,7 @@
 KIAB_RELEASE="0.8.13"
 # https://github.com/keptn/keptn
 KEPTN_VERSION=0.15.0
-OPERATOR_VERSION=v0.5.0
+OPERATOR_VERSION=v0.6.0
 ISTIO_VERSION=1.13.3
 CERTMANAGER_VERSION=1.6.1
 # https://github.com/helm/helm/releases
