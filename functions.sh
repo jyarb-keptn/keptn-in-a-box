@@ -15,7 +15,7 @@ OPERATOR_VERSION=v0.6.0
 ISTIO_VERSION=1.13.3
 CERTMANAGER_VERSION=1.6.1
 # https://github.com/helm/helm/releases
-HELM_VERSION=3.7.2
+HELM_VERSION=3.9.0
 # https://github.com/keptn-contrib/dynatrace-service
 KEPTN_DT_SERVICE_VERSION=0.22.0
 # https://github.com/keptn-contrib/dynatrace-sli-service
