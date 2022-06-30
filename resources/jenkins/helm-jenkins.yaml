@@ -67,7 +67,7 @@ master:
   # Used for label app.kubernetes.io/component
   componentName: "jenkins-master"
   image: "jenkins/jenkins"
-  tag: "2.355"
+  tag: "2.357"
   imagePullPolicy: "Always"
   imagePullSecretName:
   # Optionally configure lifetime for master-container
@@ -214,10 +214,10 @@ master:
   # List of plugins to be install during Jenkins master start
   installPlugins:
     - http_request:1.15
-    - pipeline-utility-steps:2.12.2
+    - pipeline-utility-steps:2.13.0
     - blueocean:1.25.5
 #    - configuration-as-code:1.55.1
-    - configuration-as-code:1429.v09b_044a_c93de
+    - configuration-as-code:1462.v069a_b_57ff5c8
     - job-dsl:1.79
 #    - workflow-job:2.42
     - workflow-aggregator:2.7
@@ -386,7 +386,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/keptn-in-a-box.git')
                         }
-                        branch('*/0.8.12.1')
+                        branch('*/0.8.13')
                       }
                     }
                     scriptPath 'resources/jenkins/pipelines/01-qualitygate-evaluation.Jenkinsfile'
@@ -405,7 +405,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/keptn-in-a-box.git') 
                         }
-                        branch('*/0.8.12.1')
+                        branch('*/0.8.13')
                       }
                     }
                     scriptPath 'resources/jenkins/pipelines/02-simpletest-qualitygate.Jenkinsfile'
@@ -424,7 +424,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/keptn-in-a-box.git')
                         }
-                        branch('*/0.8.12.1')
+                        branch('*/0.8.13')
                       }
                     }
                     scriptPath 'resources/jenkins/pipelines/03-performancetest-qualitygate.Jenkinsfile'
@@ -443,7 +443,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/keptn-in-a-box.git')
                         }
-                        branch('*/0.8.12.1')
+                        branch('*/0.8.13')
                       }
                     }
                     scriptPath 'resources/jenkins/pipelines/04-performancetest-qualitygate-mint.Jenkinsfile'
@@ -462,7 +462,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/keptn-in-a-box.git')
                         }
-                        branch('*/0.8.12.1')
+                        branch('*/0.8.13')
                       }
                     }
                     scriptPath 'resources/jenkins/pipelines/05-qualitygate-sli-dashboard.Jenkinsfile'
@@ -481,7 +481,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/keptn-in-a-box.git')
                         }
-                        branch('*/0.8.12.1')
+                        branch('*/0.8.13')
                       }
                     }
                     scriptPath 'resources/jenkins/pipelines/07-versionRelease.Jenkinsfile'
@@ -500,7 +500,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/keptn-in-a-box.git')
                         }
-                        branch('*/0.8.12.1')
+                        branch('*/0.8.13')
                       }
                     }
                     scriptPath 'resources/jenkins/pipelines/08-easytravel-versions.Jenkinsfile'
