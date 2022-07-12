@@ -6,7 +6,7 @@ node {
     properties([
         parameters([
          string(defaultValue: 'qualitygate', description: 'Name of your Project for Quality Gate Feedback ', name: 'Project', trim: false), 
-         string(defaultValue: 'hardening', description: 'Stage used for for Quality Gate Feedback', name: 'Stage', trim: false), 
+         string(defaultValue: 'quality-gate', description: 'Stage used for for Quality Gate Feedback', name: 'Stage', trim: false), 
          string(defaultValue: 'evalservice', description: 'Name of the Tag for identifyting the service to validate the SLIs and SLOs', name: 'Service', trim: false),
          choice(choices: ['dynatrace', 'prometheus',''], description: 'Select which monitoring tool should be configured as SLI provider', name: 'Monitoring', trim: false),
          choice(choices: ['basic', 'perftest'], description: 'Decide which set of SLIs you want to evaluate. The sample comes with: basic and perftest', name: 'SLI'),
