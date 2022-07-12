@@ -1112,7 +1112,7 @@ createWorkshopUser() {
 
 postFlightWork() {
   if [ "$post_flight" = true ]; then    
-    printInfoSection "PostFlight work for environment setup"
+    printInfoSection "PostFlight work for environment and project setup"
     bashas "chown -f -R ${USER} ~/.kube"
     #cp $KEPTN_IN_A_BOX_DIR/resources/misc/daemon.json /etc/docker/daemon.json
     #systemctl restart docker
@@ -1126,6 +1126,8 @@ postFlightWork() {
     bashas "cd $KEPTN_IN_A_BOX_DIR && bash setlinks.sh"
     printInfoSection "Set Kubernetes monitoring flags"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/setkubeflags.sh"
+    printInfoSection "load project configs"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/keptn && bash $KEPTN_IN_A_BOX_DIR/resources/keptn/setprojectConf.sh"
   fi
 }
 
