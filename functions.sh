@@ -1064,7 +1064,7 @@ loadQGProjects() {
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/keptn && bash $KEPTN_IN_A_BOX_DIR/resources/gitea/git_post_env.sh ${DOMAIN} qualitygate"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/keptn && bash $KEPTN_IN_A_BOX_DIR/resources/gitea/git_post_env.sh ${DOMAIN} qualitygate-simpletest"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/keptn && bash $KEPTN_IN_A_BOX_DIR/resources/gitea/git_post_env.sh ${DOMAIN} performance"
-    printInfoSection "upload performance qg shipyard"
+    printInfoSection "upload performance qg shipyard.yaml"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/keptn && bash $KEPTN_IN_A_BOX_DIR/resources/jenkins/pipelines/keptn/performanceqg/load_shipyard.sh"
  fi
 }
