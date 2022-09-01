@@ -49,7 +49,7 @@ node {
         def labels=[:]
         labels.put('TriggeredBy', 'jenkins')
         labels.put('version', "${env.BUILD_NUMBER}")
-        labels.put('evaltime', "${params.StartTime}")
+        labels.put('evaltime', "${starttime}")
 
         // Trigger an evaluation
         def keptnContext = keptn.sendStartEvaluationEvent starttime:"${params.StartTime}", endtime:"${params.EndTime}", labels: labels
