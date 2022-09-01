@@ -2,11 +2,21 @@
 import sh.keptn.Keptn
 import java.time.temporal.ChronoUnit
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+
 def keptn = new sh.keptn.Keptn()
 
 def getNow() {
   //return java.time.LocalDateTime.now() ;
-  return java.time.Instant.now().truncatedTo( ChronoUnit.MILLIS ) ;
+  //return java.time.Instant.now().truncatedTo( ChronoUnit.MILLIS ) ;
+  
+  LocalDateTime localDateTime = LocalDateTime.now();
+  
+  ZonedDateTime zdt = ZonedDateTime.of(localDateTime, ZoneId.systemDefault());
+  
+  return long date = zdt.toInstant().toEpochMilli();
 }
 
 node {
