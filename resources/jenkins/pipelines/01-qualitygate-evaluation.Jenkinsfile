@@ -46,6 +46,11 @@ node {
     stage('Trigger Quality Gate') {
         echo "Quality Gates ONLY: Just triggering an SLI/SLO-based evaluation for the passed timeframe"
 
+        def getNow() {
+        // return java.time.LocalDateTime.now()
+        return java.time.Instant.now().truncatedTo( ChronoUnit.MILLIS ) ;
+        }
+
         def scriptStartTime = getNow().toString()
 
         def labels=[:]
