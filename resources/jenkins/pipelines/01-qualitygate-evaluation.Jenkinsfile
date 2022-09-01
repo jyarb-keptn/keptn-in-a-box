@@ -16,7 +16,9 @@ def getNow() {
   
   ZonedDateTime zdt = ZonedDateTime.of(localDateTime, ZoneId.systemDefault());
   
-  return long date = zdt.toInstant().toEpochMilli();
+  long date = zdt.toInstant().toEpochMilli();
+
+  return date
 }
 
 node {
