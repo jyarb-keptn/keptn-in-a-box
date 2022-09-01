@@ -1,6 +1,24 @@
 @Library('keptn-library-jyarb@master')_
 import sh.keptn.Keptn
+
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+
 def keptn = new sh.keptn.Keptn()
+
+def getNow() {
+  //return java.time.LocalDateTime.now() ;
+  //return java.time.Instant.now().truncatedTo( ChronoUnit.MILLIS ) ;
+  
+  LocalDateTime localDateTime = LocalDateTime.now();
+  
+  ZonedDateTime zdt = ZonedDateTime.of(localDateTime, ZoneId.systemDefault());
+  
+  long date = zdt.toInstant().toEpochMilli();
+
+  return date
+}
 
 node {
 
@@ -55,8 +73,15 @@ node {
     stage('Trigger Performance Test') {
         echo "Performance as a Self-Service: Triggering Keptn to execute Tests against ${params.DeploymentURI}"
 
+        def scriptStartTime = getNow().toString()
+
+        def labels=[:]
+        labels.put('TriggeredBy', 'jenkins')
+        labels.put('version', "${env.BUILD_NUMBER}")
+        labels.put('evaltime', "${scriptStartTime}")
+
         // send deployment finished to trigger tests
-        def keptnContext = keptn.sendConfigurationTriggeredEvent deploymentURI:"${params.DeploymentURI}", testStrategy:"${params.TestStrategy}"
+        def keptnContext = keptn.sendConfigurationTriggeredEvent deploymentURI:"${params.DeploymentURI}", testStrategy:"${params.TestStrategy}", labels: labels
         String keptn_bridge = env.KEPTN_BRIDGE
         echo "Open Keptns Bridge: ${keptn_bridge}/trace/${keptnContext}"
     }
