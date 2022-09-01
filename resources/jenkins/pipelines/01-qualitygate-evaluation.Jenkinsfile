@@ -46,6 +46,9 @@ node {
     stage('Trigger Quality Gate') {
         echo "Quality Gates ONLY: Just triggering an SLI/SLO-based evaluation for the passed timeframe"
 
+        def labels=[:]
+        labels.put('TriggeredBy', 'jenkins')
+
         // Trigger an evaluation
         def keptnContext = keptn.sendStartEvaluationEvent starttime:"${params.StartTime}", endtime:"${params.EndTime}"
         String keptn_bridge = env.KEPTN_BRIDGE
