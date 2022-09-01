@@ -23,6 +23,11 @@ node {
       ])        
     ])
 
+    def getNow() {
+    // return java.time.LocalDateTime.now()
+    return java.time.Instant.now().truncatedTo( ChronoUnit.MILLIS ) ;
+    }
+
     stage('Initialize Keptn') {
         keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.12.1/resources/jenkins/pipelines/keptn/dynatrace/dynatrace.conf.yaml", 'keptn/dynatrace/dynatrace.conf.yaml')
         keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.12.1/resources/jenkins/pipelines/keptn/slo_${params.SLI}.yaml", 'keptn/slo.yaml')
@@ -45,11 +50,6 @@ node {
     }
     stage('Trigger Quality Gate') {
         echo "Quality Gates ONLY: Just triggering an SLI/SLO-based evaluation for the passed timeframe"
-
-        def getNow() {
-        // return java.time.LocalDateTime.now()
-        return java.time.Instant.now().truncatedTo( ChronoUnit.MILLIS ) ;
-        }
 
         def scriptStartTime = getNow().toString()
 
