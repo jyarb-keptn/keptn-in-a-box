@@ -1,5 +1,7 @@
 @Library('keptn-library@6.0.0-next.1')_
 import sh.keptn.Keptn
+import java.time.temporal.ChronoUnit
+
 def keptn = new sh.keptn.Keptn()
 
 def getNow() {
