@@ -46,10 +46,12 @@ node {
     stage('Trigger Quality Gate') {
         echo "Quality Gates ONLY: Just triggering an SLI/SLO-based evaluation for the passed timeframe"
 
+        def scriptStartTime = getNow().toString()
+
         def labels=[:]
         labels.put('TriggeredBy', 'jenkins')
         labels.put('version', "${env.BUILD_NUMBER}")
-        labels.put('evaltime', "${starttime}")
+        labels.put('evaltime', "${scriptStartTime}")
 
         // Trigger an evaluation
         def keptnContext = keptn.sendStartEvaluationEvent starttime:"${params.StartTime}", endtime:"${params.EndTime}", labels: labels
