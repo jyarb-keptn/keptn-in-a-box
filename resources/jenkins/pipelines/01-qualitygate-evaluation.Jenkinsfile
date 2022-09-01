@@ -5,7 +5,7 @@ import java.time.temporal.ChronoUnit
 def keptn = new sh.keptn.Keptn()
 
 def getNow() {
-  return java.time.LocalDateTime.now()
+  return java.time.LocalDateTime.now.getTime() ;
   //return java.time.Instant.now().truncatedTo( ChronoUnit.MILLIS ) ;
 }
 
