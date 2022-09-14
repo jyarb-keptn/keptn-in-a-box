@@ -23,6 +23,11 @@ if [[ -d "catalog" ]]; then
     keptn add-resource --project=keptnorders --stage=production --service=order --resource=quality-gates/order/simple_slo.yaml --resourceUri=slo.yaml
     keptn add-resource --project=keptnorders --stage=production --service=customer  --resource=quality-gates/customer/simple_slo.yaml --resourceUri=slo.yaml
     keptn add-resource --project=keptnorders --stage=production --service=catalog  --resource=quality-gates/catalog/simple_slo.yaml --resourceUri=slo.yaml
+    echo "Setting up QualityGate to Pro-p"
+    keptn add-resource --project=keptnorders --stage=prod-p --service=frontend --resource=quality-gates/frontend/simple_slo.yaml --resourceUri=slo.yaml
+    keptn add-resource --project=keptnorders --stage=prod-p --service=order --resource=quality-gates/order/simple_slo.yaml --resourceUri=slo.yaml
+    keptn add-resource --project=keptnorders --stage=prod-p --service=customer  --resource=quality-gates/customer/simple_slo.yaml --resourceUri=slo.yaml
+    keptn add-resource --project=keptnorders --stage=prod-p --service=catalog  --resource=quality-gates/catalog/simple_slo.yaml --resourceUri=slo.yaml
 
 else 
     echo "The helmcharts for catalog are not present"
