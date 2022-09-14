@@ -150,8 +150,8 @@ installationBundleDemo() {
   dynatrace_configure_workloads=true
   keptndeploy_homepage=true
   # unleash
-  keptndemo_unleash=true
-  keptndemo_unleash_configure=true
+  keptndemo_unleash=false
+  keptndemo_unleash_configure=false
   # sockshop application
   keptndemo_cartsonboard=true
   keptndemo_cartsload=true
