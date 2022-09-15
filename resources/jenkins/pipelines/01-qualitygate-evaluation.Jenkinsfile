@@ -5,20 +5,24 @@ import java.time.temporal.ChronoUnit
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.*;
 
 def keptn = new sh.keptn.Keptn()
 
 def getNow() {
   //return java.time.LocalDateTime.now() ;
   //return java.time.Instant.now().truncatedTo( ChronoUnit.MILLIS ) ;
-  
   LocalDateTime localDateTime = LocalDateTime.now();
-  
-  ZonedDateTime zdt = ZonedDateTime.of(localDateTime, ZoneId.systemDefault());
-  
+  ZonedDateTime zdt = ZonedDateTime.of(localDateTime, ZoneId.systemDefault()); 
   long date = zdt.toInstant().toEpochMilli();
-
   return date
+}
+
+def getNowID() {
+  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("mmddHHMM");
+  ZonedDateTime zdt = ZonedDateTime.now();
+  String formattedZdt = zdt.format(formatter);
+  return formattedZdt
 }
 
 node {
@@ -66,10 +70,12 @@ node {
         echo "Quality Gates ONLY: Just triggering an SLI/SLO-based evaluation for the passed timeframe"
 
         def scriptStartTime = getNow().toString()
+        def buildid = getNowID().toString()
 
         def labels=[:]
         labels.put('TriggeredBy', 'jenkins')
-        labels.put('version', "${env.BUILD_NUMBER}")
+        labels.put('version', "1.0.0")
+        labels.put('buildId', "${buildid}")
         labels.put('evaltime', "${scriptStartTime}")
 
         // Trigger an evaluation
