@@ -1,6 +1,28 @@
 @Library('keptn-library@6.0.0-next.1')_
 import sh.keptn.Keptn
+import java.time.temporal.ChronoUnit
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.*;
+
 def keptn = new sh.keptn.Keptn()
+
+def getNow() {
+  //return java.time.LocalDateTime.now() ;
+  //return java.time.Instant.now().truncatedTo( ChronoUnit.MILLIS ) ;
+  LocalDateTime localDateTime = LocalDateTime.now();
+  ZonedDateTime zdt = ZonedDateTime.of(localDateTime, ZoneId.systemDefault()); 
+  long date = zdt.toInstant().toEpochMilli();
+  return date
+}
+
+def getNowID() {
+  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("mmddHHMM");
+  ZonedDateTime zdt = ZonedDateTime.now();
+  String formattedZdt = zdt.format(formatter);
+  return formattedZdt
+}
 
 node {
     properties([
@@ -28,7 +50,16 @@ node {
         // Initialize the Keptn Project - ensures the Keptn Project is created with the passed shipyard
         keptn.keptnInit project:"${params.Project}", service:"${params.Service}", stage:"${params.Stage}"
         // Trigger an evaluation
-        def keptnContext = keptn.sendStartEvaluationEvent starttime:"${params.StartTime}", endtime:"${params.EndTime}"
+        def scriptStartTime = getNow().toString()
+        def buildid = getNowID().toString()
+
+        def labels=[:]
+        labels.put('TriggeredBy', 'jenkins')
+        labels.put('version', "1.0.0")
+        labels.put('buildId', "${buildid}")
+        labels.put('evaltime', "${scriptStartTime}")
+
+        def keptnContext = keptn.sendStartEvaluationEvent starttime:"${params.StartTime}", endtime:"${params.EndTime}", labels: labels
         String keptn_bridge = env.KEPTN_BRIDGE
         echo "Open Keptns Bridge: ${keptn_bridge}/trace/${keptnContext}"
     }

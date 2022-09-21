@@ -1,6 +1,28 @@
 @Library('keptn-library-jyarb@master')_
 import sh.keptn.Keptn
+import java.time.temporal.ChronoUnit
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.*;
+
 def keptn = new sh.keptn.Keptn()
+
+def getNow() {
+  //return java.time.LocalDateTime.now() ;
+  //return java.time.Instant.now().truncatedTo( ChronoUnit.MILLIS ) ;
+  LocalDateTime localDateTime = LocalDateTime.now();
+  ZonedDateTime zdt = ZonedDateTime.of(localDateTime, ZoneId.systemDefault());
+  long date = zdt.toInstant().toEpochMilli();
+  return date
+}
+
+def getNowID() {
+  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("mmddHHMM");
+  ZonedDateTime zdt = ZonedDateTime.now();
+  String formattedZdt = zdt.format(formatter);
+  return formattedZdt
+}
 
 node {
 
@@ -23,12 +45,12 @@ node {
 
     stage('Initialize Keptn') {
         keptn.downloadFile('https://raw.githubusercontent.com/jyarb-keptn/overview/0.8.7/keptn-onboarding/shipyard-performance.yaml', 'keptn/shipyard.yaml')
-        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.12.1/resources/jenkins/pipelines/keptnorders/dynatrace/dynatrace.conf.yaml", 'dynatrace/dynatrace.conf.yaml')
-        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.12.1/resources/jenkins/pipelines/keptnorders/slo_${params.SLI}.yaml", 'keptnorders/slo.yaml')
-        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.12.1/resources/jenkins/pipelines/keptnorders/dynatrace/sli_${params.SLI}.yaml", 'keptnorders/sli.yaml')
-        keptn.downloadFile('https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.12.1/resources/jenkins/pipelines/keptnorders/jmeter/load.jmx', 'keptnorders/jmeter/load.jmx')
-        keptn.downloadFile('https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.12.1/resources/jenkins/pipelines/keptnorders/jmeter/basiccheck.jmx', 'keptnorders/jmeter/basiccheck.jmx')
-        keptn.downloadFile('https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.12.1/resources/jenkins/pipelines/keptnorders/jmeter/jmeter.conf.yaml', 'keptnorders/jmeter/jmeter.conf.yaml')
+        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.16/resources/jenkins/pipelines/keptnorders/dynatrace/dynatrace.conf.yaml", 'dynatrace/dynatrace.conf.yaml')
+        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.16/resources/jenkins/pipelines/keptnorders/slo_${params.SLI}.yaml", 'keptnorders/slo.yaml')
+        keptn.downloadFile("https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.16/resources/jenkins/pipelines/keptnorders/dynatrace/sli_${params.SLI}.yaml", 'keptnorders/sli.yaml')
+        keptn.downloadFile('https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.16/resources/jenkins/pipelines/keptnorders/jmeter/load.jmx', 'keptnorders/jmeter/load.jmx')
+        keptn.downloadFile('https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.16/resources/jenkins/pipelines/keptnorders/jmeter/basiccheck.jmx', 'keptnorders/jmeter/basiccheck.jmx')
+        keptn.downloadFile('https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.16/resources/jenkins/pipelines/keptnorders/jmeter/jmeter.conf.yaml', 'keptnorders/jmeter/jmeter.conf.yaml')
         archiveArtifacts artifacts:'keptnorders/**/*.*'
 
         // Initialize the Keptn Project
@@ -49,8 +71,16 @@ node {
     stage('Trigger Performance Test') {
         echo "Performance as a Self-Service: Triggering Keptn to execute Tests against ${params.DeploymentURI}"
 
+        def scriptStartTime = getNow().toString()
+        def buildid = getNowID().toString()
+
+        def labels=[:]
+        labels.put('TriggeredBy', 'jenkins')
+        labels.put('version', "1.0.0")
+        labels.put('buildId', "${buildid}")
+        labels.put('evaltime', "${scriptStartTime}")
         // send deployment finished to trigger tests
-        def keptnContext = keptn.sendConfigurationTriggeredEvent testStrategy:"${params.TestStrategy}", deploymentURI:"${params.DeploymentURI}"
+        def keptnContext = keptn.sendConfigurationTriggeredEvent testStrategy:"${params.TestStrategy}", deploymentURI:"${params.DeploymentURI}", labels: labels
         String keptn_bridge = env.KEPTN_BRIDGE
         echo "Open Keptns Bridge: ${keptn_bridge}/trace/${keptnContext}"
     }
