@@ -10,7 +10,7 @@
 # ==================================================
 KIAB_RELEASE="0.8.19"
 # https://github.com/keptn/keptn
-KEPTN_VERSION=0.19.0
+KEPTN_VERSION=0.18.2
 OPERATOR_VERSION=v0.6.0
 ISTIO_VERSION=1.13.3
 CERTMANAGER_VERSION=1.6.1
