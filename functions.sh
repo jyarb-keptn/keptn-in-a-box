@@ -8,16 +8,16 @@
 # ==================================================
 #      ----- Components Versions -----             #
 # ==================================================
-KIAB_RELEASE="0.8.16"
+KIAB_RELEASE="0.8.19"
 # https://github.com/keptn/keptn
-KEPTN_VERSION=0.16.1
+KEPTN_VERSION=0.19.0
 OPERATOR_VERSION=v0.6.0
 ISTIO_VERSION=1.13.3
 CERTMANAGER_VERSION=1.6.1
 # https://github.com/helm/helm/releases
 HELM_VERSION=3.9.0
 # https://github.com/keptn-contrib/dynatrace-service
-KEPTN_DT_SERVICE_VERSION=0.23.0
+KEPTN_DT_SERVICE_VERSION=0.23.2
 # https://github.com/keptn-contrib/dynatrace-sli-service
 KEPTN_DT_SLI_SERVICE_VERSION=0.12.1
 # https://github.com/keptn/examples
@@ -688,7 +688,9 @@ keptnInstall() {
     else
       ## -- Keptn Installation --
       printInfoSection "Install Keptn with Continuous Delivery UseCase"
-      bashas "echo 'y' | keptn install --use-case=continuous-delivery"
+      #bashas "echo 'y' | keptn install --use-case=continuous-delivery"
+      bashas "helm install keptn keptn/keptn -n keptn --version=${KEPTN_VERSION} --create-namespace --set=continuousDelivery.enabled=true"
+      #bashas "  helm upgrade keptn keptn --install -n keptn --create-namespace --set=ingress.enabled=true, ingress.annotations=<YOUR_ANNOTATIONS>, ingress.host=<YOUR_HOST>, ingress.path=<YOUR_PATH>, ingress.pathType=<YOUR_PATH_TYPE>, ingress.tls=<YOUR_TLS>"
       waitForAllPods keptn
 
       # Adding configuration for the IngressGW
