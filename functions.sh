@@ -316,7 +316,7 @@ waitForAllPods() {
     namespace_filter="--all-namespaces"
   fi
   RETRY=0
-  RETRY_MAX=30
+  RETRY_MAX=50
   # Get all pods, count and invert the search for not running nor completed. Status is for deleting the last line of the output
   CMD="bashas \"kubectl get pods $namespace_filter 2>&1 | grep -c -v -E '(Running|Completed|Terminating|STATUS)'\""
   printInfo "Checking and wait for all pods in \"$namespace_filter\" to run."
