@@ -685,13 +685,14 @@ keptnInstall() {
 
       #bashas "echo 'y' | keptn install --use-case=continuous-delivery"
       bashas "helm repo add keptn https://charts.keptn.sh"
-      bashas "helm install keptn keptn -n keptn --version ${KEPTN_VERSION} --create-namespace --set=continuousDelivery.enabled=true"
+      bashas "helm install keptn keptn -n keptn --version ${KEPTN_VERSION} --repo=https://charts.keptn.sh --create-namespace --set=continuousDelivery.enabled=true"
       waitForAllPods keptn
     else
       ## -- Keptn Installation --
       printInfoSection "Install Keptn with Continuous Delivery UseCase"
       #bashas "echo 'y' | keptn install --use-case=continuous-delivery"
-      bashas "helm install keptn keptn -n keptn --version ${KEPTN_VERSION} --create-namespace --set=continuousDelivery.enabled=true"
+      bashas "helm repo add keptn https://charts.keptn.sh"
+      bashas "helm install keptn keptn -n keptn --version ${KEPTN_VERSION} --repo=https://charts.keptn.sh --create-namespace --set=continuousDelivery.enabled=true"
       #bashas "helm upgrade keptn keptn --install -n keptn --create-namespace --set=ingress.enabled=true, ingress.annotations=<YOUR_ANNOTATIONS>, ingress.host=<YOUR_HOST>, ingress.path=<YOUR_PATH>, ingress.pathType=<YOUR_PATH_TYPE>, ingress.tls=<YOUR_TLS>"
       waitForAllPods keptn
 
