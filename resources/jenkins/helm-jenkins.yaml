@@ -386,7 +386,7 @@ master:
                         remote {
                           url('https://github.com/jyarb-keptn/keptn-in-a-box.git')
                         }
-                        branch('*/')
+                        branch('*/0.8.19')
                       }
                     }
                     scriptPath 'resources/jenkins/pipelines/01-qualitygate-evaluation.Jenkinsfile'
