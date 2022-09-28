@@ -339,6 +339,35 @@ waitForAllPods() {
   fi
 }
 
+waitForAllPodsWithoutExit() {
+  # Function to filter by Namespace, default is ALL
+  if [[ $# -eq 1 ]]; then
+    namespace_filter="-n $1"
+  else
+    namespace_filter="--all-namespaces"
+  fi
+  RETRY=0
+  RETRY_MAX=60
+  # Get all pods, count and invert the search for not running nor completed. Status is for deleting the last line of the output
+  CMD="bashas \"kubectl get pods $namespace_filter 2>&1 | grep -c -v -E '(Running|Completed|Terminating|STATUS)'\""
+  printInfo "Checking and wait for all pods in \"$namespace_filter\" to run."
+  while [[ $RETRY -lt $RETRY_MAX ]]; do
+    pods_not_ok=$(eval "$CMD")
+    if [[ "$pods_not_ok" == '0' ]]; then
+      printInfo "All pods are running."
+      break
+    fi
+    RETRY=$(($RETRY + 1))
+    printInfo "Retry: ${RETRY}/${RETRY_MAX} - Wait 10s for $pods_not_ok PoDs to finish or be in state Running ..."
+    sleep 10
+  done
+
+  if [[ $RETRY == $RETRY_MAX ]]; then
+    printError "These Pods are still trying to start"
+    bashas "kubectl get pods --field-selector=status.phase!=Running -A"
+  fi
+}
+
 waitForServersAvailability() {
   # expand function to wait for git curl 200 / eval RC
   if [[ $# -eq 1 ]]; then
@@ -947,6 +976,7 @@ keptndemoCartsonboard() {
     bashas "cd $KEPTN_EXAMPLES_DIR/onboarding-carts/ && bash $KEPTN_IN_A_BOX_DIR/resources/demo/onboard_carts_qualitygates.sh"
     printInfoSection "Keptn deploy Carts"
     bashas "cd $KEPTN_EXAMPLES_DIR/onboarding-carts/ && bash $KEPTN_IN_A_BOX_DIR/resources/demo/deploy_carts_0.sh"
+    waitForAllPodsWithoutExit
     printInfoSection "Exposing the Onboarded Carts Application"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} sockshop"
   fi
@@ -971,7 +1001,9 @@ keptndemoCatalogonboard() {
     printInfoSection "start customer and catalog..."
     bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/catalog/deploy_catalog_0.1.sh"
     printInfoSection "start order and frontend..."
+    waitForAllPodsWithoutExit
     bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/catalog/deploy_catalog_0.2.sh"
+    waitForAllPodsWithoutExit
     printInfoSection "Load remediation..."
     #bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash loadRemediation.sh"
     printInfoSection "Exposing the Onboarded orders Application"
@@ -992,6 +1024,7 @@ keptndemoEasytravelonboard() {
     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/onboard_easytravel_qualitygates.sh"
     printInfoSection "deploy easytravel..."
     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/easytravel/deploy_0.sh"
+    waitForAllPodsWithoutExit
     printInfoSection "Load remediation..."
     bashas "cd $KEPTN_CATALOG_DIR/easytravel-onboarding/ && bash loadRemediation.sh"
     printInfoSection "Exposing the Onboarded easytravel Application"
