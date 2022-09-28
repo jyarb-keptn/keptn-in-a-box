@@ -772,7 +772,7 @@ keptnInstall() {
 
 jmeterService() {
   if [ "$jmeter_install" = true ]; then
-  printInfoSection "Deploy JMeter Service for keptn"
+  printInfoSection "Deploy JMeter Service"
   #bashas "kubectl delete -n keptn deployment jmeter-service"
   #bashas "kubectl apply -f https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/${KIAB_RELEASE}/resources/keptn/jmeter-service.yaml -n keptn --record"
   bashas "helm install jmeter-service https://github.com/keptn/keptn/releases/download/${KEPTN_VERSION}/jmeter-service-${KEPTN_VERSION}.tgz -n keptn --create-namespace --wait"
@@ -852,7 +852,7 @@ dynatraceServices() {
     printInfoSection "KEPTN_ENDPOINT=$KEPTN_ENDPOINT"
     printInfoSection "KEPTN_BRIDGE_URL=$KEPTN_BRIDGE_URL"
     
-    printInfo "Deploying the Dynatrace Service in Keptn"
+    printInfo "Deploying the Dynatrace Service"
     #bashas "kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/dynatrace-service/$KEPTN_DT_SERVICE_VERSION/deploy/service.yaml -n keptn" 
     #bashas "helm upgrade --install dynatrace-service -n keptn https://github.com/keptn-contrib/dynatrace-service/releases/download/$KEPTN_DT_SERVICE_VERSION/dynatrace-service-$KEPTN_DT_SERVICE_VERSION.tgz"
     bashas "helm upgrade --install dynatrace-service -n keptn \
@@ -1004,7 +1004,7 @@ keptndemoCatalogonboard() {
     waitForAllPodsWithoutExit
     bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash $KEPTN_IN_A_BOX_DIR/resources/catalog/deploy_catalog_0.2.sh"
     waitForAllPodsWithoutExit
-    printInfoSection "Load remediation..."
+    #printInfoSection "Load remediation..."
     #bashas "cd $KEPTN_CATALOG_DIR/keptn-onboarding/ && bash loadRemediation.sh"
     printInfoSection "Exposing the Onboarded orders Application"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} keptnorders"
