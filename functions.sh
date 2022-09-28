@@ -363,7 +363,7 @@ waitForAllPodsWithoutExit() {
   done
 
   if [[ $RETRY == $RETRY_MAX ]]; then
-    printError "These Pods are still trying to start"
+    printError "These Pods are still starting..."
     bashas "kubectl get pods --field-selector=status.phase!=Running -A"
   fi
 }
