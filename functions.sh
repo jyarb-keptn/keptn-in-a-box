@@ -144,6 +144,7 @@ installationBundleDemo() {
   dynatrace_install_dynakube=true
   # Dynatrace_service
   dynatrace_install_service=true
+  #sli service is deprecated
   dynatrace_install_sli_service=false
   # Traditional ActiveGate
   dynatrace_activegate_install=false
@@ -171,7 +172,7 @@ installationBundleDemo() {
   keptn_bridge_disable_login=true
   # By default no WorkshopUser will be created
   create_workshop_user=false
-  jmeter_install=false
+  jmeter_install=true
   dynatrace_project=true
   QG_projects=true
   keptnwebservice=true
@@ -665,7 +666,7 @@ hostAliasPod() {
 }
 
 keptnInstallClient() {
-  printInfoSection "Download Keptn $KEPTN_VERSION"
+  printInfoSection "Download and install Keptn CLI $KEPTN_VERSION"
   wget -q -O keptn.tar.gz "https://github.com/keptn/keptn/releases/download/${KEPTN_VERSION}/keptn-${KEPTN_VERSION}-linux-amd64.tar.gz"
   gunzip keptn.tar.gz
   tar -xvf keptn.tar
@@ -687,7 +688,7 @@ keptnInstall() {
       bashas "helm repo add keptn https://charts.keptn.sh"
       bashas "helm install keptn keptn -n keptn --version ${KEPTN_VERSION} --repo=https://charts.keptn.sh --create-namespace --set=continuousDelivery.enabled=true"
       waitForAllPods keptn
-      bashas "helm install jmeter-service https://github.com/keptn/keptn/releases/download/${KEPTN_VERSION}/jmeter-service-${KEPTN_VERSION}.tgz -n keptn --create-namespace --wait"
+      #bashas "helm install jmeter-service https://github.com/keptn/keptn/releases/download/${KEPTN_VERSION}/jmeter-service-${KEPTN_VERSION}.tgz -n keptn --create-namespace --wait"
       bashas "helm install helm-service https://github.com/keptn/keptn/releases/download/${KEPTN_VERSION}/helm-service-${KEPTN_VERSION}.tgz -n keptn --create-namespace --wait"
       waitForAllPods keptn
     else
@@ -698,7 +699,7 @@ keptnInstall() {
       bashas "helm install keptn keptn -n keptn --version ${KEPTN_VERSION} --repo=https://charts.keptn.sh --create-namespace --set=continuousDelivery.enabled=true"
       #bashas "helm upgrade keptn keptn --install -n keptn --create-namespace --set=ingress.enabled=true, ingress.annotations=<YOUR_ANNOTATIONS>, ingress.host=<YOUR_HOST>, ingress.path=<YOUR_PATH>, ingress.pathType=<YOUR_PATH_TYPE>, ingress.tls=<YOUR_TLS>"
       waitForAllPods keptn
-      bashas "helm install jmeter-service https://github.com/keptn/keptn/releases/download/${KEPTN_VERSION}/jmeter-service-${KEPTN_VERSION}.tgz -n keptn --create-namespace --wait"
+      #bashas "helm install jmeter-service https://github.com/keptn/keptn/releases/download/${KEPTN_VERSION}/jmeter-service-${KEPTN_VERSION}.tgz -n keptn --create-namespace --wait"
       bashas "helm install helm-service https://github.com/keptn/keptn/releases/download/${KEPTN_VERSION}/helm-service-${KEPTN_VERSION}.tgz -n keptn --create-namespace --wait"
       waitForAllPods keptn
 
@@ -740,9 +741,10 @@ keptnInstall() {
 
 jmeterService() {
   if [ "$jmeter_install" = true ]; then
-  printInfoSection "JMeter Service 0.12.0"
-  bashas "kubectl delete -n keptn deployment jmeter-service"
-  bashas "kubectl apply -f https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/${KIAB_RELEASE}/resources/keptn/jmeter-service.yaml -n keptn --record"
+  printInfoSection "Deploy JMeter Service for keptn"
+  #bashas "kubectl delete -n keptn deployment jmeter-service"
+  #bashas "kubectl apply -f https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/${KIAB_RELEASE}/resources/keptn/jmeter-service.yaml -n keptn --record"
+  bashas "helm install jmeter-service https://github.com/keptn/keptn/releases/download/${KEPTN_VERSION}/jmeter-service-${KEPTN_VERSION}.tgz -n keptn --create-namespace --wait"
   waitForAllPods keptn
   fi
 }
