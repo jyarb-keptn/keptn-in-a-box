@@ -688,6 +688,7 @@ keptnInstall() {
       bashas "helm repo add keptn https://charts.keptn.sh"
       bashas "helm install keptn keptn -n keptn --version ${KEPTN_VERSION} --repo=https://charts.keptn.sh --create-namespace --set=continuousDelivery.enabled=true"
       waitForAllPods keptn
+      printInfoSection "Deploy Helm Service"
       #bashas "helm install jmeter-service https://github.com/keptn/keptn/releases/download/${KEPTN_VERSION}/jmeter-service-${KEPTN_VERSION}.tgz -n keptn --create-namespace --wait"
       bashas "helm install helm-service https://github.com/keptn/keptn/releases/download/${KEPTN_VERSION}/helm-service-${KEPTN_VERSION}.tgz -n keptn --create-namespace --wait"
       waitForAllPods keptn
@@ -699,6 +700,7 @@ keptnInstall() {
       bashas "helm install keptn keptn -n keptn --version ${KEPTN_VERSION} --repo=https://charts.keptn.sh --create-namespace --set=continuousDelivery.enabled=true"
       #bashas "helm upgrade keptn keptn --install -n keptn --create-namespace --set=ingress.enabled=true, ingress.annotations=<YOUR_ANNOTATIONS>, ingress.host=<YOUR_HOST>, ingress.path=<YOUR_PATH>, ingress.pathType=<YOUR_PATH_TYPE>, ingress.tls=<YOUR_TLS>"
       waitForAllPods keptn
+      printInfoSection "Deploy Helm Service"
       #bashas "helm install jmeter-service https://github.com/keptn/keptn/releases/download/${KEPTN_VERSION}/jmeter-service-${KEPTN_VERSION}.tgz -n keptn --create-namespace --wait"
       bashas "helm install helm-service https://github.com/keptn/keptn/releases/download/${KEPTN_VERSION}/helm-service-${KEPTN_VERSION}.tgz -n keptn --create-namespace --wait"
       waitForAllPods keptn
@@ -1250,6 +1252,9 @@ doInstallation() {
   exposeK8Services
   patchKubernetesDashboard
   keptnInstall
+  dynatraceServices
+  dynatraceSLIService  
+  jmeterService 
   keptnDeployHomepage
   dynatraceConfigureMonitoring
   dynatraceConfigureWorkloads 
@@ -1260,9 +1265,6 @@ doInstallation() {
   setGitEnv
   loadDynatraceProject
   loadQGProjects
-  dynatraceServices
-  dynatraceSLIService  
-  jmeterService
   loadKeptnDashboard
   createWorkshopUser
   patchConfigService
