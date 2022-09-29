@@ -30,7 +30,7 @@ node {
          string(defaultValue: 'sockshop', description: 'Name of your Project for Quality Gate Feedback ', name: 'Project', trim: false), 
          string(defaultValue: 'staging', description: 'Stage used for for Quality Gate Feedback', name: 'Stage', trim: false), 
          string(defaultValue: 'carts', description: 'Name of the Tag for identifyting the service to validate the SLIs and SLOs', name: 'Service', trim: false),
-         choice(name: 'Release', choices: ["0.12.1", "0.12.2", "0.12.3"], description: 'Carts Service with Tag [:0.12.1,:0.12.2,:0.12.3]')
+         choice(name: 'Release', choices: ["0.12.1", "0.12.2", "0.12.3"], description: 'Carts Service with Tag [:0.12.1,:0.12.2,:0.12.3]'),
          choice(choices: ['dynatrace', 'prometheus',''], description: 'Select which monitoring tool should be configured as SLI provider', name: 'Monitoring', trim: false),
          string(defaultValue: '660', description: 'Start timestamp or number of seconds from Now()', name: 'StartTime', trim: false),
          string(defaultValue: 'UTC', description: 'TimeZone', name: 'TimeZone', trim: false),
