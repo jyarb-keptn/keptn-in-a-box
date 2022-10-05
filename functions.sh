@@ -1160,7 +1160,7 @@ createWorkshopUser() {
 
 postFlightWork() {
   if [ "$post_flight" = true ]; then    
-    printInfoSection "PostFlight work for environment and project setup"
+    printInfoSection "PostFlight work for environment, project setup and secrets"
     bashas "chown -f -R ${USER} ~/.kube"
     #cp $KEPTN_IN_A_BOX_DIR/resources/misc/daemon.json /etc/docker/daemon.json
     #systemctl restart docker
@@ -1176,6 +1176,10 @@ postFlightWork() {
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/setkubeflags.sh"
     printInfoSection "load project configs"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/keptn && bash $KEPTN_IN_A_BOX_DIR/resources/keptn/setprojectConf.sh"
+    printInfoSection "create slack webhook secrets"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts/webhook.sh"
+    printInfoSection "create dynatrace-metric webhook secrets"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts/setWebhookSecret.sh"
   fi
 }
 

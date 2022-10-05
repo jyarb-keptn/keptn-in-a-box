@@ -7,7 +7,7 @@ generated with Cert-Manager and Let's Encrypt, does not mean the Box is secure.
 
 # Keptn-in-a-Box Enhanced (with Dynatrace Software Intelligence empowered) 🎁
 
-:rotating_light: ALERT: This install uses keptn 0.15.0 :rotating_light:
+:rotating_light: ALERT: This install uses keptn 0.18.2 :rotating_light:
 
 Keptn-In-A-Box is part of the automation for delivering Autonomous Cloud Workshops with Dynatrace. This is not a tutorial but more an explanation of what the shell file set up for you on a plain Ubuntu image. 
 
@@ -16,13 +16,13 @@ For spinning up instances automatically with AWS completely configured and set u
 
 |Name | Version | Description | 
 ------------- | ------------- | ------------ |
+| **kiab** | [0.8.19](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.19) | keptn 0.18.2 - local install|
+| **kiab** | [0.8.16](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.16) | keptn 0.16.1 - local install|
 | **kiab** | [0.8.13](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.13) | keptn 0.15.0 - local install|
 | **kiab** | [0.8.12.3](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.12.3) | keptn 0.14.1 - local install|
 | **kiab** | [0.8.12.1](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.12.1) | keptn 0.13.3 - local install|
 | **kiab** | [0.8.9](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.9) | keptn 0.11.4 - training with dtu-training |
 | **kiab** | [0.8.10](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.10) | keptn 0.11.4 - AWS deployment |
-| **kiab** | [0.8.8](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.8) | keptn 0.10.0 |
-| **kiab** | [0.8.7](https://github.com/jyarb-keptn/keptn-in-a-box/tree/0.8.7) | keptn 0.9.2 |
 
 ![#](doc/images/keptn-in-a-box-autonomous-cloud-devops.gif)
 
@@ -35,7 +35,7 @@ For spinning up instances automatically with AWS completely configured and set u
 - Set up of useful BASH Aliases for working with the command line
 - Enable autocompletion of Kubectl
 - Installation of Dynatrace ActiveGate and configuration of [Cluster](https://www.dynatrace.com/support/help/technology-support/cloud-platforms/kubernetes/monitoring/connect-kubernetes-clusters-to-dynatrace/) and [Workload monitoring](https://www.dynatrace.com/support/help/technology-support/cloud-platforms/kubernetes/monitoring/monitor-workloads-kubernetes/)
-- Installation of Istio 1.9.1 
+- Installation of Istio 1.13.3 
 - Installation of Helm Client
 - Enabling own Docker Registry for the Cluster
 - Convert the public IP in a (magic) domain ([nip.io](https://nip.io/)) for being able to expose all the needed services with subdomains.
@@ -620,21 +620,29 @@ These are the actual versions of the different Modules
 # ==================================================
 #      ----- Components Versions -----             #
 # ==================================================
-KIAB_RELEASE="0.8.8"
-ISTIO_VERSION=1.9.1
-CERTMANAGER_VERSION=0.14.0
-KEPTN_VERSION=0.10.0
-KEPTN_DT_SERVICE_VERSION=0.18.0
+KIAB_RELEASE="0.8.19"
+# https://github.com/keptn/keptn
+KEPTN_VERSION=0.18.2
+OPERATOR_VERSION=v0.6.0
+ISTIO_VERSION=1.13.3
+CERTMANAGER_VERSION=1.6.1
+# https://github.com/helm/helm/releases
+HELM_VERSION=3.9.0
+# https://github.com/keptn-contrib/dynatrace-service
+KEPTN_DT_SERVICE_VERSION=0.23.2
+# https://github.com/keptn-contrib/dynatrace-sli-service
 KEPTN_DT_SLI_SERVICE_VERSION=0.12.1
+# https://github.com/keptn/examples
 KEPTN_EXAMPLES_REPO="https://github.com/keptn/examples.git"
-KEPTN_EXAMPLES_BRANCH="0.10.0"
+KEPTN_EXAMPLES_BRANCH="0.15.0"
 KEPTN_EXAMPLES_DIR="~/examples"
 KEPTN_CATALOG_REPO="https://github.com/jyarb-keptn/overview.git"
-KEPTN_CATALOG_BRANCH="0.8.5"
+KEPTN_CATALOG_BRANCH="0.8.7"
 KEPTN_CATALOG_DIR="~/overview"
 TEASER_IMAGE="pcjeffmac/nginxacm:0.8.1"
 KEPTN_BRIDGE_IMAGE="keptn/bridge2:0.8.0"
 MICROK8S_CHANNEL="1.19/stable"
+#KEPTN_IN_A_BOX_REPO="https://github.com/keptn-sandbox/keptn-in-a-box.git"
 KEPTN_IN_A_BOX_REPO="https://github.com/jyarb-keptn/keptn-in-a-box.git"
 KEPTN_IN_A_BOX_DIR="~/keptn-in-a-box"
 ```
