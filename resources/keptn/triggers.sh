@@ -35,3 +35,7 @@ keptn trigger evaluation --project=dynatrace --stage=quality-gate --service=easy
 evaldate=`date +%s%3N`
 buildid=`date +%m%d%H%M`
 keptn trigger evaluation --project=dynatrace --stage=quality-gate --service=easytravel-www --timeframe=30m --labels=buildId=${buildid},version=2.0.0.3356,evaltime=${evaldate},executedBy=trigger
+
+evaldate=`date +%s%3N`
+buildid=`date +%m%d%H%M`
+keptn trigger evaluation --project=dynatrace --stage=quality-gate --service=ccvalidation --timeframe=30m --labels=buildId=${buildid},version=2.0.0.3356,evaltime=${evaldate},executedBy=trigger
