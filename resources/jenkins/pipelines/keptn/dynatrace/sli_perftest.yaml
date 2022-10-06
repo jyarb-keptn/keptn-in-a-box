@@ -11,3 +11,7 @@ indicators:
   lock_time:    "metricSelector=builtin:service.lockTime:merge(\"dt.entity.service\"):sum&entitySelector=tag($SERVICE),type(SERVICE)"
   io_time:      "metricSelector=builtin:service.ioTime:merge(\"dt.entity.service\"):sum&entitySelector=tag($SERVICE),type(SERVICE)"
   cpu_time:     "metricSelector=builtin:service.cpu.time:merge(\"dt.entity.service\"):sum&entitySelector=tag($SERVICE),type(SERVICE)"
+  app_sec_high:        "SECPV2;securityProblemSelector=riskLevel(HIGH),pgiTags([ENVIRONMENT]DT_RELEASE_BUILD_VERSION:$LABEL.DT_RELEASE_BUILD_VERSION)"
+  app_sec_critical:    "SECPV2;securityProblemSelector=riskLevel(CRITICAL),pgiTags([ENVIRONMENT]DT_RELEASE_BUILD_VERSION:$LABEL.DT_RELEASE_BUILD_VERSION)"
+  app_sec_medium:      "SECPV2;securityProblemSelector=riskLevel(MEDIUM),pgiTags([ENVIRONMENT]DT_RELEASE_BUILD_VERSION:$LABEL.DT_RELEASE_BUILD_VERSION)"
+  app_sec_low:         "SECPV2;securityProblemSelector=riskLevel(LOW),pgiTags([ENVIRONMENT]DT_RELEASE_BUILD_VERSION:$LABEL.DT_RELEASE_BUILD_VERSION)"
