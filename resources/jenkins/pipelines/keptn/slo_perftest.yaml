@@ -15,18 +15,18 @@ objectives:
           - "<600"   # absolute values only require a logical operator
     warning:     # if the response time is below 800ms, the result should be a warning
       - criteria:
-      - "<=800"
+          - "<=800"
   - sli: throughput_svc
     displayName: "Throughput"
     pass:
       - criteria:
-      - "> 1000" # at least 1000 Calls for a basic test to pass.
+          - "> 1000" # at least 1000 Calls for a basic test to pass.
   - sli: error_count
     displayName: "Error Count"
     weight: 2
     pass:
       - criteria:
-      - "<=1" # less than 1% failurerate
+          - "<=1" # less than 1% failurerate
     warning:
       - criteria:
           - "<=2" # more than 2 failed transactions is failed
