@@ -20,7 +20,7 @@ objectives:
     displayName: "Throughput"
     pass:
       - criteria:
-          - "> 1000" # at least 1000 Calls for a basic test to pass.
+          - "> 800" # at least 1000 Calls for a basic test to pass.
   - sli: error_count
     displayName: "Error Count"
     weight: 2
