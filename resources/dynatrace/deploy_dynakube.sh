@@ -16,7 +16,7 @@ echo "Downloading the ${OPERATOR_VERSION} dynatrace operator release (definition
 curl -L -o kubernetes.yaml https://github.com/Dynatrace/dynatrace-operator/releases/download/${OPERATOR_VERSION}/kubernetes.yaml
 echo "Create operator/webhook via kubctl"
 kubectl create -f kubernetes.yaml
-kubectl -n dynatrace create secret generic dynakube --from-literal="apiToken=$DT_API_TOKEN" --from-literal="paasToken=$DT_PAAS_TOKEN"
+kubectl -n dynatrace create secret generic dynakube --from-literal="apiToken=$DT_API_TOKEN" --from-literal="paasToken=$DT_PAAS_TOKEN" --from-literal="dataIngestToken=$DT_API_TOKEN"
 echo "Wait for pods to start"
 sleep 30
 kubectl -n dynatrace wait pod --for=condition=ready -l internal.dynatrace.com/app=webhook --timeout=300s
