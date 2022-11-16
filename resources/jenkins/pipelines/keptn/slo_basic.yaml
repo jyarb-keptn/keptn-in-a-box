@@ -10,10 +10,10 @@
         pass:        # pass if (relative change <= 10% AND absolute value is < 500)
           - criteria:
               - "<=+10%" # relative values require a prefixed sign (plus or minus)
-              - "<600000"   # absolute values only require a logical operator
+              - "<3.0"   # absolute values only require a logical operator
         warning:     # if the response time is below 800ms, the result should be a warning
           - criteria:
-              - "<=800000"
+              - "<=4.0"
       - sli: throughput_svc
         displayName: "Throughput"
         pass:
