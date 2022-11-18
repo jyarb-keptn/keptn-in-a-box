@@ -5,7 +5,7 @@ metadata:
   namespace: kube-system
   annotations:
     #kubernetes.io/ingress.class: nginx
-    kubernetes.io/ingress.class: istio
+    kubernetes.io/ingress.class: public
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
@@ -17,7 +17,7 @@ spec:
    service:
      name: kubernetes-dashboard
      port:
-       number: 8443
+       number: 443
   rules:
   - host: kubernetes.domain.placeholder
     http:
@@ -30,7 +30,7 @@ spec:
             port: 
               number: 443
   #ingressClassName: nginx            
-  #tls:
-  #- hosts:
-  #  - kubernetes.domain.placeholder
+  tls:
+  - hosts:
+    - kubernetes.domain.placeholder
     #secretName: k8-dashboard-tls

@@ -19,17 +19,17 @@ metadata:
     #acme.cert-manager.io/http01-edit-in-place: "true"
 spec:
   rules:
-  - host: "keptn.domain.placeholder"
+  - host: keptn.domain.placeholder
     http:
       paths:
       - pathType: Prefix
-        path: "/"
+        path: /
         backend:
           service:
             name: api-gateway-nginx
             port: 
               number: 80
-  #tls:
-  #- hosts:
-  #  - keptn.domain.placeholder
+  tls:
+  - hosts:
+    - keptn.domain.placeholder
     #secretName: keptn-tls

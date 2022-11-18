@@ -4,12 +4,12 @@ metadata:
   name: homepage-ingress
   namespace: default
   annotations:
-    #kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.class: public
     # We allow HTTP and HTTPS
-    #nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
     # Instructs the controller to send TLS connections directly 
     #to the backend instead of letting NGINX decrypt the communication
-    #nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
     # In some scenarios the exposed URL in the backend service differs
     # from the specified path in the Ingress rule. Without a
     # rewrite any request will return 404
@@ -37,7 +37,7 @@ spec:
             name: homepage
             port: 
               number: 80
- # tls:
- # - hosts:
- #   - domain.placeholder
+  tls:
+  - hosts:
+    - domain.placeholder
  #   secretName: homepage-tls
