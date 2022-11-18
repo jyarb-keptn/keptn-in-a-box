@@ -4,7 +4,7 @@ metadata:
   name: keptnorders-ingress
   namespace: istio-system
   annotations:
-    kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.class: public
     # We allow HTTP and HTTPS
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     # Instructs the controller to send TLS connections directly
@@ -98,14 +98,14 @@ spec:
             name: istio-ingressgateway
             port: 
               number: 80                                   
- # tls:
- # - hosts:
- #   - frontend.keptnorders-production.domain.placeholder
- #   - frontend.keptnorders-staging.domain.placeholder
- #   - catalog.keptnorders-staging.domain.placeholder
- #   - customer.keptnorders-staging.domain.placeholder
- #   - order.keptnorders-staging.domain.placeholder
- #   - catalog.keptnorders-production.domain.placeholder
- #   - customer.keptnorders-production.domain.placeholder
- #   - order.keptnorders-production.domain.placeholder    
+  tls:
+  - hosts:
+    - frontend.keptnorders-production.domain.placeholder
+    - frontend.keptnorders-staging.domain.placeholder
+    - catalog.keptnorders-staging.domain.placeholder
+    - customer.keptnorders-staging.domain.placeholder
+    - order.keptnorders-staging.domain.placeholder
+    - catalog.keptnorders-production.domain.placeholder
+    - customer.keptnorders-production.domain.placeholder
+    - order.keptnorders-production.domain.placeholder    
     #secretName: orders-tls
