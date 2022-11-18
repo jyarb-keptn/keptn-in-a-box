@@ -8,10 +8,15 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/ssl-passthrough: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-    nginx.ingress.kubernetes.io/rewrite-target: / 
-    nginx.ingress.kubernetes.io/service-upstream: "true"
+    #nginx.ingress.kubernetes.io/rewrite-target: / 
+    #nginx.ingress.kubernetes.io/service-upstream: "true"
     #cert-manager.io/cluster-issuer: "letsencrypt"
 spec:
+  defaultBackend:
+   service:
+     name: kubernetes-dashboard
+     port:
+       number: 443
   rules:
   - host: kubernetes.domain.placeholder
     http:
@@ -24,7 +29,7 @@ spec:
             port: 
               number: 443
   #ingressClassName: nginx            
-#  tls:
-#  - hosts:
-#    - kubernetes.domain.placeholder
+  tls:
+  - hosts:
+    - kubernetes.domain.placeholder
     #secretName: k8-dashboard-tls
