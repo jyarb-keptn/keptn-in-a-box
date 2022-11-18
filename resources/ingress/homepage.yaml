@@ -1,6 +1,8 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  name: homepage-ingress
+  namespace: default
   annotations:
     kubernetes.io/ingress.class: nginx
     # We allow HTTP and HTTPS
@@ -15,19 +17,20 @@ metadata:
     #cert-manager.io/cluster-issuer: "letsencrypt"
     #cert-manager.io/issue-temporary-certificate: "true"
     #acme.cert-manager.io/http01-edit-in-place: "true"
-  name: homepage-ingress
-  namespace: default
 spec:
   rules:
   # On base domain we have NGINX running.
   # Deploy Keptn Teaser
-  - host: domain.placeholder
+  - host: "domain.placeholder"
     http:
       paths:
-      - backend:
-          serviceName: homepage
-          servicePort: 80
-        path: /
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: homepage
+            port: 
+              number: 80
   tls:
   - hosts:
     - domain.placeholder

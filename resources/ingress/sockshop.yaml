@@ -1,6 +1,8 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  name: sockshop-ingress
+  namespace: istio-system
   annotations:
     kubernetes.io/ingress.class: nginx
     # We allow HTTP and HTTPS
@@ -15,31 +17,37 @@ metadata:
     #cert-manager.io/cluster-issuer: "letsencrypt"
     #cert-manager.io/issue-temporary-certificate: "true"
     #acme.cert-manager.io/http01-edit-in-place: "true"
-  name: sockshop-ingress
-  namespace: istio-system
 spec:
   rules:
-  - host: carts.sockshop-dev.domain.placeholder
+  - host: "carts.sockshop-dev.domain.placeholder"
     http:
       paths:
-      - backend:
-          serviceName: istio-ingressgateway
-          servicePort: 80
-        path: /
-  - host: carts.sockshop-staging.domain.placeholder
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: istio-ingressgateway
+            port: 
+              number: 80
+  - host: "carts.sockshop-staging.domain.placeholder"
     http:
       paths:
-      - backend:
-          serviceName: istio-ingressgateway
-          servicePort: 80
-        path: /
-  - host: carts.sockshop-production.domain.placeholder
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: istio-ingressgateway
+            port: 
+              number: 80
+  - host: "carts.sockshop-production.domain.placeholder"
     http:
       paths:
-      - backend:
-          serviceName: istio-ingressgateway
-          servicePort: 80
-        path: /
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: istio-ingressgateway
+            port: 80
   tls:
   - hosts:
     - carts.sockshop-dev.domain.placeholder

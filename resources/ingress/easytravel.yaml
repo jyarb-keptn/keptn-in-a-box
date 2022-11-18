@@ -1,6 +1,8 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  name: easytravel-ingress
+  namespace: istio-system
   annotations:
     kubernetes.io/ingress.class: nginx
     # We allow HTTP and HTTPS
@@ -15,27 +17,31 @@ metadata:
     #cert-manager.io/cluster-issuer: "letsencrypt"
     #cert-manager.io/issue-temporary-certificate: "true"
     #acme.cert-manager.io/http01-edit-in-place: "true"
-  name: easytravel-ingress
-  namespace: istio-system
 spec:
   rules:
   # On base domain we have NGINX running.
   # Deploy Keptn Teaser
-  - host: easytravel-frontend.easytravel-staging.domain.placeholder
+  - host: "easytravel-frontend.easytravel-staging.domain.placeholder"
     http:
       paths:
-      - backend:
-          serviceName: istio-ingressgateway
-          servicePort: 80
-        path: /
-  - host: easytravel-www.easytravel-production.domain.placeholder
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: istio-ingressgateway
+            port: 
+              number: 80
+  - host: "easytravel-www.easytravel-production.domain.placeholder"
     http:
       paths:
-      - backend:
-          serviceName: istio-ingressgateway
-          servicePort: 80
-        path: /        
-  - host: easytravel-backend.easytravel-staging.domain.placeholder
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: istio-ingressgateway
+            port: 
+              number: 80     
+  - host: "easytravel-backend.easytravel-staging.domain.placeholder"
     http:
       paths:
       - backend:
@@ -45,17 +51,23 @@ spec:
   - host: easytravel-frontend.easytravel-production.domain.placeholder
     http:
       paths:
-      - backend:
-          serviceName: istio-ingressgateway
-          servicePort: 80
-        path: / 
-  - host: easytravel-backend.easytravel-production.domain.placeholder
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: istio-ingressgateway
+            port: 
+              number: 80
+  - host: "easytravel-backend.easytravel-production.domain.placeholder"
     http:
       paths:
-      - backend:
-          serviceName: istio-ingressgateway
-          servicePort: 80
-        path: /          
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: istio-ingressgateway
+            port: 
+              number: 80        
 #  - host: easytravel-www.easytravel-production.domain.placeholder
 #    http:
 #      paths:

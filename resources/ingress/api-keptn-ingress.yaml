@@ -1,6 +1,8 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  name: api-keptn-ingress
+  namespace: keptn
   annotations:
     kubernetes.io/ingress.class: nginx
     # We allow HTTP and HTTPS
@@ -15,17 +17,18 @@ metadata:
     #cert-manager.io/cluster-issuer: "letsencrypt"
     #cert-manager.io/issue-temporary-certificate: "true"
     #acme.cert-manager.io/http01-edit-in-place: "true"
-  name: api-keptn-ingress
-  namespace: keptn
 spec:
   rules:
-  - host: keptn.domain.placeholder
+  - host: "keptn.domain.placeholder"
     http:
       paths:
-      - backend:
-          serviceName: api-gateway-nginx
-          servicePort: 80
-        path: /
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: api-gateway-nginx
+            port: 
+              number: 80
   tls:
   - hosts:
     - keptn.domain.placeholder
