@@ -40,7 +40,37 @@ spec:
           service:
             name: istio-ingressgateway
             port: 
-              number: 80     
+              number: 80
+  - host: "easytravel-angular.easytravel-production.domain.placeholder"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: istio-ingressgateway
+            port: 
+              number: 80                
+  - host: "easytravel-www.easytravel-staging.domain.placeholder"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: istio-ingressgateway
+            port: 
+              number: 80
+  - host: "easytravel-angular.easytravel-staging.domain.placeholder"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: istio-ingressgateway
+            port: 
+              number: 80                                  
   - host: "easytravel-backend.easytravel-staging.domain.placeholder"
     http:
       paths:
