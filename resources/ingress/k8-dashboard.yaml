@@ -30,7 +30,7 @@ spec:
             port: 
               number: 443
   #ingressClassName: nginx            
-  tls:
-  - hosts:
-    - kubernetes.domain.placeholder
+  #tls:
+  #- hosts:
+  #  - kubernetes.domain.placeholder
     #secretName: k8-dashboard-tls
