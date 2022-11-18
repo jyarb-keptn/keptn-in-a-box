@@ -31,7 +31,7 @@ spec:
             name: istio-ingressgateway
             port: 
               number: 8080
-  tls:
-  - hosts:
-    - domain.placeholder
+#  tls:
+#  - hosts:
+#    - domain.placeholder
     #secretName: webservice-tls

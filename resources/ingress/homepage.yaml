@@ -31,7 +31,7 @@ spec:
             name: homepage
             port: 
               number: 80
-  tls:
-  - hosts:
-    - domain.placeholder
+#  tls:
+#  - hosts:
+#    - domain.placeholder
     #secretName: homepage-tls

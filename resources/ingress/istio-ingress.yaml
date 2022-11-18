@@ -31,6 +31,6 @@ spec:
             name: istio-ingressgateway
             port: 
               number: 80
-  tls:
-  - hosts:
+#  tls:
+#  - hosts:
     #secretName: istio-tls

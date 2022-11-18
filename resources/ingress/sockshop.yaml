@@ -48,9 +48,9 @@ spec:
           service:
             name: istio-ingressgateway
             port: 80
-  tls:
-  - hosts:
-    - carts.sockshop-dev.domain.placeholder
-    - carts.sockshop-staging.domain.placeholder
-    - carts.sockshop-production.domain.placeholder
+#  tls:
+#  - hosts:
+#    - carts.sockshop-dev.domain.placeholder
+#    - carts.sockshop-staging.domain.placeholder
+#    - carts.sockshop-production.domain.placeholder
     #secretName: sockshop-tls

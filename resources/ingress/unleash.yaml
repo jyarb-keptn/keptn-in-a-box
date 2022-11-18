@@ -32,7 +32,7 @@ spec:
             name: istio-ingressgateway
             port: 
               number: 80
-  tls:
-  - hosts:
-    - unleash.unleash-dev.domain.placeholder
+#  tls:
+#  - hosts:
+#    - unleash.unleash-dev.domain.placeholder
     #secretName: unleash-tls

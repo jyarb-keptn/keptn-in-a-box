@@ -21,7 +21,7 @@ spec:
           service:
             name: gitea-http
             port: 3000
-  tls:
-  - hosts:
-    - git.domain.placeholder
+#  tls:
+#  - hosts:
+#    - git.domain.placeholder
     #secretName: git-tls

@@ -29,7 +29,7 @@ spec:
             name: front-end
             port: 
               number: 80
-  tls:
-  - hosts:
-    - catalog.front-end.domain.placeholder
+#  tls:
+#  - hosts:
+#    - catalog.front-end.domain.placeholder
     #secretName: order-tls
