@@ -17,15 +17,16 @@ metadata:
     #cert-manager.io/cluster-issuer: "letsencrypt"
     #cert-manager.io/issue-temporary-certificate: "true"
     #acme.cert-manager.io/http01-edit-in-place: "true"
+    nginx.ingress.kubernetes.io/service-upstream: "true"
 spec:
   rules:
   # On base domain we have NGINX running.
   # Deploy Keptn Teaser
-  - host: "domain.placeholder"
+  - host: domain.placeholder
     http:
       paths:
-      - pathType: Prefix
-        path: "/"
+      - path: /
+        pathType: Prefix
         backend:
           service:
             name: homepage
