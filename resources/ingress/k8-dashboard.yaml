@@ -11,16 +11,17 @@ metadata:
     #cert-manager.io/cluster-issuer: "letsencrypt"
 spec:
   rules:
-  - host: "kubernetes.domain.placeholder"
+  - host: kubernetes.domain.placeholder
     http:
       paths:
       - pathType: Prefix
-        path: "/"
+        path: /
         backend:
           service:
             name: kubernetes-dashboard
             port: 
               number: 80
+  ingressClassName: nginx            
 #  tls:
 #  - hosts:
 #    - kubernetes.domain.placeholder
