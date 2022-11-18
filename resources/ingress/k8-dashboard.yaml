@@ -17,7 +17,7 @@ spec:
       paths:
       - path: /
         pathType: Prefix
-        backend:
+        defaultBackend:
           service:
             name: kubernetes-dashboard
             port: 
