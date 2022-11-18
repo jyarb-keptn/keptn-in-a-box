@@ -42,7 +42,7 @@ spec:
   - host: "catalog.keptnorders-staging.domain.placeholder"
     http:
       paths:
-        - pathType: Prefix
+      - pathType: Prefix
         path: "/"
         backend:
           service:
@@ -52,7 +52,7 @@ spec:
   - host: "customer.keptnorders-staging.domain.placeholder"
     http:
       paths:
-        - pathType: Prefix
+      - pathType: Prefix
         path: "/"
         backend:
           service:
@@ -62,7 +62,7 @@ spec:
   - host: "order.keptnorders-staging.domain.placeholder"
     http:
       paths:
-        - pathType: Prefix
+      - pathType: Prefix
         path: "/"   
         backend:
           service:
@@ -72,7 +72,7 @@ spec:
   - host: "catalog.keptnorders-production.domain.placeholder"
     http:
       paths:
-        - pathType: Prefix
+      - pathType: Prefix
         path: "/"
         backend:
           service:
