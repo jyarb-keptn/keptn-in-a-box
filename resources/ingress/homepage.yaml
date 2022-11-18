@@ -19,6 +19,11 @@ metadata:
     #acme.cert-manager.io/http01-edit-in-place: "true"
     nginx.ingress.kubernetes.io/service-upstream: "true"
 spec:
+  defaultBackend:
+    service:
+      name: homepage
+      port:
+        number: 80
   rules:
   # On base domain we have NGINX running.
   # Deploy Keptn Teaser
