@@ -87,7 +87,8 @@ spec:
         backend:
           service:
             name: istio-ingressgateway
-            port: 80  
+            port: 
+              number: 80  
   - host: "order.keptnorders-production.domain.placeholder"
     http:
       paths:

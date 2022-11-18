@@ -46,7 +46,7 @@ spec:
       paths:
       - pathType: Prefix
         path: "/"      
-      - backend:
+        backend:
           service:
             name: istio-ingressgateway
             port: 
