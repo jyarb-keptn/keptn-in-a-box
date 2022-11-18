@@ -47,7 +47,8 @@ spec:
         backend:
           service:
             name: istio-ingressgateway
-            port: 80
+            port: 
+              number: 80
   tls:
   - hosts:
     - carts.sockshop-dev.domain.placeholder
