@@ -204,7 +204,7 @@ installationBundleAll() {
   create_workshop_user=false
   keptn_bridge_disable_login=true
 
-  jenkins_deploy=false
+  jenkins_deploy=true
 
   selected_bundle="installationBundleAll"
 }
