@@ -109,7 +109,7 @@ keptnwebservice=false
 sockshop_secret=false
 post_flight=false
 patch_config_service=false
-dynatrace_project= false
+dynatrace_project=false
 QG_projects=false
 # ======================================================================
 #             ------- Installation Bundles  --------                   #
@@ -204,7 +204,7 @@ installationBundleAll() {
   create_workshop_user=false
   keptn_bridge_disable_login=true
 
-  jenkins_deploy=true
+  jenkins_deploy=false
 
   selected_bundle="installationBundleAll"
 }
