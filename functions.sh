@@ -8,7 +8,7 @@
 # ==================================================
 #      ----- Components Versions -----             #
 # ==================================================
-KIAB_RELEASE="0.8.19"
+KIAB_RELEASE="0.8.20"
 # https://github.com/keptn/keptn
 KEPTN_VERSION=0.18.2
 OPERATOR_VERSION=v0.6.0
@@ -29,7 +29,7 @@ KEPTN_CATALOG_BRANCH="0.8.7"
 KEPTN_CATALOG_DIR="~/overview"
 TEASER_IMAGE="pcjeffmac/nginxacm:0.8.1"
 KEPTN_BRIDGE_IMAGE="keptn/bridge2:0.8.0"
-MICROK8S_CHANNEL="1.19/stable"
+MICROK8S_CHANNEL="1.20/stable"
 #KEPTN_IN_A_BOX_REPO="https://github.com/keptn-sandbox/keptn-in-a-box.git"
 KEPTN_IN_A_BOX_REPO="https://github.com/jyarb-keptn/keptn-in-a-box.git"
 KEPTN_IN_A_BOX_DIR="~/keptn-in-a-box"
