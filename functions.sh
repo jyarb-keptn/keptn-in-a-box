@@ -1288,15 +1288,18 @@ doInstallation() {
   setupMagicDomainPublicIp
   exposeK8Services
   patchKubernetesDashboard
+
+  dynatraceConfigureMonitoring
+  dynatraceConfigureWorkloads  
+
   keptnInstall
   dynatraceServices
   dynatraceSLIService  
   jmeterService 
   keptnDeployHomepage
-  dynatraceConfigureMonitoring
-  dynatraceConfigureWorkloads 
   keptnBridgeEap
   keptnBridgeDisableLogin
+
   jenkinsDeploy
   gitDeploy
   setGitEnv
