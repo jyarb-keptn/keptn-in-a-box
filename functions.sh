@@ -707,7 +707,7 @@ keptnInstallClient() {
 
 keptnInstall() {
   if [ "$keptn_install" = true ]; then
-
+    printInfoSection "install from https://github.com/keptn/keptn/releases"
     keptnInstallClient
 
     if [ "$keptn_install_qualitygates" = true ]; then
@@ -1289,9 +1289,6 @@ doInstallation() {
   exposeK8Services
   patchKubernetesDashboard
 
-  dynatraceConfigureMonitoring
-  dynatraceConfigureWorkloads  
-
   keptnInstall
   dynatraceServices
   dynatraceSLIService  
@@ -1299,6 +1296,9 @@ doInstallation() {
   keptnDeployHomepage
   keptnBridgeEap
   keptnBridgeDisableLogin
+
+  dynatraceConfigureMonitoring
+  dynatraceConfigureWorkloads 
 
   jenkinsDeploy
   gitDeploy
