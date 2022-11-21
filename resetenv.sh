@@ -3,6 +3,7 @@
 # 
 # Use this script to reset the environment
 #
+echo "Start Reset..."
 KEPTN_IN_A_BOX_REPO="https://github.com/jyarb-keptn/keptn-in-a-box.git"
 KIAB_RELEASE="0.8.20"
 KIAB_FILE_REPO="https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/${KIAB_RELEASE}/keptn-in-a-box.sh"
@@ -21,8 +22,17 @@ sudo rm -rf dynatrace
 cd /opt
 sudo rm -rf dynatrace
 
+echo "Remove directories and files..."
 cd ~
-sudo rm -rf *
+sudo rm -rf helm.tar.gz
+sudo rm -rf keptn-in-a-box.sh
+sudo rm -rf functions.sh
+sudo rm -rf snap
+sudo rm -rf linux-amd64
+sudo rm -rf keptn-in-a-box
+sudo rm -rf examples
+sudo rm -rf overview
+sudo rm -rf trigger.sh
 cd ~
 sudo rm -rf .keptn
 sudo rm -rf .kube
