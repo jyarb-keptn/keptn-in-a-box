@@ -13,13 +13,15 @@ echo "Creating dynatrace K8s namespace"
 kubectl create namespace dynatrace
 echo "Downloading the ${OPERATOR_VERSION} dynatrace operator release (definition) (-L for follow redirect"
 #curl -L -o kubernetes.yaml https://github.com/Dynatrace/dynatrace-operator/releases/latest/download/kubernetes.yaml
-curl -L -o kubernetes.yaml https://github.com/Dynatrace/dynatrace-operator/releases/download/${OPERATOR_VERSION}/kubernetes.yaml
-echo "Create operator/webhook via kubctl"
-kubectl create -f kubernetes.yaml
-kubectl -n dynatrace create secret generic dynakube --from-literal="apiToken=$DT_API_TOKEN" --from-literal="paasToken=$DT_PAAS_TOKEN" --from-literal="dataIngestToken=$DT_API_TOKEN"
+#curl -L -o kubernetes.yaml https://github.com/Dynatrace/dynatrace-operator/releases/download/${OPERATOR_VERSION}/kubernetes.yaml
+kubectl apply -f https://github.com/Dynatrace/dynatrace-operator/releases/download/${OPERATOR_VERSION}/kubernetes.yaml
+#echo "Create operator/webhook via kubctl"
+#kubectl create -f kubernetes.yaml
+#kubectl -n dynatrace create secret generic dynakube --from-literal="apiToken=$DT_API_TOKEN" --from-literal="paasToken=$DT_PAAS_TOKEN" --from-literal="dataIngestToken=$DT_API_TOKEN"
 echo "Wait for pods to start"
 sleep 30
-kubectl -n dynatrace wait pod --for=condition=ready -l internal.dynatrace.com/app=webhook --timeout=300s
+#kubectl -n dynatrace wait pod --for=condition=ready -l internal.dynatrace.com/app=webhook --timeout=
+kubectl -n dynatrace wait pod --for=condition=ready --selector=app.kubernetes.io/name=dynatrace-operator,app.kubernetes.io/component=webhook --timeout=300s
 ##former method
 #echo "Download and apply the cr.yaml"
 ##curl -Lo dynaKubeCr.yaml https://raw.githubusercontent.com/Dynatrace/dynatrace-operator/v0.4.2/config/samples/classicFullStack.yaml
@@ -28,7 +30,7 @@ kubectl -n dynatrace wait pod --for=condition=ready -l internal.dynatrace.com/ap
 #sed -i "s/# enableIstio: false/enableIstio: true/g" dynaKubeCr.yaml
 #sed -i "s/#      - metrics-ingest/      - metrics-ingest/g" dynaKubeCr.yaml
 cp ~/dtkube/dynakube.yaml dynaKubeCr.yaml
-kubectl create -f dynaKubeCr.yaml
+kubectl apply -f dynaKubeCr.yaml
 }
 
 echo "Deploying the dynakube operator..."
