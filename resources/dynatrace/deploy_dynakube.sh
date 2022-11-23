@@ -22,20 +22,27 @@ echo "Wait for pods to start"
 sleep 30
 #kubectl -n dynatrace wait pod --for=condition=ready -l internal.dynatrace.com/app=webhook --timeout=
 kubectl -n dynatrace wait pod --for=condition=ready --selector=app.kubernetes.io/name=dynatrace-operator,app.kubernetes.io/component=webhook --timeout=300s
-##former method
+
+##former method to pull file
 #echo "Download and apply the cr.yaml"
 ##curl -Lo dynaKubeCr.yaml https://raw.githubusercontent.com/Dynatrace/dynatrace-operator/v0.4.2/config/samples/classicFullStack.yaml
 #curl -Lo dynaKubeCr.yaml https://raw.githubusercontent.com/Dynatrace/dynatrace-operator/${OPERATOR_VERSION}/config/samples/classicFullStack.yaml
 
-#cp dynakube.yaml dynakubecr.test.yaml
+## 
+echo "copy file..."
+cp dynakube.yaml dynaKubeCr.yaml
+## use for file based
+#cp ~/dtkube/dynakube.yaml dynaKubeCr.yaml
 
-#sed -i "s+apiUrl: https://ENVIRONMENTID.live.dynatrace.com/api+apiUrl: $DT_API_URL+g" dynakubecr.test.yaml
-#sed -i "s+apiToken: domain.placeholder+apiToken:+apiToken: $DT_API_TOKEN+g" dynakubecr.test.yaml
-#sed -i "s+dataIngestToken: paastoken.placeholder:+dataIngestToken: $DT_PAAS_TOKEN+g" dynakubecr.test.yaml
-
+echo "transform file..."
+sed -i "s+apiUrl: https://ENVIRONMENTID.live.dynatrace.com/api+apiUrl: $DT_API_URL+g" dynaKubeCr.yaml
+sed -i "s+apiToken: api.token.placeholder+apiToken: $DT_API_TOKEN+g" dynaKubeCr.yaml
+sed -i "s+dataIngestToken: paas.token.placeholder+dataIngestToken: $DT_PAAS_TOKEN+g" dynaKubeCr.yaml
+## not needed
 #sed -i "s/# enableIstio: false/enableIstio: true/g" dynaKubeCr.yaml
 #sed -i "s/#      - metrics-ingest/      - metrics-ingest/g" dynaKubeCr.yaml
-cp ~/dtkube/dynakube.yaml dynaKubeCr.yaml
+
+echo "kubctl apply..."
 kubectl apply -f dynaKubeCr.yaml
 }
 
