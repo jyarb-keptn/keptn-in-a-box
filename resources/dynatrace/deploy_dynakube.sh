@@ -30,14 +30,14 @@ kubectl -n dynatrace wait pod --for=condition=ready --selector=app.kubernetes.io
 
 ## 
 echo "copy file..."
-cp dynakube.yaml dynaKubeCr.yaml
+#cp dynakube.yaml dynaKubeCr.yaml
 ## use for file based
-#cp ~/dtkube/dynakube.yaml dynaKubeCr.yaml
+cp ~/dtkube/dynakube.yaml dynaKubeCr.yaml
 
 echo "transform file..."
-sed -i "s+apiUrl: https://ENVIRONMENTID.live.dynatrace.com/api+apiUrl: $DT_API_URL+g" dynaKubeCr.yaml
-sed -i "s+apiToken: api.token.placeholder+apiToken: $DT_API_TOKEN+g" dynaKubeCr.yaml
-sed -i "s+dataIngestToken: paas.token.placeholder+dataIngestToken: $DT_PAAS_TOKEN+g" dynaKubeCr.yaml
+#sed -i "s+apiUrl: https://ENVIRONMENTID.live.dynatrace.com/api+apiUrl: $DT_API_URL+g" dynaKubeCr.yaml
+#sed -i "s+apiToken: api.token.placeholder+apiToken: $DT_API_TOKEN+g" dynaKubeCr.yaml
+#sed -i "s+dataIngestToken: paas.token.placeholder+dataIngestToken: $DT_PAAS_TOKEN+g" dynaKubeCr.yaml
 ## not needed
 #sed -i "s/# enableIstio: false/enableIstio: true/g" dynaKubeCr.yaml
 #sed -i "s/#      - metrics-ingest/      - metrics-ingest/g" dynaKubeCr.yaml
