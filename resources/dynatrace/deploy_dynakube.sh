@@ -26,7 +26,13 @@ kubectl -n dynatrace wait pod --for=condition=ready --selector=app.kubernetes.io
 #echo "Download and apply the cr.yaml"
 ##curl -Lo dynaKubeCr.yaml https://raw.githubusercontent.com/Dynatrace/dynatrace-operator/v0.4.2/config/samples/classicFullStack.yaml
 #curl -Lo dynaKubeCr.yaml https://raw.githubusercontent.com/Dynatrace/dynatrace-operator/${OPERATOR_VERSION}/config/samples/classicFullStack.yaml
-#sed -i "s+apiUrl: https://ENVIRONMENTID.live.dynatrace.com/api+apiUrl: $DT_API_URL+g" dynaKubeCr.yaml
+
+#cp dynakube.yaml dynakubecr.test.yaml
+
+#sed -i "s+apiUrl: https://ENVIRONMENTID.live.dynatrace.com/api+apiUrl: $DT_API_URL+g" dynakubecr.test.yaml
+#sed -i "s+apiToken: domain.placeholder+apiToken:+apiToken: $DT_API_TOKEN+g" dynakubecr.test.yaml
+#sed -i "s+dataIngestToken: paastoken.placeholder:+dataIngestToken: $DT_PAAS_TOKEN+g" dynakubecr.test.yaml
+
 #sed -i "s/# enableIstio: false/enableIstio: true/g" dynaKubeCr.yaml
 #sed -i "s/#      - metrics-ingest/      - metrics-ingest/g" dynaKubeCr.yaml
 cp ~/dtkube/dynakube.yaml dynaKubeCr.yaml
