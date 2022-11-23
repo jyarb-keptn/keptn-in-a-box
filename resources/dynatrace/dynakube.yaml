@@ -4,14 +4,14 @@ data:
   dataIngestToken: paas.token.placeholder
 kind: Secret
 metadata:
-  name: kiab
+  name: 192.168.3.91.nip.io
   namespace: dynatrace
 type: Opaque
 ---
 apiVersion: dynatrace.com/v1beta1
 kind: DynaKube
 metadata:
-  name: kiab
+  name: 192.168.3.91.nip.io
   namespace: dynatrace
   annotations:
     feature.dynatrace.com/automatic-kubernetes-api-monitoring: "true"
