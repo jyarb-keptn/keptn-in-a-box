@@ -12,5 +12,5 @@ printVariables
 cp dynakube.yaml dynakubecr.test.yaml
 
 sed -i "s+apiUrl: https://ENVIRONMENTID.live.dynatrace.com/api+apiUrl: $DT_API_URL+g" dynakubecr.test.yaml
-sed -i "s+apiToken: domain.placeholder+apiToken: $DT_API_TOKEN+g" dynakubecr.test.yaml
-sed -i "s+dataIngestToken: paastoken.placeholder:+dataIngestToken: $DT_PAAS_TOKEN+g" dynakubecr.test.yaml
+sed -i "s+apiToken: api.token.placeholder+apiToken: $DT_API_TOKEN+g" dynakubecr.test.yaml
+sed -i "s+dataIngestToken: paas.token.placeholder+dataIngestToken: $DT_PAAS_TOKEN+g" dynakubecr.test.yaml

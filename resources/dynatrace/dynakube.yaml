@@ -1,7 +1,7 @@
 apiVersion: v1
 data:
-  apiToken: apitoken.placeholder
-  dataIngestToken: paastoken.placeholder
+  apiToken: api.token.placeholder
+  dataIngestToken: paas.token.placeholder
 kind: Secret
 metadata:
   name: kiab
