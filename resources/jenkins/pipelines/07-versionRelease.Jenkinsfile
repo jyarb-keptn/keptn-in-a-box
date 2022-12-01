@@ -26,7 +26,7 @@ agent any
         string (name: 'remediationAction', defaultValue: 'https://remediation-playbook')
         string (name: 'qgProject', defaultValue: 'keptnorders') 
         string (name: 'Stage', defaultValue: 'staging') 
-        string (name: 'Service', defaultValue: 'eval')
+        string (name: 'Service', defaultValue: 'evalservice')
 	    string (name: 'TimeZone', defaultValue: 'UTC')
 	    string (name: 'Monitoring', defaultValue: 'dynatrace')
         string (name: 'SLI', defaultValue: 'perftest')
