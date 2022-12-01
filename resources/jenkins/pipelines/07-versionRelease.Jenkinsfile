@@ -1,5 +1,11 @@
 @Library('keptn-library@6.0.0-next.1')_
 import sh.keptn.Keptn
+import java.time.temporal.ChronoUnit
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.*;
+
 def keptn = new sh.keptn.Keptn()
 
 def TEST_START = 'UNKNOWN'
@@ -10,6 +16,22 @@ def tags = ['easytravel-www', 'easytravel-frontend', 'easytravel-backend', 'easy
 def source = 'Jenkins'
 
 def key = 'app'
+
+def getNow() {
+  //return java.time.LocalDateTime.now() ;
+  //return java.time.Instant.now().truncatedTo( ChronoUnit.MILLIS ) ;
+  LocalDateTime localDateTime = LocalDateTime.now();
+  ZonedDateTime zdt = ZonedDateTime.of(localDateTime, ZoneId.systemDefault());
+  long date = zdt.toInstant().toEpochMilli();
+  return date
+}
+
+def getNowID() {
+  DateTimeFormatter formatter = DateTimeFormatter.ofPattern("mmddHHMM");
+  ZonedDateTime zdt = ZonedDateTime.now();
+  String formattedZdt = zdt.format(formatter);
+  return formattedZdt
+}
 
 pipeline {
 
@@ -568,9 +590,17 @@ stages{
     stage('Trigger Quality Gate') {
       steps{
         echo "Quality Gates ONLY: Just triggering an SLI/SLO-based evaluation for the passed timeframe"
-        script {  
+        script {
+		def scriptStartTime = getNow().toString()
+        def buildid = getNowID().toString()
+
+        def labels=[:]
+        labels.put('TriggeredBy', 'jenkins')
+        labels.put('version', "1.0.0")
+        labels.put('buildId', "${buildid}")
+        labels.put('evaltime', "${scriptStartTime}")	  
         // Trigger an evaluation
-        def keptnContext = keptn.sendStartEvaluationEvent starttime:"${params.StartTime}", endtime:"${params.EndTime}" 
+        def keptnContext = keptn.sendStartEvaluationEvent starttime:"${params.StartTime}", endtime:"${params.EndTime}", labels: labels 
         String keptn_bridge = env.KEPTN_BRIDGE
         echo "Open Keptns Bridge: ${keptn_bridge}/trace/${keptnContext}"
       }
