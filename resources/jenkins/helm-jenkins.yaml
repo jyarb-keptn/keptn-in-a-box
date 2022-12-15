@@ -67,7 +67,7 @@ master:
   # Used for label app.kubernetes.io/component
   componentName: "jenkins-master"
   image: "jenkins/jenkins"
-  tag: "2.378"
+  tag: "2.382"
   imagePullPolicy: "Always"
   imagePullSecretName:
   # Optionally configure lifetime for master-container
@@ -214,8 +214,8 @@ master:
   # List of plugins to be install during Jenkins master start
   installPlugins:
     - http_request:1.16
-    - pipeline-utility-steps:2.13.2
-    - blueocean:1.25.8
+    - pipeline-utility-steps:2.14.0
+    - blueocean:1.26.0
 #    - configuration-as-code:1.55.1
     - configuration-as-code:1569.vb_72405b_80249
     - job-dsl:1.81
