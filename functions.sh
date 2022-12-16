@@ -749,7 +749,8 @@ keptnInstall() {
       bashas "kubectl create configmap -n keptn ingress-config --from-literal=ingress_hostname_suffix=${DOMAIN} --from-literal=ingress_port=80 --from-literal=ingress_protocol=http --from-literal=istio_gateway=public-gateway.istio-system -oyaml --dry-run=client | kubectl replace -f -"
 
       printInfo "Restart Keptn Helm Service"
-      bashas "kubectl delete pod -n keptn -lapp.kubernetes.io/name=helm-service"
+      #bashas "kubectl delete pod -n keptn -l app.kubernetes.io/name=helm-service"
+      bashas "kubectl delete pod -n keptn --selector=app.kubernetes.io/name=helm-service"
     fi
     
     printInfoSection "Routing for the Keptn Services via NGINX Ingress"
