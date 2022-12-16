@@ -748,7 +748,7 @@ keptnInstall() {
       INGRESS_PORT="80"
       INGRESS_PROTOCOL="http"                            # "http" or "https"
       ISTIO_GATEWAY="public-gateway.istio-system"  # e.g. public-gateway.istio-system
-      HOSTNAME_TEMPLATE=<HOSTNAME_TEMPLATE>
+      #HOSTNAME_TEMPLATE=<HOSTNAME_TEMPLATE>
 
       printInfoSection "Configuring Istio for Keptn"
       bashas "kubectl create configmap -n keptn ingress-config --from-literal=ingress_hostname_suffix=${INGRESS_HOSTNAME_SUFFIX} --from-literal=ingress_port=${INGRESS_PORT} --from-literal=ingress_protocol=${INGRESS_PROTOCOL} --from-literal=istio_gateway=${ISTIO_GATEWAY} -oyaml --dry-run=client | kubectl replace -f -"
