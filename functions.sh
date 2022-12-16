@@ -743,7 +743,8 @@ keptnInstall() {
       #bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} sockshop-alt"
       
       #printInfoSection "Configuring Istio for Keptn"
-      #bashas "kubectl create configmap -n keptn ingress-config --from-literal=ingress_hostname_suffix=${DOMAIN} --from-literal=ingress_port=80 --from-literal=ingress_protocol=http --from-literal=istio_gateway=ingressgateway.istio-system -oyaml --dry-run=client | kubectl replace -f -"
+      bashas "kubectl create configmap -n keptn ingress-config --from-literal=ingress_hostname_suffix=${DOMAIN} --from-literal=ingress_port=80 --from-literal=ingress_protocol=http --from-literal=istio_gateway=ingressgateway.istio-system -oyaml --dry-run=client | kubectl replace -f -"
+      
       INGRESS_HOSTNAME_SUFFIX=${DOMAIN}
       INGRESS_PORT=80
       INGRESS_PROTOCOL="http"      
@@ -751,7 +752,9 @@ keptnInstall() {
 
       printInfoSection "Configuring Istio for Keptn"
       printInfoSection "INGRESS_INFO=${INGRESS_HOSTNAME_SUFFIX}:${INGRESS_PORT}:${INGRESS_PROTOCOL}:${ISTIO_GATEWAY}"
-      bashas "kubectl create configmap -n keptn ingress-config --from-literal=ingress_hostname_suffix=${INGRESS_HOSTNAME_SUFFIX} --from-literal=ingress_port=${INGRESS_PORT} --from-literal=ingress_protocol=${INGRESS_PROTOCOL} --from-literal=istio_gateway=${ISTIO_GATEWAY} -oyaml --dry-run=client | kubectl replace -f -"
+      #bashas "kubectl create configmap -n keptn ingress-config --from-literal=ingress_hostname_suffix=${INGRESS_HOSTNAME_SUFFIX} --from-literal=ingress_port=${INGRESS_PORT} --from-literal=ingress_protocol=${INGRESS_PROTOCOL} --from-literal=istio_gateway=${ISTIO_GATEWAY} -oyaml --dry-run=client | kubectl replace -f -"
+      #bashas "kubectl create configmap -n keptn ingress-config --from-literal=ingress_hostname_suffix=${INGRESS_HOSTNAME_SUFFIX} --from-literal=ingress_port=${INGRESS_PORT} --from-literal=ingress_protocol=${INGRESS_PROTOCOL} --from-literal=istio_gateway=${ISTIO_GATEWAY} -oyaml --dry-run | kubectl replace -f -
+"
 
       printInfo "Restart Keptn Helm Service"
       #bashas "kubectl delete pod -n keptn -l app.kubernetes.io/name=helm-service"
