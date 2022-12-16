@@ -620,7 +620,7 @@ These are the actual versions of the different Modules
 # ==================================================
 #      ----- Components Versions -----             #
 # ==================================================
-KIAB_RELEASE="0.8.20"
+KIAB_RELEASE="0.8.21"
 # https://github.com/keptn/keptn
 KEPTN_VERSION=0.18.2
 OPERATOR_VERSION=v0.6.0
