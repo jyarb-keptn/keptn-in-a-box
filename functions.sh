@@ -10,7 +10,7 @@
 # ==================================================
 KIAB_RELEASE="0.8.21"
 # https://github.com/keptn/keptn
-KEPTN_VERSION=0.19.3
+KEPTN_VERSION=1.0.0
 HELM_SERVICE_VERSION=0.18.1
 JMETER_SERVICE=0.18.1
 OPERATOR_VERSION=v0.10.0
