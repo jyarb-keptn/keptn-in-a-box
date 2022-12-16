@@ -10,7 +10,9 @@
 # ==================================================
 KIAB_RELEASE="0.8.20"
 # https://github.com/keptn/keptn
-KEPTN_VERSION=0.18.2
+KEPTN_VERSION=0.19.0
+HELM_SERVICE_VERSION=0.18.1
+JMETER_SERVICE=0.18.1
 OPERATOR_VERSION=v0.10.0
 ISTIO_VERSION=1.15.3
 CERTMANAGER_VERSION=1.6.1
@@ -731,7 +733,8 @@ keptnInstall() {
       waitForAllPods keptn
       printInfoSection "Deploy Helm Service"
       #bashas "helm install jmeter-service https://github.com/keptn/keptn/releases/download/${KEPTN_VERSION}/jmeter-service-${KEPTN_VERSION}.tgz -n keptn --create-namespace --wait"
-      bashas "helm install helm-service https://github.com/keptn/keptn/releases/download/${KEPTN_VERSION}/helm-service-${KEPTN_VERSION}.tgz -n keptn --create-namespace --wait"
+      #bashas "helm install helm-service https://github.com/keptn/keptn/releases/download/${KEPTN_VERSION}/helm-service-${KEPTN_VERSION}.tgz -n keptn --create-namespace --wait"
+      bashas "helm install helm-service https://github.com/keptn-contrib/helm-service/releases/download/$HELM_SERVICE_VERSION/helm-service-$HELM_SERVICE_VERSION.tgz -n keptn"
       waitForAllPods keptn
 
       # Adding configuration for the IngressGW
@@ -775,7 +778,8 @@ jmeterService() {
   printInfoSection "Deploy JMeter Service"
   #bashas "kubectl delete -n keptn deployment jmeter-service"
   #bashas "kubectl apply -f https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/${KIAB_RELEASE}/resources/keptn/jmeter-service.yaml -n keptn --record"
-  bashas "helm install jmeter-service https://github.com/keptn/keptn/releases/download/${KEPTN_VERSION}/jmeter-service-${KEPTN_VERSION}.tgz -n keptn --create-namespace --wait"
+  #bashas "helm install jmeter-service https://github.com/keptn/keptn/releases/download/${KEPTN_VERSION}/jmeter-service-${KEPTN_VERSION}.tgz -n keptn --create-namespace --wait"
+  bashas "helm install jmeter-service https://github.com/keptn-contrib/jmeter-service/releases/download/${JMETER_SERVICE}/jmeter-service-${JMETER_SERVICE}.tgz -n keptn"
   waitForAllPods keptn
   fi
 }

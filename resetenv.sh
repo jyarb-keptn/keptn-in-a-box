@@ -5,7 +5,7 @@
 #
 echo "Start Reset..."
 KEPTN_IN_A_BOX_REPO="https://github.com/jyarb-keptn/keptn-in-a-box.git"
-KIAB_RELEASE="0.8.20"
+KIAB_RELEASE="0.8.21"
 KIAB_FILE_REPO="https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/${KIAB_RELEASE}/keptn-in-a-box.sh"
 
 sudo snap remove microk8s --purge
