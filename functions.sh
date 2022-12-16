@@ -8,7 +8,7 @@
 # ==================================================
 #      ----- Components Versions -----             #
 # ==================================================
-KIAB_RELEASE="0.8.20"
+KIAB_RELEASE="0.8.21"
 # https://github.com/keptn/keptn
 KEPTN_VERSION=0.19.0
 HELM_SERVICE_VERSION=0.18.1
