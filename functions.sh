@@ -1113,6 +1113,8 @@ loadDynatraceProject() {
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/keptn && bash $KEPTN_IN_A_BOX_DIR/resources/gitea/git_post_env.sh ${DOMAIN} dynatrace"
     printInfoSection "load dynatrace project"
     bashas "cd $KEPTN_IN_A_BOX_DIR/resources/keptn && bash $KEPTN_IN_A_BOX_DIR/resources/keptn/dynatrace-project.sh"
+    printInfoSection "Create Service for dynatrace project"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/keptn && bash $KEPTN_IN_A_BOX_DIR/resources/keptn/createDynatraceServices.sh"
  fi
 }
 
