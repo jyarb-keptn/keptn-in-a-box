@@ -1,4 +1,4 @@
-@Library('keptn-library@6.0.0-next.1')_
+@Library('keptn-library@master')_
 import sh.keptn.Keptn
 import java.time.temporal.ChronoUnit
 import java.time.LocalDateTime;
