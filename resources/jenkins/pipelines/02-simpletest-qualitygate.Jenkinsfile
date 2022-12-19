@@ -99,7 +99,7 @@ node {
                         url: "${url}${urlPath}", 
                         validResponseCodes: "100:500", 
                         ignoreSslErrors: true,
-                        quiet: true
+                        quiet: false
                 }
 
                 sleep(time:ThinkTime,unit:"MILLISECONDS")
