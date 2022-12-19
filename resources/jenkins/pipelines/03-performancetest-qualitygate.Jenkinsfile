@@ -72,7 +72,7 @@ node {
         keptn.keptnAddResources('keptn/jmeter/basiccheck.jmx','jmeter/basiccheck.jmx')
         keptn.keptnAddResources('keptn/jmeter/jmeter.conf.yaml','jmeter/jmeter.conf.yaml')
         // Configure monitoring for your keptn project (using dynatrace or prometheus)
-        keptn.keptnConfigureMonitoring monitoring:"${monitoring}"
+        keptn.keptnConfigureMonitoring monitoring:"dynatrace"
     }
     stage('Trigger Performance Test') {
         echo "Performance as a Self-Service: Triggering Keptn to execute Tests against ${params.DeploymentURI}"
