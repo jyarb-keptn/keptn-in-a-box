@@ -317,7 +317,18 @@ master:
                modernSCM:
                  scm:
                    git:
-                     remote: "https://github.com/jyarb-keptn/keptn-jenkins-library"                     
+                     remote: "https://github.com/jyarb-keptn/keptn-jenkins-library"
+      keptn-library-jyarb-next:  |
+       unclassified:
+         globalLibraries:
+           libraries:
+           - defaultVersion: "master"
+             name: "keptn-library-jyarb-next"
+             retriever:
+               modernSCM:
+                 scm:
+                   git:
+                     remote: "https://github.com/pcjeffmac/keptn-jenkins-library-next"                                           
       pipeline-deploy-order:  | 
         jobs:
           - script: >
