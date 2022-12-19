@@ -87,7 +87,10 @@ node {
         labels.put('evaltime', "${scriptStartTime}")
 
         // send deployment finished to trigger tests
-        def keptnContext = keptn.sendDeploymentTriggeredEvent deploymentURI:"${params.DeploymentURI}", testStrategy:"${params.TestStrategy}", labels: labels
+        //def keptnContext = keptn.sendDeploymentTriggeredEvent deploymentURI:"${params.DeploymentURI}", testStrategy:"${params.TestStrategy}", labels: labels
+        //def keptnContext = keptn.sendDeliveryTriggeredEvent image:"docker.io/myorg/my-image:1.2.3"
+        // old method
+        def keptnContext = keptn.sendConfigurationTriggeredEvent deploymentURI:"${params.DeploymentURI}", testStrategy:"${params.TestStrategy}", labels: labels
         String keptn_bridge = env.KEPTN_BRIDGE
         echo "Open Keptns Bridge: ${keptn_bridge}/trace/${keptnContext}"
     }
