@@ -63,7 +63,8 @@ node {
         keptn.keptnAddResources('keptn/sli.yaml','dynatrace/sli.yaml')
         keptn.keptnAddResources('keptn/slo.yaml','slo.yaml')
         // Configure monitoring for your keptn project (using dynatrace or prometheus)
-        keptn.keptnConfigureMonitoring monitoring:"${monitoring}"       
+        keptn.keptnConfigureMonitoring monitoring:"${monitoring}"   
+        //keptn.keptnConfigureMonitoring monitoring:"dynatrace"    
     }
     stage('Run simple load test') {
         echo "This is really just a very simple 'load simulated'. Dont try this at home :-)" 
