@@ -14,25 +14,6 @@ echo "Dynatrace PaaS Token: $DT_PAAS_TOKEN"
 echo "k8 version: ${MICROK8S_CHANNEL}"
 
 configureAccountAndGetCredentials(){
-    
-    # create ns in case it does not exist
-    kubectl create namespace dynatrace
-
-    #kubectl apply -f https://www.dynatrace.com/support/help/codefiles/kubernetes/kubernetes-monitoring-service-account.yaml
-    kubectl apply -f kubernetes-monitoring-service-account.yaml
-    echo "This is the SSL API URI of the K8s cluster exposed via nginx ingress:"
-    endpoint=$(kubectl get ing k8-api-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
-    # Name the connection
-    title=$(echo $endpoint | sed 's~api\.kubernetes\.~~g' )
-    # Add protocol 
-    endpointUrl="https://${endpoint}"
-    echo $endpointUrl
-    echo "This is the Bearer Token for the K8s API:"
-    authToken=$(kubectl get secret $(kubectl get sa dynatrace-monitoring -o jsonpath='{.secrets[0].name}' -n dynatrace) -o jsonpath='{.data.token}' -n dynatrace | base64 --decode)
-    echo $authToken
-}
-
-configureAccountAndGetCredentials(){
     # create ns in case it does not exist
     kubectl create namespace dynatrace
 
