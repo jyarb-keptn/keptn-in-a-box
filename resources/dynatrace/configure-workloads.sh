@@ -4,11 +4,14 @@ source ./utils.sh
 FILE_IN="./activegate/k8monitoring.json"
 FILE_OUT="./activegate/gen/k8monitoring.json"
 
+MICROK8S_CHANNEL=$1
+
 readCredsFromFile
 echo "Configure Kubernetes Monitoring with:"
 echo "Dynatrace Tenant: $DT_TENANT"
 echo "Dynatrace API Token: $DT_API_TOKEN"
 echo "Dynatrace PaaS Token: $DT_PAAS_TOKEN"
+echo "k8 version: ${MICROK8S_CHANNEL}"
 
 configureAccountAndGetCredentials(){
     
@@ -29,6 +32,44 @@ configureAccountAndGetCredentials(){
     echo $authToken
 }
 
+configureAccountAndGetCredentials(){
+    # create ns in case it does not exist
+    kubectl create namespace dynatrace
+
+    #kubectl apply -f https://www.dynatrace.com/support/help/codefiles/kubernetes/kubernetes-monitoring-service-account.yaml
+    kubectl apply -f kubernetes-monitoring-service-account.yaml
+    echo "This is the SSL API URI of the K8s cluster exposed via nginx ingress:"
+    endpoint=$(kubectl get ing k8-api-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
+    # Name the connection
+    title=$(echo $endpoint | sed 's~api\.kubernetes\.~~g' )
+    # Add protocol 
+    endpointUrl="https://${endpoint}"
+    echo $endpointUrl
+    echo "This is the Bearer Token for the K8s API:"
+    authToken=$(kubectl get secret $(kubectl get sa dynatrace-monitoring -o jsonpath='{.secrets[0].name}' -n dynatrace) -o jsonpath='{.data.token}' -n dynatrace | base64 --decode)
+    echo $authToken
+}
+
+configureAccountAndGetCredentials124(){
+    # create ns in case it does not exist
+    kubectl create namespace dynatrace
+
+    kubectl apply -n dynatrace -f token-secret.yaml
+
+    #kubectl apply -f https://www.dynatrace.com/support/help/codefiles/kubernetes/kubernetes-monitoring-service-account.yaml
+    kubectl apply -f kubernetes-monitoring-service-account.yaml
+    echo "This is the SSL API URI of the K8s cluster exposed via nginx ingress:"
+    endpoint=$(kubectl get ing k8-api-ingress -o=jsonpath='{.spec.tls[0].hosts[0]}')
+    # Name the connection
+    title=$(echo $endpoint | sed 's~api\.kubernetes\.~~g' )
+    # Add protocol 
+    endpointUrl="https://${endpoint}"
+    echo $endpointUrl
+    echo "This is the Bearer Token for the K8s API:"
+    authToken=$(kubectl get secret dynatrace-kubernetes-monitoring -o jsonpath='{.data.token}' -n dynatrace | base64 --decode)
+    echo $authToken
+}
+
 replaceJson(){
     JSON=$(cat $FILE_IN)
     NJSON=$(echo $JSON | \
@@ -43,6 +84,11 @@ connectClusterWithDynatrace(){
     curl -X POST -H 'Content-Type: application/json' -H 'cache-control: no-cache' -d @$FILE_OUT $DESTINATION
 }
 
+if [ "${MICROK8S_CHANNEL}" = "1.24/stable" ]; then
+configureAccountAndGetCredentials124
+else
 configureAccountAndGetCredentials
+fi
+
 replaceJson
 connectClusterWithDynatrace

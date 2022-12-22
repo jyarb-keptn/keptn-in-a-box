@@ -928,7 +928,7 @@ keptndemoUnleashConfigure() {
 dynatraceConfigureWorkloads() {
   if [ "$dynatrace_configure_workloads" = true ]; then
     printInfoSection "Configuring Dynatrace Workloads for the Cluster (via Dynatrace and K8 API)"
-    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash configure-workloads.sh"
+    bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && bash configure-workloads.sh ${MICROK8S_CHANNEL}"
   fi
 }
 
