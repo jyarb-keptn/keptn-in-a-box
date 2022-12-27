@@ -1184,6 +1184,8 @@ postFlightWork() {
     bashnu "cd ${USER_KIAB_PATH}/resources/dynatrace/scripts && bash $USER_KIAB_PATH/resources/dynatrace/scripts/hosttag.sh ${USER_KIAB_PATH}"
     printInfo "Create host tags fallback"
     bashas "cd ${KEPTN_IN_A_BOX_DIR}/resources/dynatrace/scripts && bash $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts/hosttag.sh ${KEPTN_IN_A_BOX_DIR}"
+    printInfo "Create host tags with sudo"
+    bashas "cd ${KEPTN_IN_A_BOX_DIR}/resources/dynatrace/scripts && bash sudo $KEPTN_IN_A_BOX_DIR/resources/dynatrace/scripts/hosttag.sh ${KEPTN_IN_A_BOX_DIR}"
     printInfo "Creates symbolic link to triggers command"
     bashas "cd $KEPTN_IN_A_BOX_DIR && bash setlinks.sh"
     printInfoSection "Set Kubernetes monitoring flags"
