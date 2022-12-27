@@ -11,17 +11,22 @@
 KIAB_RELEASE="0.8.21"
 # https://github.com/keptn/keptn
 KEPTN_VERSION=1.0.0
-HELM_SERVICE_VERSION=0.18.1
-JMETER_SERVICE=0.18.1
+MICROK8S_CHANNEL="1.24/stable"
 OPERATOR_VERSION=v0.10.0
 ISTIO_VERSION=1.16.1
 CERTMANAGER_VERSION=1.6.1
 # https://github.com/helm/helm/releases
 HELM_VERSION=3.10.3
+# https://github.com/keptn-contrib/helm-service
+HELM_SERVICE_VERSION=0.18.1
+# https://github.com/keptn-contrib/jmeter-service
+JMETER_SERVICE=0.18.1
 # https://github.com/keptn-contrib/dynatrace-service
 KEPTN_DT_SERVICE_VERSION=0.26.0
+# SLI Service has been depricated
 # https://github.com/keptn-contrib/dynatrace-sli-service
 KEPTN_DT_SLI_SERVICE_VERSION=0.12.1
+# Pull the Repos for the project
 # https://github.com/keptn/examples
 KEPTN_EXAMPLES_REPO="https://github.com/keptn/examples.git"
 KEPTN_EXAMPLES_BRANCH="0.15.0"
@@ -30,12 +35,13 @@ KEPTN_CATALOG_REPO="https://github.com/jyarb-keptn/overview.git"
 KEPTN_CATALOG_BRANCH="0.8.7"
 KEPTN_CATALOG_DIR="~/overview"
 TEASER_IMAGE="pcjeffmac/nginxacm:0.8.1"
+# Bridge EAP is no longer needed
 KEPTN_BRIDGE_IMAGE="keptn/bridge2:0.8.0"
-MICROK8S_CHANNEL="1.24/stable"
 #KEPTN_IN_A_BOX_REPO="https://github.com/keptn-sandbox/keptn-in-a-box.git"
 KEPTN_IN_A_BOX_REPO="https://github.com/jyarb-keptn/keptn-in-a-box.git"
 KEPTN_IN_A_BOX_DIR="~/keptn-in-a-box"
 
+# Set path info
 USER_HOME_PATH="/home/dynatrace"
 USER_KIAB_PATH="$USER_HOME_PATH/keptn-in-a-box"
 
