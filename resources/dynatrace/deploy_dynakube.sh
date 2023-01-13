@@ -29,6 +29,9 @@ kubectl -n dynatrace wait pod --for=condition=ready --selector=app.kubernetes.io
 #curl -Lo dynaKubeCr.yaml https://raw.githubusercontent.com/Dynatrace/dynatrace-operator/${OPERATOR_VERSION}/config/samples/classicFullStack.yaml
 
 ## 
+#echo "install CSI driver...."
+#kubectl apply -f https://github.com/Dynatrace/dynatrace-operator/releases/latest/download/kubernetes-csi.yaml
+
 echo "copy file..."
 #cp dynakube.yaml dynaKubeCr.yaml
 ## use for file based
