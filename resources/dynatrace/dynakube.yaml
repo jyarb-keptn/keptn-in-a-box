@@ -61,7 +61,7 @@ spec:
   oneAgent:
     # Optional: enable classic fullstack monitoring and change its settings
     # Cannot be used in conjunction with cloud-native fullstack monitoring, application-only monitoring or host monitoring
-    cloudNativeFullStack:
+    classicFullStack:
       # Optional: If specified, indicates the OneAgent version to use
       # Defaults to latest
       #
@@ -119,9 +119,9 @@ spec:
       # Optional: additional environment variables to add to the OneAgent Pods.
       #
       # env: []
-      env:
-        - name: ONEAGENT_ENABLE_VOLUME_STORAGE
-          value: "false"
+      #env:
+      #  - name: ONEAGENT_ENABLE_VOLUME_STORAGE
+      #    value: "false"
 
       # Optional: arguments to add to the OneAgent installer.
       # Available options: https://www.dynatrace.com/support/help/shortlink/linux-custom-installation
