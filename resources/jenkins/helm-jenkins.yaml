@@ -14,7 +14,7 @@ namespaceOverride: jenkins
 # ref: https://github.com/kubernetes/dns/blob/master/docs/specification.md
 clusterZone: "cluster.local"
 
-master:
+controller:
   httpsKeyStore:
     jenkinsHttpsJksSecretName: ''
     enable: false
@@ -65,9 +65,9 @@ master:
         6NnqtR4gEBF0ZVlQmkycFvD4EC2boP943dLqNUvop+4R3SM1QMM6P5u8iTXtHd/VN4MwMyy1wtog
         hYAzODo1Jt59pcqqKJEas0C/lFJEB3frw4ImNx5fNlJYOpx+ijfQs9m39CevDq0=
   # Used for label app.kubernetes.io/component
-  componentName: "jenkins-master"
+  componentName: "jenkins-controller"
   image: "jenkins/jenkins"
-  tag: "2.382"
+  tag: "2.386"
   imagePullPolicy: "Always"
   imagePullSecretName:
   # Optionally configure lifetime for master-container
@@ -215,7 +215,7 @@ master:
   installPlugins:
     - http_request:1.16
     - pipeline-utility-steps:2.14.0
-    - blueocean:1.26.0
+    - blueocean:1.27.0
 #    - configuration-as-code:1.55.1
     - configuration-as-code:1569.vb_72405b_80249
     - job-dsl:1.81
@@ -238,7 +238,8 @@ master:
   # overwritePlugins: true
 
   # Configures if plugins bundled with `master.image` should be overwritten with the values of 'master.installPlugins' on upgrade or redeployment.
-  master.overwritePluginsFromImage: true
+  #master.overwritePluginsFromImage: true
+  overwritePluginsFromImage: true
 
   # Enable HTML parsing using OWASP Markup Formatter Plugin (antisamy-markup-formatter), useful with ghprb plugin.
   # The plugin is not installed by default, please update master.installPlugins.
