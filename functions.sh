@@ -10,7 +10,7 @@
 # ==================================================
 KIAB_RELEASE="0.8.21"
 # https://github.com/keptn/keptn
-KEPTN_VERSION=1.0.0
+KEPTN_VERSION=1.1.0
 MICROK8S_CHANNEL="1.24/stable"
 OPERATOR_VERSION=v0.10.2
 ISTIO_VERSION=1.16.1
