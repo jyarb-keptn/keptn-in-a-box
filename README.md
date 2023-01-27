@@ -228,6 +228,8 @@ Be patient, the deployment process will average ~20 min.
 
 Just open a Browser with the IP.
 
+<img src="doc/images/kiabHomePage.png" width="500"/>
+
 ### :arrow_right: Next Run A Pipeline
 
 Click on **"Jenkins"**
