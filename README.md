@@ -186,16 +186,12 @@ curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.12.1/ke
 chmod +x keptn-in-a-box.sh
 ```
 
-#### 4. Execute the file with sudo rights.
-```bash
-sudo bash -c './keptn-in-a-box.sh'
-```
-#### 4.1 New execution method with flags. 
+#### 4 Execution method with flags. 
 ```
 yes | sudo  bash -c './keptn-in-a-box.sh -t <TENANT> -a <APITOKEN> -p <PAASTOKEN> -e <UserEmail>'
 ```
 
-The script will ask for the following inputs.
+The script will need the following inputs.
 
 - Use the Dynatrace information for the inputs to the script:
 
@@ -215,15 +211,6 @@ The script will ask for the following inputs.
 	 > User Email should match your Dynatrace login to the tenant.
 	 > if the User Email matches your login, then the Dashbaords will show
 	 > up under your account in the Dynatrace UI.
-
-```bash
-Dynatrace Tenant ID []:
-Dynatrace API Token: []:
-Dynatrace PaaS Token: []:
-User Email []:
-```
-
-answer **'y'** if the information is correct, then Press **enter**
 
 And that was it! Yes that easy!  
 This command will run the installation in a bash shell as sudo and send the job to the background. You will not see any output since stdout and stderr are piped to a logfile which is located by default in **/tmp/install.log** 
