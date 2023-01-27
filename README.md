@@ -169,13 +169,13 @@ Now you are ready to start the install process.
 
 If you use a authentication key
 ```bash
-ssh -i "DevOps.pem" ubuntu@ec2-54-172-78-187.compute-1.amazonaws.com
+ssh -i "DevOps.pem" ubuntu@<your instance ip>.compute-1.amazonaws.com
 ```
 
 #### 2. Get the script
 
 ```bash
-curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.12.1/keptn-in-a-box.sh
+curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/0.8.21/keptn-in-a-box.sh
 ```
 
 > You can also specify a specific release like 'curl -O https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/${KIAB_RELEASE}/keptn-in-a-box.sh' the master branch will be pointing to the actual release.
