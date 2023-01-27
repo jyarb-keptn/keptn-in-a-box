@@ -721,34 +721,27 @@ keptnInstall() {
     if [ "$keptn_install_qualitygates" = true ]; then
       printInfoSection "Install Keptn with Continuous Delivery UseCase (no Istio configurtion)"
 
-      #bashas "echo 'y' | keptn install --use-case=continuous-delivery"
       bashas "helm repo add keptn https://charts.keptn.sh"
       bashas "helm install keptn keptn -n keptn --version ${KEPTN_VERSION} --repo=https://charts.keptn.sh --create-namespace --set=continuousDelivery.enabled=true"
       waitForAllPods keptn
       printInfoSection "Deploy Helm Service"
-      #bashas "helm install jmeter-service https://github.com/keptn/keptn/releases/download/${KEPTN_VERSION}/jmeter-service-${KEPTN_VERSION}.tgz -n keptn --create-namespace --wait"
       bashas "helm install helm-service https://github.com/keptn/keptn/releases/download/${KEPTN_VERSION}/helm-service-${KEPTN_VERSION}.tgz -n keptn --create-namespace --wait"
       waitForAllPods keptn
     else
       ## -- Keptn Installation --
       printInfoSection "Install Keptn with Continuous Delivery UseCase"
-      #bashas "echo 'y' | keptn install --use-case=continuous-delivery"
       bashas "helm repo add keptn https://charts.keptn.sh"
       bashas "helm install keptn keptn -n keptn --version ${KEPTN_VERSION} --repo=https://charts.keptn.sh --create-namespace --set=continuousDelivery.enabled=true"
-      #bashas "helm upgrade keptn keptn --install -n keptn --create-namespace --set=ingress.enabled=true, ingress.annotations=<YOUR_ANNOTATIONS>, ingress.host=<YOUR_HOST>, ingress.path=<YOUR_PATH>, ingress.pathType=<YOUR_PATH_TYPE>, ingress.tls=<YOUR_TLS>"
       waitForAllPods keptn
       printInfoSection "Deploy Helm Service"
-      #bashas "helm install jmeter-service https://github.com/keptn/keptn/releases/download/${KEPTN_VERSION}/jmeter-service-${KEPTN_VERSION}.tgz -n keptn --create-namespace --wait"
-      #bashas "helm install helm-service https://github.com/keptn/keptn/releases/download/${KEPTN_VERSION}/helm-service-${KEPTN_VERSION}.tgz -n keptn --create-namespace --wait"
       bashas "helm install helm-service https://github.com/keptn-contrib/helm-service/releases/download/$HELM_SERVICE_VERSION/helm-service-$HELM_SERVICE_VERSION.tgz -n keptn"
       waitForAllPods keptn
 
       # Adding configuration for the IngressGW
       printInfoSection "Creating Public Gateway for Istio"
       bashas "cd $KEPTN_IN_A_BOX_DIR/resources/istio && kubectl apply -f public-gateway.yaml"
-      #bashas "cd $KEPTN_IN_A_BOX_DIR/resources/ingress && bash create-ingress.sh ${DOMAIN} sockshop-alt"
       
-      #printInfoSection "Configuring Istio for Keptn"
+      printInfoSection "Configuring Istio for Keptn"
       bashas "kubectl create configmap -n keptn ingress-config --from-literal=ingress_hostname_suffix=${DOMAIN} --from-literal=ingress_port=80 --from-literal=ingress_protocol=http --from-literal=istio_gateway=public-gateway.istio-system -oyaml --dry-run=client | kubectl apply -f -"
       
       INGRESS_HOSTNAME_SUFFIX=${DOMAIN}
@@ -758,11 +751,8 @@ keptnInstall() {
 
       printInfoSection "Configuring Istio for Keptn"
       printInfoSection "INGRESS_INFO=${INGRESS_HOSTNAME_SUFFIX}:${INGRESS_PORT}:${INGRESS_PROTOCOL}:${ISTIO_GATEWAY}"
-      #bashas "kubectl create configmap -n keptn ingress-config --from-literal=ingress_hostname_suffix=${INGRESS_HOSTNAME_SUFFIX} --from-literal=ingress_port=${INGRESS_PORT} --from-literal=ingress_protocol=${INGRESS_PROTOCOL} --from-literal=istio_gateway=${ISTIO_GATEWAY} -oyaml --dry-run=client | kubectl replace -f -"
-      #bashas "kubectl create configmap -n keptn ingress-config --from-literal=ingress_hostname_suffix=${INGRESS_HOSTNAME_SUFFIX} --from-literal=ingress_port=${INGRESS_PORT} --from-literal=ingress_protocol=${INGRESS_PROTOCOL} --from-literal=istio_gateway=${ISTIO_GATEWAY} -oyaml --dry-run | kubectl replace -f -"
 
       printInfo "Restart Keptn Helm Service"
-      #bashas "kubectl delete pod -n keptn -l app.kubernetes.io/name=helm-service"
       bashas "kubectl delete pod -n keptn --selector=app.kubernetes.io/name=helm-service"
     fi
     
@@ -790,9 +780,6 @@ keptnInstall() {
 jmeterService() {
   if [ "$jmeter_install" = true ]; then
   printInfoSection "Deploy JMeter Service"
-  #bashas "kubectl delete -n keptn deployment jmeter-service"
-  #bashas "kubectl apply -f https://raw.githubusercontent.com/jyarb-keptn/keptn-in-a-box/${KIAB_RELEASE}/resources/keptn/jmeter-service.yaml -n keptn --record"
-  #bashas "helm install jmeter-service https://github.com/keptn/keptn/releases/download/${KEPTN_VERSION}/jmeter-service-${KEPTN_VERSION}.tgz -n keptn --create-namespace --wait"
   bashas "helm install jmeter-service https://github.com/keptn-contrib/jmeter-service/releases/download/${JMETER_SERVICE}/jmeter-service-${JMETER_SERVICE}.tgz -n keptn"
   waitForAllPods keptn
   fi
@@ -845,8 +832,7 @@ gitMigrate() {
 
 dynatraceConfigureMonitoring() {
   if [ "$dynatrace_configure_monitoring" = true ]; then
-    printInfoSection "Installing and configuring Dynatrace OneAgent on the Cluster (via Keptn) for $DT_TENANT" 
-    
+    printInfoSection "Installing and configuring Dynatrace Operator on the Cluster for $DT_TENANT" 
     printInfo "Saving Credentials in dynatrace secret in keptn ns"
     bashas "kubectl -n keptn create secret generic dynatrace-credentials --from-literal=\"DT_TENANT=$DT_TENANT\" --from-literal=\"DT_API_TOKEN=$DT_API_TOKEN\"  --from-literal=\"KEPTN_API_URL=http://$(kubectl -n keptn get ingress api-keptn-ingress -ojsonpath={.spec.rules[0].host})/api\" --from-literal=\"KEPTN_API_TOKEN=$(kubectl get secret keptn-api-token -n keptn -ojsonpath={.data.keptn-api-token} | base64 --decode)\" --from-literal=\"KEPTN_BRIDGE_URL=http://$(kubectl -n keptn get ingress api-keptn-ingress -ojsonpath={.spec.rules[0].host})/bridge\""
     printInfo "Create dynatrace secret"
@@ -859,8 +845,8 @@ dynatraceConfigureMonitoring() {
       printInfo "Deploying the OneAgent Operator"
       bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && echo 'y' | bash deploy_operator.sh"    
     fi 
-    
     waitForAllPods dynatrace
+    printInfo "Check the Dynatrace Operator deployment"
     bashas "kubectl exec deploy/dynatrace-operator -n dynatrace -- dynatrace-operator troubleshoot"
   fi
 }
@@ -874,8 +860,6 @@ dynatraceServices() {
     printInfoSection "KEPTN_BRIDGE_URL=$KEPTN_BRIDGE_URL"
     
     printInfo "Deploying the Dynatrace Service"
-    #bashas "kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/dynatrace-service/$KEPTN_DT_SERVICE_VERSION/deploy/service.yaml -n keptn" 
-    #bashas "helm upgrade --install dynatrace-service -n keptn https://github.com/keptn-contrib/dynatrace-service/releases/download/$KEPTN_DT_SERVICE_VERSION/dynatrace-service-$KEPTN_DT_SERVICE_VERSION.tgz"
     bashas "helm upgrade --install dynatrace-service -n keptn \
              https://github.com/keptn-contrib/dynatrace-service/releases/download/$KEPTN_DT_SERVICE_VERSION/dynatrace-service-$KEPTN_DT_SERVICE_VERSION.tgz \
   			--set dynatraceService.config.keptnApiUrl=$KEPTN_ENDPOINT \
@@ -899,7 +883,6 @@ dynatraceServices() {
 dynatraceSLIService() {
   if [ "$dynatrace_install_sli_service" = true ]; then
     printInfo "Setting up Dynatrace SLI provider in Keptn - depricated using new method"
-    #bashas "kubectl apply -f https://raw.githubusercontent.com/keptn-contrib/dynatrace-sli-service/$KEPTN_DT_SLI_SERVICE_VERSION/deploy/service.yaml -n keptn"
     bashas "helm upgrade --install dynatrace-sli-service -n keptn https://github.com/keptn-contrib/dynatrace-sli-service/releases/download/$KEPTN_DT_SLI_SERVICE_VERSION/dynatrace-sli-service-$KEPTN_DT_SLI_SERVICE_VERSION.tgz"
     bashas "kubectl -n keptn get deployment dynatrace-sli-service -o wide"
     bashas "kubectl -n keptn get pods -l run=dynatrace-sli-service"
