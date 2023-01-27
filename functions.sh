@@ -859,6 +859,9 @@ dynatraceConfigureMonitoring() {
       printInfo "Deploying the OneAgent Operator"
       bashas "cd $KEPTN_IN_A_BOX_DIR/resources/dynatrace && echo 'y' | bash deploy_operator.sh"    
     fi 
+    
+    waitForAllPods dynatrace
+    bashas "kubectl exec deploy/dynatrace-operator -n dynatrace -- dynatrace-operator troubleshoot"
   fi
 }
 
