@@ -24,4 +24,4 @@ keptn create service keptnwebservice --project=webservices
 keptn add-resource --project=webservices --service=keptnwebservice --all-stages --resource=./dynatrace.conf.yaml --resourceUri=dynatrace/dynatrace.conf.yaml
 keptn add-resource --project=webservices --service=keptnwebservice --all-stages --resource=./keptnwebservice.tgz --resourceUri=helm/keptnwebservice.tgz
 echo "trigger delivery..."
-keptn trigger delivery --project=webservices --service=keptnwebservice --image=grabnerandi/keptnwebservice:2.0.0 --labels=creator=cli,build=01
+keptn trigger delivery --project=webservices --service=keptnwebservice --image=grabnerandi/keptnwebservice:2.0.1 --labels=creator=cli,build=01
