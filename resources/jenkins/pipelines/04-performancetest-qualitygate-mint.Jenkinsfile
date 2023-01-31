@@ -1,4 +1,4 @@
-@Library('keptn-library-jyarb@master')_
+@Library('keptn-library-jyarb-next@master')_
 import sh.keptn.Keptn
 import java.time.temporal.ChronoUnit
 import java.time.LocalDateTime;
@@ -66,7 +66,7 @@ node {
         keptn.keptnAddResources('keptnorders/jmeter/basiccheck.jmx','jmeter/basiccheck.jmx')
         keptn.keptnAddResources('keptnorders/jmeter/jmeter.conf.yaml','jmeter/jmeter.conf.yaml')
         // Configure monitoring for your keptn project (using dynatrace or prometheus)
-        keptn.keptnConfigureMonitoring monitoring:"${monitoring}"
+        keptn.keptnConfigureMonitoring monitoring:"dynatrace"
     }
     stage('Trigger Performance Test') {
         echo "Performance as a Self-Service: Triggering Keptn to execute Tests against ${params.DeploymentURI}"
