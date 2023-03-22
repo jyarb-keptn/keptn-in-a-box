@@ -10,9 +10,9 @@
 # ==================================================
 KIAB_RELEASE="0.8.21"
 # https://github.com/keptn/keptn
-KEPTN_VERSION=1.1.0
+KEPTN_VERSION=1.2.0
 MICROK8S_CHANNEL="1.24/stable"
-OPERATOR_VERSION=v0.10.2
+OPERATOR_VERSION=v0.10.4
 ISTIO_VERSION=1.16.1
 CERTMANAGER_VERSION=1.6.1
 # https://github.com/helm/helm/releases
@@ -22,7 +22,7 @@ HELM_SERVICE_VERSION=0.18.1
 # https://github.com/keptn-contrib/jmeter-service
 JMETER_SERVICE=0.18.1
 # https://github.com/keptn-contrib/dynatrace-service
-KEPTN_DT_SERVICE_VERSION=0.26.0
+KEPTN_DT_SERVICE_VERSION=0.27.0
 # SLI Service has been depricated
 # https://github.com/keptn-contrib/dynatrace-sli-service
 KEPTN_DT_SLI_SERVICE_VERSION=0.12.1
