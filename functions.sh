@@ -136,7 +136,7 @@ installationBundleDemo() {
   certmanager_install=false
   certmanager_enable=false
   # install keptn
-  keptn_install=false
+  keptn_install=true
   # clone repos
   keptn_examples_clone=true
   resources_clone=true
