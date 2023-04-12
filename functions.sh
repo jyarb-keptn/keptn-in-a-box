@@ -151,7 +151,7 @@ installationBundleDemo() {
   # install Dynatrace Operator
   dynatrace_install_dynakube=true
   # Dynatrace_service
-  dynatrace_install_service=false
+  dynatrace_install_service=true
   #sli service is deprecated
   dynatrace_install_sli_service=false
   # Traditional ActiveGate
@@ -177,16 +177,16 @@ installationBundleDemo() {
   expose_kubernetes_api=true
   expose_kubernetes_dashboard=true
   patch_kubernetes_dashboard=true
-  keptn_bridge_disable_login=false
+  keptn_bridge_disable_login=true
   # By default no WorkshopUser will be created
   create_workshop_user=false
-  jmeter_install=false
+  jmeter_install=true
   dynatrace_project=false
   QG_projects=false
   keptnwebservice=false
   sockshop_secret=false
   post_flight=false
-  patch_config_service=false
+  patch_config_service=true
 }
 
 installationBundleWorkshop() {
@@ -210,7 +210,7 @@ installationBundleAll() {
   certmanager_install=false
   certmanager_enable=false
   create_workshop_user=false
-  keptn_bridge_disable_login=false
+  keptn_bridge_disable_login=true
 
   jenkins_deploy=false
 
