@@ -143,8 +143,8 @@ installationBundleDemo() {
   keptn_catalog_clone=true
   hostalias=false
   # gitea
-  git_deploy=false
-  git_env=false
+  git_deploy=true
+  git_env=true
   git_migrate=false
   dynatrace_savecredentials=true
   dynatrace_configure_monitoring=true
@@ -156,8 +156,8 @@ installationBundleDemo() {
   dynatrace_install_sli_service=false
   # Traditional ActiveGate
   dynatrace_activegate_install=false
-  dynatrace_configure_workloads=fasle
-  keptndeploy_homepage=false
+  dynatrace_configure_workloads=true
+  keptndeploy_homepage=true
   # unleash
   keptndemo_unleash=false
   keptndemo_unleash_configure=false
@@ -186,7 +186,7 @@ installationBundleDemo() {
   keptnwebservice=false
   sockshop_secret=false
   post_flight=false
-  patch_config_service=true
+  patch_config_service=false
 }
 
 installationBundleWorkshop() {
