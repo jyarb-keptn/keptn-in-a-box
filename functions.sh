@@ -136,39 +136,39 @@ installationBundleDemo() {
   certmanager_install=false
   certmanager_enable=false
   # install keptn
-  keptn_install=true
+  keptn_install=false
   # clone repos
   keptn_examples_clone=true
   resources_clone=true
   keptn_catalog_clone=true
   hostalias=false
   # gitea
-  git_deploy=true
-  git_env=true
+  git_deploy=false
+  git_env=false
   git_migrate=false
   dynatrace_savecredentials=true
   dynatrace_configure_monitoring=true
   # install Dynatrace Operator
   dynatrace_install_dynakube=true
   # Dynatrace_service
-  dynatrace_install_service=true
+  dynatrace_install_service=false
   #sli service is deprecated
   dynatrace_install_sli_service=false
   # Traditional ActiveGate
   dynatrace_activegate_install=false
-  dynatrace_configure_workloads=true
-  keptndeploy_homepage=true
+  dynatrace_configure_workloads=fasle
+  keptndeploy_homepage=false
   # unleash
   keptndemo_unleash=false
   keptndemo_unleash_configure=false
   # sockshop application
-  keptndemo_cartsonboard=true
-  keptndemo_cartsload=true
+  keptndemo_cartsonboard=false
+  keptndemo_cartsload=false
   # use for order application
-  keptndemo_catalogonboard=true
+  keptndemo_catalogonboard=false
   # use for easytravel
-  keptndemo_easytravelonboard=true
-  keptndemo_easytraveloadgen=true
+  keptndemo_easytravelonboard=false
+  keptndemo_easytraveloadgen=false
   # dashboards for AIOPs
   keptndashboard_load=false
   # create custom metrics
@@ -177,15 +177,15 @@ installationBundleDemo() {
   expose_kubernetes_api=true
   expose_kubernetes_dashboard=true
   patch_kubernetes_dashboard=true
-  keptn_bridge_disable_login=true
+  keptn_bridge_disable_login=false
   # By default no WorkshopUser will be created
   create_workshop_user=false
-  jmeter_install=true
-  dynatrace_project=true
-  QG_projects=true
-  keptnwebservice=true
-  sockshop_secret=true
-  post_flight=true
+  jmeter_install=false
+  dynatrace_project=false
+  QG_projects=false
+  keptnwebservice=false
+  sockshop_secret=false
+  post_flight=false
   patch_config_service=false
 }
 
@@ -210,9 +210,9 @@ installationBundleAll() {
   certmanager_install=false
   certmanager_enable=false
   create_workshop_user=false
-  keptn_bridge_disable_login=true
+  keptn_bridge_disable_login=false
 
-  jenkins_deploy=true
+  jenkins_deploy=false
 
   selected_bundle="installationBundleAll"
 }
