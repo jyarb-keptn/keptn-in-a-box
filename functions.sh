@@ -8,7 +8,7 @@
 # ==================================================
 #      ----- Components Versions -----             #
 # ==================================================
-KIAB_RELEASE="0.8.21"
+KIAB_RELEASE="0.9.2"
 # https://github.com/keptn/keptn
 KEPTN_VERSION=0.18.2
 MICROK8S_CHANNEL="1.24/stable"
