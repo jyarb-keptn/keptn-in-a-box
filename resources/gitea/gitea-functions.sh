@@ -17,11 +17,11 @@ source ~/keptn-in-a-box/resources/gitea/gitea-vars.sh $DOMAIN
 
 # Create Token
 createApiToken(){
-    echo "Creating token for $GIT_USER from $GIT_SERVER"
+   echo "Creating token for $GIT_USER from $GIT_SERVER"
     curl -v --user $GIT_USER:$GIT_PASSWORD \
     -X POST "$GIT_SERVER/api/v1/users/$GIT_USER/tokens" \
     -H "accept: application/json" -H "Content-Type: application/json; charset=utf-8" \
-    -d "{ \"name\": \"$GIT_TOKEN\" }" -o $GIT_TOKEN.json
+    -d "{ \"name\": \"$GIT_TOKEN\", \"scopes\": [\"all\"] }" -o $GIT_TOKEN.json
 }
 
 getApiTokens(){
