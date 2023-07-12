@@ -162,15 +162,15 @@ installationBundleDemo() {
   keptndemo_unleash=false
   keptndemo_unleash_configure=false
   # sockshop application
-  keptndemo_cartsonboard=false
-  keptndemo_cartsload=false
+  keptndemo_cartsonboard=true
+  keptndemo_cartsload=true
   # use for order application
-  keptndemo_catalogonboard=false
+  keptndemo_catalogonboard=true
   # use for easytravel
-  keptndemo_easytravelonboard=false
-  keptndemo_easytraveloadgen=false
+  keptndemo_easytravelonboard=true
+  keptndemo_easytraveloadgen=true
   # dashboards for AIOPs
-  keptndashboard_load=false
+  keptndashboard_load=true
   # create custom metrics
   createMetrics=false
   createApplications=false
@@ -181,11 +181,11 @@ installationBundleDemo() {
   # By default no WorkshopUser will be created
   create_workshop_user=false
   jmeter_install=true
-  dynatrace_project=false
-  QG_projects=false
-  keptnwebservice=false
-  sockshop_secret=false
-  post_flight=false
+  dynatrace_project=true
+  QG_projects=true
+  keptnwebservice=true
+  sockshop_secret=true
+  post_flight=true
   patch_config_service=false
 }
 
