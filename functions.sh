@@ -11,9 +11,9 @@
 KIAB_RELEASE="0.8.21"
 # https://github.com/keptn/keptn
 KEPTN_VERSION=1.4.5
-MICROK8S_CHANNEL="1.22/stable"
+MICROK8S_CHANNEL="1.24/stable"
 OPERATOR_VERSION=v1.6.3
-ISTIO_VERSION=1.28.5
+ISTIO_VERSION=1.19.10
 CERTMANAGER_VERSION=1.6.1
 # https://github.com/helm/helm/releases
 HELM_VERSION=3.20.1
