@@ -11,7 +11,7 @@
 KIAB_RELEASE="0.8.21"
 # https://github.com/keptn/keptn
 KEPTN_VERSION=1.4.5
-MICROK8S_CHANNEL="1.34/stable"
+MICROK8S_CHANNEL="1.22/stable"
 OPERATOR_VERSION=v1.6.3
 ISTIO_VERSION=1.28.5
 CERTMANAGER_VERSION=1.6.1
@@ -325,7 +325,7 @@ waitForAllPods() {
     namespace_filter="--all-namespaces"
   fi
   RETRY=0
-  RETRY_MAX=50
+  RETRY_MAX=80
   # Get all pods, count and invert the search for not running nor completed. Status is for deleting the last line of the output
   CMD="bashas \"kubectl get pods $namespace_filter 2>&1 | grep -c -v -E '(Running|Completed|Terminating|STATUS)'\""
   printInfo "Checking and wait for all pods in \"$namespace_filter\" to run."
